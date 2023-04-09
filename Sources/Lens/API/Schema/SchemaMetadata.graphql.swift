@@ -6,24 +6,24 @@ import ApolloAPI
 public typealias ID = String
 
 public protocol SelectionSet: ApolloAPI.SelectionSet & ApolloAPI.RootSelectionSet
-where Schema == LensAPI.SchemaMetadata {}
+where Schema == Lens.SchemaMetadata {}
 
 public protocol InlineFragment: ApolloAPI.SelectionSet & ApolloAPI.InlineFragment
-where Schema == LensAPI.SchemaMetadata {}
+where Schema == Lens.SchemaMetadata {}
 
 public protocol MutableSelectionSet: ApolloAPI.MutableRootSelectionSet
-where Schema == LensAPI.SchemaMetadata {}
+where Schema == Lens.SchemaMetadata {}
 
 public protocol MutableInlineFragment: ApolloAPI.MutableSelectionSet & ApolloAPI.InlineFragment
-where Schema == LensAPI.SchemaMetadata {}
+where Schema == Lens.SchemaMetadata {}
 
 public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
   public static let configuration: ApolloAPI.SchemaConfiguration.Type = SchemaConfiguration.self
 
   public static func objectType(forTypename typename: String) -> Object? {
     switch typename {
-    case "Query": return LensAPI.Objects.Query
-    case "AuthChallengeResult": return LensAPI.Objects.AuthChallengeResult
+    case "Query": return Lens.Objects.Query
+    case "AuthChallengeResult": return Lens.Objects.AuthChallengeResult
     default: return nil
     }
   }

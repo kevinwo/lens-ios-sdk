@@ -25,11 +25,11 @@ public class ChallengeQuery: GraphQLQuery {
 
   public var __variables: Variables? { ["request": request] }
 
-  public struct Data: LensAPI.SelectionSet {
+  public struct Data: Lens.SelectionSet {
     public let __data: DataDict
     public init(_dataDict: DataDict) { __data = _dataDict }
 
-    public static var __parentType: ApolloAPI.ParentType { LensAPI.Objects.Query }
+    public static var __parentType: ApolloAPI.ParentType { Lens.Objects.Query }
     public static var __selections: [ApolloAPI.Selection] { [
       .field("challenge", Challenge.self, arguments: ["request": .variable("request")]),
     ] }
@@ -39,11 +39,11 @@ public class ChallengeQuery: GraphQLQuery {
     /// Challenge
     ///
     /// Parent Type: `AuthChallengeResult`
-    public struct Challenge: LensAPI.SelectionSet {
+    public struct Challenge: Lens.SelectionSet {
       public let __data: DataDict
       public init(_dataDict: DataDict) { __data = _dataDict }
 
-      public static var __parentType: ApolloAPI.ParentType { LensAPI.Objects.AuthChallengeResult }
+      public static var __parentType: ApolloAPI.ParentType { Lens.Objects.AuthChallengeResult }
       public static var __selections: [ApolloAPI.Selection] { [
         .field("__typename", String.self),
         .field("text", String.self),
