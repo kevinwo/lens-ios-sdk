@@ -11,6 +11,7 @@
 		2118D86B29E31C82006753C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2118D86A29E31C82006753C0 /* ContentView.swift */; };
 		2118D86D29E31C85006753C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2118D86C29E31C85006753C0 /* Assets.xcassets */; };
 		2118D87129E31C85006753C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2118D87029E31C85006753C0 /* Preview Assets.xcassets */; };
+		2118D87929E31F8C006753C0 /* Lens in Frameworks */ = {isa = PBXBuildFile; productRef = 2118D87829E31F8C006753C0 /* Lens */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2118D87929E31F8C006753C0 /* Lens in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +40,7 @@
 			children = (
 				2118D86729E31C82006753C0 /* Example */,
 				2118D86629E31C82006753C0 /* Products */,
+				2118D87729E31F8C006753C0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +72,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		2118D87729E31F8C006753C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -85,6 +95,9 @@
 			dependencies = (
 			);
 			name = Example;
+			packageProductDependencies = (
+				2118D87829E31F8C006753C0 /* Lens */,
+			);
 			productName = Example;
 			productReference = 2118D86529E31C82006753C0 /* Example.app */;
 			productType = "com.apple.product-type.application";
@@ -354,6 +367,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2118D87829E31F8C006753C0 /* Lens */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Lens;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2118D85D29E31C82006753C0 /* Project object */;
 }

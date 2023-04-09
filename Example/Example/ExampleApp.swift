@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lens
 
 @main
 struct ExampleApp: App {
