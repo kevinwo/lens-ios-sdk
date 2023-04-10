@@ -10,7 +10,8 @@ final class LensClientTests: XCTestCase {
 
     override func setUpWithError() throws {
         mockApolloClient = MockApolloClient()
-        client = LensClient(apolloClient: mockApolloClient)
+        Current.apolloClient = mockApolloClient
+        client = LensClient()
     }
 
     // MARK: - Tests

@@ -2,7 +2,11 @@ import Apollo
 import ApolloAPI
 import Foundation
 
-struct LensClient {
+protocol LensClientType {
+    func request<Query: GraphQLQuery>(query: Query) async throws -> Query.Data
+}
+
+struct LensClient: LensClientType {
     // MARK: - Enums
 
     enum Error: Swift.Error {
@@ -11,13 +15,7 @@ struct LensClient {
 
     // MARK: - Properties
 
-    private let apolloClient: ApolloClientType
-
-    // MARK: - Object life cycle
-
-    init(apolloClient: ApolloClientType) {
-        self.apolloClient = apolloClient
-    }
+    private let apolloClient: ApolloClientType = Current.apolloClient
 
     // MARK: - Internal interface
 
