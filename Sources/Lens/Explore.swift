@@ -2,7 +2,11 @@ import Foundation
 
 public typealias Publication = ExplorePublicationsQuery.Data.ExplorePublications.Item
 
-public class Explore {
+public protocol ExploreType {
+    func publications(request: ExplorePublicationRequest) async throws -> ExplorePublicationsQuery.Data.ExplorePublications
+}
+
+public class Explore: ExploreType {
     // MARK: - Properties
 
     private let client: LensClientType = Current.lensClient()

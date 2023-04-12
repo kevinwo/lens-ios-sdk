@@ -13,6 +13,8 @@
 		2118D87129E31C85006753C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2118D87029E31C85006753C0 /* Preview Assets.xcassets */; };
 		2118D87929E31F8C006753C0 /* Lens in Frameworks */ = {isa = PBXBuildFile; productRef = 2118D87829E31F8C006753C0 /* Lens */; };
 		212D130829E710C30094560E /* ExplorePublicationsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D130729E710C30094560E /* ExplorePublicationsViewModelTests.swift */; };
+		212D130A29E71FC80094560E /* LensTestTools in Frameworks */ = {isa = PBXBuildFile; productRef = 212D130929E71FC80094560E /* LensTestTools */; };
+		212D130C29E71FF00094560E /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D130B29E71FF00094560E /* World.swift */; };
 		21BEB5CD29E6F273008BC970 /* ExplorePublicationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BEB5CC29E6F273008BC970 /* ExplorePublicationsView.swift */; };
 		21BEB5CF29E6F45C008BC970 /* ExplorePublicationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BEB5CE29E6F45C008BC970 /* ExplorePublicationsViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +38,7 @@
 		2118D87029E31C85006753C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		212D12FC29E7104A0094560E /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		212D130729E710C30094560E /* ExplorePublicationsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsViewModelTests.swift; sourceTree = "<group>"; };
+		212D130B29E71FF00094560E /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		21BEB5CC29E6F273008BC970 /* ExplorePublicationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsView.swift; sourceTree = "<group>"; };
 		21BEB5CE29E6F45C008BC970 /* ExplorePublicationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				212D130A29E71FC80094560E /* LensTestTools in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +91,7 @@
 				2118D86C29E31C85006753C0 /* Assets.xcassets */,
 				2118D86E29E31C85006753C0 /* Example.entitlements */,
 				2118D86F29E31C85006753C0 /* Preview Content */,
+				212D130B29E71FF00094560E /* World.swift */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -184,6 +189,9 @@
 				212D130129E7104A0094560E /* PBXTargetDependency */,
 			);
 			name = ExampleTests;
+			packageProductDependencies = (
+				212D130929E71FC80094560E /* LensTestTools */,
+			);
 			productName = ExampleTests;
 			productReference = 212D12FC29E7104A0094560E /* ExampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -254,6 +262,7 @@
 				21BEB5CF29E6F45C008BC970 /* ExplorePublicationsViewModel.swift in Sources */,
 				21BEB5CD29E6F273008BC970 /* ExplorePublicationsView.swift in Sources */,
 				2118D86929E31C82006753C0 /* ExampleApp.swift in Sources */,
+				212D130C29E71FF00094560E /* World.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +550,10 @@
 		2118D87829E31F8C006753C0 /* Lens */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Lens;
+		};
+		212D130929E71FC80094560E /* LensTestTools */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LensTestTools;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

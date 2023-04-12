@@ -1,13 +1,25 @@
 import SwiftUI
 
 struct ExplorePublicationsView: View {
+    @ObservedObject var viewModel = ExplorePublicationsViewModel()
+
     var body: some View {
         List {
-            Text("Publication 1")
-            Text("Publication 2")
-            Text("Publication 3")
+            ForEach(viewModel.publications, id: \.hashValue) { publication in
+                switch publication.__typename {
+                case "Post":
+                    Text(publication.asPost?.metadata.content ?? "No post content")
+                case "Comment":
+                    Text(publication.asComment?.metadata.content ?? "No comment")
+                default:
+                    Group {}
+                }
+            }
         }
         .navigationTitle("Explore Publications")
+        .onAppear {
+            viewModel.fetchPublications()
+        }
     }
 }
 

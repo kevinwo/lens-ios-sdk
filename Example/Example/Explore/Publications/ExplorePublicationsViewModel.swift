@@ -5,22 +5,17 @@ final class ExplorePublicationsViewModel: ObservableObject {
     @Published var publications = [Publication]()
     @Published var sortCriteria: PublicationSortCriteria = .topCommented
 
-    func fetchPublications() {
-        let explore = Explore()
+    @MainActor
+    func fetchPublications() async {
         let request = ExplorePublicationRequest(
             sortCriteria: .init(sortCriteria)
         )
 
-        Task {
-            do {
-                let results = try await explore.publications(request: request)
-
-                DispatchQueue.main.async {
-                    self.publications = results.items
-                }
-            } catch {
-                // TODO: Handle error
-            }
+        do {
+            let results = try await Current.explore.publications(request: request)
+            self.publications = results.items
+        } catch {
+            // TODO: Handle error
         }
     }
 }
