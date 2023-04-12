@@ -11,29 +11,35 @@ public struct ExplorePublicationRequest: InputObject {
   }
 
   public init(
-    limit: GraphQLNullable<LimitScalar> = nil,
-    cursor: GraphQLNullable<Cursor> = nil,
-    timestamp: GraphQLNullable<TimestampScalar> = nil,
+    limit: GraphQLNullable<LimitScalar>? = nil,
+    cursor: GraphQLNullable<Cursor>? = nil,
+    timestamp: GraphQLNullable<TimestampScalar>? = nil,
     sortCriteria: GraphQLEnum<PublicationSortCriteria>,
-    sources: GraphQLNullable<[Sources]>,
-    publicationTypes: GraphQLNullable<[GraphQLEnum<PublicationTypes>]> = nil,
-    noRandomize: GraphQLNullable<Bool> = nil,
-    excludeProfileIds: GraphQLNullable<[ProfileId]> = nil,
-    metadata: GraphQLNullable<PublicationMetadataFilters> = nil,
-    customFilters: GraphQLNullable<[GraphQLEnum<CustomFiltersTypes>]>
+    sources: GraphQLNullable<[Sources]>? = nil,
+    publicationTypes: GraphQLNullable<[GraphQLEnum<PublicationTypes>]>? = nil,
+    noRandomize: GraphQLNullable<Bool>? = nil,
+    excludeProfileIds: GraphQLNullable<[ProfileId]>? = nil,
+    metadata: GraphQLNullable<PublicationMetadataFilters>? = nil,
+    customFilters: GraphQLNullable<[GraphQLEnum<CustomFiltersTypes>]>? = nil
   ) {
-    __data = InputDict([
-      "limit": limit,
-      "cursor": cursor,
-      "timestamp": timestamp,
-      "sortCriteria": sortCriteria,
-      "sources": sources,
-      "publicationTypes": publicationTypes,
-      "noRandomize": noRandomize,
-      "excludeProfileIds": excludeProfileIds,
-      "metadata": metadata,
-      "customFilters": customFilters
-    ])
+      /// There appears to be an issue with the way the Apollo iOS library handles null arguments
+      /// (or maybe the way the Lens GraphQL API handles them?). In any case, we need to work around
+      /// this for now by manually not including any null arguments in this request.
+      var dict = [String: any GraphQLOperationVariableValue]()
+      dict["sortCriteria"] = sortCriteria
+
+      if let limit { dict["limit"] = limit }
+      if let cursor { dict["cursor"] = cursor }
+      if let timestamp { dict["timestamp"] = timestamp }
+      if let sources { dict["sources"] = sources }
+      if let publicationTypes { dict["publicationTypes"] = publicationTypes }
+      if let noRandomize { dict["noRandomize"] = noRandomize }
+      if let excludeProfileIds { dict["excludeProfileIds"] = excludeProfileIds }
+      if let metadata { dict["metadata"] = metadata }
+      if let customFilters { dict["customFilters"] = customFilters }
+      print(dict)
+
+    __data = InputDict(dict)
   }
 
   public var limit: GraphQLNullable<LimitScalar> {

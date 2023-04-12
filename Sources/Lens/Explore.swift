@@ -1,5 +1,7 @@
 import Foundation
 
+public typealias Publication = ExplorePublicationsQuery.Data.ExplorePublications.Item
+
 public class Explore {
     // MARK: - Properties
 
