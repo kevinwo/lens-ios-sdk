@@ -1,21 +1,17 @@
-//
-//  ContentView.swift
-//  Example
-//
-//  Created by Kevin Wolkober on 4/9/23.
-//
-
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            List {
+                Section(header: Text("Explore")) {
+                    NavigationLink(destination: ExplorePublicationsView()) {
+                        Text("Publications")
+                    }
+                }
+            }
+            .navigationTitle("Lens")
         }
-        .padding()
     }
 }
 
