@@ -31,11 +31,11 @@ let package = Package(
       dependencies: [
         .product(name: "Apollo", package: "apollo-ios"),
         .product(name: "ApolloAPI", package: "apollo-ios"),
-      ],
-      exclude: ["*.graphql", "*.graphqls"]
+      ]
     ),
     .testTarget(
       name: "LensTests",
-      dependencies: ["Lens"]),
+      dependencies: ["Lens"]
+    )
   ]
 )
