@@ -19,7 +19,10 @@ struct PostRow: View {
                     timeAgo: viewModel.timeAgo
                 )
 
-                PubContentView(content: viewModel.content)
+                PubContentView(
+                    content: viewModel.content,
+                    mediaImageUrl: viewModel.mediaImageUrl
+                )
             }
         }
     }
