@@ -1,7 +1,7 @@
 import Foundation
 import Lens
 
-final class PostRowViewModel {
+final class PostRowModel {
     // MARK: - Properties
 
     let post: Post

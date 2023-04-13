@@ -2,10 +2,10 @@ import SwiftUI
 import Lens
 
 struct PostRow: View {
-    let viewModel: PostRowViewModel
+    let viewModel: PostRowModel
 
     static func view(post: Post) -> PostRow {
-        let viewModel = PostRowViewModel(post: post)
+        let viewModel = PostRowModel(post: post)
         return PostRow(viewModel: viewModel)
     }
 
@@ -17,7 +17,7 @@ struct PostRow: View {
 struct PostRow_Previews: PreviewProvider {
     static var previews: some View {
         let post = Post(_dataDict: .init(data: try! .init(_jsonValue: ["empty": "post"])))
-        let viewModel = PostRowViewModel(post: post)
+        let viewModel = PostRowModel(post: post)
         PostRow(viewModel: viewModel)
     }
 }

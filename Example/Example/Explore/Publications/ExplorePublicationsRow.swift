@@ -9,7 +9,8 @@ struct ExplorePublicationsRow {
             guard let post = publication.asPost else { return Group {}.typeErased }
             return PostRow.view(post: post).typeErased
         case "Comment":
-            return Text(publication.asComment?.metadata.content ?? "No comment").typeErased
+            guard let comment = publication.asComment else { return Group {}.typeErased }
+            return CommentRow.view(comment: comment).typeErased
         default:
             return Group {}.typeErased
         }
