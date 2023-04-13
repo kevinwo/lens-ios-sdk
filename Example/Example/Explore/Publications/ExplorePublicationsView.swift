@@ -12,14 +12,7 @@ struct ExplorePublicationsView: View {
             } else {
                 List {
                     ForEach(viewModel.publications, id: \.hashValue) { publication in
-                        switch publication.__typename {
-                        case "Post":
-                            Text(publication.asPost?.metadata.content ?? "No post content")
-                        case "Comment":
-                            Text(publication.asComment?.metadata.content ?? "No comment")
-                        default:
-                            Group {}
-                        }
+                        ExplorePublicationsRow.forPublication(publication)
                     }
                 }
             }
