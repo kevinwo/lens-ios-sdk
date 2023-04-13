@@ -23,7 +23,19 @@ final class ExplorePublicationsViewModelTests: XCTestCase {
 
     // MARK: - Tests
 
-    func test_fetchPublications() async throws {
+    func test_fetchPublications_whenNoPublicationsAreFetched() async throws {
+        // given
+        mockExplore.stubbedPublicationsResults = try Stubs.Explore.emptyPublications()
+
+        // when
+        await viewModel.fetchPublications()
+
+        // then
+        XCTAssertTrue(viewModel.publications.isEmpty)
+        XCTAssertFalse(viewModel.isLoading)
+    }
+
+    func test_fetchPublications_whenPublicationsAreFetched() async throws {
         // given
         let expectedResults = try Stubs.Explore.publications()
         mockExplore.stubbedPublicationsResults = expectedResults
@@ -33,5 +45,6 @@ final class ExplorePublicationsViewModelTests: XCTestCase {
 
         // then
         XCTAssertEqual(viewModel.publications, expectedResults.items)
+        XCTAssertFalse(viewModel.isLoading)
     }
 }

@@ -3,6 +3,17 @@ import Lens
 
 public extension Stubs {
   enum Explore {
+    public static func emptyPublications() throws -> ExplorePublicationsQuery.Data.ExplorePublications {
+      let items: [[String: AnyHashable]] = []
+      let results = ["items": items] as! [String: AnyHashable]
+      let json = JSONValue(results)
+      return ExplorePublicationsQuery.Data.ExplorePublications(
+        _dataDict: .init(
+          data: try .init(_jsonValue: json)
+        )
+      )
+    }
+
     public static func publications() throws -> ExplorePublicationsQuery.Data.ExplorePublications {
       let data = publicationsItemsJSON()
       var results = try JSONSerialization.jsonObject(with: data, options: []) as! [String: AnyHashable]

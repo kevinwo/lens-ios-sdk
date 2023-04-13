@@ -5,8 +5,10 @@ struct ExplorePublicationsView: View {
 
     var body: some View {
         VStack {
-            if viewModel.publications.isEmpty {
+            if viewModel.isLoading {
                 ProgressView()
+            } else if viewModel.publications.isEmpty {
+                Text("There are no publications to explore right now.")
             } else {
                 List {
                     ForEach(viewModel.publications, id: \.hashValue) { publication in

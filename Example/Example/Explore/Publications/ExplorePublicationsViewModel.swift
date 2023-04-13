@@ -2,11 +2,14 @@ import Foundation
 import Lens
 
 final class ExplorePublicationsViewModel: ObservableObject {
+    @Published var isLoading: Bool = true
     @Published var publications = [Publication]()
     @Published var sortCriteria: PublicationSortCriteria = .topCommented
 
     @MainActor
     func fetchPublications() async {
+        isLoading = true
+
         let request = ExplorePublicationRequest(
             sortCriteria: .init(sortCriteria)
         )
@@ -17,5 +20,7 @@ final class ExplorePublicationsViewModel: ObservableObject {
         } catch {
             // TODO: Handle error
         }
+
+        isLoading = false
     }
 }
