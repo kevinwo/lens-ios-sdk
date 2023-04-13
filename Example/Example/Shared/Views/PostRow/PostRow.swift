@@ -3,12 +3,6 @@ import Lens
 import SwiftUI
 
 struct PostRow: View {
-    // MARK: - Enums
-
-    enum Constants {
-        static let profileFrameSize = CGSize(width: 36, height: 36)
-    }
-
     // MARK: - Properties
 
     let viewModel: PostRowModel
@@ -16,33 +10,16 @@ struct PostRow: View {
     var body: some View {
         HStack(alignment: .top) {
             KFImage(viewModel.authorProfileImageUrl)
-                .resizable()
-                .downsampling(size: .init(width: Constants.profileFrameSize.width, height: Constants.profileFrameSize.height))
-                .roundCorner(radius: .point(20))
-                .placeholder { _ in
-                    Circle()
-                        .foregroundColor(.gray)
-                        .frame(width: Constants.profileFrameSize.width)
-                }
-                .fixedSize(horizontal: true, vertical: true)
-                .aspectRatio(contentMode: .fit)
+                .profilePicture()
 
             VStack(alignment: .leading) {
-                HStack {
-                    if let name = viewModel.authorName { Text(name).bold() }
+                PubBylineView(
+                    authorName: viewModel.authorName,
+                    authorHandle: viewModel.authorHandle,
+                    timeAgo: viewModel.timeAgo
+                )
 
-                    Text(viewModel.authorHandle)
-                        .foregroundColor(.gray)
-
-                    if let timeAgo = viewModel.timeAgo {
-                        Text("·")
-                        Text(timeAgo).foregroundColor(.gray)
-                    }
-                }
-                .font(.callout)
-
-                Text(viewModel.content)
-                    .font(.callout)
+                PubContentView(content: viewModel.content)
             }
         }
     }
