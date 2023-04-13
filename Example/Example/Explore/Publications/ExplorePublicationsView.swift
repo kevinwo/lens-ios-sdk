@@ -15,6 +15,7 @@ struct ExplorePublicationsView: View {
                         ExplorePublicationsRow.forPublication(publication)
                     }
                 }
+                .listStyle(.plain)
             }
         }
         .navigationTitle("Explore Publications")
