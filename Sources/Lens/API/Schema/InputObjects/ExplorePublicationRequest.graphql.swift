@@ -37,7 +37,6 @@ public struct ExplorePublicationRequest: InputObject {
       if let excludeProfileIds { dict["excludeProfileIds"] = excludeProfileIds }
       if let metadata { dict["metadata"] = metadata }
       if let customFilters { dict["customFilters"] = customFilters }
-      print(dict)
 
     __data = InputDict(dict)
   }

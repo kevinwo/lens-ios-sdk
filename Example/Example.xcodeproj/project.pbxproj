@@ -15,6 +15,8 @@
 		212D130829E710C30094560E /* ExplorePublicationsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D130729E710C30094560E /* ExplorePublicationsViewModelTests.swift */; };
 		212D130A29E71FC80094560E /* LensTestTools in Frameworks */ = {isa = PBXBuildFile; productRef = 212D130929E71FC80094560E /* LensTestTools */; };
 		212D130C29E71FF00094560E /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D130B29E71FF00094560E /* World.swift */; };
+		213F8FA329E7327C00473E5B /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 213F8FA229E7327C00473E5B /* SnapshotTesting */; };
+		213F8FA529E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213F8FA429E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift */; };
 		21BEB5CD29E6F273008BC970 /* ExplorePublicationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BEB5CC29E6F273008BC970 /* ExplorePublicationsView.swift */; };
 		21BEB5CF29E6F45C008BC970 /* ExplorePublicationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BEB5CE29E6F45C008BC970 /* ExplorePublicationsViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -39,6 +41,7 @@
 		212D12FC29E7104A0094560E /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		212D130729E710C30094560E /* ExplorePublicationsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsViewModelTests.swift; sourceTree = "<group>"; };
 		212D130B29E71FF00094560E /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		213F8FA429E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsViewSnapshotTests.swift; sourceTree = "<group>"; };
 		21BEB5CC29E6F273008BC970 /* ExplorePublicationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsView.swift; sourceTree = "<group>"; };
 		21BEB5CE29E6F45C008BC970 /* ExplorePublicationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				212D130A29E71FC80094560E /* LensTestTools in Frameworks */,
+				213F8FA329E7327C00473E5B /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				212D130729E710C30094560E /* ExplorePublicationsViewModelTests.swift */,
+				213F8FA429E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift */,
 			);
 			path = Publications;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 			name = ExampleTests;
 			packageProductDependencies = (
 				212D130929E71FC80094560E /* LensTestTools */,
+				213F8FA229E7327C00473E5B /* SnapshotTesting */,
 			);
 			productName = ExampleTests;
 			productReference = 212D12FC29E7104A0094560E /* ExampleTests.xctest */;
@@ -224,6 +230,9 @@
 				Base,
 			);
 			mainGroup = 2118D85C29E31C82006753C0;
+			packageReferences = (
+				213F8FA129E7327C00473E5B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+			);
 			productRefGroup = 2118D86629E31C82006753C0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -271,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				212D130829E710C30094560E /* ExplorePublicationsViewModelTests.swift in Sources */,
+				213F8FA529E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +556,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		213F8FA129E7327C00473E5B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		2118D87829E31F8C006753C0 /* Lens */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -554,6 +575,11 @@
 		212D130929E71FC80094560E /* LensTestTools */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LensTestTools;
+		};
+		213F8FA229E7327C00473E5B /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 213F8FA129E7327C00473E5B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

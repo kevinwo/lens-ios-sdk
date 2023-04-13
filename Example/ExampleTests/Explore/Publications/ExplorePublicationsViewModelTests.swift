@@ -13,25 +13,19 @@ final class ExplorePublicationsViewModelTests: XCTestCase {
         viewModel = ExplorePublicationsViewModel()
         mockExplore = MockExplore()
         Current.explore = mockExplore
+        // TODO: Add test observer with world reset before each test run
     }
 
     override func tearDownWithError() throws {
         viewModel = nil
+        mockExplore = nil
     }
 
     // MARK: - Tests
 
     func test_fetchPublications() async throws {
         // given
-        let data = Stubs.Explore.publicationsItemsJSON()
-        let items = try JSONSerialization.jsonObject(with: data, options: []) as! [String: AnyHashable]
-
-        let json = JSONValue(items)
-        let expectedResults = ExplorePublicationsQuery.Data.ExplorePublications(
-            _dataDict: .init(
-                data: try .init(_jsonValue: json)
-            )
-        )
+        let expectedResults = try Stubs.Explore.publications()
         mockExplore.stubbedPublicationsResults = expectedResults
 
         // when

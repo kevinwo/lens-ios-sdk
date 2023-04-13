@@ -11,6 +11,7 @@ public final class MockExplore: ExploreType {
 
     public var invokedPublications = false
     public var stubbedPublicationsResults: ExplorePublicationsQuery.Data.ExplorePublications?
+    public var publicationsLoadCompletion: (() -> Void)?
 
     // MARK: - Object life cycle
 
@@ -22,6 +23,7 @@ public final class MockExplore: ExploreType {
         invokedPublications = true
 
         if let stubbedPublicationsResults {
+            publicationsLoadCompletion?()
             return stubbedPublicationsResults
         } else {
             throw Error.publicationsStubNotPresent
