@@ -11,7 +11,13 @@ struct PostRow: View {
 
     var body: some View {
         HStack {
-            Text("Image")
+            AsyncImage(url: viewModel.authorProfileImageUrl) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            } placeholder: {
+                ProgressView()
+            }
 
             VStack(alignment: .leading) {
                 HStack {

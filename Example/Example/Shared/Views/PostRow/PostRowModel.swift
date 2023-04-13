@@ -6,6 +6,13 @@ final class PostRowModel {
 
     let post: Post
 
+    var authorProfileImageUrl: URL? {
+        guard let urlString = post.profile.picture?.asMediaSet?.original.url else {
+            return nil
+        }
+        return URL(string: urlString)
+    }
+
     var authorName: String? {
         post.profile.name
     }
