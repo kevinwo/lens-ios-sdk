@@ -1,23 +1,31 @@
-import SwiftUI
+import Kingfisher
 import Lens
+import SwiftUI
 
 struct PostRow: View {
-    let viewModel: PostRowModel
+    // MARK: - Enums
 
-    static func view(post: Post) -> PostRow {
-        let viewModel = PostRowModel(post: post)
-        return PostRow(viewModel: viewModel)
+    enum Constants {
+        static let profileFrameSize = CGSize(width: 36, height: 36)
     }
 
+    // MARK: - Properties
+
+    let viewModel: PostRowModel
+
     var body: some View {
-        HStack {
-            AsyncImage(url: viewModel.authorProfileImageUrl) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            } placeholder: {
-                ProgressView()
-            }
+        HStack(alignment: .top) {
+            KFImage(viewModel.authorProfileImageUrl)
+                .resizable()
+                .downsampling(size: .init(width: Constants.profileFrameSize.width, height: Constants.profileFrameSize.height))
+                .roundCorner(radius: .point(20))
+                .placeholder { _ in
+                    Circle()
+                        .foregroundColor(.gray)
+                        .frame(width: Constants.profileFrameSize.width)
+                }
+                .fixedSize(horizontal: true, vertical: true)
+                .aspectRatio(contentMode: .fit)
 
             VStack(alignment: .leading) {
                 HStack {
@@ -37,6 +45,13 @@ struct PostRow: View {
                     .font(.callout)
             }
         }
+    }
+
+    // MARK: - Internal interface
+
+    static func view(post: Post) -> PostRow {
+        let viewModel = PostRowModel(post: post)
+        return PostRow(viewModel: viewModel)
     }
 }
 
