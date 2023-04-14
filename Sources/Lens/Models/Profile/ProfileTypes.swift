@@ -2,47 +2,47 @@ import Foundation
 
 // MARK: - Post
 
-public typealias PostProfile = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.Profile
-public typealias PostProfilePicture = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.Profile.Picture
+typealias PostProfile = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.Profile
+typealias PostProfilePicture = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.Profile.Picture
 
-extension PostProfilePicture: Lens.ProfilePicture {
-    public var mediaSet: MediaSet? {
+extension PostProfilePicture: AnyProfilePicture {
+    var mediaSet: (any AnyMediaSet)? {
         asMediaSet
     }
 }
 
-extension PostProfile: Lens.Profile {
-    public var profilePicture: ProfilePicture? {
+extension PostProfile: AnyProfile {
+    var profilePicture: AnyProfilePicture? {
         picture
     }
 }
 
 // MARK: - Comment
 
-public typealias CommentProfile = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Profile
-public typealias CommentProfilePicture = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Profile.Picture
-extension CommentProfilePicture: Lens.ProfilePicture {
-    public var mediaSet: MediaSet? {
+typealias CommentProfile = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Profile
+typealias CommentProfilePicture = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Profile.Picture
+extension CommentProfilePicture: AnyProfilePicture {
+    var mediaSet: (any AnyMediaSet)? {
         asMediaSet
     }
 }
-extension CommentProfile: Lens.Profile {
-    public var profilePicture: Lens.ProfilePicture? {
+extension CommentProfile: AnyProfile {
+    var profilePicture: AnyProfilePicture? {
         picture
     }
 }
 
 // MARK: - Mirror
 
-public typealias MirrorProfile = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsMirror.Profile
-public typealias MirrorProfilePicture = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsMirror.Profile.Picture
-extension MirrorProfilePicture: Lens.ProfilePicture {
-    public var mediaSet: MediaSet? {
+typealias MirrorProfile = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsMirror.Profile
+typealias MirrorProfilePicture = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsMirror.Profile.Picture
+extension MirrorProfilePicture: AnyProfilePicture {
+    var mediaSet: (any AnyMediaSet)? {
         asMediaSet
     }
 }
-extension MirrorProfile: Lens.Profile {
-    public var profilePicture: Lens.ProfilePicture? {
+extension MirrorProfile: AnyProfile {
+    var profilePicture: AnyProfilePicture? {
         picture
     }
 }

@@ -32,6 +32,8 @@
 		219F877529E8A058004B55C2 /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F877429E8A058004B55C2 /* MediaType.swift */; };
 		21BEB5CD29E6F273008BC970 /* ExplorePublicationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BEB5CC29E6F273008BC970 /* ExplorePublicationsView.swift */; };
 		21BEB5CF29E6F45C008BC970 /* ExplorePublicationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BEB5CE29E6F45C008BC970 /* ExplorePublicationsViewModel.swift */; };
+		21F2374729E9EBE1005EF6F0 /* URL+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2374629E9EBE1005EF6F0 /* URL+Example.swift */; };
+		21F2374929E9ED72005EF6F0 /* PublicationRowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2374829E9ED72005EF6F0 /* PublicationRowModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		219F877429E8A058004B55C2 /* MediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaType.swift; sourceTree = "<group>"; };
 		21BEB5CC29E6F273008BC970 /* ExplorePublicationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsView.swift; sourceTree = "<group>"; };
 		21BEB5CE29E6F45C008BC970 /* ExplorePublicationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsViewModel.swift; sourceTree = "<group>"; };
+		21F2374629E9EBE1005EF6F0 /* URL+Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Example.swift"; sourceTree = "<group>"; };
+		21F2374829E9ED72005EF6F0 /* PublicationRowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationRowModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +198,7 @@
 				219F877129E8988E004B55C2 /* PubContentView */,
 				219F875F29E87BA2004B55C2 /* CommentRow */,
 				219F875E29E87B98004B55C2 /* PostRow */,
+				21F2374829E9ED72005EF6F0 /* PublicationRowModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -203,6 +208,7 @@
 			children = (
 				219F875C29E87985004B55C2 /* View+Example.swift */,
 				219F876C29E894B8004B55C2 /* KFImage+Example.swift */,
+				21F2374629E9EBE1005EF6F0 /* URL+Example.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -381,12 +387,14 @@
 				219F876529E88C6F004B55C2 /* Formatters.swift in Sources */,
 				219F877029E897BD004B55C2 /* PubBylineView.swift in Sources */,
 				219F876329E87BBD004B55C2 /* CommentRowModel.swift in Sources */,
+				21F2374729E9EBE1005EF6F0 /* URL+Example.swift in Sources */,
 				2118D86929E31C82006753C0 /* ExampleApp.swift in Sources */,
 				219F876129E87BB2004B55C2 /* CommentRow.swift in Sources */,
 				219F877529E8A058004B55C2 /* MediaType.swift in Sources */,
 				219F875629E87657004B55C2 /* PostRow.swift in Sources */,
 				219F875829E87749004B55C2 /* PostRowModel.swift in Sources */,
 				212D130C29E71FF00094560E /* World.swift in Sources */,
+				21F2374929E9ED72005EF6F0 /* PublicationRowModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,24 +33,7 @@ struct CommentRow: View {
 
 struct CommentRow_Previews: PreviewProvider {
     static var previews: some View {
-        let dict: [String: AnyHashable] = [
-            "id": "cool-id",
-            "profile": [
-                "id": "0x0f",
-                "name": "Kevin Wo",
-                "handle": "kevinwo.lens"
-            ],
-            "metadata": [
-                "content": "Cool post content here right now"
-            ],
-            "createdAt": "2022-04-20T06:26:56.000Z",
-            "collectModule": [
-              "__typename": "RevertCollectModuleSettings",
-              "type": "RevertCollectModule"
-            ]
-        ]
-        let json = JSONValue(dict)
-        let comment = Comment(_dataDict: .init(data: try! .init(_jsonValue: json)))
+        let comment = Comment.forPreview
         let viewModel = CommentRowModel(comment: comment)
         CommentRow(viewModel: viewModel)
     }

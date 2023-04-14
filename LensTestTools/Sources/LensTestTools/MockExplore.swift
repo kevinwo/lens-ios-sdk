@@ -10,7 +10,7 @@ public final class MockExplore: ExploreType {
     // MARK: - Properties
 
     public var invokedPublications = false
-    public var stubbedPublicationsResults: ExplorePublicationsQuery.Data.ExplorePublications?
+    public var stubbedPublicationsResponse: ExplorePublicationsResponse?
     public var publicationsLoadCompletion: (() -> Void)?
 
     // MARK: - Object life cycle
@@ -19,12 +19,12 @@ public final class MockExplore: ExploreType {
 
     // MARK: - Public interface
 
-    public func publications(request: ExplorePublicationRequest) async throws -> ExplorePublicationsQuery.Data.ExplorePublications {
+    public func publications(request: ExplorePublicationRequest) async throws -> ExplorePublicationsResponse {
         invokedPublications = true
 
-        if let stubbedPublicationsResults {
+        if let stubbedPublicationsResponse {
             publicationsLoadCompletion?()
-            return stubbedPublicationsResults
+            return stubbedPublicationsResponse
         } else {
             throw Error.publicationsStubNotPresent
         }
