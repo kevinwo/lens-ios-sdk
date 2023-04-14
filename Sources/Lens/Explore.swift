@@ -1,8 +1,8 @@
 import Foundation
 
-public typealias Publication = ExplorePublicationsQuery.Data.ExplorePublications.Item
-public typealias Post = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost
-public typealias Comment = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment
+public protocol Picture {
+    var media: PostProfilePictureMediaSet? { get }
+}
 
 public protocol ExploreType {
     func publications(request: ExplorePublicationRequest) async throws -> ExplorePublicationsQuery.Data.ExplorePublications
