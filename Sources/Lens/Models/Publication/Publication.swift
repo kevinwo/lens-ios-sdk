@@ -1,15 +1,15 @@
 import Foundation
 
-open class Publication: Codable {
+open class Publication {
     public let id: String
-    public let profile: Profile
-    public let metadata: Metadata
+    public let profile: any Profile
+    public let metadata: any Metadata
     public let createdAt: String
 
     init(publication: any AnyPublication) {
         self.id = publication.id
-        self.profile = Profile(profile: publication.profile)
-        self.metadata = Metadata(metadata: publication.metadata)
+        self.profile = publication.profile
+        self.metadata = publication.metadata
         self.createdAt = publication.createdAt
     }
 

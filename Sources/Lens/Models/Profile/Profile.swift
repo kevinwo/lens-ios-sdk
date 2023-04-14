@@ -1,15 +1,24 @@
 import Foundation
 
-public class Profile: Codable {
-    public let id: String
-    public let name: String?
-    public let handle: String
-    public let picture: MediaSet?
+public protocol Profile {
+    associatedtype PP: Picture
+    associatedtype CP: Picture
 
-    init(profile: any AnyProfile) {
-        self.id = profile.id
-        self.name = profile.name
-        self.handle = profile.handle
-        self.picture = MediaSet(mediaSet: profile.picture?.mediaSet)
-    }
+    var id: String { get }
+    var name: String? { get }
+    var bio: String? { get }
+//    var attributes: [ProfileFields.Attribute]? { get } // TODO
+    var isFollowedByMe: Bool { get }
+    var isFollowing: Bool { get }
+    var followNftAddress: String? { get }
+    var metadata: Lens.Url? { get }
+    var isDefault: Bool { get }
+    var handle: String { get }
+    var picture: PP? { get }
+    var coverPicture: CP? { get } // TODO
+    var ownedBy: String { get }
+//    var dispatcher: ProfileFields.Dispatcher? { get } // TODO
+//    var stats: ProfileFields.Stats { get } // TODO
+//    var followModule: ProfileFields.FollowModule? { get } // TODO
+//    var onChainIdentity: ProfileFields.OnChainIdentity { get } // TODO
 }

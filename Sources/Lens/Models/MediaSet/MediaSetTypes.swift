@@ -1,36 +1,19 @@
 import Foundation
 
-// MARK: - Media set
+// MARK: - Explore Publications
 
-typealias PostProfilePictureMediaSet = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.Profile.Picture.AsMediaSet
-typealias CommentProfilePictureMediaSet = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Profile.Picture.AsMediaSet
-typealias MirrorProfilePictureMediaSet = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsMirror.Profile.Picture.AsMediaSet
+// MARK: - Profile picture media set
 
-extension PostProfilePictureMediaSet: AnyMediaSet {}
-extension CommentProfilePictureMediaSet: AnyMediaSet {}
-extension MirrorProfilePictureMediaSet: AnyMediaSet {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.Profile.Picture.AsMediaSet: MediaSet {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Profile.Picture.AsMediaSet: MediaSet {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsMirror.Profile.Picture.AsMediaSet: MediaSet {}
 
-// MARK: - Media set output fields
+// MARK: - Cover picture media set
 
-extension MetadataOutputFields.Medium: AnyMediaSet {}
-extension MetadataOutputFields.Medium.Original: AnyMedia {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.Profile.CoverPicture.AsMediaSet: MediaSet {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Profile.CoverPicture.AsMediaSet: MediaSet {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsMirror.Profile.CoverPicture.AsMediaSet: MediaSet {}
 
-// MARK: - Media set original
+// MARK: - Metadata output fields
 
-public typealias PostProfilePictureMediaSetOriginal = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.Profile.Picture.AsMediaSet.Original
-public typealias CommentProfilePictureMediaSetOriginal = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Profile.Picture.AsMediaSet.Original
-public typealias MirrorProfilePictureMediaSetOriginal = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsMirror.Profile.Picture.AsMediaSet.Original
-
-extension PostProfilePictureMediaSetOriginal: AnyMedia {}
-extension CommentProfilePictureMediaSetOriginal: AnyMedia {}
-extension MirrorProfilePictureMediaSetOriginal: AnyMedia {}
-
-// MARK: - Media set medium
-
-typealias PostProfilePictureMediaSetMedium = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.Profile.Picture.AsMediaSet.Medium
-typealias CommentProfilePictureMediaSetMedium = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Profile.Picture.AsMediaSet.Medium
-typealias MirrorProfilePictureMediaSetMedium = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsMirror.Profile.Picture.AsMediaSet.Medium
-
-extension PostProfilePictureMediaSetMedium: AnyMedia {}
-extension CommentProfilePictureMediaSetMedium: AnyMedia {}
-extension MirrorProfilePictureMediaSetMedium: AnyMedia {}
+extension MetadataOutputFields.Medium: MediaSet {}

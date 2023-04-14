@@ -12,8 +12,8 @@ protocol PublicationRowModel {
 
 extension PublicationRowModel {
     var authorProfileImageUrl: URL? {
-        guard let url = publication.profile.picture?.original?.url else { return nil }
-        return url.toHttpLoadingIpfs()
+        guard let url = publication.profile.picture?.asMediaSet?.original.url else { return nil }
+        return url.toIpfsUrl()
     }
 
     var authorName: String? {
@@ -46,7 +46,7 @@ extension PublicationRowModel {
 
     var mediaType: MediaType? {
         // TODO: Support multiple media types
-        guard let mimeType = publication.metadata.media.first?.original?.mimeType else { return nil }
+        guard let mimeType = publication.metadata.media.first?.original.mimeType else { return nil }
         return MediaType.fromMimeType(mimeType)
     }
 
@@ -62,6 +62,6 @@ extension PublicationRowModel {
             return nil
         }
 
-        return media.url.toHttpLoadingIpfs()
+        return media.url.toIpfsUrl()
     }
 }

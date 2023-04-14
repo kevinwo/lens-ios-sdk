@@ -23,7 +23,7 @@ public class Explore: ExploreType {
     }
 }
 
-public struct ExplorePublicationsResponse: Codable {
+public struct ExplorePublicationsResponse {
     public let items: [Publication]
     // TODO: Handle pageInfo/other properties
 
