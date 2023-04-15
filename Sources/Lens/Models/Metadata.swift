@@ -16,6 +16,8 @@ extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.Metadata
 // MARK: - Comment
 
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Metadata: Metadata {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsPost.Metadata: Metadata {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsMirror.Metadata: Metadata {}
 
 // MARK: - Mirror
 

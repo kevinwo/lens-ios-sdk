@@ -32,6 +32,8 @@ extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.Profile:
 // MARK: - Comment
 
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Profile: Profile {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsPost.Profile: Profile {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsMirror.Profile: Profile {}
 
 // MARK: - Mirror
 

@@ -1,7 +1,11 @@
 import Foundation
 
+public protocol AnyPost {}
+
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost: AnyPost {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost: AnyPost {}
+
 public typealias AnyPublication = ExplorePublicationsQuery.Data.ExplorePublications.Item
-public typealias AnyPost = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost
 public typealias AnyComment = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment
 
 public protocol ExploreType {

@@ -16,7 +16,11 @@ extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.Profile.
 // MARK: - Comment
 
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Profile.Picture: Picture {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsPost.Profile.Picture: Picture {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsMirror.Profile.Picture: Picture {}
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Profile.CoverPicture: Picture {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsPost.Profile.CoverPicture: Picture {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsMirror.Profile.CoverPicture: Picture {}
 
 // MARK: - Mirror
 

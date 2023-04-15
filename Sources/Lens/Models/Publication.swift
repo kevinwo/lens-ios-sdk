@@ -35,10 +35,15 @@ public protocol SomePublication {
 
 
 // MARK: - Post
+
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost: SomePublication {}
 
 // MARK: - Comment
+
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment: SomePublication {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsPost: SomePublication {}
+extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsMirror: SomePublication {}
 
 // MARK: - Mirror
+
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsMirror: SomePublication {}
