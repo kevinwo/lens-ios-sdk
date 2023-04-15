@@ -29,7 +29,7 @@ struct PostRow: View {
 
     // MARK: - Internal interface
 
-    static func view(post: Post) -> PostRow {
+    static func view(post: AnyPost) -> PostRow {
         let viewModel = PostRowModel(post: post)
         return PostRow(viewModel: viewModel)
     }
@@ -54,7 +54,7 @@ struct PostRow_Previews: PreviewProvider {
             ]
         ]
         let json = JSONValue(dict)
-        let post = Post(_dataDict: .init(data: try! .init(_jsonValue: json)))
+        let post = AnyPost(_dataDict: .init(data: try! .init(_jsonValue: json)))
         let viewModel = PostRowModel(post: post)
         PostRow(viewModel: viewModel)
     }

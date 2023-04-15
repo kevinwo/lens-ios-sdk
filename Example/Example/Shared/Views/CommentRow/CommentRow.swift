@@ -5,7 +5,7 @@ import SwiftUI
 struct CommentRow: View {
     let viewModel: CommentRowModel
 
-    static func view(comment: Comment) -> CommentRow {
+    static func view(comment: AnyComment) -> CommentRow {
         let viewModel = CommentRowModel(comment: comment)
         return CommentRow(viewModel: viewModel)
     }
@@ -50,7 +50,7 @@ struct CommentRow_Previews: PreviewProvider {
             ]
         ]
         let json = JSONValue(dict)
-        let comment = Comment(_dataDict: .init(data: try! .init(_jsonValue: json)))
+        let comment = AnyComment(_dataDict: .init(data: try! .init(_jsonValue: json)))
         let viewModel = CommentRowModel(comment: comment)
         CommentRow(viewModel: viewModel)
     }

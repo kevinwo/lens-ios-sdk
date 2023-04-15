@@ -8,7 +8,7 @@ import Lens
 final class CommentRowModel {
     // MARK: - Properties
 
-    let comment: Comment
+    let comment: AnyComment
 
     var authorProfileImageUrl: URL? {
         guard let urlString = comment.profile.picture?.asMediaSet?.original.url else {
@@ -68,7 +68,7 @@ final class CommentRowModel {
 
     // MARK: - Object life cycle
 
-    init(comment: Comment) {
+    init(comment: AnyComment) {
         self.comment = comment
     }
 }

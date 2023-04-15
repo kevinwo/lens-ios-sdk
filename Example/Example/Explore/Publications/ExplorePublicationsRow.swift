@@ -3,7 +3,7 @@ import Lens
 import SwiftUI
 
 struct ExplorePublicationsRow {
-    static func forPublication(_ publication: Publication) -> AnyView {
+    static func forPublication(_ publication: AnyPublication) -> AnyView {
         switch publication.__typename {
         case "Post":
             guard let post = publication.asPost else { return Group {}.typeErased }
