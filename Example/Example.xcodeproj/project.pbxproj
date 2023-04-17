@@ -12,6 +12,8 @@
 		2118D86D29E31C85006753C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2118D86C29E31C85006753C0 /* Assets.xcassets */; };
 		2118D87129E31C85006753C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2118D87029E31C85006753C0 /* Preview Assets.xcassets */; };
 		2118D87929E31F8C006753C0 /* Lens in Frameworks */ = {isa = PBXBuildFile; productRef = 2118D87829E31F8C006753C0 /* Lens */; };
+		211E0E2E29EDD55200EBE5CB /* MagicSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 211E0E2D29EDD55200EBE5CB /* MagicSDK */; };
+		211E0E3029EDEE5200EBE5CB /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211E0E2F29EDEE5200EBE5CB /* ContentViewModel.swift */; };
 		212D130829E710C30094560E /* ExplorePublicationsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D130729E710C30094560E /* ExplorePublicationsViewModelTests.swift */; };
 		212D130A29E71FC80094560E /* LensTestTools in Frameworks */ = {isa = PBXBuildFile; productRef = 212D130929E71FC80094560E /* LensTestTools */; };
 		212D130C29E71FF00094560E /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D130B29E71FF00094560E /* World.swift */; };
@@ -51,6 +53,7 @@
 		2118D86C29E31C85006753C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2118D86E29E31C85006753C0 /* Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example.entitlements; sourceTree = "<group>"; };
 		2118D87029E31C85006753C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		211E0E2F29EDEE5200EBE5CB /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		212D12FC29E7104A0094560E /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		212D130729E710C30094560E /* ExplorePublicationsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsViewModelTests.swift; sourceTree = "<group>"; };
 		212D130B29E71FF00094560E /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
@@ -78,6 +81,7 @@
 			files = (
 				219F876829E88F27004B55C2 /* Kingfisher in Frameworks */,
 				2118D87929E31F8C006753C0 /* Lens in Frameworks */,
+				211E0E2E29EDD55200EBE5CB /* MagicSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +123,7 @@
 				219F875329E87640004B55C2 /* Shared */,
 				2118D86829E31C82006753C0 /* ExampleApp.swift */,
 				2118D86A29E31C82006753C0 /* ContentView.swift */,
+				211E0E2F29EDEE5200EBE5CB /* ContentViewModel.swift */,
 				2118D86C29E31C85006753C0 /* Assets.xcassets */,
 				2118D86E29E31C85006753C0 /* Example.entitlements */,
 				2118D86F29E31C85006753C0 /* Preview Content */,
@@ -278,6 +283,7 @@
 			packageProductDependencies = (
 				2118D87829E31F8C006753C0 /* Lens */,
 				219F876729E88F27004B55C2 /* Kingfisher */,
+				211E0E2D29EDD55200EBE5CB /* MagicSDK */,
 			);
 			productName = Example;
 			productReference = 2118D86529E31C82006753C0 /* Example.app */;
@@ -336,6 +342,7 @@
 			packageReferences = (
 				213F8FA129E7327C00473E5B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 				219F876629E88F27004B55C2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				211E0E2C29EDD55200EBE5CB /* XCRemoteSwiftPackageReference "magic-ios" */,
 			);
 			productRefGroup = 2118D86629E31C82006753C0 /* Products */;
 			projectDirPath = "";
@@ -374,6 +381,7 @@
 				219F875D29E87985004B55C2 /* View+Example.swift in Sources */,
 				2118D86B29E31C82006753C0 /* ContentView.swift in Sources */,
 				21BEB5CF29E6F45C008BC970 /* ExplorePublicationsViewModel.swift in Sources */,
+				211E0E3029EDEE5200EBE5CB /* ContentViewModel.swift in Sources */,
 				219F875A29E87875004B55C2 /* ExplorePublicationsRow.swift in Sources */,
 				219F876D29E894B8004B55C2 /* KFImage+Example.swift in Sources */,
 				219F877329E898D1004B55C2 /* PubContentView.swift in Sources */,
@@ -673,6 +681,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		211E0E2C29EDD55200EBE5CB /* XCRemoteSwiftPackageReference "magic-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/magiclabs/magic-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 		213F8FA129E7327C00473E5B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
@@ -695,6 +711,11 @@
 		2118D87829E31F8C006753C0 /* Lens */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Lens;
+		};
+		211E0E2D29EDD55200EBE5CB /* MagicSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 211E0E2C29EDD55200EBE5CB /* XCRemoteSwiftPackageReference "magic-ios" */;
+			productName = MagicSDK;
 		};
 		212D130929E71FC80094560E /* LensTestTools */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var viewModel: ContentViewModel
+
     var body: some View {
         NavigationView {
             List {
@@ -9,14 +11,25 @@ struct ContentView: View {
                         Text("Publications")
                     }
                 }
+
+                Section(header: Text("Authenticated")) {
+                    if viewModel.checkingIfAuthenticated {
+                        ProgressView()
+                    } else if viewModel.walletIsReady {
+                        Button("Disconnect") {
+                            viewModel.didTapWalletDisconnectButton()
+                        }
+                    } else {
+                        Button("Connect Wallet") {
+                            viewModel.didTapWalletConnectButton()
+                        }
+                    }
+                }
             }
             .navigationTitle("Lens")
+            .onAppear {
+                viewModel.onAppear()
+            }
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }
