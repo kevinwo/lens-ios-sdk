@@ -16,19 +16,19 @@ struct ContentView: View {
                     if viewModel.checkingIfAuthenticated {
                         ProgressView()
                     } else if viewModel.walletIsReady {
-                        Button("Disconnect") {
-                            viewModel.didTapWalletDisconnectButton()
+                        Button("Disconnect Wallet") {
+                            Task { await viewModel.didTapWalletDisconnectButton() }
                         }
                     } else {
                         Button("Connect Wallet") {
-                            viewModel.didTapWalletConnectButton()
+                            Task { await viewModel.didTapWalletConnectButton() }
                         }
                     }
                 }
             }
             .navigationTitle("Lens")
             .onAppear {
-                viewModel.onAppear()
+                Task { await viewModel.onAppear() }
             }
         }
     }

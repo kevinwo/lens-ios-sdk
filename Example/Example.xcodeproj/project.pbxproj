@@ -14,6 +14,7 @@
 		2118D87929E31F8C006753C0 /* Lens in Frameworks */ = {isa = PBXBuildFile; productRef = 2118D87829E31F8C006753C0 /* Lens */; };
 		211E0E2E29EDD55200EBE5CB /* MagicSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 211E0E2D29EDD55200EBE5CB /* MagicSDK */; };
 		211E0E3029EDEE5200EBE5CB /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211E0E2F29EDEE5200EBE5CB /* ContentViewModel.swift */; };
+		211E0E3329EDFA2200EBE5CB /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211E0E3229EDFA2200EBE5CB /* Wallet.swift */; };
 		212D130829E710C30094560E /* ExplorePublicationsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D130729E710C30094560E /* ExplorePublicationsViewModelTests.swift */; };
 		212D130A29E71FC80094560E /* LensTestTools in Frameworks */ = {isa = PBXBuildFile; productRef = 212D130929E71FC80094560E /* LensTestTools */; };
 		212D130C29E71FF00094560E /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D130B29E71FF00094560E /* World.swift */; };
@@ -54,6 +55,7 @@
 		2118D86E29E31C85006753C0 /* Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example.entitlements; sourceTree = "<group>"; };
 		2118D87029E31C85006753C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		211E0E2F29EDEE5200EBE5CB /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		211E0E3229EDFA2200EBE5CB /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		212D12FC29E7104A0094560E /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		212D130729E710C30094560E /* ExplorePublicationsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsViewModelTests.swift; sourceTree = "<group>"; };
 		212D130B29E71FF00094560E /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 		2118D86729E31C82006753C0 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				211E0E3129EDFA1200EBE5CB /* Wallet */,
 				21BEB5CA29E6F25D008BC970 /* Explore */,
 				219F875329E87640004B55C2 /* Shared */,
 				2118D86829E31C82006753C0 /* ExampleApp.swift */,
@@ -145,6 +148,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		211E0E3129EDFA1200EBE5CB /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				211E0E3229EDFA2200EBE5CB /* Wallet.swift */,
+			);
+			path = Wallet;
 			sourceTree = "<group>";
 		};
 		212D12FD29E7104A0094560E /* ExampleTests */ = {
@@ -384,6 +395,7 @@
 				211E0E3029EDEE5200EBE5CB /* ContentViewModel.swift in Sources */,
 				219F875A29E87875004B55C2 /* ExplorePublicationsRow.swift in Sources */,
 				219F876D29E894B8004B55C2 /* KFImage+Example.swift in Sources */,
+				211E0E3329EDFA2200EBE5CB /* Wallet.swift in Sources */,
 				219F877329E898D1004B55C2 /* PubContentView.swift in Sources */,
 				21BEB5CD29E6F273008BC970 /* ExplorePublicationsView.swift in Sources */,
 				219F876529E88C6F004B55C2 /* Formatters.swift in Sources */,
