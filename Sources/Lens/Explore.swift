@@ -1,15 +1,7 @@
 import Foundation
 
-public protocol AnyPost {}
-
-extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost: AnyPost {}
-extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost: AnyPost {}
-
-public typealias AnyPublication = ExplorePublicationsQuery.Data.ExplorePublications.Item
-public typealias AnyComment = ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment
-
 public protocol ExploreType {
-    func publications(request: ExplorePublicationRequest) async throws -> ExplorePublicationsQuery.Data.ExplorePublications
+    func publications(request: ExplorePublicationRequest) async throws -> ExplorePublicationsResponse
 }
 
 public class Explore: ExploreType {
@@ -23,10 +15,18 @@ public class Explore: ExploreType {
 
     // MARK: - Public interface
 
-    public func publications(request: ExplorePublicationRequest) async throws -> ExplorePublicationsQuery.Data.ExplorePublications {
+    public func publications(request: ExplorePublicationRequest) async throws -> ExplorePublicationsResponse {
         let query = ExplorePublicationsQuery(request: request)
         let data = try await client.request(query: query)
 
-        return data.explorePublications
+        return ExplorePublicationsResponse(response: data.explorePublications)
+    }
+}
+
+public struct ExplorePublicationsResponse: Equatable {
+    public let items: [Publication]
+    // TODO: Handle pageInfo/other properties
+    init(response: ExplorePublicationsQuery.Data.ExplorePublications) {
+        self.items = response.items.compactMap { Publication.fromItem($0) }
     }
 }

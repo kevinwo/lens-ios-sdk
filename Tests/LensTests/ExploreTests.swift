@@ -35,10 +35,11 @@ final class ExploreTests: XCTestCase {
         mockLensClient.stubbedRequestData = expectedResults
 
         // when
-        let results = try await explore.publications(request: request)
+        let response = try await explore.publications(request: request)
 
         // then
         // it should fetch a valid set of publications
-        XCTAssertEqual(results, expectedResults.explorePublications)
+        let expectedResponse = ExplorePublicationsResponse(response: expectedResults.explorePublications)
+        XCTAssertEqual(response, expectedResponse)
     }
 }

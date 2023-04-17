@@ -4,7 +4,7 @@ import Lens
 final class PostRowModel {
     // MARK: - Properties
 
-    let post: AnyPost
+    let post: Post
 
     var authorProfileImageUrl: URL? {
         guard let urlString = post.profile.picture?.asMediaSet?.original.url else {
@@ -64,7 +64,7 @@ final class PostRowModel {
 
     // MARK: - Object life cycle
 
-    init(post: AnyPost) {
+    init(post: Post) {
         self.post = post
     }
 }

@@ -11,7 +11,7 @@ struct ExplorePublicationsView: View {
                 Text("There are no publications to explore right now.")
             } else {
                 List {
-                    ForEach(viewModel.publications, id: \.hashValue) { publication in
+                    ForEach(viewModel.publications) { publication in
                         ExplorePublicationsRow.forPublication(publication)
                     }
                 }

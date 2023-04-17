@@ -3,7 +3,7 @@ import Lens
 
 final class ExplorePublicationsViewModel: ObservableObject {
     @Published var isLoading: Bool = true
-    @Published var publications = [AnyPublication]()
+    @Published var publications = [Publication]()
     @Published var sortCriteria: PublicationSortCriteria = .topCommented
 
     @MainActor

@@ -44,7 +44,8 @@ final class ExplorePublicationsViewModelTests: XCTestCase {
         await viewModel.fetchPublications()
 
         // then
-        XCTAssertEqual(viewModel.publications, expectedResults.items)
+        let expectedResponse = ExplorePublicationsResponse(response: expectedResults)
+        XCTAssertEqual(viewModel.publications, expectedResponse.items)
         XCTAssertFalse(viewModel.isLoading)
     }
 }

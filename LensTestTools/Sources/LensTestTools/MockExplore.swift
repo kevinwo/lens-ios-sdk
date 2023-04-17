@@ -1,4 +1,5 @@
-import Lens
+import Foundation
+@testable import Lens
 
 public final class MockExplore: ExploreType {
     // MARK: - Enums
@@ -19,12 +20,12 @@ public final class MockExplore: ExploreType {
 
     // MARK: - Public interface
 
-    public func publications(request: ExplorePublicationRequest) async throws -> ExplorePublicationsQuery.Data.ExplorePublications {
+    public func publications(request: ExplorePublicationRequest) async throws -> ExplorePublicationsResponse {
         invokedPublications = true
 
         if let stubbedPublicationsResults {
             publicationsLoadCompletion?()
-            return stubbedPublicationsResults
+            return ExplorePublicationsResponse(response: stubbedPublicationsResults)
         } else {
             throw Error.publicationsStubNotPresent
         }

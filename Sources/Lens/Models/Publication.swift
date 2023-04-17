@@ -1,6 +1,6 @@
 import Foundation
 
-open class Publication {
+open class Publication: Identifiable {
     public let id: String
     public let profile: any Profile
     public let metadata: any Metadata
@@ -20,6 +20,12 @@ open class Publication {
         case "Mirror": return Mirror(item: item)
         default: return nil
         }
+    }
+}
+
+extension Publication: Equatable {
+    public static func == (lhs: Publication, rhs: Publication) -> Bool {
+        lhs.id == rhs.id
     }
 }
 

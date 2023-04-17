@@ -3,15 +3,12 @@ import Lens
 import SwiftUI
 
 struct ExplorePublicationsRow {
-    static func forPublication(_ publication: AnyPublication) -> AnyView {
-        switch publication.__typename {
-        case "Post":
-            guard let post = publication.asPost else { return Group {}.typeErased }
+    static func forPublication(_ publication: Publication) -> AnyView {
+        if let post = publication as? Post {
             return PostRow.view(post: post).typeErased
-        case "Comment":
-            guard let comment = publication.asComment else { return Group {}.typeErased }
+        } else if let comment = publication as? Comment {
             return CommentRow.view(comment: comment).typeErased
-        default:
+        } else {
             return Group {}.typeErased
         }
     }
