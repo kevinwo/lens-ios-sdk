@@ -78,6 +78,8 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "DegreesOfSeparationReferenceModuleSettings": return Lens.Objects.DegreesOfSeparationReferenceModuleSettings
     case "PaginatedResultInfo": return Lens.Objects.PaginatedResultInfo
     case "AuthChallengeResult": return Lens.Objects.AuthChallengeResult
+    case "Mutation": return Lens.Objects.Mutation
+    case "AuthenticationResult": return Lens.Objects.AuthenticationResult
     case "TransactionReceipt": return Lens.Objects.TransactionReceipt
     case "Log": return Lens.Objects.Log
     case "Wallet": return Lens.Objects.Wallet
