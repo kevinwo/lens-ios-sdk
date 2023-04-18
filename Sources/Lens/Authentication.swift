@@ -1,6 +1,10 @@
 import Foundation
 
-public class Authentication {
+public protocol AuthenticationType {
+    func challenge(address: EthereumAddress) async throws -> String
+}
+
+public class Authentication: AuthenticationType {
     // MARK: - Properties
 
     private let client: LensClientType = Current.lensClient()
