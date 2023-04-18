@@ -16,6 +16,18 @@ final class LensClientTests: XCTestCase {
 
     // MARK: - Tests
 
+    func test_configure() throws {
+        // given
+        LensClient.appName = nil
+        let appName = "Cool App"
+
+        // when
+        LensClient.configure(appName: appName)
+
+        // then
+        XCTAssertEqual(LensClient.appName, appName)
+    }
+
     func test_query() async throws {
         // given
         let query = MockChallengeQuery(request: .init(address: "0x0"))

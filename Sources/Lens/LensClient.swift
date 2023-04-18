@@ -6,7 +6,7 @@ protocol LensClientType {
     func request<Query: GraphQLQuery>(query: Query) async throws -> Query.Data
 }
 
-struct LensClient: LensClientType {
+public struct LensClient: LensClientType {
     // MARK: - Enums
 
     enum Error: Swift.Error {
@@ -15,7 +15,15 @@ struct LensClient: LensClientType {
 
     // MARK: - Properties
 
+    static var appName: String?
+
     private let apolloClient: ApolloClientType = Current.apolloClient
+
+    // MARK: - Public interface
+
+    public static func configure(appName: String) {
+        self.appName = appName
+    }
 
     // MARK: - Internal interface
 
