@@ -12,10 +12,17 @@ struct ContentView: View {
                     }
                 }
 
-                Section(header: Text("Authenticated")) {
-                    if viewModel.checkingIfAuthenticated {
+                Section(
+                    header: Text("Authenticated"),
+                    footer: FooterView(text: viewModel.authError)
+                ) {
+                    if viewModel.checkingIfAuthenticated || viewModel.isSigningIn {
                         ProgressView()
                     } else if viewModel.walletIsReady {
+                        Button("Sign in to Lens") {
+                            Task { await viewModel.didTapSignInButton() }
+                        }
+
                         Button("Disconnect Wallet") {
                             Task { await viewModel.didTapWalletDisconnectButton() }
                         }

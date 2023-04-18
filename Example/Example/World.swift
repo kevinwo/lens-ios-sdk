@@ -2,6 +2,7 @@ import Foundation
 import Lens
 
 struct World {
+    var authentication: AuthenticationType = Authentication()
     var explore: ExploreType = Explore()
 }
 

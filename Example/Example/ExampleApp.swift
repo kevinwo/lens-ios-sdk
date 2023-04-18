@@ -7,6 +7,8 @@ struct ExampleApp: App {
     init() {
         let customNode = CustomNodeConfiguration(rpcUrl: "https://polygon-rpc.com/", chainId: 80001)
         Magic.shared = Magic(apiKey: "your_magic_auth_api_key", customNode: customNode)
+
+        LensClient.configure(appName: "Example")
     }
 
     var body: some Scene {

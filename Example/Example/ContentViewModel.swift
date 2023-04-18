@@ -3,6 +3,8 @@ import Foundation
 final class ContentViewModel: ObservableObject {
     @Published var walletIsReady = false
     @Published var checkingIfAuthenticated = true
+    @Published var isSigningIn = false
+    @Published var authError: String?
 
     private let wallet = Wallet()
 
@@ -14,12 +16,28 @@ final class ContentViewModel: ObservableObject {
     }
 
     @MainActor
+    func didTapSignInButton() async {
+        authError = nil
+        isSigningIn = true
+
+        do {
+            let address = try await wallet.address()
+            let message = try await Current.authentication.challenge(address: address)
+            let signature = try await wallet.personalSign(message: message)
+            // TODO: Sign in with Lens
+        } catch {
+            authError = String(describing: error)
+        }
+
+        isSigningIn = false
+    }
+
+    @MainActor
     func didTapWalletConnectButton() async {
         do {
             checkingIfAuthenticated = true
-            let walletAddress = try await wallet.signIn()
+            let _ = try await wallet.signIn()
             checkingIfAuthenticated = false
-            // TODO: Persist wallet address
             walletIsReady = true
         } catch {
             // TODO: Handle error
