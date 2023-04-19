@@ -1,7 +1,7 @@
 import Lens
 import ApolloAPI
 
-class MockChallengeQuery: GraphQLQuery {
+final class MockChallengeQuery: GraphQLQuery {
     public static let operationName: String = "Challenge"
     public static let document: ApolloAPI.DocumentType = .notPersisted(
         definition: .init(

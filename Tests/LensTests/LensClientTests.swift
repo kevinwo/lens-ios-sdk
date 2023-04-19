@@ -41,4 +41,28 @@ final class LensClientTests: XCTestCase {
         // then
         XCTAssertEqual(data.message, expectedMessage)
     }
+
+    func test_perform() async throws {
+        // given
+        let mutation = MockAuthenticateMutation()
+        let expectedAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        let expectedRefreshToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKb2huIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE1MTYyNDU4MjJ9.sLzUPh0jMdZdS5Z5OcqD5zjM_R7LlJnWjV8xxu76Q1I"
+        let dict = [
+            "authenticate": [
+                "accessToken": expectedAccessToken,
+                "refreshToken": expectedRefreshToken
+            ]
+        ]
+        let json = JSONValue(dict)
+
+        let result = MockAuthenticateMutation.Data(_dataDict: .init(data: try .init(_jsonValue: json)))
+        mockApolloClient.stubPerformResult(result, forMutation: mutation)
+
+        // when
+        let data = try await client.request(mutation: mutation)
+
+        // then
+        XCTAssertEqual(data.authenticate.accessToken, expectedAccessToken)
+        XCTAssertEqual(data.authenticate.refreshToken, expectedRefreshToken)
+    }
 }

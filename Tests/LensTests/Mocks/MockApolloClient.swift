@@ -7,7 +7,9 @@ class MockApolloClient: ApolloClientType {
         case invalidResult
     }
 
-    var invokedFetch: Bool = false
+    // MARK: - fetch
+
+    var invokedFetch = false
     var stubbedFetchResult: Any?
 
     func stubFetchResult<Query: GraphQLQuery>(_ result: Query.Data, forQuery: Query) {
@@ -18,6 +20,28 @@ class MockApolloClient: ApolloClientType {
         invokedFetch = true
 
         if let data = stubbedFetchResult as? Query.Data {
+            let result = GraphQLResult(data: data, extensions: nil, errors: nil, source: .server, dependentKeys: nil)
+            resultHandler?(.success(result))
+        } else {
+            resultHandler?(.failure(Error.invalidResult))
+        }
+
+        return EmptyCancellable()
+    }
+
+    // - MARK: - perform
+
+    var invokedPerform = false
+    var stubbedPerformResult: Any?
+
+    func stubPerformResult<Mutation: GraphQLMutation>(_ result: Mutation.Data, forMutation: Mutation) {
+        stubbedPerformResult = result
+    }
+
+    func perform<Mutation>(mutation: Mutation, publishResultToStore: Bool, queue: DispatchQueue, resultHandler: Apollo.GraphQLResultHandler<Mutation.Data>?) -> Apollo.Cancellable where Mutation : ApolloAPI.GraphQLMutation {
+        invokedPerform = true
+
+        if let data = stubbedPerformResult as? Mutation.Data {
             let result = GraphQLResult(data: data, extensions: nil, errors: nil, source: .server, dependentKeys: nil)
             resultHandler?(.success(result))
         } else {

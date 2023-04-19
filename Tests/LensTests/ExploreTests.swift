@@ -24,7 +24,7 @@ final class ExploreTests: XCTestCase {
         let request = ExplorePublicationRequest(sortCriteria: .init(.latest), sources: .null, customFilters: .null)
 
         let data = Stubs.explorePublications200ResponseJSON()
-        let dict = try JSONSerialization.jsonObject(with: data, options: []) as! [String: AnyHashable]
+        let dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
 
         let json = JSONValue(dict["data"])
         let expectedResults = ExplorePublicationsQuery.Data(
@@ -32,7 +32,7 @@ final class ExploreTests: XCTestCase {
                 data: try .init(_jsonValue: json)
             )
         )
-        mockLensClient.stubbedRequestData = expectedResults
+        mockLensClient.stubbedRequestQueryData = expectedResults
 
         // when
         let response = try await explore.publications(request: request)

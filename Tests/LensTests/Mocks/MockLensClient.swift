@@ -6,17 +6,38 @@ final class MockLensClient: LensClientType {
         case invalidData
     }
 
-    var invokedRequest: Bool = false
-    var stubbedRequestData: Any?
+    // MARK: - request query
 
-    func stubRequestData<Query: GraphQLQuery>(_ data: Query.Data, forQuery: Query) {
-        stubbedRequestData = data
+    var invokedRequestQuery: Bool = false
+    var stubbedRequestQueryData: Any?
+
+    func stubRequestQueryData<Query: GraphQLQuery>(_ data: Query.Data, forQuery: Query) {
+        stubbedRequestQueryData = data
     }
 
     func request<Query>(query: Query) async throws -> Query.Data where Query : GraphQLQuery {
-        invokedRequest = true
+        invokedRequestQuery = true
 
-        if let data = stubbedRequestData as? Query.Data {
+        if let data = stubbedRequestQueryData as? Query.Data {
+            return data
+        } else {
+            throw Error.invalidData
+        }
+    }
+
+    // MARK: - request mutation
+
+    var invokedRequestMutation: Bool = false
+    var stubbedRequestMutationData: Any?
+
+    func stubRequestMutationData<Mutation: GraphQLMutation>(_ data: Mutation.Data, forMutation: Mutation) {
+        stubbedRequestMutationData = data
+    }
+
+    func request<Mutation>(mutation: Mutation) async throws -> Mutation.Data where Mutation : ApolloAPI.GraphQLMutation {
+        invokedRequestMutation = true
+
+        if let data = stubbedRequestMutationData as? Mutation.Data {
             return data
         } else {
             throw Error.invalidData

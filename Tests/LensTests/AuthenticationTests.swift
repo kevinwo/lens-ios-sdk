@@ -29,7 +29,7 @@ final class AuthenticationTests: XCTestCase {
             ]
         ]
         let json = JSONValue(dict)
-        mockLensClient.stubbedRequestData = ChallengeQuery.Data(
+        mockLensClient.stubbedRequestQueryData = ChallengeQuery.Data(
             _dataDict: .init(
                 data: try .init(_jsonValue: json)
             )

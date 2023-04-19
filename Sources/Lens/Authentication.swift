@@ -21,4 +21,14 @@ public class Authentication: AuthenticationType {
 
         return data.challenge.text
     }
+
+    public func authenticate(address: EthereumAddress, signature: Signature) async throws -> (String, String) {
+        let mutation = AuthenticateMutation(request: .init(address: address, signature: signature))
+        let data = try await client.request(mutation: mutation)
+
+        return (
+            data.authenticate.accessToken,
+            data.authenticate.refreshToken
+        )
+    }
 }
