@@ -81,7 +81,6 @@ final class Wallet {
                     from: account,
                     message: try EthereumData(messageData)
                 ).done({ response in
-                    print(response.hex())
                     continuation.resume(with: .success(response.hex()))
                 })
             } catch let DecodingError.typeMismatch(_, context)  {
@@ -106,7 +105,6 @@ final class Wallet {
                     account: account,
                     data: typedDataV4
                 ).done({ response in
-                    print(response.hex())
                     continuation.resume(with: .success(response.hex()))
                 })
             } catch let DecodingError.typeMismatch(_, context)  {

@@ -2,6 +2,7 @@ import Foundation
 
 public protocol AuthenticationType {
     func challenge(address: EthereumAddress) async throws -> String
+    func authenticate(address: EthereumAddress, signature: Signature) async throws -> (String, String)
 }
 
 public class Authentication: AuthenticationType {
