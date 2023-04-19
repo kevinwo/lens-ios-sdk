@@ -39,13 +39,13 @@ let package = Package(
       dependencies: [
         .product(name: "Apollo", package: "apollo-ios"),
         .product(name: "ApolloAPI", package: "apollo-ios"),
+        "KeychainAccess"
       ]
     ),
     .testTarget(
       name: "LensTests",
       dependencies: [
         "Lens",
-        "KeychainAccess",
         .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
       ]
     )
