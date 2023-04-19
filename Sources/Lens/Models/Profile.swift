@@ -28,12 +28,17 @@ public protocol Profile {
 // MARK: - Post
 
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.Profile: Profile {}
+extension ProfileFeedQuery.Data.Feed.Item.Root.AsPost.Profile: Profile {}
 
 // MARK: - Comment
 
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Profile: Profile {}
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsPost.Profile: Profile {}
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsMirror.Profile: Profile {}
+
+extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.Profile: Profile {}
+extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.MainPost.AsPost.Profile: Profile {}
+extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.MainPost.AsMirror.Profile: Profile {}
 
 // MARK: - Mirror
 

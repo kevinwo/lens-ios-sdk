@@ -6,7 +6,12 @@ public class Post: Publication {
         super.init(publication: post)
     }
 
-    init?(mainPost: ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsPost) {
+    init?(item: ProfileFeedQuery.Data.Feed.Item.Root) {
+        guard let post = item.asPost else { return nil }
+        super.init(publication: post)
+    }
+
+    init?(mainPost: any SomePublication) {
         super.init(publication: mainPost)
     }
 
@@ -35,7 +40,7 @@ extension Post {
             ]
         ]
         let json = JSONValue(dict)
-        return Post(item: .init(_dataDict: .init(data: try! .init(_jsonValue: json))))!
+        return Post(item: ExplorePublicationsQuery.Data.ExplorePublications.Item(_dataDict: .init(data: try! .init(_jsonValue: json))))!
     }
 }
 #endif

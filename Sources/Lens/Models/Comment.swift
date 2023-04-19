@@ -18,6 +18,19 @@ public class Comment: Publication {
         super.init(publication: comment)
     }
 
+    init?(item: ProfileFeedQuery.Data.Feed.Item.Root) {
+        guard let comment = item.asComment else { return nil }
+        self.mainPost = {
+            if let post = comment.mainPost.asPost {
+                return Post(mainPost: post)
+            } else {
+                return nil
+            }
+        }()
+
+        super.init(publication: comment)
+    }
+
     required init(from decoder: Decoder) throws {
         fatalError("init(from:) has not been implemented")
     }
@@ -43,7 +56,7 @@ extension Comment {
             ]
         ]
         let json = JSONValue(dict)
-        return Comment(item: .init(_dataDict: .init(data: try! .init(_jsonValue: json))))!
+        return Comment(item: ExplorePublicationsQuery.Data.ExplorePublications.Item(_dataDict: .init(data: try! .init(_jsonValue: json))))!
     }
 }
 #endif

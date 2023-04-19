@@ -21,6 +21,7 @@
 		213F8FA329E7327C00473E5B /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 213F8FA229E7327C00473E5B /* SnapshotTesting */; };
 		213F8FA529E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213F8FA429E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift */; };
 		218E55A029EF246600EC4271 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E559F29EF246600EC4271 /* FooterView.swift */; };
+		218E55A329F0529300EC4271 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E55A229F0529300EC4271 /* AccountView.swift */; };
 		219F875229E87384004B55C2 /* Snapshotting+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F875129E87384004B55C2 /* Snapshotting+Tests.swift */; };
 		219F875629E87657004B55C2 /* PostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F875529E87657004B55C2 /* PostRow.swift */; };
 		219F875829E87749004B55C2 /* PostRowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F875729E87749004B55C2 /* PostRowModel.swift */; };
@@ -62,6 +63,7 @@
 		212D130B29E71FF00094560E /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		213F8FA429E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsViewSnapshotTests.swift; sourceTree = "<group>"; };
 		218E559F29EF246600EC4271 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		218E55A229F0529300EC4271 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		219F875129E87384004B55C2 /* Snapshotting+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Snapshotting+Tests.swift"; sourceTree = "<group>"; };
 		219F875529E87657004B55C2 /* PostRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRow.swift; sourceTree = "<group>"; };
 		219F875729E87749004B55C2 /* PostRowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRowModel.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		2118D86729E31C82006753C0 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				218E55A129F0528500EC4271 /* Account */,
 				211E0E3129EDFA1200EBE5CB /* Wallet */,
 				21BEB5CA29E6F25D008BC970 /* Explore */,
 				219F875329E87640004B55C2 /* Shared */,
@@ -185,6 +188,14 @@
 				213F8FA429E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift */,
 			);
 			path = Publications;
+			sourceTree = "<group>";
+		};
+		218E55A129F0528500EC4271 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				218E55A229F0529300EC4271 /* AccountView.swift */,
+			);
+			path = Account;
 			sourceTree = "<group>";
 		};
 		219F875029E87376004B55C2 /* Extensions */ = {
@@ -396,6 +407,7 @@
 				2118D86B29E31C82006753C0 /* ContentView.swift in Sources */,
 				218E55A029EF246600EC4271 /* FooterView.swift in Sources */,
 				21BEB5CF29E6F45C008BC970 /* ExplorePublicationsViewModel.swift in Sources */,
+				218E55A329F0529300EC4271 /* AccountView.swift in Sources */,
 				211E0E3029EDEE5200EBE5CB /* ContentViewModel.swift in Sources */,
 				219F875A29E87875004B55C2 /* ExplorePublicationsRow.swift in Sources */,
 				219F876D29E894B8004B55C2 /* KFImage+Example.swift in Sources */,

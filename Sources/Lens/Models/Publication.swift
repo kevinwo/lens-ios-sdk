@@ -21,6 +21,14 @@ open class Publication: Identifiable {
         default: return nil
         }
     }
+
+    static func fromItem(_ item: ProfileFeedQuery.Data.Feed.Item.Root) -> Publication? {
+        switch item.__typename {
+        case "Post": return Post(item: item)
+        case "Comment": return Comment(item: item)
+        default: return nil
+        }
+    }
 }
 
 extension Publication: Equatable {
@@ -39,16 +47,21 @@ public protocol SomePublication {
     var createdAt: String { get }
 }
 
-
 // MARK: - Post
 
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost: SomePublication {}
+
+extension ProfileFeedQuery.Data.Feed.Item.Root.AsPost: SomePublication {}
 
 // MARK: - Comment
 
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment: SomePublication {}
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsPost: SomePublication {}
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsMirror: SomePublication {}
+
+extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment: SomePublication {}
+extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.MainPost.AsPost: SomePublication {}
+extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.MainPost.AsMirror: SomePublication {}
 
 // MARK: - Mirror
 

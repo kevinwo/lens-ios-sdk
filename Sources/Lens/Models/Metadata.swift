@@ -13,11 +13,17 @@ public protocol Metadata {
 
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.Metadata: Metadata {}
 
+extension ProfileFeedQuery.Data.Feed.Item.Root.AsPost.Metadata: Metadata {}
+
 // MARK: - Comment
 
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Metadata: Metadata {}
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsPost.Metadata: Metadata {}
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsMirror.Metadata: Metadata {}
+
+extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.Metadata: Metadata {}
+extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.MainPost.AsPost.Metadata: Metadata {}
+extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.MainPost.AsMirror.Metadata: Metadata {}
 
 // MARK: - Mirror
 
