@@ -24,11 +24,10 @@ final class ContentViewModel: ObservableObject {
             let address = try await wallet.address()
             let message = try await Current.authentication.challenge(address: address)
             let signature = try await wallet.personalSign(message: message)
-            let (accessToken, refreshToken) = try await Current.authentication.authenticate(
+            try await Current.authentication.authenticate(
                 address: address,
                 signature: signature
             )
-            // TODO: Persist tokens in keychain
         } catch {
             authError = String(describing: error)
         }

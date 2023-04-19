@@ -4,17 +4,24 @@ import XCTest
 final class AuthenticationTests: XCTestCase {
     var authentication: Authentication!
     var mockLensClient: MockLensClient!
+    var mockKeychain: MockKeychain!
 
     // MARK: - Test life cycle
 
     override func setUpWithError() throws {
         mockLensClient = MockLensClient()
         Current.lensClient = { self.mockLensClient }
+
+        mockKeychain = MockKeychain()
+        Current.keychain = { self.mockKeychain }
+
         authentication = Authentication()
     }
 
     override func tearDownWithError() throws {
         authentication = nil
+        mockKeychain = nil
+        mockLensClient = nil
     }
 
     // MARK: - Tests
@@ -41,5 +48,33 @@ final class AuthenticationTests: XCTestCase {
         // then
         // should generate a challenge message to sign with a wallet
         XCTAssertEqual(message, expectedMessage)
+    }
+
+    func test_authenticate() async throws {
+        // given
+        let address = "0x03aF0bE7cE8A33e0c24A0dFfc2Cf9e4aD4A4bAe1"
+        let signature = "0x70a08231"
+        let expectedAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        let expectedRefreshToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKb2huIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE1MTYyNDU4MjJ9.sLzUPh0jMdZdS5Z5OcqD5zjM_R7LlJnWjV8xxu76Q1I"
+        let dict = [
+            "authenticate": [
+                "accessToken": expectedAccessToken,
+                "refreshToken": expectedRefreshToken
+            ]
+        ]
+        let json = JSONValue(dict)
+        mockLensClient.stubbedRequestMutationData = AuthenticateMutation.Data(
+            _dataDict: .init(
+                data: try .init(_jsonValue: json)
+            )
+        )
+
+        // when
+        try await authentication.authenticate(address: address, signature: signature)
+
+        // then
+        // should set the address and signature in the keychain
+        XCTAssertEqual(try mockKeychain.get("accessToken"), expectedAccessToken)
+        XCTAssertEqual(try mockKeychain.get("refreshToken"), expectedRefreshToken)
     }
 }
