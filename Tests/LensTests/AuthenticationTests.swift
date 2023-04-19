@@ -26,6 +26,30 @@ final class AuthenticationTests: XCTestCase {
 
     // MARK: - Tests
 
+    func test_accessToken() throws {
+        // given
+        let expectedAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        try mockKeychain.set(expectedAccessToken, key: Keychain.Key.accessToken)
+
+        // when
+        let accessToken = authentication.accessToken
+
+        // then
+        XCTAssertEqual(accessToken, expectedAccessToken)
+    }
+
+    func test_refreshToken() throws {
+        // given
+        let expectedRefreshToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKb2huIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE1MTYyNDU4MjJ9.sLzUPh0jMdZdS5Z5OcqD5zjM_R7LlJnWjV8xxu76Q1I"
+        try mockKeychain.set(expectedRefreshToken, key: Keychain.Key.refreshToken)
+
+        // when
+        let refreshToken = authentication.refreshToken
+
+        // then
+        XCTAssertEqual(refreshToken, expectedRefreshToken)
+    }
+
     func test_challenge() async throws {
         // given
         let address = "0x0"

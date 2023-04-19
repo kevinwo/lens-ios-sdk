@@ -5,8 +5,21 @@ public protocol AuthenticationType {
     func authenticate(address: EthereumAddress, signature: Signature) async throws
 }
 
-public class Authentication: AuthenticationType {
+protocol AuthenticationTypeInternal {
+    var accessToken: String? { get }
+    var refreshToken: String? { get }
+}
+
+public class Authentication: AuthenticationType, AuthenticationTypeInternal {
     // MARK: - Properties
+
+    var accessToken: String? {
+        try? keychain.get(Keychain.Key.accessToken)
+    }
+
+    var refreshToken: String? {
+        try? keychain.get(Keychain.Key.refreshToken)
+    }
 
     private let client: LensClientType = Current.lensClient()
     private let keychain: KeychainType = Current.keychain()
