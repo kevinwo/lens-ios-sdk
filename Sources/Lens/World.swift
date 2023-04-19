@@ -12,6 +12,7 @@ struct World {
         return ApolloClient(networkTransport: networkTransport, store: store)
     }()
     var lensClient: () -> LensClientType = { LensClient() }
+    var keychain: () -> KeychainType = { Keychain() }
 }
 
 #if DEBUG

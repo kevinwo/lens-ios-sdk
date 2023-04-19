@@ -20,12 +20,17 @@ final class LensClientTests: XCTestCase {
         // given
         LensClient.appName = nil
         let appName = "Cool App"
+        let appBundleIdentifier = Bundle.main.bundleIdentifier
 
         // when
-        LensClient.configure(appName: appName)
+        LensClient.configure(appName: appName, appBundleIdentifier: appBundleIdentifier)
 
         // then
+        // it should set the app name
         XCTAssertEqual(LensClient.appName, appName)
+
+        // it should set the app bundle identifier
+        XCTAssertEqual(LensClient.appBundleIdentifier, appBundleIdentifier)
     }
 
     func test_query() async throws {

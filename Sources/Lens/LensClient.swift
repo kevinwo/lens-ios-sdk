@@ -17,13 +17,15 @@ public struct LensClient: LensClientType {
     // MARK: - Properties
 
     static var appName: String?
+    static var appBundleIdentifier: String?
 
     private let apolloClient: ApolloClientType = Current.apolloClient
 
     // MARK: - Public interface
 
-    public static func configure(appName: String) {
+    public static func configure(appName: String, appBundleIdentifier: String? = Bundle.main.bundleIdentifier) {
         self.appName = appName
+        self.appBundleIdentifier = appBundleIdentifier
     }
 
     // MARK: - Internal interface
