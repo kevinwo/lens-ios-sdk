@@ -6,15 +6,14 @@ public final class MockAuthentication: AuthenticationType {
 
     public enum Error: Swift.Error {
         case challengeStubNotPresent
+        case verifyStubNotPresent
     }
 
-    // MARK: - Properties
+    // MARK: - challenge
 
-    var invokedChallenge = false
-    var invokedChallengeAddress: String?
-    var stubbedChallengeMessage: String?
-
-    // MARK: - Public interface
+    public var invokedChallenge = false
+    public var invokedChallengeAddress: String?
+    public var stubbedChallengeMessage: String?
 
     public func challenge(address: EthereumAddress) async throws -> String {
         invokedChallenge = true
@@ -25,5 +24,39 @@ public final class MockAuthentication: AuthenticationType {
         }
 
         return message
+    }
+
+    // MARK: - authenticate
+
+    public var invokedAuthenticate = false
+    public var invokedAuthenticateAddress: EthereumAddress?
+    public var invokedAuthenticateSignature: Signature?
+
+    public func authenticate(address: EthereumAddress, signature: Signature) async throws {
+        invokedAuthenticate = true
+        invokedAuthenticateAddress = address
+        invokedAuthenticateSignature = signature
+    }
+
+    // MARK: - refresh
+
+    var invokedRefresh = false
+
+    public func refresh() async throws {
+        invokedRefresh = true
+    }
+
+    // MARK: - verify
+
+    var invokedVerify = false
+    var stubbedVerify: Bool?
+
+    public func verify() async throws -> Bool {
+        invokedVerify = true
+        guard let verify = stubbedVerify else {
+            throw Error.verifyStubNotPresent
+        }
+
+        return verify
     }
 }
