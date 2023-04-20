@@ -18,7 +18,6 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
 
     enum Error: Swift.Error {
         case refreshTokenNotPresent
-        case accessTokenNotPresent
     }
 
     // MARK: - Properties
@@ -69,7 +68,7 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
 
     public func verify() async throws -> Bool {
         guard let accessToken else {
-            throw Error.accessTokenNotPresent
+            return false
         }
 
         let query = VerifyQuery(request: .init(accessToken: accessToken))

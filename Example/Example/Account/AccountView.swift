@@ -6,31 +6,38 @@ struct AccountView: View {
 
     var body: some View {
         VStack {
-            Text("Welcome to Lens")
-                .font(.largeTitle)
-                .bold()
-                .foregroundColor(.primary)
-                .padding()
+            if viewModel.state == .walletIsReady || viewModel.state == .isAuthenticating {
+                Text("Welcome to Lens")
+                    .font(.largeTitle)
+                    .bold()
+                    .foregroundColor(.primary)
+                    .padding()
+            }
 
             Spacer()
 
             VStack {
-                if viewModel.isSigningIn {
+                switch viewModel.state {
+                case .unknown:
+                    Spacer()
                     ProgressView()
-                } else if viewModel.walletIsReady {
+                    Spacer()
+                case .isAuthenticating:
+                    ProgressView()
+                case .profileSelected:
+                    Text("Profile details TBD")
+                case .isSignedIn:
+                    Text("Select profile TBD")
+                case .walletIsReady:
                     Button("Sign In") {
                         Task {
-                            await viewModel.didTapSignInButton() {
-                                dismiss()
-                            }
+                            await viewModel.didTapSignInButton()
                         }
                     }
-                } else {
+                case .noWallet:
                     Button("Get Started") {
                         Task {
-                            await viewModel.didTapGetStartedButton() {
-                                dismiss()
-                            }
+                            await viewModel.didTapGetStartedButton()
                         }
                     }
                 }

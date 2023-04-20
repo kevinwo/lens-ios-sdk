@@ -1,11 +1,18 @@
 import Foundation
 
 final class AccountViewModel: ObservableObject {
+    enum AccountState {
+        case unknown
+        case isAuthenticating
+        case profileSelected
+        case isSignedIn
+        case walletIsReady
+        case noWallet
+    }
+
     // MARK: - Properties
 
-    @Published var checkingIfAuthenticated = true
-    @Published var isSigningIn = false
-    @Published var walletIsReady = false
+    @Published var state: AccountState = .unknown
     @Published var authError: String?
 
     private let wallet = Wallet()
@@ -14,28 +21,44 @@ final class AccountViewModel: ObservableObject {
 
     @MainActor
     func onAppear() async {
-        walletIsReady = await wallet.isSignedIn()
-        checkingIfAuthenticated = false
-    }
-
-    @MainActor
-    func didTapGetStartedButton(completion: () -> Void) async {
-        authError = nil
-        isSigningIn = true
-
         do {
-            let _ = try await wallet.signIn()
-            await didTapSignInButton(completion: completion)
+            let isSignedIn = try await Current.authentication.verify()
+
+            if isSignedIn {
+                state = .isSignedIn
+                return
+            }
+
+            let walletIsReady = await wallet.isSignedIn()
+
+            if walletIsReady {
+                state = .walletIsReady
+            } else {
+                state = .noWallet
+            }
         } catch {
             authError = String(describing: error)
         }
-
-        isSigningIn = false
     }
 
     @MainActor
-    func didTapSignInButton(completion: () -> Void) async {
-        isSigningIn = true
+    func didTapGetStartedButton() async {
+        authError = nil
+        state = .isAuthenticating
+
+        do {
+            let _ = try await wallet.signIn()
+            await didTapSignInButton()
+        } catch {
+            authError = String(describing: error)
+            state = .noWallet
+        }
+    }
+
+    @MainActor
+    func didTapSignInButton() async {
+        authError = nil
+        state = .isAuthenticating
 
         do {
             let address = try await wallet.address()
@@ -45,11 +68,10 @@ final class AccountViewModel: ObservableObject {
                 address: address,
                 signature: signature
             )
-            completion()
+            state = .isSignedIn
         } catch {
             authError = String(describing: error)
+            state = .walletIsReady
         }
-
-        isSigningIn = false
     }
 }
