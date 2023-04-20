@@ -7,7 +7,15 @@ final class ExplorePublicationsViewModel: ObservableObject {
     @Published var sortCriteria: PublicationSortCriteria = .topCommented
 
     @MainActor
-    func fetchPublications() async {
+    func onAppear() async {
+        if publications.isEmpty {
+            await fetchPublications()
+        }
+    }
+
+    // MARK: - Private interface
+
+    private func fetchPublications() async {
         isLoading = true
 
         let request = ExplorePublicationRequest(
@@ -18,6 +26,7 @@ final class ExplorePublicationsViewModel: ObservableObject {
             let results = try await Current.explore.publications(request: request)
             self.publications = results.items
         } catch {
+            print(error)
             // TODO: Handle error
         }
 

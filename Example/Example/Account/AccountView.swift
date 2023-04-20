@@ -1,32 +1,41 @@
 import SwiftUI
 
 struct AccountView: View {
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: AccountViewModel
 
     var body: some View {
         VStack {
-            if viewModel.checkingIfAuthenticated {
-                ProgressView()
-            } else {
-                Text("Welcome to Lens")
-                    .font(.largeTitle)
-                    .bold()
-                    .foregroundColor(.primary)
-                    .padding()
+            Text("Welcome to Lens")
+                .font(.largeTitle)
+                .bold()
+                .foregroundColor(.primary)
+                .padding()
 
-                Spacer()
+            Spacer()
 
-                if viewModel.walletIsReady {
+            VStack {
+                if viewModel.isSigningIn {
+                    ProgressView()
+                } else if viewModel.walletIsReady {
                     Button("Sign In") {
-                        Task { await viewModel.didTapGetStartedButton() }
+                        Task {
+                            await viewModel.didTapSignInButton() {
+                                dismiss()
+                            }
+                        }
                     }
                 } else {
                     Button("Get Started") {
-                        Task { await viewModel.didTapGetStartedButton() }
+                        Task {
+                            await viewModel.didTapGetStartedButton() {
+                                dismiss()
+                            }
+                        }
                     }
-                    .padding()
                 }
             }
+            .padding()
         }
         .onAppear {
             Task { await viewModel.onAppear() }

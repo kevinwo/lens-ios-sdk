@@ -3,22 +3,6 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var viewModel: ContentViewModel
 
-    private var leftNavigationItem: some View {
-        VStack {
-            if viewModel.isSignedIn {
-                Button("Sign Out") {
-                    Task { await viewModel.didTapWalletDisconnectButton() }
-                }
-            } else if !viewModel.checkingIfAuthenticated {
-                Button("Sign In") {
-                    Task { await viewModel.didTapSignInButton() }
-                }
-            } else {
-                Group {}
-            }
-        }
-    }
-
     var body: some View {
         NavigationView {
             VStack {
@@ -49,12 +33,34 @@ struct ContentView: View {
             .onAppear {
                 Task { await viewModel.onAppear() }
             }
-            .sheet(item: $viewModel.presentedSheet, content: { sheet in
-                switch sheet {
-                case .account:
-                    AccountView(viewModel: AccountViewModel())
+            .sheet(
+                item: $viewModel.presentedSheet,
+                onDismiss: {
+                    Task { await viewModel.verifyAuth() }
+                },
+                content: { sheet in
+                    switch sheet {
+                    case .account:
+                        AccountView(viewModel: AccountViewModel())
+                    }
                 }
-            })
+            )
+        }
+    }
+
+    private var leftNavigationItem: some View {
+        VStack {
+            if viewModel.isSignedIn {
+                Button("Sign Out") {
+                    Task { await viewModel.didTapWalletDisconnectButton() }
+                }
+            } else if !viewModel.checkingIfAuthenticated {
+                Button("Sign In") {
+                    Task { await viewModel.didTapSignInButton() }
+                }
+            } else {
+                Group {}
+            }
         }
     }
 }

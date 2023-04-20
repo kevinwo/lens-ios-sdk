@@ -19,12 +19,13 @@ final class AccountViewModel: ObservableObject {
     }
 
     @MainActor
-    func didTapGetStartedButton() async {
+    func didTapGetStartedButton(completion: () -> Void) async {
         authError = nil
         isSigningIn = true
 
         do {
             let _ = try await wallet.signIn()
+            await didTapSignInButton(completion: completion)
         } catch {
             authError = String(describing: error)
         }
@@ -33,7 +34,7 @@ final class AccountViewModel: ObservableObject {
     }
 
     @MainActor
-    func didTapSignInButton() async {
+    func didTapSignInButton(completion: () -> Void) async {
         isSigningIn = true
 
         do {
@@ -43,21 +44,12 @@ final class AccountViewModel: ObservableObject {
             try await Current.authentication.authenticate(
                 address: address,
                 signature: signature
-                )
+            )
+            completion()
         } catch {
             authError = String(describing: error)
         }
 
         isSigningIn = false
-    }
-
-    @MainActor
-    func didTapWalletDisconnectButton() async {
-        do {
-            try await wallet.signOut()
-            walletIsReady = false
-        } catch {
-            // TODO: Handle error
-        }
     }
 }

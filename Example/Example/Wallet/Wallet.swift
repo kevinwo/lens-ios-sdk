@@ -8,6 +8,7 @@ final class Wallet {
     enum Error: Swift.Error {
         case failedToFetchAddress
         case failedToSignIn
+        case failedToDisconnect
         case failedToSignOut
         case failedToDecodeResponse(String)
         case invalidMessageData
@@ -53,9 +54,21 @@ final class Wallet {
         }
     }
 
-    func signOut() async throws {
+    func disconnect() async throws {
         return try await withCheckedThrowingContinuation { continuation in
             magic.wallet.disconnect { resp in
+                if resp.status.isSuccess {
+                    continuation.resume(with: .success(()))
+                } else {
+                    continuation.resume(throwing: Error.failedToDisconnect)
+                }
+            }
+        }
+    }
+
+    func signOut() async throws {
+        return try await withCheckedThrowingContinuation { continuation in
+            magic.user.logout { resp in
                 if resp.status.isSuccess {
                     continuation.resume(with: .success(()))
                 } else {

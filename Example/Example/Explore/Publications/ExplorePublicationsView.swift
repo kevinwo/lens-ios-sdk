@@ -19,7 +19,7 @@ struct ExplorePublicationsView: View {
             }
         }
         .onAppear {
-            Task { await viewModel.fetchPublications() }
+            Task { await viewModel.onAppear() }
         }
     }
 }
