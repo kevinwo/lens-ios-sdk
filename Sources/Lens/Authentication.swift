@@ -3,6 +3,8 @@ import Foundation
 public protocol AuthenticationType {
     func challenge(address: EthereumAddress) async throws -> String
     func authenticate(address: EthereumAddress, signature: Signature) async throws
+    func refresh() async throws
+    func verify() async throws -> Bool
 }
 
 protocol AuthenticationTypeInternal {

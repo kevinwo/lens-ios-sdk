@@ -28,4 +28,17 @@ final class KeychainTests: XCTestCase {
         // then
         XCTAssertEqual(result, value)
     }
+
+    func test_remove() throws {
+        // given
+        let key = "coolKey"
+        let value = "cool value"
+        try keychain.set(value, key: key)
+
+        // when
+        try keychain.remove(key)
+
+        // then
+        XCTAssertNil(try keychain.get(key))
+    }
 }

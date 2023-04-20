@@ -11,4 +11,12 @@ final class MockKeychain: KeychainType {
     func set(_ value: String, key: String) throws {
         data[key] = value
     }
+
+    func remove(_ key: String) throws {
+        data.removeValue(forKey: key)
+    }
+
+    func removeAll() throws {
+        data.removeAll()
+    }
 }

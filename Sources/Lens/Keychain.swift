@@ -4,6 +4,8 @@ import KeychainAccess
 protocol KeychainType {
     func get(_ key: String) throws -> String?
     func set(_ value: String, key: String) throws
+    func remove(_ key: String) throws
+    func removeAll() throws
 }
 
 final class Keychain: KeychainType {
@@ -20,5 +22,13 @@ final class Keychain: KeychainType {
 
     func set(_ value: String, key: String) throws {
         try keychain.set(value, key: key)
+    }
+
+    func remove(_ key: String) throws {
+        try keychain.remove(key)
+    }
+
+    func removeAll() throws {
+        try keychain.removeAll()
     }
 }
