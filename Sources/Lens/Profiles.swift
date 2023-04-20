@@ -23,6 +23,17 @@ public final class Profiles {
 
         return ProfilesResponse(response: data.profiles)
     }
+
+    public func create(request: CreateProfileRequest) async throws -> String {
+        let mutation = CreateProfileMutation(request: request)
+        let data = try await client.request(mutation: mutation)
+
+        guard let txHash = data.createProfile.asRelayerResult?.txHash else {
+            throw Error.invalidTxHash
+        }
+
+        return txHash
+    }
 }
 
 public struct ProfilesResponse {

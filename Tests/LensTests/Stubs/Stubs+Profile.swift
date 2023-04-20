@@ -1,8 +1,28 @@
 import Foundation
+import Lens
+import XCTest
 
 extension Stubs {
-    enum Profile {
-        static func fetchAll200ResponseJSON() -> Data {
+  enum Profile {
+    static func create200() throws -> CreateProfileMutation.Data {
+      let data = create200ResponseJSON()
+      var dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
+      var dictData = try XCTUnwrap(dict["data"] as? [String: AnyHashable])
+      var createProfile = try XCTUnwrap(dictData["createProfile"] as? [String: AnyHashable])
+      createProfile["__fulfilled"] =  Set([ObjectIdentifier(CreateProfileMutation.Data.CreateProfile.self)])
+      dictData["createProfile"] = createProfile
+      dict["data"] = dictData
+
+      let json = JSONValue(dict["data"])
+
+      return CreateProfileMutation.Data(
+        _dataDict: .init(
+          data: try .init(_jsonValue: json)
+        )
+      )
+    }
+
+    static func fetchAll200ResponseJSON() -> Data {
             """
             {
               "data": {
@@ -55,6 +75,18 @@ extension Stubs {
               }
             }
             """.data(using: .utf8)!
-        }
     }
+
+    static func create200ResponseJSON() -> Data {
+      """
+      {
+        "data": {
+          "createProfile": {
+            "txHash": "0xd771b9b8fd558eda20598e8a464cc9cc9e28f4bd75e823d30ee276dd590cd67e"
+          }
+        }
+      }
+      """.data(using: .utf8)!
+    }
+  }
 }

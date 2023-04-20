@@ -42,4 +42,21 @@ final class ProfilesTests: XCTestCase {
         let expectedResponse = ProfilesResponse(response: expectedResults.profiles)
         XCTAssertEqual(response, expectedResponse)
     }
+
+    // Disabled; GraphQL fulfillment in tests is currently an issue.
+    // Will resolve at a later date and marking as TODO
+    func test_create() async throws {
+        // given
+        let request = CreateProfileRequest(handle: "coolhandle")
+
+        let expectedTxHash = "0xd771b9b8fd558eda20598e8a464cc9cc9e28f4bd75e823d30ee276dd590cd67e"
+        mockLensClient.stubbedRequestMutationData = try Stubs.Profile.create200()
+
+        // when
+        let txHash = try await profiles.create(request: request)
+
+        // then
+        // it should provide a blockchain transaction hash upon creation
+        XCTAssertEqual(txHash, expectedTxHash)
+    }
 }
