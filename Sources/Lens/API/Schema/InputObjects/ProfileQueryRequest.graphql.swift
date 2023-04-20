@@ -11,21 +11,25 @@ public struct ProfileQueryRequest: InputObject {
   }
 
   public init(
-    limit: GraphQLNullable<LimitScalar> = nil,
-    cursor: GraphQLNullable<Cursor> = nil,
-    profileIds: GraphQLNullable<[ProfileId]> = nil,
-    ownedBy: GraphQLNullable<[EthereumAddress]> = nil,
-    handles: GraphQLNullable<[Handle]> = nil,
-    whoMirroredPublicationId: GraphQLNullable<InternalPublicationId> = nil
+    limit: GraphQLNullable<LimitScalar>? = nil,
+    cursor: GraphQLNullable<Cursor>? = nil,
+    profileIds: GraphQLNullable<[ProfileId]>? = nil,
+    ownedBy: GraphQLNullable<[EthereumAddress]>? = nil,
+    handles: GraphQLNullable<[Handle]>? = nil,
+    whoMirroredPublicationId: GraphQLNullable<InternalPublicationId>? = nil
   ) {
-    __data = InputDict([
-      "limit": limit,
-      "cursor": cursor,
-      "profileIds": profileIds,
-      "ownedBy": ownedBy,
-      "handles": handles,
-      "whoMirroredPublicationId": whoMirroredPublicationId
-    ])
+    /// There appears to be an issue with the way the Apollo iOS library handles null arguments
+    /// (or maybe the way the Lens GraphQL API handles them?). In any case, we need to work around
+    /// this for now by manually not including any null arguments in this request.
+    var dict = [String: any GraphQLOperationVariableValue]()
+    if let limit { dict["limit"] = limit }
+    if let cursor { dict["cursor"] = cursor }
+    if let profileIds { dict["profileIds"] = profileIds }
+    if let ownedBy { dict["ownedBy"] = ownedBy }
+    if let handles { dict["handles"] = handles }
+    if let whoMirroredPublicationId { dict["whoMirroredPublicationId"] = whoMirroredPublicationId }
+
+    __data = InputDict(dict)
   }
 
   public var limit: GraphQLNullable<LimitScalar> {

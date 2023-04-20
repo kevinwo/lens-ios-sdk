@@ -6,6 +6,11 @@ public protocol Picture {
     var asMediaSet: MS? { get }
 }
 
+// MARK: - Profile
+
+extension ProfilesQuery.Data.Profiles.Item.Picture: Picture {}
+extension ProfilesQuery.Data.Profiles.Item.CoverPicture: Picture {}
+
 // MARK: - Explore publications
 
 // MARK: - Post

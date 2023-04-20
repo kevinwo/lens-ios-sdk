@@ -23,6 +23,10 @@ public protocol Profile {
 //    var onChainIdentity: ProfileFields.OnChainIdentity { get } // TODO
 }
 
+// MARK: - Profile
+
+extension ProfilesQuery.Data.Profiles.Item: Profile {}
+
 // MARK: - Explore Publications
 
 // MARK: - Post

@@ -9,6 +9,15 @@ public protocol Media {
 
 extension MetadataOutputFields.Medium.Original: Media {}
 
+// MARK: - Profile
+
+extension ProfilesQuery.Data.Profiles.Item.Picture.AsMediaSet.Original: Media {}
+extension ProfilesQuery.Data.Profiles.Item.Picture.AsMediaSet.Medium: Media {}
+extension ProfilesQuery.Data.Profiles.Item.Picture.AsMediaSet.Small: Media {}
+extension ProfilesQuery.Data.Profiles.Item.CoverPicture.AsMediaSet.Original: Media {}
+extension ProfilesQuery.Data.Profiles.Item.CoverPicture.AsMediaSet.Medium: Media {}
+extension ProfilesQuery.Data.Profiles.Item.CoverPicture.AsMediaSet.Small: Media {}
+
 // MARK: - Explore publications
 
 // MARK: - Profile picture media original

@@ -6,6 +6,11 @@ public protocol MediaSet {
     var original: T { get }
 }
 
+// MARK: - Profile
+
+extension ProfilesQuery.Data.Profiles.Item.Picture.AsMediaSet: MediaSet {}
+extension ProfilesQuery.Data.Profiles.Item.CoverPicture.AsMediaSet: MediaSet {}
+
 // MARK: - Explore publications
 
 // MARK: - Profile picture media set

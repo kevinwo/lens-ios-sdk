@@ -13,6 +13,8 @@ public class Feed: FeedType {
 
     public init() {}
 
+    // MARK: - Public interface
+
     public func fetch(request: FeedRequest) async throws -> FeedResponse {
         let query = ProfileFeedQuery(request: request)
         let data = try await client.request(query: query)
