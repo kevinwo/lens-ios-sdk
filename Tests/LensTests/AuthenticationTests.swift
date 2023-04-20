@@ -97,8 +97,60 @@ final class AuthenticationTests: XCTestCase {
         try await authentication.authenticate(address: address, signature: signature)
 
         // then
-        // should set the address and signature in the keychain
+        // should set the access token and refresh token in the keychain
         XCTAssertEqual(try mockKeychain.get("accessToken"), expectedAccessToken)
         XCTAssertEqual(try mockKeychain.get("refreshToken"), expectedRefreshToken)
+    }
+
+    func test_refresh() async throws {
+        // given
+        let currentRefreshToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKb2huIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE1MTYyNDU4MjJ9.sLzUPh0jMdZdS5Z5OcqD5zjM_R7LlJnWjV8xxu76Q1I"
+        try mockKeychain.set(currentRefreshToken, key: Keychain.Key.refreshToken)
+
+        let expectedAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQsswNEWCOOLTOKEN"
+        let expectedRefreshToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKb2huIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE1MTYyNDU4MjJ9.sLzUPh0jMdZdS5Z5OcqD5zjM_R7LlJnWjV8xxu76QNEWCOOLTOKEN"
+        let dict = [
+            "refresh": [
+                "accessToken": expectedAccessToken,
+                "refreshToken": expectedRefreshToken
+            ]
+        ]
+        let json = JSONValue(dict)
+        mockLensClient.stubbedRequestMutationData = RefreshMutation.Data(
+            _dataDict: .init(
+                data: try .init(_jsonValue: json)
+            )
+        )
+
+        // when
+        try await authentication.refresh()
+
+        // then
+        // should set the refreshed access token and refresh token in the keychain
+        XCTAssertEqual(try mockKeychain.get("accessToken"), expectedAccessToken)
+        XCTAssertEqual(try mockKeychain.get("refreshToken"), expectedRefreshToken)
+    }
+
+    func test_verify() async throws {
+        // given
+        let currentAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        try mockKeychain.set(currentAccessToken, key: Keychain.Key.accessToken)
+
+        let dict = [
+            "verify": true
+        ]
+        let json = JSONValue(dict)
+        mockLensClient.stubbedRequestQueryData = VerifyQuery.Data(
+            _dataDict: .init(
+                data: try .init(_jsonValue: json)
+            )
+        )
+
+        // when
+        let isVerified = try await authentication.verify()
+
+        // then
+        // should verify the access token
+        XCTAssertTrue(isVerified)
     }
 }

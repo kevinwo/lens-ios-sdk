@@ -11,6 +11,13 @@ protocol AuthenticationTypeInternal {
 }
 
 public class Authentication: AuthenticationType, AuthenticationTypeInternal {
+    // MARK: - Enums
+
+    enum Error: Swift.Error {
+        case refreshTokenNotPresent
+        case accessTokenNotPresent
+    }
+
     // MARK: - Properties
 
     var accessToken: String? {
@@ -43,5 +50,28 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
 
         try keychain.set(data.authenticate.accessToken, key: Keychain.Key.accessToken)
         try keychain.set(data.authenticate.refreshToken, key: Keychain.Key.refreshToken)
+    }
+
+    public func refresh() async throws {
+        guard let refreshToken else {
+            throw Error.refreshTokenNotPresent
+        }
+
+        let mutation = RefreshMutation(request: .init(refreshToken: refreshToken))
+        let data = try await client.request(mutation: mutation)
+
+        try keychain.set(data.refresh.accessToken, key: Keychain.Key.accessToken)
+        try keychain.set(data.refresh.refreshToken, key: Keychain.Key.refreshToken)
+    }
+
+    public func verify() async throws -> Bool {
+        guard let accessToken else {
+            throw Error.accessTokenNotPresent
+        }
+
+        let query = VerifyQuery(request: .init(accessToken: accessToken))
+        let data = try await client.request(query: query)
+
+        return data.verify
     }
 }
