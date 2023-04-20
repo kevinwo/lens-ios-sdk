@@ -153,4 +153,20 @@ final class AuthenticationTests: XCTestCase {
         // should verify the access token
         XCTAssertTrue(isVerified)
     }
+
+    func test_clear() throws {
+        // given
+        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        let refreshToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKb2huIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE1MTYyNDU4MjJ9.sLzUPh0jMdZdS5Z5OcqD5zjM_R7LlJnWjV8xxu76Q1I"
+        try mockKeychain.set(accessToken, key: Keychain.Key.accessToken)
+        try mockKeychain.set(refreshToken, key: Keychain.Key.refreshToken)
+
+        // when
+        try authentication.clear()
+
+        // then
+        // it should clear the access token and refresh token from the keychain
+        XCTAssertNil(try mockKeychain.get("accessToken"))
+        XCTAssertNil(try mockKeychain.get("refreshToken"))
+    }
 }

@@ -5,6 +5,7 @@ public protocol AuthenticationType {
     func authenticate(address: EthereumAddress, signature: Signature) async throws
     func refresh() async throws
     func verify() async throws -> Bool
+    func clear() throws
 }
 
 protocol AuthenticationTypeInternal {
@@ -75,5 +76,10 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
         let data = try await client.request(query: query)
 
         return data.verify
+    }
+
+    public func clear() throws {
+        try keychain.remove(Keychain.Key.accessToken)
+        try keychain.remove(Keychain.Key.refreshToken)
     }
 }
