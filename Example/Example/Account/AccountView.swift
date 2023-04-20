@@ -7,7 +7,8 @@ struct AccountView: View {
     var body: some View {
         NavigationView {
             VStack {
-                if viewModel.state == .walletIsReady || viewModel.state == .isAuthenticating {
+                switch viewModel.state {
+                case .walletIsReady, .isAuthenticating, .noWallet:
                     Text("Welcome to Lens")
                         .font(.largeTitle)
                         .bold()
@@ -15,6 +16,8 @@ struct AccountView: View {
                         .padding()
 
                     Spacer()
+                default:
+                    Group {}
                 }
 
                 VStack {

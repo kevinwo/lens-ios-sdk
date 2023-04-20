@@ -3,16 +3,21 @@ import Foundation
 final class ContentViewModel: ObservableObject {
     // MARK: - Enums
 
+    enum State {
+        case checkingIfAuthenticated
+        case authenticated
+        case unauthenticated
+    }
+
     enum Sheet: String, Identifiable {
-        case account
+        case account, selectProfile
 
         var id: String { rawValue }
     }
 
     // MARK: - Properties
 
-    @Published var isSignedIn = false
-    @Published var checkingIfAuthenticated = true
+    @Published var state: State = .checkingIfAuthenticated
     @Published var presentedSheet: Sheet?
 
     // MARK: - Internal interface
@@ -24,13 +29,14 @@ final class ContentViewModel: ObservableObject {
 
     @MainActor
     func verifyAuth() async {
-        checkingIfAuthenticated = true
+        state = .checkingIfAuthenticated
         do {
-            isSignedIn = try await Current.authentication.verify()
+            let isSignedIn = try await Current.authentication.verify()
+            state = isSignedIn ? .authenticated : .unauthenticated
         } catch {
             // TODO: Handle error
+            state = .unauthenticated
         }
-        checkingIfAuthenticated = false
     }
 
     @MainActor
@@ -40,13 +46,16 @@ final class ContentViewModel: ObservableObject {
 
     @MainActor
     func didTapWalletDisconnectButton() async {
+        state = .checkingIfAuthenticated
+
         do {
             try Current.authentication.clear()
             try await Current.wallet.disconnect()
             try await Current.wallet.signOut()
-            isSignedIn = false
         } catch {
             // TODO: Handle error
         }
+
+        state = .unauthenticated
     }
 }

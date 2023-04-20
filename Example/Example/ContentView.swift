@@ -6,12 +6,13 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                if viewModel.checkingIfAuthenticated {
+                switch viewModel.state {
+                case .checkingIfAuthenticated:
                     ProgressView()
-                } else if viewModel.isSignedIn {
+                case .authenticated:
                     FeedView()
                     Spacer()
-                } else {
+                case .unauthenticated:
                     HStack {
                         Text("Welcome to Lizi 👋")
                             .font(.largeTitle)
@@ -44,6 +45,8 @@ struct ContentView: View {
                     switch sheet {
                     case .account:
                         AccountView(viewModel: AccountViewModel())
+                    case .selectProfile:
+                        SelectProfileView()
                     }
                 }
             )
@@ -52,15 +55,16 @@ struct ContentView: View {
 
     private var leftNavigationItem: some View {
         VStack {
-            if viewModel.isSignedIn {
+            switch viewModel.state {
+            case .authenticated:
                 Button("Sign Out") {
                     Task { await viewModel.didTapWalletDisconnectButton() }
                 }
-            } else if !viewModel.checkingIfAuthenticated {
+            case .unauthenticated:
                 Button("Sign In") {
                     Task { await viewModel.didTapSignInButton() }
                 }
-            } else {
+            case .checkingIfAuthenticated:
                 Group {}
             }
         }

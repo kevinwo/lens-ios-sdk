@@ -23,6 +23,7 @@ final class SelectProfileViewModel: ObservableObject {
             }
         } catch {
             // TODO: Handle error
+            state = .noProfile
         }
     }
 }

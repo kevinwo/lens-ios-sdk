@@ -36,13 +36,17 @@ final class Wallet: WalletType {
 
     func address() async throws -> String {
         return try await withCheckedThrowingContinuation { continuation in
-            _ = magic.user.getMetadata().done { metadata in
-                guard let address = metadata.publicAddress else {
-                    continuation.resume(throwing: Error.failedToFetchAddress)
-                    return
+            _ = magic.user.getMetadata()
+                .done { metadata in
+                    guard let address = metadata.publicAddress else {
+                        continuation.resume(throwing: Error.failedToFetchAddress)
+                        return
+                    }
+                    continuation.resume(with: .success(address))
                 }
-                continuation.resume(with: .success(address))
-            }
+                .catch { error in
+                    continuation.resume(throwing: error)
+                }
         }
     }
 
