@@ -1,6 +1,11 @@
 import Foundation
 
-public final class Profiles {
+public protocol ProfilesType {
+    func fetchAll(request: ProfileQueryRequest) async throws -> ProfilesResponse
+    func create(request: CreateProfileRequest) async throws -> String
+}
+
+public final class Profiles: ProfilesType {
     // MARK: - Enums
 
     public enum Error: Swift.Error {

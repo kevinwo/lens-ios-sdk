@@ -2,7 +2,16 @@ import Foundation
 import MagicSDK
 import MagicSDK_Web3
 
-final class Wallet {
+protocol WalletType {
+    func address() async throws -> String
+    func isSignedIn() async -> Bool
+    func disconnect() async throws
+    func signOut() async throws
+    func personalSign(message: String) async throws -> String
+    func signTypedData(_ json: String) async throws -> String
+}
+
+final class Wallet: WalletType {
     // MARK: - Enums
 
     enum Error: Swift.Error {
@@ -19,6 +28,11 @@ final class Wallet {
     private let magic: Magic! = Magic.shared
 
     // MARK: - Internal interface
+
+    static func configure() {
+        let customNode = CustomNodeConfiguration(rpcUrl: "https://polygon-rpc.com/", chainId: 80001)
+        Magic.shared = Magic(apiKey: "your_api_key_here", customNode: customNode)
+    }
 
     func address() async throws -> String {
         return try await withCheckedThrowingContinuation { continuation in

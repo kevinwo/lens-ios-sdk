@@ -22,6 +22,9 @@
 		213F8FA529E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213F8FA429E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift */; };
 		214479D029F18AA30087D192 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214479CF29F18AA30087D192 /* FeedView.swift */; };
 		214479D229F18AAD0087D192 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214479D129F18AAD0087D192 /* FeedViewModel.swift */; };
+		214479D629F19E870087D192 /* SelectProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214479D529F19E870087D192 /* SelectProfileView.swift */; };
+		214479D929F1A19B0087D192 /* CreateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214479D829F1A19B0087D192 /* CreateProfileView.swift */; };
+		214479DB29F1A1BC0087D192 /* CreateProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214479DA29F1A1BC0087D192 /* CreateProfileViewModel.swift */; };
 		218E55A029EF246600EC4271 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E559F29EF246600EC4271 /* FooterView.swift */; };
 		218E55A329F0529300EC4271 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E55A229F0529300EC4271 /* AccountView.swift */; };
 		218E55A529F0C22100EC4271 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E55A429F0C22100EC4271 /* AccountViewModel.swift */; };
@@ -40,6 +43,7 @@
 		219F877529E8A058004B55C2 /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F877429E8A058004B55C2 /* MediaType.swift */; };
 		21BEB5CD29E6F273008BC970 /* ExplorePublicationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BEB5CC29E6F273008BC970 /* ExplorePublicationsView.swift */; };
 		21BEB5CF29E6F45C008BC970 /* ExplorePublicationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BEB5CE29E6F45C008BC970 /* ExplorePublicationsViewModel.swift */; };
+		21C1283E29F1B3DC00E813ED /* SelectProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C1283D29F1B3DC00E813ED /* SelectProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +71,9 @@
 		213F8FA429E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsViewSnapshotTests.swift; sourceTree = "<group>"; };
 		214479CF29F18AA30087D192 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		214479D129F18AAD0087D192 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		214479D529F19E870087D192 /* SelectProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProfileView.swift; sourceTree = "<group>"; };
+		214479D829F1A19B0087D192 /* CreateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileView.swift; sourceTree = "<group>"; };
+		214479DA29F1A1BC0087D192 /* CreateProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewModel.swift; sourceTree = "<group>"; };
 		218E559F29EF246600EC4271 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		218E55A229F0529300EC4271 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		218E55A429F0C22100EC4271 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
@@ -84,6 +91,7 @@
 		219F877429E8A058004B55C2 /* MediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaType.swift; sourceTree = "<group>"; };
 		21BEB5CC29E6F273008BC970 /* ExplorePublicationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsView.swift; sourceTree = "<group>"; };
 		21BEB5CE29E6F45C008BC970 /* ExplorePublicationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsViewModel.swift; sourceTree = "<group>"; };
+		21C1283D29F1B3DC00E813ED /* SelectProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +139,7 @@
 		2118D86729E31C82006753C0 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				214479D329F19E710087D192 /* Profiles */,
 				214479CE29F18A930087D192 /* Feed */,
 				218E55A129F0528500EC4271 /* Account */,
 				211E0E3129EDFA1200EBE5CB /* Wallet */,
@@ -204,6 +213,33 @@
 				214479D129F18AAD0087D192 /* FeedViewModel.swift */,
 			);
 			path = Feed;
+			sourceTree = "<group>";
+		};
+		214479D329F19E710087D192 /* Profiles */ = {
+			isa = PBXGroup;
+			children = (
+				214479D729F1A18F0087D192 /* Create */,
+				214479D429F19E780087D192 /* Select */,
+			);
+			path = Profiles;
+			sourceTree = "<group>";
+		};
+		214479D429F19E780087D192 /* Select */ = {
+			isa = PBXGroup;
+			children = (
+				214479D529F19E870087D192 /* SelectProfileView.swift */,
+				21C1283D29F1B3DC00E813ED /* SelectProfileViewModel.swift */,
+			);
+			path = Select;
+			sourceTree = "<group>";
+		};
+		214479D729F1A18F0087D192 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				214479D829F1A19B0087D192 /* CreateProfileView.swift */,
+				214479DA29F1A1BC0087D192 /* CreateProfileViewModel.swift */,
+			);
+			path = Create;
 			sourceTree = "<group>";
 		};
 		218E55A129F0528500EC4271 /* Account */ = {
@@ -425,10 +461,12 @@
 				2118D86B29E31C82006753C0 /* ContentView.swift in Sources */,
 				218E55A029EF246600EC4271 /* FooterView.swift in Sources */,
 				21BEB5CF29E6F45C008BC970 /* ExplorePublicationsViewModel.swift in Sources */,
+				21C1283E29F1B3DC00E813ED /* SelectProfileViewModel.swift in Sources */,
 				218E55A329F0529300EC4271 /* AccountView.swift in Sources */,
 				214479D229F18AAD0087D192 /* FeedViewModel.swift in Sources */,
 				214479D029F18AA30087D192 /* FeedView.swift in Sources */,
 				211E0E3029EDEE5200EBE5CB /* ContentViewModel.swift in Sources */,
+				214479D929F1A19B0087D192 /* CreateProfileView.swift in Sources */,
 				219F875A29E87875004B55C2 /* PublicationRow.swift in Sources */,
 				219F876D29E894B8004B55C2 /* KFImage+Example.swift in Sources */,
 				211E0E3329EDFA2200EBE5CB /* Wallet.swift in Sources */,
@@ -442,6 +480,8 @@
 				219F877529E8A058004B55C2 /* MediaType.swift in Sources */,
 				219F875629E87657004B55C2 /* PostRow.swift in Sources */,
 				219F875829E87749004B55C2 /* PostRowModel.swift in Sources */,
+				214479D629F19E870087D192 /* SelectProfileView.swift in Sources */,
+				214479DB29F1A1BC0087D192 /* CreateProfileViewModel.swift in Sources */,
 				212D130C29E71FF00094560E /* World.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

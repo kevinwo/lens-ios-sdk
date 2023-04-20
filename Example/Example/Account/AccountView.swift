@@ -5,44 +5,45 @@ struct AccountView: View {
     @ObservedObject var viewModel: AccountViewModel
 
     var body: some View {
-        VStack {
-            if viewModel.state == .walletIsReady || viewModel.state == .isAuthenticating {
-                Text("Welcome to Lens")
-                    .font(.largeTitle)
-                    .bold()
-                    .foregroundColor(.primary)
-                    .padding()
-            }
-
-            Spacer()
-
+        NavigationView {
             VStack {
-                switch viewModel.state {
-                case .unknown:
+                if viewModel.state == .walletIsReady || viewModel.state == .isAuthenticating {
+                    Text("Welcome to Lens")
+                        .font(.largeTitle)
+                        .bold()
+                        .foregroundColor(.primary)
+                        .padding()
                     Spacer()
-                    ProgressView()
-                    Spacer()
-                case .isAuthenticating:
-                    ProgressView()
-                case .profileSelected:
-                    Text("Profile details TBD")
-                case .isSignedIn:
-                    Text("Select profile TBD")
-                case .walletIsReady:
-                    Button("Sign In") {
-                        Task {
-                            await viewModel.didTapSignInButton()
+                }
+
+                VStack {
+                    switch viewModel.state {
+                    case .unknown:
+                        Spacer()
+                        ProgressView()
+                        Spacer()
+                    case .isAuthenticating:
+                        ProgressView()
+                    case .profileSelected:
+                        Text("Profile details TBD")
+                    case .isSignedIn:
+                        SelectProfileView()
+                    case .walletIsReady:
+                        Button("Sign In") {
+                            Task {
+                                await viewModel.didTapSignInButton()
+                            }
                         }
-                    }
-                case .noWallet:
-                    Button("Get Started") {
-                        Task {
-                            await viewModel.didTapGetStartedButton()
+                    case .noWallet:
+                        Button("Get Started") {
+                            Task {
+                                await viewModel.didTapGetStartedButton()
+                            }
                         }
                     }
                 }
+                .padding()
             }
-            .padding()
         }
         .onAppear {
             Task { await viewModel.onAppear() }
