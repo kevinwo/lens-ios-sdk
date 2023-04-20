@@ -18,11 +18,8 @@ struct ExplorePublicationsView: View {
                 .listStyle(.plain)
             }
         }
-        .navigationTitle("Explore Publications")
         .onAppear {
-            Task {
-                await viewModel.fetchPublications()
-            }
+            Task { await viewModel.fetchPublications() }
         }
     }
 }

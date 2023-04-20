@@ -1,59 +1,33 @@
 import Foundation
 
 final class ContentViewModel: ObservableObject {
-    @Published var walletIsReady = false
-    @Published var checkingIfAuthenticated = true
-    @Published var isSigningIn = false
-    @Published var authError: String?
+    enum Sheet: String, Identifiable {
+        case account
 
-    private let wallet = Wallet()
+        var id: String { rawValue }
+    }
+
+    @Published var isSignedIn = false
+    @Published var checkingIfAuthenticated = true
+    @Published var presentedSheet: Sheet?
 
     @MainActor
     func onAppear() async {
-        let isSignedIn = await wallet.isSignedIn()
+        do {
+            isSignedIn = try await Current.authentication.verify()
+        } catch {
+            // TODO: Handle error
+        }
         checkingIfAuthenticated = false
-        walletIsReady = isSignedIn
     }
 
     @MainActor
     func didTapSignInButton() async {
-        authError = nil
-        isSigningIn = true
-
-        do {
-            let address = try await wallet.address()
-            let message = try await Current.authentication.challenge(address: address)
-            let signature = try await wallet.personalSign(message: message)
-            try await Current.authentication.authenticate(
-                address: address,
-                signature: signature
-            )
-        } catch {
-            authError = String(describing: error)
-        }
-
-        isSigningIn = false
-    }
-
-    @MainActor
-    func didTapWalletConnectButton() async {
-        do {
-            checkingIfAuthenticated = true
-            let _ = try await wallet.signIn()
-            checkingIfAuthenticated = false
-            walletIsReady = true
-        } catch {
-            // TODO: Handle error
-        }
+        presentedSheet = .account
     }
 
     @MainActor
     func didTapWalletDisconnectButton() async {
-        do {
-            try await wallet.signOut()
-            walletIsReady = false
-        } catch {
-            // TODO: Handle error
-        }
+        // TODO
     }
 }

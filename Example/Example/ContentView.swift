@@ -3,40 +3,58 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var viewModel: ContentViewModel
 
+    private var leftNavigationItem: some View {
+        VStack {
+            if viewModel.isSignedIn {
+                Button("Sign Out") {
+                    Task { await viewModel.didTapWalletDisconnectButton() }
+                }
+            } else if !viewModel.checkingIfAuthenticated {
+                Button("Sign In") {
+                    Task { await viewModel.didTapSignInButton() }
+                }
+            } else {
+                Group {}
+            }
+        }
+    }
+
     var body: some View {
         NavigationView {
-            List {
-                Section(header: Text("Explore")) {
-                    NavigationLink(destination: ExplorePublicationsView()) {
-                        Text("Publications")
+            VStack {
+                if viewModel.checkingIfAuthenticated {
+                    ProgressView()
+                } else if viewModel.isSignedIn {
+                    Text("Feed")
+                } else {
+                    HStack {
+                        Text("Welcome to Lizi 👋")
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.primary)
+                            .padding()
+                        Spacer()
                     }
-                }
+                    Text("Lizi is a decentralized, and permissionless social media mobile app built with Lens Protocol")
+                        .foregroundColor(.secondary)
 
-                Section(
-                    header: Text("Authenticated"),
-                    footer: FooterView(text: viewModel.authError)
-                ) {
-                    if viewModel.checkingIfAuthenticated || viewModel.isSigningIn {
-                        ProgressView()
-                    } else if viewModel.walletIsReady {
-                        Button("Sign in to Lens") {
-                            Task { await viewModel.didTapSignInButton() }
-                        }
+                    ExplorePublicationsView()
 
-                        Button("Disconnect Wallet") {
-                            Task { await viewModel.didTapWalletDisconnectButton() }
-                        }
-                    } else {
-                        Button("Connect Wallet") {
-                            Task { await viewModel.didTapWalletConnectButton() }
-                        }
-                    }
+                    Spacer()
                 }
             }
-            .navigationTitle("Lens")
+            .navigationBarItems(
+                trailing: leftNavigationItem
+            )
             .onAppear {
                 Task { await viewModel.onAppear() }
             }
+            .sheet(item: $viewModel.presentedSheet, content: { sheet in
+                switch sheet {
+                case .account:
+                    AccountView(viewModel: AccountViewModel())
+                }
+            })
         }
     }
 }
