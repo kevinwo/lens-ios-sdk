@@ -2,7 +2,7 @@ import Foundation
 import Lens
 import SwiftUI
 
-struct ExplorePublicationsRow {
+struct PublicationRow {
     static func forPublication(_ publication: Publication) -> AnyView {
         if let post = publication as? Post {
             return PostRow.view(post: post).typeErased

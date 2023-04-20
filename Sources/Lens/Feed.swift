@@ -1,6 +1,10 @@
 import Foundation
 
-public class Feed {
+public protocol FeedType {
+    func fetch(request: FeedRequest) async throws -> FeedResponse
+}
+
+public class Feed: FeedType {
     // MARK: - Properties
 
     private let client: LensClientType = Current.lensClient()

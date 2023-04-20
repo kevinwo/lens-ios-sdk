@@ -9,7 +9,8 @@ struct ContentView: View {
                 if viewModel.checkingIfAuthenticated {
                     ProgressView()
                 } else if viewModel.isSignedIn {
-                    Text("Feed")
+                    FeedView()
+                    Spacer()
                 } else {
                     HStack {
                         Text("Welcome to Lizi 👋")
@@ -27,6 +28,7 @@ struct ContentView: View {
                     Spacer()
                 }
             }
+            .edgesIgnoringSafeArea(.bottom)
             .navigationBarItems(
                 trailing: leftNavigationItem
             )

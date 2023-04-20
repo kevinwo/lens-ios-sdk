@@ -1,14 +1,17 @@
 import SwiftUI
 
-struct ExplorePublicationsView: View {
-    @ObservedObject var viewModel = ExplorePublicationsViewModel()
+struct FeedView: View {
+    @ObservedObject var viewModel = FeedViewModel()
 
     var body: some View {
         VStack {
             if viewModel.isLoading {
                 ProgressView()
             } else if viewModel.publications.isEmpty {
-                Text("There are no publications to explore right now.")
+                Spacer()
+                Text("There are no publications in your feed. Follow some new people to see publications!")
+                    .padding()
+                Spacer()
             } else {
                 List {
                     ForEach(viewModel.publications) { publication in
@@ -24,8 +27,8 @@ struct ExplorePublicationsView: View {
     }
 }
 
-struct ExplorePublicationsView_Previews: PreviewProvider {
+struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
-        ExplorePublicationsView()
+        FeedView()
     }
 }

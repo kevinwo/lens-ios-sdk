@@ -11,21 +11,26 @@ public struct FeedRequest: InputObject {
   }
 
   public init(
-    limit: GraphQLNullable<LimitScalar> = nil,
-    cursor: GraphQLNullable<Cursor> = nil,
+    limit: GraphQLNullable<LimitScalar>? = nil,
+    cursor: GraphQLNullable<Cursor>? = nil,
     profileId: ProfileId,
-    feedEventItemTypes: GraphQLNullable<[GraphQLEnum<FeedEventItemType>]>,
-    sources: GraphQLNullable<[Sources]>,
-    metadata: GraphQLNullable<PublicationMetadataFilters> = nil
+    feedEventItemTypes: GraphQLNullable<[GraphQLEnum<FeedEventItemType>]>? = nil,
+    sources: GraphQLNullable<[Sources]>? = nil,
+    metadata: GraphQLNullable<PublicationMetadataFilters>? = nil
   ) {
-    __data = InputDict([
-      "limit": limit,
-      "cursor": cursor,
-      "profileId": profileId,
-      "feedEventItemTypes": feedEventItemTypes,
-      "sources": sources,
-      "metadata": metadata
-    ])
+    /// There appears to be an issue with the way the Apollo iOS library handles null arguments
+    /// (or maybe the way the Lens GraphQL API handles them?). In any case, we need to work around
+    /// this for now by manually not including any null arguments in this request.
+    var dict = [String: any GraphQLOperationVariableValue]()
+    dict["profileId"] = profileId
+
+    if let limit { dict["limit"] = limit }
+    if let cursor { dict["cursor"] = cursor }
+    if let feedEventItemTypes { dict["feedEventItemTypes"] = feedEventItemTypes }
+    if let sources { dict["sources"] = sources }
+    if let metadata { dict["metadata"] = metadata }
+
+    __data = InputDict(dict)
   }
 
   public var limit: GraphQLNullable<LimitScalar> {

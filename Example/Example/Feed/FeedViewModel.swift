@@ -1,30 +1,28 @@
 import Foundation
 import Lens
 
-final class ExplorePublicationsViewModel: ObservableObject {
+final class FeedViewModel: ObservableObject {
     @Published var isLoading: Bool = true
     @Published var publications = [Publication]()
-    @Published var sortCriteria: PublicationSortCriteria = .topCommented
 
     @MainActor
     func onAppear() async {
         if publications.isEmpty {
-            await fetchPublications()
+            await fetchFeed()
         }
     }
 
     // MARK: - Private interface
 
     @MainActor
-    private func fetchPublications() async {
+    private func fetchFeed() async {
         isLoading = true
 
-        let request = ExplorePublicationRequest(
-            sortCriteria: .init(sortCriteria)
-        )
+        // TODO: Replace profile ID value after implementing profile fetch
+        let request = FeedRequest(profileId: "0x1b")
 
         do {
-            let results = try await Current.explore.publications(request: request)
+            let results = try await Current.feed.fetch(request: request)
             self.publications = results.items
         } catch {
             // TODO: Handle error
