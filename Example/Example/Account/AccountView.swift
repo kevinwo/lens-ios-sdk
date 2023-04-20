@@ -13,6 +13,7 @@ struct AccountView: View {
                         .bold()
                         .foregroundColor(.primary)
                         .padding()
+
                     Spacer()
                 }
 

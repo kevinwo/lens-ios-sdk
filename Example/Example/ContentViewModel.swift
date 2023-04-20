@@ -15,8 +15,6 @@ final class ContentViewModel: ObservableObject {
     @Published var checkingIfAuthenticated = true
     @Published var presentedSheet: Sheet?
 
-    private let wallet = Wallet()
-
     // MARK: - Internal interface
 
     @MainActor
@@ -44,8 +42,8 @@ final class ContentViewModel: ObservableObject {
     func didTapWalletDisconnectButton() async {
         do {
             try Current.authentication.clear()
-            try await wallet.disconnect()
-            try await wallet.signOut()
+            try await Current.wallet.disconnect()
+            try await Current.wallet.signOut()
             isSignedIn = false
         } catch {
             // TODO: Handle error

@@ -9,6 +9,7 @@ final class SelectProfileViewModel: ObservableObject {
     }
     @Published var state: State = .isLoading
 
+    @MainActor
     func onAppear() async {
         do {
             let address = try await Current.wallet.address()
