@@ -44,6 +44,9 @@
 		21BEB5CD29E6F273008BC970 /* ExplorePublicationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BEB5CC29E6F273008BC970 /* ExplorePublicationsView.swift */; };
 		21BEB5CF29E6F45C008BC970 /* ExplorePublicationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BEB5CE29E6F45C008BC970 /* ExplorePublicationsViewModel.swift */; };
 		21C1283E29F1B3DC00E813ED /* SelectProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C1283D29F1B3DC00E813ED /* SelectProfileViewModel.swift */; };
+		21C1284329F2D32E00E813ED /* FluidGradient in Frameworks */ = {isa = PBXBuildFile; productRef = 21C1284229F2D32E00E813ED /* FluidGradient */; };
+		21C1284529F2D3CE00E813ED /* AnimatedGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C1284429F2D3CE00E813ED /* AnimatedGradientView.swift */; };
+		21C1284729F2D73C00E813ED /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C1284629F2D73C00E813ED /* PrimaryButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +95,8 @@
 		21BEB5CC29E6F273008BC970 /* ExplorePublicationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsView.swift; sourceTree = "<group>"; };
 		21BEB5CE29E6F45C008BC970 /* ExplorePublicationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsViewModel.swift; sourceTree = "<group>"; };
 		21C1283D29F1B3DC00E813ED /* SelectProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProfileViewModel.swift; sourceTree = "<group>"; };
+		21C1284429F2D3CE00E813ED /* AnimatedGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedGradientView.swift; sourceTree = "<group>"; };
+		21C1284629F2D73C00E813ED /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +107,7 @@
 				219F876829E88F27004B55C2 /* Kingfisher in Frameworks */,
 				2118D87929E31F8C006753C0 /* Lens in Frameworks */,
 				211E0E2E29EDD55200EBE5CB /* MagicSDK in Frameworks */,
+				21C1284329F2D32E00E813ED /* FluidGradient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +284,8 @@
 				219F877129E8988E004B55C2 /* PubContentView */,
 				219F875F29E87BA2004B55C2 /* CommentRow */,
 				219F875E29E87B98004B55C2 /* PostRow */,
+				21C1284429F2D3CE00E813ED /* AnimatedGradientView.swift */,
+				21C1284629F2D73C00E813ED /* PrimaryButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -362,6 +370,7 @@
 				2118D87829E31F8C006753C0 /* Lens */,
 				219F876729E88F27004B55C2 /* Kingfisher */,
 				211E0E2D29EDD55200EBE5CB /* MagicSDK */,
+				21C1284229F2D32E00E813ED /* FluidGradient */,
 			);
 			productName = Example;
 			productReference = 2118D86529E31C82006753C0 /* Example.app */;
@@ -421,6 +430,7 @@
 				213F8FA129E7327C00473E5B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 				219F876629E88F27004B55C2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				211E0E2C29EDD55200EBE5CB /* XCRemoteSwiftPackageReference "magic-ios" */,
+				21C1284129F2D32E00E813ED /* XCRemoteSwiftPackageReference "FluidGradient" */,
 			);
 			productRefGroup = 2118D86629E31C82006753C0 /* Products */;
 			projectDirPath = "";
@@ -477,7 +487,9 @@
 				219F876329E87BBD004B55C2 /* CommentRowModel.swift in Sources */,
 				2118D86929E31C82006753C0 /* ExampleApp.swift in Sources */,
 				219F876129E87BB2004B55C2 /* CommentRow.swift in Sources */,
+				21C1284529F2D3CE00E813ED /* AnimatedGradientView.swift in Sources */,
 				219F877529E8A058004B55C2 /* MediaType.swift in Sources */,
+				21C1284729F2D73C00E813ED /* PrimaryButton.swift in Sources */,
 				219F875629E87657004B55C2 /* PostRow.swift in Sources */,
 				219F875829E87749004B55C2 /* PostRowModel.swift in Sources */,
 				214479D629F19E870087D192 /* SelectProfileView.swift in Sources */,
@@ -793,6 +805,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		21C1284129F2D32E00E813ED /* XCRemoteSwiftPackageReference "FluidGradient" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Cindori/FluidGradient.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -818,6 +838,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 219F876629E88F27004B55C2 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		21C1284229F2D32E00E813ED /* FluidGradient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21C1284129F2D32E00E813ED /* XCRemoteSwiftPackageReference "FluidGradient" */;
+			productName = FluidGradient;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -6,47 +6,63 @@ struct AccountView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                switch viewModel.state {
-                case .walletIsReady, .isAuthenticating, .noWallet:
-                    Text("Welcome to Lens")
-                        .font(.largeTitle)
-                        .bold()
-                        .foregroundColor(.primary)
-                        .padding()
-
-                    Spacer()
-                default:
-                    Group {}
-                }
+            ZStack {
+                AnimatedGradientView()
+                    .edgesIgnoringSafeArea(.bottom)
 
                 VStack {
                     switch viewModel.state {
-                    case .unknown:
+                    case .walletIsReady, .isAuthenticating, .noWallet:
                         Spacer()
-                        ProgressView()
+
+                        Image(systemName: "wallet.pass.fill")
+                            .foregroundColor(.white)
+                            .font(.system(size: 50))
+                        Text("Let's get you signed in")
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                        Text("Looks like you've got a wallet set up, so let's sign in to Lens.")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                            .padding()
+
                         Spacer()
-                    case .isAuthenticating:
-                        ProgressView()
-                    case .profileSelected:
-                        Text("Profile details TBD")
-                    case .isSignedIn:
-                        SelectProfileView()
-                    case .walletIsReady:
-                        Button("Sign In") {
-                            Task {
-                                await viewModel.didTapSignInButton()
+                    default:
+                        Group {}
+                    }
+
+                    VStack {
+                        switch viewModel.state {
+                        case .unknown:
+                            Spacer()
+                            ProgressView()
+                            Spacer()
+                        case .isAuthenticating:
+                            ProgressView()
+                        case .profileSelected:
+                            Text("Profile details TBD")
+                        case .isSignedIn:
+                            SelectProfileView()
+                        case .walletIsReady:
+                            PrimaryButton("Sign In") {
+                                Task {
+                                    await viewModel.didTapSignInButton()
+                                }
                             }
-                        }
-                    case .noWallet:
-                        Button("Get Started") {
-                            Task {
-                                await viewModel.didTapGetStartedButton()
+                        case .noWallet:
+                            PrimaryButton("Get Started") {
+                                Task {
+                                    await viewModel.didTapGetStartedButton()
+                                }
                             }
                         }
                     }
+                    .padding()
                 }
-                .padding()
             }
         }
         .onAppear {
