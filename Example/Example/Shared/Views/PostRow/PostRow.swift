@@ -30,7 +30,7 @@ struct PostRow: View {
     // MARK: - Internal interface
 
     static func view(post: Post) -> PostRow {
-        let viewModel = PostRowModel(post: post)
+        let viewModel = PostRowModel(publication: post)
         return PostRow(viewModel: viewModel)
     }
 }
@@ -38,7 +38,7 @@ struct PostRow: View {
 struct PostRow_Previews: PreviewProvider {
     static var previews: some View {
         let post = Post.forPreview
-        let viewModel = PostRowModel(post: post)
+        let viewModel = PostRowModel(publication: post)
         PostRow(viewModel: viewModel)
     }
 }

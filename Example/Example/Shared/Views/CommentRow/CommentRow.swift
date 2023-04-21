@@ -6,7 +6,7 @@ struct CommentRow: View {
     let viewModel: CommentRowModel
 
     static func view(comment: Comment) -> CommentRow {
-        let viewModel = CommentRowModel(comment: comment)
+        let viewModel = CommentRowModel(publication: comment)
         return CommentRow(viewModel: viewModel)
     }
 
@@ -34,7 +34,7 @@ struct CommentRow: View {
 struct CommentRow_Previews: PreviewProvider {
     static var previews: some View {
         let comment = Comment.forPreview
-        let viewModel = CommentRowModel(comment: comment)
+        let viewModel = CommentRowModel(publication: comment)
         CommentRow(viewModel: viewModel)
     }
 }

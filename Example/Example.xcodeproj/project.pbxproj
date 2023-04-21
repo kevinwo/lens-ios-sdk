@@ -48,6 +48,7 @@
 		21C1284529F2D3CE00E813ED /* AnimatedGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C1284429F2D3CE00E813ED /* AnimatedGradientView.swift */; };
 		21C1284729F2D73C00E813ED /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C1284629F2D73C00E813ED /* PrimaryButton.swift */; };
 		21C1284929F3108000E813ED /* String+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C1284829F3108000E813ED /* String+Example.swift */; };
+		21C1284B29F3114100E813ED /* PublicationRowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C1284A29F3114100E813ED /* PublicationRowModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		21C1284429F2D3CE00E813ED /* AnimatedGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedGradientView.swift; sourceTree = "<group>"; };
 		21C1284629F2D73C00E813ED /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		21C1284829F3108000E813ED /* String+Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Example.swift"; sourceTree = "<group>"; };
+		21C1284A29F3114100E813ED /* PublicationRowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationRowModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +290,7 @@
 				219F875E29E87B98004B55C2 /* PostRow */,
 				21C1284429F2D3CE00E813ED /* AnimatedGradientView.swift */,
 				21C1284629F2D73C00E813ED /* PrimaryButton.swift */,
+				21C1284A29F3114100E813ED /* PublicationRowModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				219F876329E87BBD004B55C2 /* CommentRowModel.swift in Sources */,
 				2118D86929E31C82006753C0 /* ExampleApp.swift in Sources */,
 				219F876129E87BB2004B55C2 /* CommentRow.swift in Sources */,
+				21C1284B29F3114100E813ED /* PublicationRowModel.swift in Sources */,
 				21C1284529F2D3CE00E813ED /* AnimatedGradientView.swift in Sources */,
 				219F877529E8A058004B55C2 /* MediaType.swift in Sources */,
 				21C1284729F2D73C00E813ED /* PrimaryButton.swift in Sources */,
