@@ -43,9 +43,9 @@ final class ProfilesTests: XCTestCase {
         XCTAssertEqual(response, expectedResponse)
     }
 
-    // Disabled; GraphQL fulfillment in tests is currently an issue.
-    // Will resolve at a later date and marking as TODO
     func test_create() async throws {
+        throw XCTSkip("Disabled; GraphQL fulfillment in tests is currently an issue. Will resolve at a later date and marking as TODO")
+
         // given
         let request = CreateProfileRequest(handle: "coolhandle")
 
