@@ -19,7 +19,7 @@ final class FeedViewModel: ObservableObject {
         isLoading = true
 
         // TODO: Replace profile ID value after implementing profile fetch
-        let request = FeedRequest(profileId: "0x1b")
+        let request = FeedRequest(profileId: "0x15")
 
         do {
             let results = try await Current.feed.fetch(request: request)

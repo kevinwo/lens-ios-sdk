@@ -9,13 +9,20 @@ struct CreateProfileView: View {
             Text("Create a profile")
                 .font(.largeTitle)
                 .bold()
-                .foregroundColor(.primary)
+                .foregroundColor(.white)
+                .multilineTextAlignment(.center)
+                .padding()
+
+            Text("Your profile uniquely identifies you and your content to others on Lens. You'll be able to customize it later.")
+                .font(.headline)
+                .foregroundColor(.white)
+                .multilineTextAlignment(.center)
                 .padding()
 
             Spacer()
 
             TextField(
-                "Something",
+                "",
                 text: $viewModel.handle,
                 prompt: Text("coolhandle")
             )
@@ -28,14 +35,11 @@ struct CreateProfileView: View {
 
             Spacer()
 
-            if (viewModel.isCreating) {
-                ProgressView()
-            } else {
-                Button("Create Profile") {
-                    Task { await viewModel.didTapCreateButton() }
-                }
-                .padding()
+            PrimaryButton("Create Profile", isProgressing: $viewModel.isCreating) {
+                Task { await viewModel.didTapCreateButton() }
             }
+            .padding()
+
         }
     }
 }

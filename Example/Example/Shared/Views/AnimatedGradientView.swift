@@ -6,7 +6,9 @@ struct AnimatedGradientView: View {
     @State var highlights: [Color] = []
     @State var speed = 1.0
 
-    let colorPool: [Color] = [.blue, .green, .yellow, .orange, .red, .pink, .purple, .teal, .indigo]
+//    let colorPool: [Color] = [.blue, .green, .yellow, .orange, .red, .pink, .purple, .teal, .indigo]
+    let colorPool: [Color] = [.blue, .green, .orange, .indigo]
+    let highlightPool: [Color] = [.blue, .green, .orange, .red, .pink, .purple, .teal, .indigo]
 
     var body: some View {
         FluidGradient(
@@ -27,7 +29,7 @@ struct AnimatedGradientView: View {
             colors.append(colorPool.randomElement()!)
         }
         for _ in 0...Int.random(in: 5...5) {
-            highlights.append(colorPool.randomElement()!)
+            highlights.append(highlightPool.randomElement()!)
         }
     }
 }

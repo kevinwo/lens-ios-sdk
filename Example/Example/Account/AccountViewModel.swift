@@ -3,7 +3,6 @@ import Foundation
 final class AccountViewModel: ObservableObject {
     enum AccountState {
         case unknown
-        case isAuthenticating
         case profileSelected
         case isSignedIn
         case walletIsReady
@@ -13,7 +12,30 @@ final class AccountViewModel: ObservableObject {
     // MARK: - Properties
 
     @Published var state: AccountState = .unknown
+    @Published var isAuthenticating: Bool = false
     @Published var authError: String?
+
+    var title: String {
+        switch state {
+        case .walletIsReady:
+            return "Let's get you signed in"
+        case .noWallet:
+            return "Let's get you a wallet"
+        default:
+            return ""
+        }
+    }
+
+    var description: String {
+        switch state {
+        case .walletIsReady:
+            return "Looks like you've got a wallet set up, so let's sign in to Lens."
+        case .noWallet:
+            return "A wallet lets you connect to the Lens network so you can follow others, and post and collect content."
+        default:
+            return ""
+        }
+    }
 
     private let wallet = Wallet()
 
@@ -44,7 +66,7 @@ final class AccountViewModel: ObservableObject {
     @MainActor
     func didTapGetStartedButton() async {
         authError = nil
-        state = .isAuthenticating
+        isAuthenticating = true
 
         do {
             let _ = try await wallet.signIn()
@@ -53,12 +75,14 @@ final class AccountViewModel: ObservableObject {
             authError = String(describing: error)
             state = .noWallet
         }
+
+        isAuthenticating = false
     }
 
     @MainActor
     func didTapSignInButton() async {
         authError = nil
-        state = .isAuthenticating
+        isAuthenticating = true
 
         do {
             let address = try await wallet.address()
@@ -73,5 +97,7 @@ final class AccountViewModel: ObservableObject {
             authError = String(describing: error)
             state = .walletIsReady
         }
+
+        isAuthenticating = false
     }
 }

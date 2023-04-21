@@ -12,19 +12,19 @@ struct AccountView: View {
 
                 VStack {
                     switch viewModel.state {
-                    case .walletIsReady, .isAuthenticating, .noWallet:
+                    case .walletIsReady, .noWallet:
                         Spacer()
 
                         Image(systemName: "wallet.pass.fill")
                             .foregroundColor(.white)
                             .font(.system(size: 50))
-                        Text("Let's get you signed in")
+                        Text(viewModel.title)
                             .font(.largeTitle)
                             .bold()
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
                             .padding()
-                        Text("Looks like you've got a wallet set up, so let's sign in to Lens.")
+                        Text(viewModel.description)
                             .font(.headline)
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
@@ -41,24 +41,27 @@ struct AccountView: View {
                             Spacer()
                             ProgressView()
                             Spacer()
-                        case .isAuthenticating:
-                            ProgressView()
                         case .profileSelected:
                             Text("Profile details TBD")
                         case .isSignedIn:
                             SelectProfileView()
                         case .walletIsReady:
-                            PrimaryButton("Sign In") {
+                            PrimaryButton("Sign In", isProgressing: $viewModel.isAuthenticating) {
                                 Task {
                                     await viewModel.didTapSignInButton()
                                 }
                             }
                         case .noWallet:
-                            PrimaryButton("Get Started") {
+                            PrimaryButton("Get Started", isProgressing: $viewModel.isAuthenticating) {
                                 Task {
                                     await viewModel.didTapGetStartedButton()
                                 }
                             }
+
+                            Button("I already have a wallet") {
+                                // TODO: WalletConnect
+                            }
+                            .padding(.top)
                         }
                     }
                     .padding()
