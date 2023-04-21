@@ -10,7 +10,7 @@ final class ContentViewModel: ObservableObject {
     }
 
     enum Sheet: String, Identifiable {
-        case account, selectProfile
+        case account
 
         var id: String { rawValue }
     }

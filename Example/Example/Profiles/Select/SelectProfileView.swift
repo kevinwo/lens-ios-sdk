@@ -1,7 +1,14 @@
 import SwiftUI
 
 struct SelectProfileView: View {
-    @ObservedObject var viewModel = SelectProfileViewModel()
+    @ObservedObject var viewModel: SelectProfileViewModel
+
+    static func scene(onSelectProfile: @escaping () -> Void) -> some View {
+        let viewModel = SelectProfileViewModel(onSelectProfile: onSelectProfile)
+        let view = SelectProfileView(viewModel: viewModel)
+
+        return view
+    }
 
     var body: some View {
         VStack {
@@ -9,6 +16,7 @@ struct SelectProfileView: View {
             case .isLoading:
                 Spacer()
                 ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
                 Spacer()
             case .profiles(let profiles):
                 List {
@@ -17,7 +25,9 @@ struct SelectProfileView: View {
                     }
                 }
             case .noProfile:
-                CreateProfileView()
+                CreateProfileView.scene(onCreateProfile: { handle in
+                    viewModel.didSelectProfile(with: handle)
+                })
             }
         }
         .onAppear {
@@ -28,6 +38,6 @@ struct SelectProfileView: View {
 
 struct SelectProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectProfileView()
+        SelectProfileView.scene(onSelectProfile: {})
     }
 }

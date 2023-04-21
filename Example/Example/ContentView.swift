@@ -45,8 +45,6 @@ struct ContentView: View {
                     switch sheet {
                     case .account:
                         AccountView(viewModel: AccountViewModel())
-                    case .selectProfile:
-                        SelectProfileView()
                     }
                 }
             )

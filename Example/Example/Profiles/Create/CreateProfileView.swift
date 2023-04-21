@@ -1,8 +1,14 @@
 import SwiftUI
 
 struct CreateProfileView: View {
-    @Environment(\.dismiss) var dismiss
-    @ObservedObject var viewModel = CreateProfileViewModel()
+    @ObservedObject var viewModel: CreateProfileViewModel
+
+    static func scene(onCreateProfile: @escaping (String) -> Void) -> some View {
+        let viewModel = CreateProfileViewModel(onCreateProfile: onCreateProfile)
+        let view = CreateProfileView(viewModel: viewModel)
+
+        return view
+    }
 
     var body: some View {
         VStack {
@@ -39,13 +45,12 @@ struct CreateProfileView: View {
                 Task { await viewModel.didTapCreateButton() }
             }
             .padding()
-
         }
     }
 }
 
 struct CreateProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateProfileView()
+        CreateProfileView.scene(onCreateProfile: { _ in })
     }
 }

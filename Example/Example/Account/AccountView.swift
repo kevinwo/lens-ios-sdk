@@ -40,11 +40,14 @@ struct AccountView: View {
                         case .unknown:
                             Spacer()
                             ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .white))
                             Spacer()
                         case .profileSelected:
                             Text("Profile details TBD")
                         case .isSignedIn:
-                            SelectProfileView()
+                            SelectProfileView.scene(onSelectProfile: {
+                                dismiss()
+                            })
                         case .walletIsReady:
                             PrimaryButton("Sign In", isProgressing: $viewModel.isAuthenticating) {
                                 Task {
