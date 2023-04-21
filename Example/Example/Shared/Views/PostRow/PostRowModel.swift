@@ -10,7 +10,7 @@ final class PostRowModel {
         guard let urlString = post.profile.picture?.asMediaSet?.original.url else {
             return nil
         }
-        return URL(string: urlString)
+        return urlString.toIpfsUrl()
     }
 
     var authorName: String? {
@@ -59,7 +59,7 @@ final class PostRowModel {
             return nil
         }
 
-        return URL(string: media.url.replacingOccurrences(of: "ipfs://", with: "https://ipfs.io/ipfs/"))
+        return media.url.toIpfsUrl()
     }
 
     // MARK: - Object life cycle

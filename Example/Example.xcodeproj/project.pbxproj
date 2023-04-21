@@ -47,6 +47,7 @@
 		21C1284329F2D32E00E813ED /* FluidGradient in Frameworks */ = {isa = PBXBuildFile; productRef = 21C1284229F2D32E00E813ED /* FluidGradient */; };
 		21C1284529F2D3CE00E813ED /* AnimatedGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C1284429F2D3CE00E813ED /* AnimatedGradientView.swift */; };
 		21C1284729F2D73C00E813ED /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C1284629F2D73C00E813ED /* PrimaryButton.swift */; };
+		21C1284929F3108000E813ED /* String+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C1284829F3108000E813ED /* String+Example.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		21C1283D29F1B3DC00E813ED /* SelectProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectProfileViewModel.swift; sourceTree = "<group>"; };
 		21C1284429F2D3CE00E813ED /* AnimatedGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedGradientView.swift; sourceTree = "<group>"; };
 		21C1284629F2D73C00E813ED /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		21C1284829F3108000E813ED /* String+Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Example.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +297,7 @@
 			children = (
 				219F875C29E87985004B55C2 /* View+Example.swift */,
 				219F876C29E894B8004B55C2 /* KFImage+Example.swift */,
+				21C1284829F3108000E813ED /* String+Example.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				218E55A529F0C22100EC4271 /* AccountViewModel.swift in Sources */,
 				2118D86B29E31C82006753C0 /* ContentView.swift in Sources */,
 				218E55A029EF246600EC4271 /* FooterView.swift in Sources */,
+				21C1284929F3108000E813ED /* String+Example.swift in Sources */,
 				21BEB5CF29E6F45C008BC970 /* ExplorePublicationsViewModel.swift in Sources */,
 				21C1283E29F1B3DC00E813ED /* SelectProfileViewModel.swift in Sources */,
 				218E55A329F0529300EC4271 /* AccountView.swift in Sources */,
