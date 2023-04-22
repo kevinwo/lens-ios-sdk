@@ -13,6 +13,9 @@ protocol AuthenticationTypeInternal {
     var refreshToken: String? { get }
 }
 
+/**
+ Authenticate with Lens and manage authentication state
+ */
 public class Authentication: AuthenticationType, AuthenticationTypeInternal {
     // MARK: - Enums
 
@@ -39,6 +42,14 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
 
     // MARK: - Public interface
 
+    /**
+     Generate a sign-in challenge message based on Sign In With Ethereum (EIP-4361)
+
+     - Parameters:
+       - address: The address for the wallet with which you wish to sign the sign-in challenge message
+
+     - Returns: The challenge message to sign with a wallet
+     */
     public func challenge(address: EthereumAddress) async throws -> String {
         let query = ChallengeQuery(request: .init(address: address))
         let data = try await client.request(query: query)
@@ -46,6 +57,15 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
         return data.challenge.text
     }
 
+    /**
+     Authenticate with Lens after having signed the sign-in challenge message.
+
+     If authentication is successful, an access token and refresh token are returned from the Lens API, and the SDK securely stores them both in the Keychain.
+
+     - Parameters:
+       - address: The address of the wallet with which signed the sign-in challenge message
+       - signature: The signature generated as a result of signing the message with a wallet
+     */
     public func authenticate(address: EthereumAddress, signature: Signature) async throws {
         let mutation = AuthenticateMutation(request: .init(address: address, signature: signature))
         let data = try await client.request(mutation: mutation)
@@ -54,6 +74,11 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
         try keychain.set(data.authenticate.refreshToken, key: Keychain.Key.refreshToken)
     }
 
+    /**
+     Refresh both the access token and refresh token using your current refresh token (if not yet expired)
+
+     No parameters are needed as current refresh token is retrieved internally from the Keychain.
+     */
     public func refresh() async throws {
         guard let refreshToken else {
             throw Error.refreshTokenNotPresent
@@ -66,6 +91,9 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
         try keychain.set(data.refresh.refreshToken, key: Keychain.Key.refreshToken)
     }
 
+    /**
+     Verify that the current access token is still valid for authenticating with the Lens API.
+     */
     public func verify() async throws -> Bool {
         guard let accessToken else {
             return false
@@ -77,6 +105,9 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
         return data.verify
     }
 
+    /**
+     Clear the existing access token and refresh token from the Keychain.
+     */
     public func clear() throws {
         try keychain.remove(Keychain.Key.accessToken)
         try keychain.remove(Keychain.Key.refreshToken)
