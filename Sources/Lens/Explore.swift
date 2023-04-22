@@ -29,9 +29,8 @@ public class Explore: ExploreType {
      let response = try await explore.publications(request: request)
      ```
 
-     - Parameters:
-       - request: The request parameters to use when fetching publications
-
+     - Parameter request: The request parameters to use when fetching publications
+     - Throws: An error if there is a problem with the fetch operation.
      - Returns: A response containing publications and page info (todo: the latter)
      */
     public func publications(request: ExplorePublicationRequest) async throws -> ExplorePublicationsResponse {
