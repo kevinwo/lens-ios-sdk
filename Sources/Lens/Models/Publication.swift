@@ -5,12 +5,14 @@ open class Publication: Identifiable {
     public let profile: any Profile
     public let metadata: any Metadata
     public let createdAt: String
+    public let collectModule: any CollectModule
 
     init(publication: any SomePublication) {
         self.id = publication.id
         self.profile = publication.profile
         self.metadata = publication.metadata
         self.createdAt = publication.createdAt
+        self.collectModule = publication.collectModule
     }
 
     static func fromItem(_ item: ExplorePublicationsQuery.Data.ExplorePublications.Item) -> Publication? {
@@ -40,11 +42,13 @@ extension Publication: Equatable {
 public protocol SomePublication {
     associatedtype P: Profile
     associatedtype M: Metadata
+    associatedtype C: CollectModule
 
     var id: String { get }
     var profile: P { get }
     var metadata: M { get }
     var createdAt: String { get }
+    var collectModule: C { get }
 }
 
 // MARK: - Post
