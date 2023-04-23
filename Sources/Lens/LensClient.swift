@@ -23,6 +23,12 @@ public struct LensClient: LensClientType {
 
     // MARK: - Public interface
 
+    /**
+     Configure how the SDK should identify your app when performing various actions.
+     - Parameters:
+        - appName: The name of your app; used when generating a sign-in message for authentication
+        - appBundleIdentifier: The bundle identifier of your app (optional); used when configuring the Keychain namespace for storing credentials
+     */
     public static func configure(appName: String, appBundleIdentifier: String? = Bundle.main.bundleIdentifier) {
         self.appName = appName
         self.appBundleIdentifier = appBundleIdentifier

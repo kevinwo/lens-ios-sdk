@@ -14,9 +14,6 @@ public class Feed: FeedType {
 
     // MARK: - Object life cycle
 
-    /**
-     Creates a new `Feed` object.
-     */
     public init() {}
 
     // MARK: - Public interface
