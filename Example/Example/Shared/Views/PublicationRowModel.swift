@@ -62,6 +62,10 @@ open class PublicationRowModel {
         return media.url.toIpfsUrl()
     }
 
+    var stats: PublicationStats {
+        publication.stats
+    }
+
     // MARK: - Object life cycle
 
     init(publication: Publication) {

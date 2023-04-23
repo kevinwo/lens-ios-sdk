@@ -26,6 +26,8 @@ struct CommentRow: View {
                     content: viewModel.content,
                     mediaImageUrl: viewModel.mediaImageUrl
                 )
+
+                PubStatsView(stats: viewModel.stats)
             }
         }
     }

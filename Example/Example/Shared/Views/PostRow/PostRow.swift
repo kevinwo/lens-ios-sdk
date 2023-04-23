@@ -23,6 +23,8 @@ struct PostRow: View {
                     content: viewModel.content,
                     mediaImageUrl: viewModel.mediaImageUrl
                 )
+
+                PubStatsView(stats: viewModel.stats)
             }
         }
     }
