@@ -57,7 +57,8 @@ extension Stubs {
                         "totalComments": 0,
                         "totalMirrors": 0,
                         "totalPublications": 1,
-                        "totalCollects": 6
+                        "totalCollects": 6,
+                        "totalUpvotes": 234
                       },
                       "followModule": null
                     }

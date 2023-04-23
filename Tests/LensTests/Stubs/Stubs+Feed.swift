@@ -34,11 +34,13 @@ extension Stubs {
                         "totalComments": 1,
                         "totalMirrors": 1,
                         "totalPublications": 6,
-                        "totalCollects": 5
+                        "totalCollects": 5,
+                        "totalUpvotes": 234
                       },
                       "followModule": null
                     },
                     "stats": {
+                      "totalUpvotes": 23,
                       "totalAmountOfMirrors": 2,
                       "totalAmountOfCollects": 2,
                       "totalAmountOfComments": 2
@@ -117,11 +119,13 @@ extension Stubs {
                           "totalComments": 1,
                           "totalMirrors": 1,
                           "totalPublications": 6,
-                          "totalCollects": 5
+                          "totalCollects": 5,
+                          "totalUpvotes": 234
                         },
                         "followModule": null
                       },
                       "stats": {
+                        "totalUpvotes": 23,
                         "totalAmountOfMirrors": 0,
                         "totalAmountOfCollects": 0,
                         "totalAmountOfComments": 1
@@ -173,11 +177,13 @@ extension Stubs {
                             "totalComments": 1,
                             "totalMirrors": 1,
                             "totalPublications": 6,
-                            "totalCollects": 5
+                            "totalCollects": 5,
+                            "totalUpvotes": 234
                           },
                           "followModule": null
                         },
                         "stats": {
+                          "totalUpvotes": 23,
                           "totalAmountOfMirrors": 2,
                           "totalAmountOfCollects": 2,
                           "totalAmountOfComments": 2
@@ -275,7 +281,8 @@ extension Stubs {
                         "totalComments": 141,
                         "totalMirrors": 69,
                         "totalPublications": 476,
-                        "totalCollects": 200
+                        "totalCollects": 200,
+                        "totalUpvotes": 234
                       },
                       "followModule": {
                         "type": "FeeFollowModule",
@@ -292,6 +299,7 @@ extension Stubs {
                       }
                     },
                     "stats": {
+                      "totalUpvotes": 23,
                       "totalAmountOfMirrors": 0,
                       "totalAmountOfCollects": 0,
                       "totalAmountOfComments": 0
@@ -414,7 +422,8 @@ extension Stubs {
                         "totalComments": 141,
                         "totalMirrors": 69,
                         "totalPublications": 476,
-                        "totalCollects": 200
+                        "totalCollects": 200,
+                        "totalUpvotes": 234
                       },
                       "followModule": {
                         "type": "FeeFollowModule",
@@ -431,6 +440,7 @@ extension Stubs {
                       }
                     },
                     "stats": {
+                      "totalUpvotes": 23,
                       "totalAmountOfMirrors": 0,
                       "totalAmountOfCollects": 0,
                       "totalAmountOfComments": 0
@@ -553,7 +563,8 @@ extension Stubs {
                         "totalComments": 141,
                         "totalMirrors": 69,
                         "totalPublications": 476,
-                        "totalCollects": 200
+                        "totalCollects": 200,
+                        "totalUpvotes": 234
                       },
                       "followModule": {
                         "type": "FeeFollowModule",
@@ -570,6 +581,7 @@ extension Stubs {
                       }
                     },
                     "stats": {
+                      "totalUpvotes": 23,
                       "totalAmountOfMirrors": 0,
                       "totalAmountOfCollects": 0,
                       "totalAmountOfComments": 0
@@ -692,7 +704,8 @@ extension Stubs {
                         "totalComments": 141,
                         "totalMirrors": 69,
                         "totalPublications": 476,
-                        "totalCollects": 200
+                        "totalCollects": 200,
+                        "totalUpvotes": 234
                       },
                       "followModule": {
                         "type": "FeeFollowModule",
@@ -709,6 +722,7 @@ extension Stubs {
                       }
                     },
                     "stats": {
+                      "totalUpvotes": 23,
                       "totalAmountOfMirrors": 0,
                       "totalAmountOfCollects": 0,
                       "totalAmountOfComments": 0

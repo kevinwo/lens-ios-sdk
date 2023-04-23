@@ -96,7 +96,8 @@ public extension Stubs {
                     "totalComments": 0,
                     "totalMirrors": 0,
                     "totalPublications": 416,
-                    "totalCollects": 79
+                    "totalCollects": 79,
+                    "totalUpvotes": 234
                   },
                   "followModule": null,
                   "onChainIdentity": {
@@ -125,6 +126,7 @@ public extension Stubs {
                 },
                 "stats": {
                   "__typename": "PublicationStats",
+                  "totalUpvotes": 23,
                   "totalAmountOfMirrors": 0,
                   "totalAmountOfCollects": 0,
                   "totalAmountOfComments": 1
@@ -217,7 +219,8 @@ public extension Stubs {
                     "totalComments": 0,
                     "totalMirrors": 0,
                     "totalPublications": 856,
-                    "totalCollects": 84
+                    "totalCollects": 84,
+                    "totalUpvotes": 234
                   },
                   "followModule": null,
                   "onChainIdentity": {
@@ -246,6 +249,7 @@ public extension Stubs {
                 },
                 "stats": {
                   "__typename": "PublicationStats",
+                  "totalUpvotes": 23,
                   "totalAmountOfMirrors": 0,
                   "totalAmountOfCollects": 0,
                   "totalAmountOfComments": 1
@@ -326,7 +330,8 @@ public extension Stubs {
                     "totalComments": 375,
                     "totalMirrors": 0,
                     "totalPublications": 375,
-                    "totalCollects": 0
+                    "totalCollects": 0,
+                    "totalUpvotes": 234
                   },
                   "followModule": null,
                   "onChainIdentity": {
@@ -355,6 +360,7 @@ public extension Stubs {
                 },
                 "stats": {
                   "__typename": "PublicationStats",
+                  "totalUpvotes": 23,
                   "totalAmountOfMirrors": 0,
                   "totalAmountOfCollects": 0,
                   "totalAmountOfComments": 1
@@ -435,7 +441,8 @@ public extension Stubs {
                       "totalComments": 0,
                       "totalMirrors": 0,
                       "totalPublications": 416,
-                      "totalCollects": 79
+                      "totalCollects": 79,
+                      "totalUpvotes": 234
                     },
                     "followModule": null,
                     "onChainIdentity": {
@@ -464,6 +471,7 @@ public extension Stubs {
                   },
                   "stats": {
                     "__typename": "PublicationStats",
+                    "totalUpvotes": 23,
                     "totalAmountOfMirrors": 0,
                     "totalAmountOfCollects": 0,
                     "totalAmountOfComments": 2
@@ -557,7 +565,8 @@ public extension Stubs {
                     "totalComments": 0,
                     "totalMirrors": 0,
                     "totalPublications": 416,
-                    "totalCollects": 79
+                    "totalCollects": 79,
+                    "totalUpvotes": 234
                   },
                   "followModule": null,
                   "onChainIdentity": {
@@ -586,6 +595,7 @@ public extension Stubs {
                 },
                 "stats": {
                   "__typename": "PublicationStats",
+                  "totalUpvotes": 23,
                   "totalAmountOfMirrors": 0,
                   "totalAmountOfCollects": 0,
                   "totalAmountOfComments": 1
@@ -666,7 +676,8 @@ public extension Stubs {
                     "totalComments": 0,
                     "totalMirrors": 0,
                     "totalPublications": 416,
-                    "totalCollects": 79
+                    "totalCollects": 79,
+                    "totalUpvotes": 234
                   },
                   "followModule": null,
                   "onChainIdentity": {
@@ -695,6 +706,7 @@ public extension Stubs {
                 },
                 "stats": {
                   "__typename": "PublicationStats",
+                  "totalUpvotes": 23,
                   "totalAmountOfMirrors": 1,
                   "totalAmountOfCollects": 0,
                   "totalAmountOfComments": 1
@@ -784,7 +796,8 @@ public extension Stubs {
                     "totalComments": 5,
                     "totalMirrors": 2,
                     "totalPublications": 10,
-                    "totalCollects": 0
+                    "totalCollects": 0,
+                    "totalUpvotes": 234
                   },
                   "followModule": null,
                   "onChainIdentity": {
@@ -813,6 +826,7 @@ public extension Stubs {
                 },
                 "stats": {
                   "__typename": "PublicationStats",
+                  "totalUpvotes": 23,
                   "totalAmountOfMirrors": 0,
                   "totalAmountOfCollects": 0,
                   "totalAmountOfComments": 2

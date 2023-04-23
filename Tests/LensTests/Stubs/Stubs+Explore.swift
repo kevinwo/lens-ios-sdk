@@ -40,7 +40,8 @@ extension Stubs {
                       "totalComments": 0,
                       "totalMirrors": 0,
                       "totalPublications": 1,
-                      "totalCollects": 0
+                      "totalCollects": 0,
+                      "totalUpvotes": 234
                     },
                     "followModule": {
                       "type": "FeeFollowModule",
@@ -57,6 +58,7 @@ extension Stubs {
                     }
                   },
                   "stats": {
+                    "totalUpvotes": 23,
                     "totalAmountOfMirrors": 0,
                     "totalAmountOfCollects": 0,
                     "totalAmountOfComments": 3
@@ -116,11 +118,13 @@ extension Stubs {
                       "totalComments": 64,
                       "totalMirrors": 15,
                       "totalPublications": 168,
-                      "totalCollects": 215
+                      "totalCollects": 215,
+                      "totalUpvotes": 234
                     },
                     "followModule": null
                   },
                   "stats": {
+                    "totalUpvotes": 23,
                     "totalAmountOfMirrors": 0,
                     "totalAmountOfCollects": 0,
                     "totalAmountOfComments": 6

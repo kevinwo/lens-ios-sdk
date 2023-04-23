@@ -361,6 +361,7 @@ public struct PostFields: Lens.SelectionSet, Fragment {
       .fragment(PublicationStatsFields.self),
     ] }
 
+    public var totalUpvotes: Int { __data["totalUpvotes"] }
     public var totalAmountOfMirrors: Int { __data["totalAmountOfMirrors"] }
     public var totalAmountOfCollects: Int { __data["totalAmountOfCollects"] }
     public var totalAmountOfComments: Int { __data["totalAmountOfComments"] }

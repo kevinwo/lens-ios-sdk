@@ -383,6 +383,7 @@ public struct CommentMirrorOfFields: Lens.SelectionSet, Fragment {
 
         public static var __parentType: ApolloAPI.ParentType { Lens.Objects.PublicationStats }
 
+        public var totalUpvotes: Int { __data["totalUpvotes"] }
         public var totalAmountOfMirrors: Int { __data["totalAmountOfMirrors"] }
         public var totalAmountOfCollects: Int { __data["totalAmountOfCollects"] }
         public var totalAmountOfComments: Int { __data["totalAmountOfComments"] }
@@ -733,6 +734,7 @@ public struct CommentMirrorOfFields: Lens.SelectionSet, Fragment {
 
         public static var __parentType: ApolloAPI.ParentType { Lens.Objects.PublicationStats }
 
+        public var totalUpvotes: Int { __data["totalUpvotes"] }
         public var totalAmountOfMirrors: Int { __data["totalAmountOfMirrors"] }
         public var totalAmountOfCollects: Int { __data["totalAmountOfCollects"] }
         public var totalAmountOfComments: Int { __data["totalAmountOfComments"] }
@@ -1050,6 +1052,7 @@ public struct CommentMirrorOfFields: Lens.SelectionSet, Fragment {
 
     public static var __parentType: ApolloAPI.ParentType { Lens.Objects.PublicationStats }
 
+    public var totalUpvotes: Int { __data["totalUpvotes"] }
     public var totalAmountOfMirrors: Int { __data["totalAmountOfMirrors"] }
     public var totalAmountOfCollects: Int { __data["totalAmountOfCollects"] }
     public var totalAmountOfComments: Int { __data["totalAmountOfComments"] }

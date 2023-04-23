@@ -6,6 +6,7 @@ open class Publication: Identifiable {
     public let metadata: any Metadata
     public let createdAt: String
     public let collectModule: any CollectModule
+    public let stats: any PublicationStats
 
     init(publication: any SomePublication) {
         self.id = publication.id
@@ -13,6 +14,7 @@ open class Publication: Identifiable {
         self.metadata = publication.metadata
         self.createdAt = publication.createdAt
         self.collectModule = publication.collectModule
+        self.stats = publication.stats
     }
 
     static func fromItem(_ item: ExplorePublicationsQuery.Data.ExplorePublications.Item) -> Publication? {
@@ -43,12 +45,14 @@ public protocol SomePublication {
     associatedtype P: Profile
     associatedtype M: Metadata
     associatedtype C: CollectModule
+    associatedtype S: PublicationStats
 
     var id: String { get }
     var profile: P { get }
     var metadata: M { get }
     var createdAt: String { get }
     var collectModule: C { get }
+    var stats: S { get }
 }
 
 // MARK: - Post
