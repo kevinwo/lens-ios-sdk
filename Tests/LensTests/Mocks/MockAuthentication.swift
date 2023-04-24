@@ -1,10 +1,22 @@
 import Foundation
 @testable import Lens
 
-public final class MockAuthentication: AuthenticationType {
+final class MockAuthentication: AuthenticationType, AuthenticationTypeInternal {
+    var stubbedAccessToken: String?
+
+    var accessToken: String? {
+        stubbedAccessToken
+    }
+
+    var stubbedRefreshToken: String?
+
+    var refreshToken: String? {
+        stubbedRefreshToken
+    }
+
     // MARK: - Enums
 
-    public enum Error: Swift.Error {
+    enum Error: Swift.Error {
         case challengeStubNotPresent
         case verifyStubNotPresent
         case refreshStubNotPresent
@@ -12,11 +24,11 @@ public final class MockAuthentication: AuthenticationType {
 
     // MARK: - challenge
 
-    public var invokedChallenge = false
-    public var invokedChallengeAddress: String?
-    public var stubbedChallengeMessage: String?
+    var invokedChallenge = false
+    var invokedChallengeAddress: String?
+    var stubbedChallengeMessage: String?
 
-    public func challenge(address: EthereumAddress) async throws -> String {
+    func challenge(address: EthereumAddress) async throws -> String {
         invokedChallenge = true
         invokedChallengeAddress = address
 
@@ -29,11 +41,11 @@ public final class MockAuthentication: AuthenticationType {
 
     // MARK: - authenticate
 
-    public var invokedAuthenticate = false
-    public var invokedAuthenticateAddress: EthereumAddress?
-    public var invokedAuthenticateSignature: Signature?
+    var invokedAuthenticate = false
+    var invokedAuthenticateAddress: EthereumAddress?
+    var invokedAuthenticateSignature: Signature?
 
-    public func authenticate(address: EthereumAddress, signature: Signature) async throws {
+    func authenticate(address: EthereumAddress, signature: Signature) async throws {
         invokedAuthenticate = true
         invokedAuthenticateAddress = address
         invokedAuthenticateSignature = signature
@@ -59,7 +71,7 @@ public final class MockAuthentication: AuthenticationType {
     var invokedVerify = false
     var stubbedVerify: Bool?
 
-    public func verify() async throws -> Bool {
+    func verify() async throws -> Bool {
         invokedVerify = true
         guard let verify = stubbedVerify else {
             throw Error.verifyStubNotPresent
@@ -72,7 +84,7 @@ public final class MockAuthentication: AuthenticationType {
 
     var invokedClear = false
 
-    public func clear() throws {
+    func clear() throws {
         invokedClear = true
     }
 }

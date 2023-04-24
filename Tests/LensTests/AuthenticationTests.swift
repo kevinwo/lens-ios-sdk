@@ -123,12 +123,15 @@ final class AuthenticationTests: XCTestCase {
         )
 
         // when
-        try await authentication.refresh()
+        let newAccessToken = try await authentication.refresh()
 
         // then
         // should set the refreshed access token and refresh token in the keychain
         XCTAssertEqual(try mockKeychain.get("accessToken"), expectedAccessToken)
         XCTAssertEqual(try mockKeychain.get("refreshToken"), expectedRefreshToken)
+
+        // should return the refreshed access token
+        XCTAssertEqual(newAccessToken, expectedAccessToken)
     }
 
     func test_verify() async throws {

@@ -3,7 +3,7 @@ import Foundation
 public protocol AuthenticationType {
     func challenge(address: EthereumAddress) async throws -> String
     func authenticate(address: EthereumAddress, signature: Signature) async throws
-    func refresh() async throws
+    func refresh() async throws -> String
     func verify() async throws -> Bool
     func clear() throws
 }
@@ -77,9 +77,11 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
     /**
      Refresh both the access token and refresh token using your current refresh token (if not yet expired)
 
-     No parameters are needed as current refresh token is retrieved internally from the Keychain.
+     No parameters are needed as current refresh token is retrieved internally from the Keychain. Upon refresh, the new access token and refresh token are stored in the Keychain.
+
+     - Returns: A new access token
      */
-    public func refresh() async throws {
+    public func refresh() async throws -> String {
         guard let refreshToken else {
             throw Error.refreshTokenNotPresent
         }
@@ -89,6 +91,8 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
 
         try keychain.set(data.refresh.accessToken, key: Keychain.Key.accessToken)
         try keychain.set(data.refresh.refreshToken, key: Keychain.Key.refreshToken)
+
+        return data.refresh.accessToken
     }
 
     /**
