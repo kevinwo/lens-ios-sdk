@@ -1,6 +1,7 @@
-# Lens iOS/macOS SDK
+# Lens iOS + macOS SDK
 
-![CI](https://github.com/kevinwo/lens-ios-sdk/actions/workflows/swift.yml/badge.svg)
+![CI](https://github.com/kevinwo/lens-ios-sdk/actions/workflows/CI.yml/badge.svg)
+
 
 ## Overview
 
