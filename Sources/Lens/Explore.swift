@@ -31,7 +31,7 @@ public class Explore: ExploreType {
 
      - Parameter request: The request parameters to use when fetching publications
      - Throws: An error if there is a problem with the fetch operation.
-     - Returns: A response containing publications and page info (todo: the latter)
+     - Returns: A response containing publications and page info
      */
     public func publications(request: ExplorePublicationRequest) async throws -> ExplorePublicationsResponse {
         let query = ExplorePublicationsQuery(request: request)
@@ -43,8 +43,10 @@ public class Explore: ExploreType {
 
 public struct ExplorePublicationsResponse: Equatable {
     public let items: [Publication]
-    // TODO: Handle pageInfo/other properties
+    public let pageInfo: PageInfo?
+
     init(response: ExplorePublicationsQuery.Data.ExplorePublications) {
         self.items = response.items.compactMap { Publication.fromItem($0) }
+        self.pageInfo = PageInfo(dataDict: response.pageInfo.__data)
     }
 }

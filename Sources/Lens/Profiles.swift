@@ -38,7 +38,7 @@ public final class Profiles: ProfilesType {
 
      - Parameter request: The request parameters to use when fetching profiles
      - Throws: An error if there is a problem with the fetch operation.
-     - Returns: A response containing profiles and page info (todo: the latter)
+     - Returns: A response containing profiles and page info
      */
     public func fetchAll(request: ProfileQueryRequest) async throws -> ProfilesResponse {
         let query = ProfilesQuery(request: request)
@@ -76,9 +76,11 @@ public final class Profiles: ProfilesType {
 
 public struct ProfilesResponse {
     public let profiles: [any Profile]
-    // TODO: Handle pageInfo/other properties
+    public let pageInfo: PageInfo?
+
     init(response: ProfilesQuery.Data.Profiles) {
         self.profiles = response.items
+        self.pageInfo = PageInfo(dataDict: response.pageInfo.__data)
     }
 }
 

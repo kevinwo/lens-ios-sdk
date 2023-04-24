@@ -31,7 +31,7 @@ public class Feed: FeedType {
 
      - Parameter request: The request parameters to use when fetching publications
      - Throws: An error if there is a problem with the fetch operation.
-     - Returns: A response containing publications and page info (todo: the latter)
+     - Returns: A response containing publications and page info
      */
     public func fetch(request: FeedRequest) async throws -> FeedResponse {
         let query = ProfileFeedQuery(request: request)
@@ -46,7 +46,7 @@ public struct FeedResponse: Equatable {
      A list of publications contained in the feched feed
      */
     public let items: [Publication]
-    // TODO: Handle pageInfo/other properties
+    public let pageInfo: PageInfo?
 
     /**
      Creates a new `FeedResponse` object with the given response data.
@@ -55,5 +55,6 @@ public struct FeedResponse: Equatable {
      */
     init(response: ProfileFeedQuery.Data.Feed) {
         self.items = response.items.compactMap { Publication.fromItem($0.root) }
+        self.pageInfo = PageInfo(dataDict: response.pageInfo.__data)
     }
 }
