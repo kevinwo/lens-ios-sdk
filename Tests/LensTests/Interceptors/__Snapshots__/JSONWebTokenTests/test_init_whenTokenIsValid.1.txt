@@ -1,0 +1,13 @@
+▿ JSONWebToken
+  ▿ audience: Optional<String>
+    - some: "www.example.com"
+  ▿ expirationDate: Optional<Date>
+    - some: 2124-04-23T19:23:47Z
+  - id: Optional<String>.none
+  ▿ issuedAt: Optional<Date>
+    - some: 2123-04-24T19:23:47Z
+  ▿ issuer: Optional<String>
+    - some: "Online JWT Builder"
+  - role: Optional<String>.none
+  ▿ subject: Optional<String>
+    - some: "cool@example.com"
