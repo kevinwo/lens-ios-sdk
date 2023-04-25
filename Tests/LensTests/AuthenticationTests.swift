@@ -134,9 +134,9 @@ final class AuthenticationTests: XCTestCase {
         XCTAssertEqual(newAccessToken, expectedAccessToken)
     }
 
-    func test_verify() async throws {
+    func test_verify_whenVerifyingAValidToken() async throws {
         // given
-        let currentAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        let currentAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjB4ZWVGYzIzRkU0OWJEZTFmNzk1YzY1MDUwMWFEQjFERWUxRThiNkQ5ZSIsInJvbGUiOiJub3JtYWwiLCJpYXQiOjE2ODIzNjU0MzcsImV4cCI6MTY4MjM2NzIzN30.VlfUALvGLjqazOyblFgY_bnhDmdPr5rE00BZhtKco9M"
         try mockKeychain.set(currentAccessToken, key: Keychain.Key.accessToken)
 
         let dict = [
@@ -153,13 +153,65 @@ final class AuthenticationTests: XCTestCase {
         let isVerified = try await authentication.verify()
 
         // then
-        // should verify the access token
+        // should have a valid access token
         XCTAssertTrue(isVerified)
+    }
+
+    func test_verify_whenVerifyingAnExpiredToken_andRefreshedAccessTokenIsValid() async throws {
+        // given
+        let currentAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjB4ZWVGYzIzRkU0OWJEZTFmNzk1YzY1MDUwMWFEQjFERWUxRThiNkQ5ZSIsInJvbGUiOiJub3JtYWwiLCJpYXQiOjE2ODIzNjU0MzcsImV4cCI6MTY4MjM2NzIzN30.VlfUALvGLjqazOyblFgY_bnhDmdPr5rE00BZhtKco9M"
+        try mockKeychain.set(currentAccessToken, key: Keychain.Key.accessToken)
+
+        let dict = [
+            "verify": false
+        ]
+        let json = JSONValue(dict)
+        mockLensClient.stubbedRequestQueryData = VerifyQuery.Data(
+            _dataDict: .init(
+                data: try .init(_jsonValue: json)
+            )
+        )
+        mockLensClient.forceAuthRefreshHandler = { [weak self] in
+            guard let self else { return }
+            let newAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjQ4MzgwMzc4MjcsImV4cCI6NDg2OTU3MzgyNywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiY29vbEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0.kqosgqVA6ATpR_6L6DjfNNHfBFTaX4t9heDtm5fs_f8"
+            try? self.mockKeychain.set(newAccessToken, key: Keychain.Key.accessToken)
+        }
+
+        // when
+        let isVerified = try await authentication.verify()
+
+        // then
+        // should have a valid access token
+        XCTAssertTrue(isVerified)
+    }
+
+    func test_verify_whenVerifyingAnExpiredToken_andCannotRefreshAccessToken() async throws {
+        // given
+        let currentAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjB4ZWVGYzIzRkU0OWJEZTFmNzk1YzY1MDUwMWFEQjFERWUxRThiNkQ5ZSIsInJvbGUiOiJub3JtYWwiLCJpYXQiOjE2ODIzNjU0MzcsImV4cCI6MTY4MjM2NzIzN30.VlfUALvGLjqazOyblFgY_bnhDmdPr5rE00BZhtKco9M"
+        try mockKeychain.set(currentAccessToken, key: Keychain.Key.accessToken)
+
+        let dict = [
+            "verify": false
+        ]
+        let json = JSONValue(dict)
+        mockLensClient.stubbedRequestQueryData = VerifyQuery.Data(
+            _dataDict: .init(
+                data: try .init(_jsonValue: json)
+            )
+        )
+        mockLensClient.forceAuthRefreshHandler = nil
+
+        // when
+        let isVerified = try await authentication.verify()
+
+        // then
+        // should not have a valid access token
+        XCTAssertFalse(isVerified)
     }
 
     func test_clear() throws {
         // given
-        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjB4ZWVGYzIzRkU0OWJEZTFmNzk1YzY1MDUwMWFEQjFERWUxRThiNkQ5ZSIsInJvbGUiOiJub3JtYWwiLCJpYXQiOjE2ODIzNjU0MzcsImV4cCI6MTY4MjM2NzIzN30.VlfUALvGLjqazOyblFgY_bnhDmdPr5rE00BZhtKco9M"
         let refreshToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKb2huIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE1MTYyNDU4MjJ9.sLzUPh0jMdZdS5Z5OcqD5zjM_R7LlJnWjV8xxu76Q1I"
         try mockKeychain.set(accessToken, key: Keychain.Key.accessToken)
         try mockKeychain.set(refreshToken, key: Keychain.Key.refreshToken)

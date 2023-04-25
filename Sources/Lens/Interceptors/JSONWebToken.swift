@@ -21,7 +21,7 @@ struct JSONWebToken {
 
     var isExpired: Bool {
         guard let expirationDate else {
-            return false
+            return true
         }
         return expirationDate < Date()
     }

@@ -6,6 +6,9 @@ final class MockLensClient: LensClientType {
         case invalidData
     }
 
+    /// Given that our GraphQL interceptor pipeline involves a potential auth token refresh, and we may want to verify various behavior in tests based on a refreshed access token, we can use this to force a refresh during a given request.
+    var forceAuthRefreshHandler: (() -> Void)?
+
     // MARK: - request query
 
     var invokedRequestQuery: Bool = false
@@ -17,6 +20,7 @@ final class MockLensClient: LensClientType {
 
     func request<Query>(query: Query) async throws -> Query.Data where Query : GraphQLQuery {
         invokedRequestQuery = true
+        forceAuthRefreshHandler?()
 
         if let data = stubbedRequestQueryData as? Query.Data {
             return data
@@ -36,6 +40,7 @@ final class MockLensClient: LensClientType {
 
     func request<Mutation>(mutation: Mutation) async throws -> Mutation.Data where Mutation : ApolloAPI.GraphQLMutation {
         invokedRequestMutation = true
+        forceAuthRefreshHandler?()
 
         if let data = stubbedRequestMutationData as? Mutation.Data {
             return data

@@ -33,6 +33,16 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
         try? keychain.get(Keychain.Key.refreshToken)
     }
 
+    private var accessTokenIsValid: Bool {
+        guard
+            let token = try? keychain.get(Keychain.Key.accessToken),
+            let jwt = try? JSONWebToken(token)
+        else {
+            return false
+        }
+        return !jwt.isExpired
+    }
+
     private let client: LensClientType = Current.lensClient()
     private let keychain: KeychainType = Current.keychain()
 
@@ -97,6 +107,8 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
 
     /**
      Verify that the current access token is still valid for authenticating with the Lens API.
+
+     While verifying the current access token, if expired, a token refresh will automatically be attempted. Therefore, if verify fails initially, but token refresh succeeds, we should return a valid status.
      */
     public func verify() async throws -> Bool {
         guard let accessToken else {
@@ -106,7 +118,11 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
         let query = VerifyQuery(request: .init(accessToken: accessToken))
         let data = try await client.request(query: query)
 
-        return data.verify
+        if !data.verify {
+            return accessTokenIsValid
+        } else {
+            return data.verify
+        }
     }
 
     /**
