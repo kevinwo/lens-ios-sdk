@@ -44,7 +44,7 @@ public final class MockAuthentication: AuthenticationType {
     var invokedRefresh = false
     var stubbedRefreshAccessToken: String?
 
-    func refresh() async throws -> String {
+    public func refresh() async throws -> String {
         invokedRefresh = true
 
         guard let stubbedRefreshAccessToken else {
