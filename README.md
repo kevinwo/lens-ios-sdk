@@ -48,7 +48,7 @@ After the initial release is published to the Swift Package Index, documentation
 
 ## Contributing
 
-There will likely be a number pre-release versions published, but my hope is to start accepting contributions in late May/early June, and will publish guidelines here then!
+There will likely be a number pre-release versions published, but my hope is to start accepting contributions in late May/early June, and will publish guidelines here! Until then, feel free to check out [the progress](https://github.com/users/kevinwo/projects/1).
 
 ## License
 
