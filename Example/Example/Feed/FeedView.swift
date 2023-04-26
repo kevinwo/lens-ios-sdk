@@ -7,10 +7,8 @@ struct FeedView: View {
         GeometryReader { geometry in
             VStack {
                 if viewModel.publications.isEmpty && !viewModel.isLoading {
-                    Spacer()
                     Text("There are no publications in your feed. Follow some new people to see publications!")
                         .padding()
-                    Spacer()
                 } else {
                     List {
                         ForEach(viewModel.publications) { publication in
