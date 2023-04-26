@@ -12,18 +12,8 @@ struct CreateProfileView: View {
 
     var body: some View {
         VStack {
-            Text("Create a profile")
-                .font(.largeTitle)
-                .bold()
-                .foregroundColor(.white)
-                .multilineTextAlignment(.center)
-                .padding()
-
-            Text("Your profile uniquely identifies you and your content to others on Lens. You'll be able to customize it later.")
-                .font(.headline)
-                .foregroundColor(.white)
-                .multilineTextAlignment(.center)
-                .padding()
+            HeadingText("Create a profile")
+            SubheadingText("Your profile uniquely identifies you and your content to others on Lens. You'll be able to customize it later.")
 
             Spacer()
 

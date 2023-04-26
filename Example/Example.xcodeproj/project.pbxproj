@@ -51,6 +51,8 @@
 		21C1284B29F3114100E813ED /* PublicationRowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C1284A29F3114100E813ED /* PublicationRowModel.swift */; };
 		21DB4D4829F5CBB600780876 /* PubStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D4729F5CBB600780876 /* PubStatsView.swift */; };
 		21DB4D6829F9844000780876 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D6729F9844000780876 /* CurrentUser.swift */; };
+		21DB4D6A29F997D500780876 /* HeadingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D6929F997D500780876 /* HeadingText.swift */; };
+		21DB4D6C29F9983A00780876 /* SubheadingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D6B29F9983A00780876 /* SubheadingText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		21C1284A29F3114100E813ED /* PublicationRowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationRowModel.swift; sourceTree = "<group>"; };
 		21DB4D4729F5CBB600780876 /* PubStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubStatsView.swift; sourceTree = "<group>"; };
 		21DB4D6729F9844000780876 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		21DB4D6929F997D500780876 /* HeadingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingText.swift; sourceTree = "<group>"; };
+		21DB4D6B29F9983A00780876 /* SubheadingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubheadingText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +301,8 @@
 				21C1284429F2D3CE00E813ED /* AnimatedGradientView.swift */,
 				21C1284629F2D73C00E813ED /* PrimaryButton.swift */,
 				21C1284A29F3114100E813ED /* PublicationRowModel.swift */,
+				21DB4D6929F997D500780876 /* HeadingText.swift */,
+				21DB4D6B29F9983A00780876 /* SubheadingText.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -505,6 +511,7 @@
 				219F877329E898D1004B55C2 /* PubContentView.swift in Sources */,
 				21BEB5CD29E6F273008BC970 /* ExplorePublicationsView.swift in Sources */,
 				219F876529E88C6F004B55C2 /* Formatters.swift in Sources */,
+				21DB4D6A29F997D500780876 /* HeadingText.swift in Sources */,
 				219F877029E897BD004B55C2 /* PubBylineView.swift in Sources */,
 				219F876329E87BBD004B55C2 /* CommentRowModel.swift in Sources */,
 				2118D86929E31C82006753C0 /* ExampleApp.swift in Sources */,
@@ -518,6 +525,7 @@
 				214479D629F19E870087D192 /* SelectProfileView.swift in Sources */,
 				214479DB29F1A1BC0087D192 /* CreateProfileViewModel.swift in Sources */,
 				21DB4D4829F5CBB600780876 /* PubStatsView.swift in Sources */,
+				21DB4D6C29F9983A00780876 /* SubheadingText.swift in Sources */,
 				212D130C29E71FF00094560E /* World.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
