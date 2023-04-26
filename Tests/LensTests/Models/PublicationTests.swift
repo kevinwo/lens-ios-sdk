@@ -19,6 +19,7 @@ final class PublicationTests: XCTestCase {
         }
         // TODO: Write custom snapshot strategy to better capture
         // object state is valid
+        XCTAssertEqual(post.publicationId, postItem?.id)
         XCTAssertEqual(post.metadata.name, postItem?.metadata.name)
         XCTAssertEqual(post.metadata.description, postItem?.metadata.description)
         XCTAssertEqual(post.metadata.content, postItem?.metadata.content)
@@ -47,6 +48,7 @@ final class PublicationTests: XCTestCase {
         }
         // TODO: Write custom snapshot strategy to better capture
         // object state is valid
+        XCTAssertEqual(comment.publicationId, commentItem?.id)
         XCTAssertEqual(comment.metadata.name, commentItem?.metadata.name)
         XCTAssertEqual(comment.metadata.description, commentItem?.metadata.description)
         XCTAssertEqual(comment.metadata.content, commentItem?.metadata.content)

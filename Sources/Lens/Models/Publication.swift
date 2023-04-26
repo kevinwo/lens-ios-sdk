@@ -1,7 +1,8 @@
 import Foundation
 
 open class Publication: Identifiable {
-    public let id: String
+    public let id = UUID()
+    public let publicationId: String
     public let profile: any Profile
     public let metadata: any Metadata
     public let createdAt: String
@@ -9,7 +10,7 @@ open class Publication: Identifiable {
     public let stats: any PublicationStats
 
     init(publication: any SomePublication) {
-        self.id = publication.id
+        self.publicationId = publication.id
         self.profile = publication.profile
         self.metadata = publication.metadata
         self.createdAt = publication.createdAt
@@ -37,7 +38,7 @@ open class Publication: Identifiable {
 
 extension Publication: Equatable {
     public static func == (lhs: Publication, rhs: Publication) -> Bool {
-        lhs.id == rhs.id
+        lhs.publicationId == rhs.publicationId
     }
 }
 
