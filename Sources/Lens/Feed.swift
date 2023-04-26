@@ -54,7 +54,7 @@ public struct FeedResponse: Equatable {
      - Parameter response: A GraphQL-parsed version of the fetched feed
      */
     init(response: ProfileFeedQuery.Data.Feed) {
-        self.items = response.items.compactMap { Publication.fromItem($0.root) }
+        self.items = response.items.compactMap { Publication.fromItem($0) }
         self.pageInfo = PageInfo(dataDict: response.pageInfo.__data)
     }
 }

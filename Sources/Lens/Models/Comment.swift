@@ -18,8 +18,8 @@ public class Comment: Publication {
         super.init(publication: comment)
     }
 
-    init?(item: ProfileFeedQuery.Data.Feed.Item.Root) {
-        guard let comment = item.asComment else { return nil }
+    init?(item: ProfileFeedQuery.Data.Feed.Item) {
+        guard let comment = item.root.asComment else { return nil }
         self.mainPost = {
             if let post = comment.mainPost.asPost {
                 return Post(mainPost: post)

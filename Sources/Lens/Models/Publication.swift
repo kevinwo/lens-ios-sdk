@@ -26,8 +26,8 @@ open class Publication: Identifiable {
         }
     }
 
-    static func fromItem(_ item: ProfileFeedQuery.Data.Feed.Item.Root) -> Publication? {
-        switch item.__typename {
+    static func fromItem(_ item: ProfileFeedQuery.Data.Feed.Item) -> Publication? {
+        switch item.root.__typename {
         case "Post": return Post(item: item)
         case "Comment": return Comment(item: item)
         default: return nil

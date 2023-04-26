@@ -1,17 +1,22 @@
 import Foundation
 
 public class Post: Publication {
+    public let comments: [Comment]?
+
     init?(item: ExplorePublicationsQuery.Data.ExplorePublications.Item) {
         guard let post = item.asPost else { return nil }
+        self.comments = nil
         super.init(publication: post)
     }
 
-    init?(item: ProfileFeedQuery.Data.Feed.Item.Root) {
-        guard let post = item.asPost else { return nil }
+    init?(item: ProfileFeedQuery.Data.Feed.Item) {
+        guard let post = item.root.asPost else { return nil }
+        self.comments = nil
         super.init(publication: post)
     }
 
     init?(mainPost: any SomePublication) {
+        self.comments = nil
         super.init(publication: mainPost)
     }
 
