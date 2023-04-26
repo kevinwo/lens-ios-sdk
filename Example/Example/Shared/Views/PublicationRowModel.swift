@@ -18,9 +18,7 @@ open class PublicationRowModel {
     }
 
     var authorHandle: String {
-        "@\(publication.profile.handle)"
-            .replacingOccurrences(of: ".test", with: "")
-            .replacingOccurrences(of: ".lens", with: "")
+        "@\(publication.profile.handle.asPrettyHandle)"
     }
 
     var timeAgo: String? {

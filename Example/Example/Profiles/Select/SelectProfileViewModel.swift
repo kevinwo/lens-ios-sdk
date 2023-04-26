@@ -14,6 +14,7 @@ final class SelectProfileViewModel: ObservableObject {
 
     let onSelectProfile: () -> Void
     @Published var state: State = .isLoading
+    @Published var isCreatingProfile = false
 
     // MARK: - Object life cycle
 
@@ -41,8 +42,33 @@ final class SelectProfileViewModel: ObservableObject {
         }
     }
 
-    func didSelectProfile(with handle: String) {
-        // TODO: Store handle in user defaults
+    func didSelectProfile(with id: String) {
+        Current.user.profileId = id
         onSelectProfile()
+    }
+
+    func didTapCreateProfileButton() {
+        state = .noProfile
+    }
+
+    @MainActor
+    func didCreateProfile(with handle: String) async {
+        state = .isLoading
+
+        do {
+            let address = try await Current.wallet.address()
+            let request = ProfileQueryRequest(ownedBy: [address])
+            let result = try await Current.profiles.fetchAll(request: request)
+
+            if let profile = result.profiles.filter({ $0.handle == handle }).first {
+                Current.user.profileId = profile.id
+                onSelectProfile()
+            } else {
+                state = .noProfile
+            }
+        } catch {
+            // TODO: Handle error
+            state = .noProfile
+        }
     }
 }

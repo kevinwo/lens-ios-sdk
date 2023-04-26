@@ -22,8 +22,9 @@ struct CreateProfileView: View {
                 text: $viewModel.handle,
                 prompt: Text("coolhandle")
             )
-            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .textFieldStyle(.roundedBorder)
             .autocapitalization(.none)
+            .autocorrectionDisabled(true)
             .textContentType(.none)
             .multilineTextAlignment(.center)
             .disabled(viewModel.isCreating)

@@ -19,15 +19,31 @@ struct SelectProfileView: View {
                     .progressViewStyle(CircularProgressViewStyle(tint: .white))
                 Spacer()
             case .profiles(let profiles):
+                HeadingText("Select a profile")
+
                 List {
                     ForEach(profiles, id: \.id) { profile in
-                        Text(profile.id)
+                        Button {
+                            viewModel.didSelectProfile(with: profile.id)
+                        } label: {
+                            Text(profile.handle.asPrettyHandle)
+                        }
+                    }
+                }
+                .listStyle(.plain)
+
+
+                Button("Create a new profile") {
+                    withAnimation {
+                        viewModel.didTapCreateProfileButton()
                     }
                 }
             case .noProfile:
                 CreateProfileView.scene(onCreateProfile: { handle in
-                    viewModel.didSelectProfile(with: handle)
+                    Task { await viewModel.didCreateProfile(with: handle) }
                 })
+                .opacity(1)
+                .transition(.opacity)
             }
         }
         .onAppear {
