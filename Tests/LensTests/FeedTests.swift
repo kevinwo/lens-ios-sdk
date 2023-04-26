@@ -41,5 +41,8 @@ final class FeedTests: XCTestCase {
         // it should fetch a valid set of publications
         let expectedResponse = FeedResponse(response: expectedResults.feed)
         XCTAssertEqual(response, expectedResponse)
+
+        // it should have page info
+        XCTAssertNotNil(response.pageInfo)
     }
 }

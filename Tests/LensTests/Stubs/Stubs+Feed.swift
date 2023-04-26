@@ -785,16 +785,8 @@ extension Stubs {
                 }
               ],
               "pageInfo": {
-                "prev": {
-                    "entityIdentifier": "",
-                    "timestamp": 1665419616,
-                    "cursorDirection": "BEFORE"
-                },
-                "next": {
-                    "entityIdentifier": "",
-                    "timestamp": 1665302158,
-                    "cursorDirection": "AFTER"
-                },
+                "prev": "prev_cursor",
+                "next": "next_cursor",
                 "totalCount": null
               }
             }

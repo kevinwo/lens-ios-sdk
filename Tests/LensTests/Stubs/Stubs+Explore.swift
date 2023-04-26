@@ -154,16 +154,8 @@ extension Stubs {
                 }
               ],
               "pageInfo": {
-                "prev": {
-                  "timestamp": 1649942608500,
-                  "offset": 0,
-                  "randomizer": 5
-                },
-                "next": {
-                  "timestamp": 1649942608500,
-                  "offset": 10,
-                  "randomizer": 5
-                },
+                "prev": "prev_cursor",
+                "next": "next_cursor",
                 "totalCount": 2
               }
             }

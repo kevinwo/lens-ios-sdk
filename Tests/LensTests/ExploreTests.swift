@@ -41,5 +41,8 @@ final class ExploreTests: XCTestCase {
         // it should fetch a valid set of publications
         let expectedResponse = ExplorePublicationsResponse(response: expectedResults.explorePublications)
         XCTAssertEqual(response, expectedResponse)
+
+        // it should have page info
+        XCTAssertNotNil(response.pageInfo)
     }
 }
