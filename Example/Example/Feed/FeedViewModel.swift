@@ -2,8 +2,13 @@ import Foundation
 import Lens
 
 final class FeedViewModel: ObservableObject {
+    // MARK: - Properties
+
     @Published var isLoading: Bool = true
     @Published var publications = [Publication]()
+    @Published var pageInfo: PageInfo?
+
+    // MARK: - Internal interface
 
     @MainActor
     func onAppear() async {
@@ -12,7 +17,35 @@ final class FeedViewModel: ObservableObject {
         }
     }
 
+    func onRowAppear(for publication: Publication) async {
+        if publications.last == publication {
+            await fetchNextPage()
+        }
+    }
+
     // MARK: - Private interface
+
+    @MainActor
+    private func fetchNextPage() async {
+        guard let pageInfo else {
+            return
+        }
+
+        isLoading = true
+
+        // TODO: Replace profile ID value after implementing profile fetch
+        let request = FeedRequest(cursor: .init(stringLiteral: pageInfo.next), profileId: "0x15")
+
+        do {
+            let results = try await Current.feed.fetch(request: request)
+            self.publications.append(contentsOf: results.items)
+            self.pageInfo = results.pageInfo
+        } catch {
+            // TODO: Handle error
+        }
+
+        isLoading = false
+    }
 
     @MainActor
     private func fetchFeed() async {
@@ -24,6 +57,7 @@ final class FeedViewModel: ObservableObject {
         do {
             let results = try await Current.feed.fetch(request: request)
             self.publications = results.items
+            self.pageInfo = results.pageInfo
         } catch {
             // TODO: Handle error
         }
