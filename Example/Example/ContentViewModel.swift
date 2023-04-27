@@ -33,6 +33,10 @@ final class ContentViewModel: ObservableObject {
         do {
             let isSignedIn = try await Current.authentication.verify()
             state = isSignedIn ? .authenticated : .unauthenticated
+
+            if isSignedIn, Current.user.profileId == nil {
+                presentedSheet = .account
+            }
         } catch {
             // TODO: Handle error
             state = .unauthenticated

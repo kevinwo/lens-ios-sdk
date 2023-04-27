@@ -8,6 +8,7 @@ struct FeedView: View {
             VStack {
                 if viewModel.publications.isEmpty && !viewModel.isLoading {
                     Text("There are no publications in your feed. Follow some new people to see publications!")
+                        .multilineTextAlignment(.center)
                         .padding()
                 } else {
                     List {

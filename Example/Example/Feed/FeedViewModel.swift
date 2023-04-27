@@ -27,14 +27,16 @@ final class FeedViewModel: ObservableObject {
 
     @MainActor
     private func fetchNextPage() async {
-        guard let pageInfo else {
+        guard let pageInfo, let profileId = Current.user.profileId else {
             return
         }
 
         isLoading = true
 
-        // TODO: Replace profile ID value after implementing profile fetch
-        let request = FeedRequest(cursor: .init(stringLiteral: pageInfo.next), profileId: "0x15")
+        let request = FeedRequest(
+            cursor: .init(stringLiteral: pageInfo.next),
+            profileId: profileId
+        )
 
         do {
             let results = try await Current.feed.fetch(request: request)
@@ -49,10 +51,14 @@ final class FeedViewModel: ObservableObject {
 
     @MainActor
     private func fetchFeed() async {
+        guard let profileId = Current.user.profileId else {
+            // TODO: Either show modal to choose profile or display an error
+            return
+        }
+
         isLoading = true
 
-        // TODO: Replace profile ID value after implementing profile fetch
-        let request = FeedRequest(profileId: "0x15")
+        let request = FeedRequest(profileId: profileId)
 
         do {
             let results = try await Current.feed.fetch(request: request)
