@@ -4,26 +4,15 @@ import SwiftUI
 
 struct CommentRow: View {
     let viewModel: CommentRowModel
-    let mainPostViewModel: PostRowModel?
 
     static func view(comment: Comment) -> CommentRow {
-        let viewModel = CommentRowModel(publication: comment)
-        // TODO: Support mirror as a main post
-        let mainPostViewModel: PostRowModel? = {
-            if let post = comment.mainPost as? Post {
-                return PostRowModel(publication: post, isMainPostForComment: true)
-            } else {
-                return nil
-            }
-        }()
-        return CommentRow(
-            viewModel: viewModel,
-            mainPostViewModel: mainPostViewModel
-        )
+        let viewModel = CommentRowModel(comment: comment)
+
+        return CommentRow(viewModel: viewModel)
     }
 
     var body: some View {
-        if let mainPostViewModel {
+        if let mainPostViewModel = viewModel.mainPostViewModel {
             VStack(alignment: .leading) {
                 PostRow(viewModel: mainPostViewModel)
                 comment
@@ -60,11 +49,7 @@ struct CommentRow: View {
 struct CommentRow_Previews: PreviewProvider {
     static var previews: some View {
         let comment = Comment.forPreview
-        let viewModel = CommentRowModel(publication: comment)
-        let mainPostViewModel = PostRowModel(publication: comment.mainPost as! Post)
-        return CommentRow(
-            viewModel: viewModel,
-            mainPostViewModel: mainPostViewModel
-        )
+        let viewModel = CommentRowModel(comment: comment)
+        return CommentRow(viewModel: viewModel)
     }
 }
