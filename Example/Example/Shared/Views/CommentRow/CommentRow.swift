@@ -3,6 +3,18 @@ import Lens
 import SwiftUI
 
 struct CommentRow: View {
+    enum Destination: String, CaseIterable, Identifiable, Hashable {
+        case profile
+        case mainPost
+        case comment
+
+        var id: String {
+            rawValue
+        }
+    }
+
+    @State private var selectedDestination: Destination? = nil
+
     let viewModel: CommentRowModel
 
     static func view(comment: Comment) -> CommentRow {
@@ -12,21 +24,34 @@ struct CommentRow: View {
     }
 
     var body: some View {
-        if let mainPostViewModel = viewModel.mainPostViewModel {
-            VStack(alignment: .leading) {
-                PostRow(viewModel: mainPostViewModel)
+        VStack {
+            if let mainPostViewModel = viewModel.mainPostViewModel {
+                VStack(alignment: .leading) {
+                    PostRow(viewModel: mainPostViewModel)
+                        .onTapGesture {
+                            selectedDestination = .mainPost
+                        }
+                    comment
+                }
+                .padding([.top, .bottom], 8)
+            } else {
                 comment
             }
-            .padding([.top, .bottom], 8)
-        } else {
-            comment
         }
+        .plainRowMultiNavigationLink(
+            destinations: Destination.allCases,
+            selection: $selectedDestination,
+            destinationView: destinationView
+        )
     }
 
     private var comment: some View {
         HStack(alignment: .top) {
             KFImage(viewModel.authorProfileImageUrl)
                 .profilePicture()
+                .onTapGesture {
+                    selectedDestination = .profile
+                }
 
             VStack(alignment: .leading) {
                 PubBylineView(
@@ -42,6 +67,23 @@ struct CommentRow: View {
 
                 PubStatsView(stats: viewModel.stats)
             }
+        }
+        .onTapGesture {
+            selectedDestination = .comment
+        }
+    }
+
+    @ViewBuilder
+    private var destinationView: some View {
+        switch selectedDestination {
+        case .profile:
+            Text("Profile")
+        case .comment:
+            ThreadView.scene(publication: viewModel.publication)
+        case .mainPost:
+            ThreadView.scene(publication: viewModel.mainPostViewModel!.publication)
+        default:
+            EmptyView()
         }
     }
 }

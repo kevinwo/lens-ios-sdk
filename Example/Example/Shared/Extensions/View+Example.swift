@@ -12,4 +12,23 @@ extension View {
                 ).opacity(0)
             )
     }
+
+    func plainRowMultiNavigationLink<Destination: Identifiable & Hashable>(
+        destinations: [Destination],
+        selection: Binding<Destination?>,
+        destinationView: some View
+    ) -> some View {
+        self
+            .background(
+                VStack {
+                    ForEach(destinations) { destination in
+                        NavigationLink(
+                            destination: destinationView,
+                            tag: destination,
+                            selection: selection
+                        ) { EmptyView() }
+                    }
+                }.opacity(0)
+            )
+    }
 }

@@ -16,9 +16,6 @@ struct ExplorePublicationsView: View {
                 List {
                     ForEach(viewModel.publications) { publication in
                         PublicationRow.forPublication(publication)
-                            .plainRowNavigationLink {
-                                ThreadView.scene(publication: publication)
-                            }
                             .onAppear {
                                 Task { await viewModel.onRowAppear(for: publication) }
                             }
