@@ -5,9 +5,14 @@ struct ExplorePublicationsView: View {
 
     var body: some View {
         VStack {
-            if viewModel.publications.isEmpty && !viewModel.isLoading {
+            switch viewModel.state {
+            case .isLoading:
+                Spacer()
+                ProgressView()
+                Spacer()
+            case .noPublications:
                 Text("There are no publications to explore right now.")
-            } else {
+            case .hasPublications:
                 List {
                     ForEach(viewModel.publications) { publication in
                         PublicationRow.forPublication(publication)
@@ -17,17 +22,9 @@ struct ExplorePublicationsView: View {
                     }
                 }
                 .listStyle(.plain)
-            }
 
-            if viewModel.isLoading {
-                if viewModel.publications.isEmpty {
-                    Spacer()
-                }
-
-                ProgressView()
-
-                if viewModel.publications.isEmpty {
-                    Spacer()
+                if viewModel.isLoadingMore {
+                    ProgressView()
                 }
             }
         }

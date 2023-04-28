@@ -2,9 +2,16 @@ import Foundation
 import Lens
 
 final class ExplorePublicationsViewModel: ObservableObject {
+    enum State {
+        case isLoading
+        case hasPublications
+        case noPublications
+    }
+
     // MARK: - Properties
 
-    @Published var isLoading: Bool = true
+    @Published var state: State = .isLoading
+    @Published var isLoadingMore: Bool = false
     @Published var publications = [Publication]()
     @Published var sortCriteria: PublicationSortCriteria = .topCommented
     @Published var pageInfo: PageInfo?
@@ -30,7 +37,7 @@ final class ExplorePublicationsViewModel: ObservableObject {
             return
         }
 
-        isLoading = true
+        isLoadingMore = true
 
         let request = ExplorePublicationRequest(
             cursor: .init(stringLiteral: pageInfo.next),
@@ -39,18 +46,18 @@ final class ExplorePublicationsViewModel: ObservableObject {
 
         do {
             let results = try await Current.explore.publications(request: request)
-            self.publications.append(contentsOf: results.items)
+            publications.append(contentsOf: results.items)
             self.pageInfo = results.pageInfo
         } catch {
             // TODO: Handle error
         }
 
-        isLoading = false
+        isLoadingMore = false
     }
 
     @MainActor
     private func fetchPublications() async {
-        isLoading = true
+        state = .isLoading
 
         let request = ExplorePublicationRequest(
             sortCriteria: .init(sortCriteria)
@@ -58,11 +65,15 @@ final class ExplorePublicationsViewModel: ObservableObject {
 
         do {
             let results = try await Current.explore.publications(request: request)
-            self.publications = results.items
+            publications = results.items
         } catch {
             // TODO: Handle error
         }
 
-        isLoading = false
+        if !publications.isEmpty {
+            state = .hasPublications
+        } else {
+            state = .noPublications
+        }
     }
 }
