@@ -53,6 +53,8 @@
 		21DB4D6829F9844000780876 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D6729F9844000780876 /* CurrentUser.swift */; };
 		21DB4D6A29F997D500780876 /* HeadingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D6929F997D500780876 /* HeadingText.swift */; };
 		21DB4D6C29F9983A00780876 /* SubheadingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D6B29F9983A00780876 /* SubheadingText.swift */; };
+		21DB4D6F29FBD15900780876 /* ThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D6E29FBD15900780876 /* ThreadView.swift */; };
+		21DB4D7129FBD16800780876 /* ThreadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D7029FBD16800780876 /* ThreadViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +111,8 @@
 		21DB4D6729F9844000780876 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		21DB4D6929F997D500780876 /* HeadingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingText.swift; sourceTree = "<group>"; };
 		21DB4D6B29F9983A00780876 /* SubheadingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubheadingText.swift; sourceTree = "<group>"; };
+		21DB4D6E29FBD15900780876 /* ThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadView.swift; sourceTree = "<group>"; };
+		21DB4D7029FBD16800780876 /* ThreadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +297,7 @@
 		219F875429E8764B004B55C2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				21DB4D6D29FBD14200780876 /* ThreadView */,
 				21DB4D4629F5CBA100780876 /* PubStatsView */,
 				219F876E29E897B2004B55C2 /* PubBylineView */,
 				219F877129E8988E004B55C2 /* PubContentView */,
@@ -374,6 +379,15 @@
 				21DB4D4729F5CBB600780876 /* PubStatsView.swift */,
 			);
 			path = PubStatsView;
+			sourceTree = "<group>";
+		};
+		21DB4D6D29FBD14200780876 /* ThreadView */ = {
+			isa = PBXGroup;
+			children = (
+				21DB4D6E29FBD15900780876 /* ThreadView.swift */,
+				21DB4D7029FBD16800780876 /* ThreadViewModel.swift */,
+			);
+			path = ThreadView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,9 +517,11 @@
 				214479D229F18AAD0087D192 /* FeedViewModel.swift in Sources */,
 				214479D029F18AA30087D192 /* FeedView.swift in Sources */,
 				211E0E3029EDEE5200EBE5CB /* ContentViewModel.swift in Sources */,
+				21DB4D7129FBD16800780876 /* ThreadViewModel.swift in Sources */,
 				214479D929F1A19B0087D192 /* CreateProfileView.swift in Sources */,
 				219F875A29E87875004B55C2 /* PublicationRow.swift in Sources */,
 				21DB4D6829F9844000780876 /* CurrentUser.swift in Sources */,
+				21DB4D6F29FBD15900780876 /* ThreadView.swift in Sources */,
 				219F876D29E894B8004B55C2 /* KFImage+Example.swift in Sources */,
 				211E0E3329EDFA2200EBE5CB /* Wallet.swift in Sources */,
 				219F877329E898D1004B55C2 /* PubContentView.swift in Sources */,
