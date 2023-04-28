@@ -1,10 +1,10 @@
 import Foundation
 import Lens
 
-open class PublicationRowModel {
+open class PublicationRowModel<P: Publication> {
     // MARK: - Properties
 
-    let publication: Publication
+    let publication: P
 
     var authorProfileImageUrl: URL? {
         guard let urlString = publication.profile.picture?.asMediaSet?.original.url else {
@@ -66,7 +66,7 @@ open class PublicationRowModel {
 
     // MARK: - Object life cycle
 
-    init(publication: Publication) {
+    init(publication: P) {
         self.publication = publication
     }
 }

@@ -1,7 +1,7 @@
 import Foundation
 
 public class Comment: Publication {
-    let mainPost: Publication?
+    public let mainPost: Publication?
 
     init?(item: ExplorePublicationsQuery.Data.ExplorePublications.Item) {
         guard let comment = item.asComment else { return nil }

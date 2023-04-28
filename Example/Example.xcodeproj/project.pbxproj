@@ -55,6 +55,7 @@
 		21DB4D6C29F9983A00780876 /* SubheadingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D6B29F9983A00780876 /* SubheadingText.swift */; };
 		21DB4D6F29FBD15900780876 /* ThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D6E29FBD15900780876 /* ThreadView.swift */; };
 		21DB4D7129FBD16800780876 /* ThreadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D7029FBD16800780876 /* ThreadViewModel.swift */; };
+		21DB4D7329FC12B700780876 /* VerticalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D7229FC12B700780876 /* VerticalLine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		21DB4D6B29F9983A00780876 /* SubheadingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubheadingText.swift; sourceTree = "<group>"; };
 		21DB4D6E29FBD15900780876 /* ThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadView.swift; sourceTree = "<group>"; };
 		21DB4D7029FBD16800780876 /* ThreadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadViewModel.swift; sourceTree = "<group>"; };
+		21DB4D7229FC12B700780876 /* VerticalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalLine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +310,7 @@
 				21C1284A29F3114100E813ED /* PublicationRowModel.swift */,
 				21DB4D6929F997D500780876 /* HeadingText.swift */,
 				21DB4D6B29F9983A00780876 /* SubheadingText.swift */,
+				21DB4D7229FC12B700780876 /* VerticalLine.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				219F876D29E894B8004B55C2 /* KFImage+Example.swift in Sources */,
 				211E0E3329EDFA2200EBE5CB /* Wallet.swift in Sources */,
 				219F877329E898D1004B55C2 /* PubContentView.swift in Sources */,
+				21DB4D7329FC12B700780876 /* VerticalLine.swift in Sources */,
 				21BEB5CD29E6F273008BC970 /* ExplorePublicationsView.swift in Sources */,
 				219F876529E88C6F004B55C2 /* Formatters.swift in Sources */,
 				21DB4D6A29F997D500780876 /* HeadingText.swift in Sources */,

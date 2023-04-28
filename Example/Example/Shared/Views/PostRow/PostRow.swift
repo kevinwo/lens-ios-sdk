@@ -9,8 +9,14 @@ struct PostRow: View {
 
     var body: some View {
         HStack(alignment: .top) {
-            KFImage(viewModel.authorProfileImageUrl)
-                .profilePicture()
+            VStack {
+                KFImage(viewModel.authorProfileImageUrl)
+                    .profilePicture()
+
+                if viewModel.isMainPostForComment {
+                    VerticalLine()
+                }
+            }
 
             VStack(alignment: .leading) {
                 PubBylineView(
