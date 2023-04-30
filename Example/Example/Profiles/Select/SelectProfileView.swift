@@ -20,6 +20,7 @@ struct SelectProfileView: View {
                 Spacer()
             case .profiles(let profiles):
                 HeadingText("Select a profile")
+                    .foregroundColor(.white)
 
                 List {
                     ForEach(profiles, id: \.id) { profile in

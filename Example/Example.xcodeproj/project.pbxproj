@@ -56,6 +56,8 @@
 		21DB4D6F29FBD15900780876 /* ThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D6E29FBD15900780876 /* ThreadView.swift */; };
 		21DB4D7129FBD16800780876 /* ThreadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D7029FBD16800780876 /* ThreadViewModel.swift */; };
 		21DB4D7329FC12B700780876 /* VerticalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D7229FC12B700780876 /* VerticalLine.swift */; };
+		21DB4D9429FDC24A00780876 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D9329FDC24A00780876 /* ProfileView.swift */; };
+		21DB4D9629FDC25B00780876 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D9529FDC25B00780876 /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +117,8 @@
 		21DB4D6E29FBD15900780876 /* ThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadView.swift; sourceTree = "<group>"; };
 		21DB4D7029FBD16800780876 /* ThreadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadViewModel.swift; sourceTree = "<group>"; };
 		21DB4D7229FC12B700780876 /* VerticalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalLine.swift; sourceTree = "<group>"; };
+		21DB4D9329FDC24A00780876 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		21DB4D9529FDC25B00780876 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				214479D729F1A18F0087D192 /* Create */,
+				21DB4D9229FDC23900780876 /* Profile */,
 				214479D429F19E780087D192 /* Select */,
 			);
 			path = Profiles;
@@ -393,6 +398,15 @@
 			path = ThreadView;
 			sourceTree = "<group>";
 		};
+		21DB4D9229FDC23900780876 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				21DB4D9329FDC24A00780876 /* ProfileView.swift */,
+				21DB4D9529FDC25B00780876 /* ProfileViewModel.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -510,6 +524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				219F875D29E87985004B55C2 /* View+Example.swift in Sources */,
+				21DB4D9429FDC24A00780876 /* ProfileView.swift in Sources */,
 				218E55A529F0C22100EC4271 /* AccountViewModel.swift in Sources */,
 				2118D86B29E31C82006753C0 /* ContentView.swift in Sources */,
 				218E55A029EF246600EC4271 /* FooterView.swift in Sources */,
@@ -522,6 +537,7 @@
 				211E0E3029EDEE5200EBE5CB /* ContentViewModel.swift in Sources */,
 				21DB4D7129FBD16800780876 /* ThreadViewModel.swift in Sources */,
 				214479D929F1A19B0087D192 /* CreateProfileView.swift in Sources */,
+				21DB4D9629FDC25B00780876 /* ProfileViewModel.swift in Sources */,
 				219F875A29E87875004B55C2 /* PublicationRow.swift in Sources */,
 				21DB4D6829F9844000780876 /* CurrentUser.swift in Sources */,
 				21DB4D6F29FBD15900780876 /* ThreadView.swift in Sources */,

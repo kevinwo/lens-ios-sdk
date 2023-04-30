@@ -19,6 +19,7 @@ struct AccountView: View {
                             .foregroundColor(.white)
                             .font(.system(size: 50))
                         HeadingText(viewModel.title)
+                            .foregroundColor(.white)
                         SubheadingText(viewModel.description)
 
                         Spacer()

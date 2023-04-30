@@ -13,6 +13,10 @@ open class PublicationRowModel<P: Publication> {
         return urlString.toIpfsUrl()
     }
 
+    var authorId: String {
+        publication.profile.id
+    }
+
     var authorName: String? {
         publication.profile.name
     }

@@ -77,7 +77,7 @@ struct CommentRow: View {
     private var destinationView: some View {
         switch selectedDestination {
         case .profile:
-            Text("Profile")
+            ProfileView.scene(id: viewModel.authorId)
         case .comment:
             ThreadView.scene(publication: viewModel.publication)
         case .mainPost:
