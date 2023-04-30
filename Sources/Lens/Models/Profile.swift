@@ -26,6 +26,7 @@ public protocol Profile {
 // MARK: - Profile
 
 extension ProfilesQuery.Data.Profiles.Item: Profile {}
+extension ProfileQuery.Data.Profile: Profile {}
 
 // MARK: - Explore Publications
 

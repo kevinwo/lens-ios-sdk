@@ -2,6 +2,7 @@ import Foundation
 
 public protocol ProfilesType {
     func fetchAll(request: ProfileQueryRequest) async throws -> ProfilesResponse
+    func fetch(request: SingleProfileQueryRequest) async throws -> ProfileResponse
     func create(request: CreateProfileRequest) async throws -> String
 }
 
@@ -32,7 +33,8 @@ public final class Profiles: ProfilesType {
 
      ```swift
      let profiles = Profiles()
-     let request = ProfileQueryRequest(ownedBy: ["0x0c0E611A29b339D8c1048F2Edf9d4160A5fb8F22"])
+     let walletAddress = "0x0c0E611A29b339D8c1048F2Edf9d4160A5fb8F22"
+     let request = ProfileQueryRequest(ownedBy: [walletAddress])
      let response = try await profiles.fetchAll(request: request)
      ```
 
@@ -45,6 +47,29 @@ public final class Profiles: ProfilesType {
         let data = try await client.request(query: query)
 
         return ProfilesResponse(response: data.profiles)
+    }
+
+    /**
+     Fetches a single user profile
+
+     You create a request using criteria for fetching a single profile. For example, given a profile ID, to fetch a profile, you could do the following:
+
+     ```swift
+     let profiles = Profiles()
+     let profileId = "0x12345"
+     let request = SingleProfileQueryRequest(profileId: .init(stringLiteral: profileId))
+     let response = try await profiles.fetch(request: request)
+     ```
+
+     - Parameter request: The request parameters to use when fetching a profile
+     - Throws: An error if there is a problem with the fetch operation.
+     - Returns: A response containing the fetched profile
+     */
+    public func fetch(request: SingleProfileQueryRequest) async throws -> ProfileResponse {
+        let query = ProfileQuery(request: request)
+        let data = try await client.request(query: query)
+
+        return ProfileResponse(profile: data.profile)
     }
 
     /**
@@ -74,6 +99,8 @@ public final class Profiles: ProfilesType {
     }
 }
 
+// MARK: - Responses
+
 public struct ProfilesResponse {
     public let profiles: [any Profile]
     public let pageInfo: PageInfo?
@@ -84,8 +111,10 @@ public struct ProfilesResponse {
     }
 }
 
-extension ProfilesResponse: Equatable {
-    public static func == (lhs: ProfilesResponse, rhs: ProfilesResponse) -> Bool {
-        lhs.profiles.map { $0.id } == rhs.profiles.map { $0.id }
+public struct ProfileResponse {
+    public let profile: (any Profile)?
+
+    init(profile: ProfileQuery.Data.Profile?) {
+        self.profile = profile
     }
 }

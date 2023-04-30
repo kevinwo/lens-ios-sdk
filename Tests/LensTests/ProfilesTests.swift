@@ -43,6 +43,31 @@ final class ProfilesTests: XCTestCase {
         XCTAssertEqual(response, expectedResponse)
     }
 
+    func test_fetch() async throws {
+        // given
+        let profileId = "0x012345"
+        let request = SingleProfileQueryRequest(profileId: .init(stringLiteral: profileId))
+
+        let data = Stubs.Profile.fetch200ResponseJSON()
+        let dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
+
+        let json = JSONValue(dict["data"])
+        let expectedResults = ProfileQuery.Data(
+            _dataDict: .init(
+                data: try .init(_jsonValue: json)
+            )
+        )
+        mockLensClient.stubbedRequestQueryData = expectedResults
+
+        // when
+        let response = try await profiles.fetch(request: request)
+
+        // then
+        // it should fetch a valid profile
+        let expectedResponse = ProfileResponse(profile: expectedResults.profile)
+        XCTAssertEqual(response, expectedResponse)
+    }
+
     func test_create() async throws {
         throw XCTSkip("Disabled; GraphQL fulfillment in tests is currently an issue. Will resolve at a later date and marking as TODO")
 

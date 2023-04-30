@@ -18,6 +18,13 @@ extension ProfilesQuery.Data.Profiles.Item.CoverPicture.AsMediaSet.Original: Med
 extension ProfilesQuery.Data.Profiles.Item.CoverPicture.AsMediaSet.Medium: Media {}
 extension ProfilesQuery.Data.Profiles.Item.CoverPicture.AsMediaSet.Small: Media {}
 
+extension ProfileQuery.Data.Profile.Picture.AsMediaSet.Original: Media {}
+extension ProfileQuery.Data.Profile.Picture.AsMediaSet.Medium: Media {}
+extension ProfileQuery.Data.Profile.Picture.AsMediaSet.Small: Media {}
+extension ProfileQuery.Data.Profile.CoverPicture.AsMediaSet.Original: Media {}
+extension ProfileQuery.Data.Profile.CoverPicture.AsMediaSet.Medium: Media {}
+extension ProfileQuery.Data.Profile.CoverPicture.AsMediaSet.Small: Media {}
+
 // MARK: - Explore publications
 
 // MARK: - Profile picture media original

@@ -11,6 +11,9 @@ public protocol Picture {
 extension ProfilesQuery.Data.Profiles.Item.Picture: Picture {}
 extension ProfilesQuery.Data.Profiles.Item.CoverPicture: Picture {}
 
+extension ProfileQuery.Data.Profile.Picture: Picture {}
+extension ProfileQuery.Data.Profile.CoverPicture: Picture {}
+
 // MARK: - Explore publications
 
 // MARK: - Post

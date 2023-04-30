@@ -3,26 +3,26 @@ import Lens
 import XCTest
 
 extension Stubs {
-  enum Profile {
-    static func create200() throws -> CreateProfileMutation.Data {
-      let data = create200ResponseJSON()
-      var dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
-      var dictData = try XCTUnwrap(dict["data"] as? [String: AnyHashable])
-      var createProfile = try XCTUnwrap(dictData["createProfile"] as? [String: AnyHashable])
-      createProfile["__fulfilled"] =  Set([ObjectIdentifier(CreateProfileMutation.Data.CreateProfile.self)])
-      dictData["createProfile"] = createProfile
-      dict["data"] = dictData
+    enum Profile {
+        static func create200() throws -> CreateProfileMutation.Data {
+            let data = create200ResponseJSON()
+            var dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
+            var dictData = try XCTUnwrap(dict["data"] as? [String: AnyHashable])
+            var createProfile = try XCTUnwrap(dictData["createProfile"] as? [String: AnyHashable])
+            createProfile["__fulfilled"] =  Set([ObjectIdentifier(CreateProfileMutation.Data.CreateProfile.self)])
+            dictData["createProfile"] = createProfile
+            dict["data"] = dictData
 
-      let json = JSONValue(dict["data"])
+            let json = JSONValue(dict["data"])
 
-      return CreateProfileMutation.Data(
-        _dataDict: .init(
-          data: try .init(_jsonValue: json)
-        )
-      )
-    }
+            return CreateProfileMutation.Data(
+                _dataDict: .init(
+                    data: try .init(_jsonValue: json)
+                )
+            )
+        }
 
-    static func fetchAll200ResponseJSON() -> Data {
+        static func fetchAll200ResponseJSON() -> Data {
             """
             {
               "data": {
@@ -76,9 +76,85 @@ extension Stubs {
               }
             }
             """.data(using: .utf8)!
-    }
+        }
 
-    static func create200ResponseJSON() -> Data {
+        static func fetch200ResponseJSON() -> Data {
+              """
+              {
+                "data": {
+                  "profile": {
+                    "id": "0x01",
+                    "name": "LensProtocol.eth 🌿",
+                    "bio": "A permissionless, composable, & decentralized social graph that makes building a Web3 social platform easy.",
+                    "attributes": [
+                      {
+                        "displayType": null,
+                        "traitType": "string",
+                        "key": "location",
+                        "value": "Developer Garden"
+                      },
+                      {
+                        "displayType": null,
+                        "traitType": "string",
+                        "key": "website",
+                        "value": "https://lens.dev/"
+                      },
+                      {
+                        "displayType": null,
+                        "traitType": "string",
+                        "key": "twitter",
+                        "value": "lensprotocol"
+                      },
+                      {
+                        "displayType": null,
+                        "traitType": "boolean",
+                        "key": "isBeta",
+                        "value": "true"
+                      },
+                      {
+                        "displayType": null,
+                        "traitType": "string",
+                        "key": "app",
+                        "value": "Lenster"
+                      }
+                    ],
+                    "followNftAddress": "0x5832bE646A8a7A1A7a7843efD6B8165aC06e360D",
+                    "metadata": "ipfs://QmY9dUwYu67puaWBMxRKW98LPbXCznPwHUbhX5NeWnCJbX",
+                    "isDefault": false,
+                    "picture": {
+                      "original": {
+                        "url": "https://ipfs.infura.io/ipfs/QmY9dUwYu67puaWBMxRKW98LPbXCznPwHUbhX5NeWnCJbX",
+                        "mimeType": null
+                      },
+                      "__typename": "MediaSet"
+                    },
+                    "handle": "lensprotocol.test",
+                    "coverPicture": {
+                      "original": {
+                        "url": "https://ipfs.infura.io/ipfs/QmTFLSXdEQ6qsSzaXaCSNtiv6wA56qq87ytXJ182dXDQJS",
+                        "mimeType": null
+                      },
+                      "__typename": "MediaSet"
+                    },
+                    "ownedBy": "0x6C77a5a88C0AE712BAeABE12FeA81532060dcBf5",
+                    "dispatcher": null,
+                    "stats": {
+                      "totalFollowers": 2103,
+                      "totalFollowing": 0,
+                      "totalPosts": 2,
+                      "totalComments": 0,
+                      "totalMirrors": 0,
+                      "totalPublications": 2,
+                      "totalCollects": 1354
+                    },
+                    "followModule": null
+                  }
+                }
+              }
+              """.data(using: .utf8)!
+        }
+
+        static func create200ResponseJSON() -> Data {
       """
       {
         "data": {
@@ -88,6 +164,6 @@ extension Stubs {
         }
       }
       """.data(using: .utf8)!
+        }
     }
-  }
 }
