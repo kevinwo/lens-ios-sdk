@@ -1,54 +1,20 @@
-import Kingfisher
 import Lens
 import SwiftUI
 
 struct PostRow: View {
-    enum Destination: String, CaseIterable, Identifiable, Hashable {
-        case profile
-        case post
-
-        var id: String {
-            rawValue
-        }
-    }
-
     // MARK: - Properties
-
-    @State private var selectedDestination: Destination? = nil
 
     let viewModel: PostRowModel
 
+    @State private var selectedDestination: PublicationRowDestination? = nil
+
     var body: some View {
-        HStack(alignment: .top) {
-            VStack {
-                KFImage(viewModel.authorProfileImageUrl)
-                    .feedProfilePicture()
-                    .onTapGesture {
-                        selectedDestination = .profile
-                    }
-
-                if viewModel.isMainPostForComment {
-                    VerticalLine()
-                }
-            }
-
-            VStack(alignment: .leading) {
-                PubBylineView(
-                    authorName: viewModel.authorName,
-                    authorHandle: viewModel.authorHandle,
-                    timeAgo: viewModel.timeAgo
-                )
-
-                PubContentView(
-                    content: viewModel.content,
-                    mediaImageUrl: viewModel.mediaImageUrl
-                )
-
-                PubStatsView(stats: viewModel.stats)
-            }
-        }
+        PublicationRowContentView.view(
+            publication: viewModel.publication,
+            selectedDestination: $selectedDestination
+        )
         .plainRowMultiNavigationLink(
-            destinations: Destination.allCases,
+            destinations: PublicationRowDestination.allCases,
             selection: $selectedDestination,
             destinationView: destinationView
         )
@@ -66,7 +32,7 @@ struct PostRow: View {
     @ViewBuilder
     private var destinationView: some View {
         switch selectedDestination {
-        case .profile:
+        case .postProfile:
             ProfileView.scene(id: viewModel.authorId)
         case .post:
             ThreadView.scene(publication: viewModel.publication)

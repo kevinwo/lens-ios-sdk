@@ -3,17 +3,7 @@ import Lens
 import SwiftUI
 
 struct CommentRow: View {
-    enum Destination: String, CaseIterable, Identifiable, Hashable {
-        case profile
-        case mainPost
-        case comment
-
-        var id: String {
-            rawValue
-        }
-    }
-
-    @State private var selectedDestination: Destination? = nil
+    @State private var selectedDestination: PublicationRowDestination? = nil
 
     let viewModel: CommentRowModel
 
@@ -27,10 +17,11 @@ struct CommentRow: View {
         VStack {
             if let mainPostViewModel = viewModel.mainPostViewModel {
                 VStack(alignment: .leading) {
-                    PostRow(viewModel: mainPostViewModel)
-                        .onTapGesture {
-                            selectedDestination = .mainPost
-                        }
+                    PublicationRowContentView.view(
+                        publication: mainPostViewModel.publication,
+                        selectedDestination: $selectedDestination,
+                        isMainPostForComment: true
+                    )
                     comment
                 }
                 .padding([.top, .bottom], 8)
@@ -39,48 +30,29 @@ struct CommentRow: View {
             }
         }
         .plainRowMultiNavigationLink(
-            destinations: Destination.allCases,
+            destinations: PublicationRowDestination.allCases,
             selection: $selectedDestination,
             destinationView: destinationView
         )
     }
 
     private var comment: some View {
-        HStack(alignment: .top) {
-            KFImage(viewModel.authorProfileImageUrl)
-                .feedProfilePicture()
-                .onTapGesture {
-                    selectedDestination = .profile
-                }
-
-            VStack(alignment: .leading) {
-                PubBylineView(
-                    authorName: viewModel.authorName,
-                    authorHandle: viewModel.authorHandle,
-                    timeAgo: viewModel.timeAgo
-                )
-
-                PubContentView(
-                    content: viewModel.content,
-                    mediaImageUrl: viewModel.mediaImageUrl
-                )
-
-                PubStatsView(stats: viewModel.stats)
-            }
-        }
-        .onTapGesture {
-            selectedDestination = .comment
-        }
+        PublicationRowContentView.view(
+            publication: viewModel.publication,
+            selectedDestination: $selectedDestination
+        )
     }
 
     @ViewBuilder
     private var destinationView: some View {
         switch selectedDestination {
-        case .profile:
+        case .postProfile:
+            ProfileView.scene(id: viewModel.mainPostViewModel!.authorId)
+        case .commentProfile:
             ProfileView.scene(id: viewModel.authorId)
         case .comment:
             ThreadView.scene(publication: viewModel.publication)
-        case .mainPost:
+        case .post:
             ThreadView.scene(publication: viewModel.mainPostViewModel!.publication)
         default:
             EmptyView()

@@ -59,6 +59,9 @@
 		21DB4D9429FDC24A00780876 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D9329FDC24A00780876 /* ProfileView.swift */; };
 		21DB4D9629FDC25B00780876 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D9529FDC25B00780876 /* ProfileViewModel.swift */; };
 		21DB4D9929FEFD8600780876 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D9829FEFD8600780876 /* BackButton.swift */; };
+		21DB4D9B2A0048D100780876 /* PublicationRowContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D9A2A0048D100780876 /* PublicationRowContentView.swift */; };
+		21DB4D9E2A004DEF00780876 /* PublicationRowContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D9D2A004DEF00780876 /* PublicationRowContentViewModel.swift */; };
+		21DB4DA02A004EAD00780876 /* PublicationRowDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D9F2A004EAD00780876 /* PublicationRowDestination.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +124,9 @@
 		21DB4D9329FDC24A00780876 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		21DB4D9529FDC25B00780876 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		21DB4D9829FEFD8600780876 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		21DB4D9A2A0048D100780876 /* PublicationRowContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationRowContentView.swift; sourceTree = "<group>"; };
+		21DB4D9D2A004DEF00780876 /* PublicationRowContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationRowContentViewModel.swift; sourceTree = "<group>"; };
+		21DB4D9F2A004EAD00780876 /* PublicationRowDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationRowDestination.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +317,7 @@
 				21DB4D4629F5CBA100780876 /* PubStatsView */,
 				219F876E29E897B2004B55C2 /* PubBylineView */,
 				219F877129E8988E004B55C2 /* PubContentView */,
+				21DB4D9C2A004DDE00780876 /* PublicationRowContentView */,
 				219F875F29E87BA2004B55C2 /* CommentRow */,
 				219F875E29E87B98004B55C2 /* PostRow */,
 				21C1284429F2D3CE00E813ED /* AnimatedGradientView.swift */,
@@ -416,6 +423,16 @@
 				21DB4D9829FEFD8600780876 /* BackButton.swift */,
 			);
 			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		21DB4D9C2A004DDE00780876 /* PublicationRowContentView */ = {
+			isa = PBXGroup;
+			children = (
+				21DB4D9A2A0048D100780876 /* PublicationRowContentView.swift */,
+				21DB4D9D2A004DEF00780876 /* PublicationRowContentViewModel.swift */,
+				21DB4D9F2A004EAD00780876 /* PublicationRowDestination.swift */,
+			);
+			path = PublicationRowContentView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -537,11 +554,13 @@
 				219F875D29E87985004B55C2 /* View+Example.swift in Sources */,
 				21DB4D9429FDC24A00780876 /* ProfileView.swift in Sources */,
 				218E55A529F0C22100EC4271 /* AccountViewModel.swift in Sources */,
+				21DB4D9B2A0048D100780876 /* PublicationRowContentView.swift in Sources */,
 				2118D86B29E31C82006753C0 /* ContentView.swift in Sources */,
 				218E55A029EF246600EC4271 /* FooterView.swift in Sources */,
 				21C1284929F3108000E813ED /* String+Example.swift in Sources */,
 				21BEB5CF29E6F45C008BC970 /* ExplorePublicationsViewModel.swift in Sources */,
 				21C1283E29F1B3DC00E813ED /* SelectProfileViewModel.swift in Sources */,
+				21DB4D9E2A004DEF00780876 /* PublicationRowContentViewModel.swift in Sources */,
 				218E55A329F0529300EC4271 /* AccountView.swift in Sources */,
 				214479D229F18AAD0087D192 /* FeedViewModel.swift in Sources */,
 				214479D029F18AA30087D192 /* FeedView.swift in Sources */,
@@ -550,6 +569,7 @@
 				214479D929F1A19B0087D192 /* CreateProfileView.swift in Sources */,
 				21DB4D9629FDC25B00780876 /* ProfileViewModel.swift in Sources */,
 				219F875A29E87875004B55C2 /* PublicationRow.swift in Sources */,
+				21DB4DA02A004EAD00780876 /* PublicationRowDestination.swift in Sources */,
 				21DB4D6829F9844000780876 /* CurrentUser.swift in Sources */,
 				21DB4D6F29FBD15900780876 /* ThreadView.swift in Sources */,
 				219F876D29E894B8004B55C2 /* KFImage+Example.swift in Sources */,

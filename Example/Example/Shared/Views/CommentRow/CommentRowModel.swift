@@ -8,7 +8,7 @@ final class CommentRowModel: PublicationRowModel<Comment> {
         // TODO: Support mirror as a main post
         self.mainPostViewModel = {
             if let post = comment.mainPost as? Post {
-                return PostRowModel(publication: post, isMainPostForComment: true)
+                return PostRowModel(publication: post)
             } else {
                 return nil
             }
