@@ -3,14 +3,10 @@ import Kingfisher
 import SwiftUI
 
 struct ProfileView: View {
+    // MARK: - Properties
+
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ProfileViewModel
-
-    static func scene(id: String) -> some View {
-        let viewModel = ProfileViewModel(id: id)
-
-        return ProfileView(viewModel: viewModel)
-    }
 
     var body: some View {
         VStack {
@@ -91,5 +87,13 @@ struct ProfileView: View {
                 presentationMode.wrappedValue.dismiss()
             }
         )
+    }
+
+    // MARK: - Internal interface
+
+    static func scene(id: String) -> some View {
+        let viewModel = ProfileViewModel(id: id)
+
+        return ProfileView(viewModel: viewModel)
     }
 }

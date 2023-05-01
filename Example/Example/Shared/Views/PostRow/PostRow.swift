@@ -20,15 +20,6 @@ struct PostRow: View {
         )
     }
 
-    // MARK: - Internal interface
-
-    static func view(post: Post) -> PostRow {
-        let viewModel = PostRowModel(publication: post)
-        return PostRow(viewModel: viewModel)
-    }
-
-    // MARK: - Private inteface
-
     @ViewBuilder
     private var destinationView: some View {
         switch selectedDestination {
@@ -39,6 +30,14 @@ struct PostRow: View {
         default:
             EmptyView()
         }
+    }
+
+    // MARK: - Internal interface
+
+    static func view(post: Post) -> PostRow {
+        let viewModel = PostRowModel(publication: post)
+
+        return PostRow(viewModel: viewModel)
     }
 }
 

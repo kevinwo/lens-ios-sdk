@@ -3,15 +3,11 @@ import Lens
 import SwiftUI
 
 struct CommentRow: View {
-    @State private var selectedDestination: PublicationRowDestination? = nil
+    // MARK: - Properties
 
     let viewModel: CommentRowModel
 
-    static func view(comment: Comment) -> CommentRow {
-        let viewModel = CommentRowModel(comment: comment)
-
-        return CommentRow(viewModel: viewModel)
-    }
+    @State private var selectedDestination: PublicationRowDestination? = nil
 
     var body: some View {
         VStack {
@@ -57,6 +53,14 @@ struct CommentRow: View {
         default:
             EmptyView()
         }
+    }
+
+    // MARK: - Internal interface
+
+    static func view(comment: Comment) -> CommentRow {
+        let viewModel = CommentRowModel(comment: comment)
+
+        return CommentRow(viewModel: viewModel)
     }
 }
 
