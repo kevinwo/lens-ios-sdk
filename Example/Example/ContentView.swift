@@ -33,16 +33,17 @@ struct ContentView: View {
             case .unauthenticated:
                 NavigationView {
                     VStack {
-                        HStack {
+                        VStack(alignment: .leading) {
                             Text("Welcome to Lizi 👋")
                                 .font(.largeTitle)
                                 .bold()
                                 .foregroundColor(.primary)
-                                .padding()
-                            Spacer()
+                                .padding(8)
+
+                            Text("Lizi is a decentralized, and permissionless social media mobile app built with Lens Protocol")
+                                .foregroundColor(.secondary)
+                                .padding(8)
                         }
-                        Text("Lizi is a decentralized, and permissionless social media mobile app built with Lens Protocol")
-                            .foregroundColor(.secondary)
 
                         ExplorePublicationsView()
                             .navigationBarItems(trailing: leftNavigationItem)

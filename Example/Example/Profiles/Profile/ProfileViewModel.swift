@@ -6,13 +6,40 @@ final class ProfileViewModel: ObservableObject {
 
     enum State {
         case isLoading
-        case profile(any Profile)
+        case profile
         case noProfile
     }
 
     // MARK: - Properties
 
     @Published var state: State = .isLoading
+    @Published private var profile: (any Profile)?
+
+    var coverPictureUrl: URL? {
+        guard let urlString = profile?.coverPicture?.asMediaSet?.original.url else {
+            return nil
+        }
+        return urlString.toIpfsUrl()
+    }
+
+    var pictureUrl: URL? {
+        guard let urlString = profile?.picture?.asMediaSet?.original.url else {
+            return nil
+        }
+        return urlString.toIpfsUrl()
+    }
+
+    var name: String? {
+        profile?.name
+    }
+
+    var handle: String {
+        profile?.handle ?? ""
+    }
+
+    var bio: String? {
+        profile?.bio
+    }
 
     private let id: String
 
@@ -31,7 +58,8 @@ final class ProfileViewModel: ObservableObject {
             let result = try await Current.profiles.fetch(request: request)
 
             if let profile = result.profile {
-                state = .profile(profile)
+                self.profile = profile
+                state = .profile
             } else {
                 state = .noProfile
             }

@@ -17,7 +17,7 @@ struct ThreadView: View {
             VStack(alignment: .leading) {
                 HStack(alignment: .top) {
                     KFImage(viewModel.authorProfileImageUrl)
-                        .profilePicture()
+                        .feedProfilePicture()
 
                     VStack(alignment: .leading) {
                         if let name = viewModel.authorName { Text(name).bold() }
@@ -49,15 +49,8 @@ struct ThreadView: View {
         }
         .navigationBarTitle("Thread")
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: backButton)
-    }
-
-    private var backButton: some View {
-        Button(action: {
+        .navigationBarItems(leading: BackButton {
             presentationMode.wrappedValue.dismiss()
-        }) {
-            Image(systemName: "chevron.left")
-                .foregroundColor(.blue)
-        }
+        })
     }
 }

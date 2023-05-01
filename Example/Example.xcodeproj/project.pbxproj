@@ -58,6 +58,7 @@
 		21DB4D7329FC12B700780876 /* VerticalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D7229FC12B700780876 /* VerticalLine.swift */; };
 		21DB4D9429FDC24A00780876 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D9329FDC24A00780876 /* ProfileView.swift */; };
 		21DB4D9629FDC25B00780876 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D9529FDC25B00780876 /* ProfileViewModel.swift */; };
+		21DB4D9929FEFD8600780876 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D9829FEFD8600780876 /* BackButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		21DB4D7229FC12B700780876 /* VerticalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalLine.swift; sourceTree = "<group>"; };
 		21DB4D9329FDC24A00780876 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		21DB4D9529FDC25B00780876 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		21DB4D9829FEFD8600780876 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +306,7 @@
 		219F875429E8764B004B55C2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				21DB4D9729FEFD7700780876 /* NavigationBar */,
 				21DB4D6D29FBD14200780876 /* ThreadView */,
 				21DB4D4629F5CBA100780876 /* PubStatsView */,
 				219F876E29E897B2004B55C2 /* PubBylineView */,
@@ -405,6 +408,14 @@
 				21DB4D9529FDC25B00780876 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		21DB4D9729FEFD7700780876 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				21DB4D9829FEFD8600780876 /* BackButton.swift */,
+			);
+			path = NavigationBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -549,6 +560,7 @@
 				219F876529E88C6F004B55C2 /* Formatters.swift in Sources */,
 				21DB4D6A29F997D500780876 /* HeadingText.swift in Sources */,
 				219F877029E897BD004B55C2 /* PubBylineView.swift in Sources */,
+				21DB4D9929FEFD8600780876 /* BackButton.swift in Sources */,
 				219F876329E87BBD004B55C2 /* CommentRowModel.swift in Sources */,
 				2118D86929E31C82006753C0 /* ExampleApp.swift in Sources */,
 				219F876129E87BB2004B55C2 /* CommentRow.swift in Sources */,

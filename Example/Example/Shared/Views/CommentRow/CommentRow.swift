@@ -48,7 +48,7 @@ struct CommentRow: View {
     private var comment: some View {
         HStack(alignment: .top) {
             KFImage(viewModel.authorProfileImageUrl)
-                .profilePicture()
+                .feedProfilePicture()
                 .onTapGesture {
                     selectedDestination = .profile
                 }
