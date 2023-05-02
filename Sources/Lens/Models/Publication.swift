@@ -34,6 +34,24 @@ open class Publication: Identifiable {
         default: return nil
         }
     }
+
+    static func fromItem(_ item: PublicationsQuery.Data.Publications.Item) -> Publication? {
+        switch item.__typename {
+        case "Post": return Post(item: item)
+        case "Comment": return Comment(item: item)
+        case "Mirror": return Mirror(item: item)
+        default: return nil
+        }
+    }
+
+    static func fromItem(_ item: PublicationQuery.Data.Publication) -> Publication? {
+        switch item.__typename {
+        case "Post": return Post(item: item)
+        case "Comment": return Comment(item: item)
+        case "Mirror": return Mirror(item: item)
+        default: return nil
+        }
+    }
 }
 
 extension Publication: Equatable {
@@ -60,13 +78,25 @@ public protocol SomePublication {
 
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost: SomePublication {}
 
+extension PublicationsQuery.Data.Publications.Item.AsPost: SomePublication {}
+extension PublicationQuery.Data.Publication.AsPost: SomePublication {}
+
 extension ProfileFeedQuery.Data.Feed.Item.Root.AsPost: SomePublication {}
+
 
 // MARK: - Comment
 
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment: SomePublication {}
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsPost: SomePublication {}
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsMirror: SomePublication {}
+
+extension PublicationsQuery.Data.Publications.Item.AsComment: SomePublication {}
+extension PublicationsQuery.Data.Publications.Item.AsComment.MainPost.AsPost: SomePublication {}
+extension PublicationsQuery.Data.Publications.Item.AsComment.MainPost.AsMirror: SomePublication {}
+
+extension PublicationQuery.Data.Publication.AsComment: SomePublication {}
+extension PublicationQuery.Data.Publication.AsComment.MainPost.AsPost: SomePublication {}
+extension PublicationQuery.Data.Publication.AsComment.MainPost.AsMirror: SomePublication {}
 
 extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment: SomePublication {}
 extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.MainPost.AsPost: SomePublication {}
@@ -75,3 +105,6 @@ extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.MainPost.AsMirror: Some
 // MARK: - Mirror
 
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsMirror: SomePublication {}
+
+extension PublicationsQuery.Data.Publications.Item.AsMirror: SomePublication {}
+extension PublicationQuery.Data.Publication.AsMirror: SomePublication {}

@@ -33,6 +33,10 @@ extension ProfileQuery.Data.Profile: Profile {}
 // MARK: - Post
 
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.Profile: Profile {}
+
+extension PublicationsQuery.Data.Publications.Item.AsPost.Profile: Profile {}
+extension PublicationQuery.Data.Publication.AsPost.Profile: Profile {}
+
 extension ProfileFeedQuery.Data.Feed.Item.Root.AsPost.Profile: Profile {}
 
 // MARK: - Comment
@@ -41,6 +45,14 @@ extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Profi
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsPost.Profile: Profile {}
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsMirror.Profile: Profile {}
 
+extension PublicationsQuery.Data.Publications.Item.AsComment.Profile: Profile {}
+extension PublicationsQuery.Data.Publications.Item.AsComment.MainPost.AsPost.Profile: Profile {}
+extension PublicationsQuery.Data.Publications.Item.AsComment.MainPost.AsMirror.Profile: Profile {}
+
+extension PublicationQuery.Data.Publication.AsComment.Profile: Profile {}
+extension PublicationQuery.Data.Publication.AsComment.MainPost.AsPost.Profile: Profile {}
+extension PublicationQuery.Data.Publication.AsComment.MainPost.AsMirror.Profile: Profile {}
+
 extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.Profile: Profile {}
 extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.MainPost.AsPost.Profile: Profile {}
 extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.MainPost.AsMirror.Profile: Profile {}
@@ -48,3 +60,5 @@ extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.MainPost.AsMirror.Profi
 // MARK: - Mirror
 
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsMirror.Profile: Profile {}
+extension PublicationsQuery.Data.Publications.Item.AsMirror.Profile: Profile {}
+extension PublicationQuery.Data.Publication.AsMirror.Profile: Profile {}

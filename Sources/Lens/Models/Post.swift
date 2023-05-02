@@ -15,11 +15,24 @@ public class Post: Publication {
         super.init(publication: post)
     }
 
-    init?(mainPost: any SomePublication) {
+    init?(item: PublicationsQuery.Data.Publications.Item) {
+        guard let post = item.asPost else { return nil }
+        self.comments = nil
+        super.init(publication: post)
+    }
+
+    init?(item: PublicationQuery.Data.Publication) {
+        guard let post = item.asPost else { return nil }
+        self.comments = nil
+        super.init(publication: post)
+    }
+
+    init(mainPost: any SomePublication) {
         self.comments = nil
         super.init(publication: mainPost)
     }
 
+    @available(*, unavailable)
     required init(from decoder: Decoder) throws {
         fatalError("init(from:) has not been implemented")
     }

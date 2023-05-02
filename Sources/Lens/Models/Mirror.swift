@@ -6,10 +6,21 @@ public class Mirror: Publication {
         super.init(publication: mirror)
     }
 
-    init?(mainPost: ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsMirror) {
+    init?(item: PublicationsQuery.Data.Publications.Item) {
+        guard let mirror = item.asMirror else { return nil }
+        super.init(publication: mirror)
+    }
+
+    init?(item: PublicationQuery.Data.Publication) {
+        guard let mirror = item.asMirror else { return nil }
+        super.init(publication: mirror)
+    }
+
+    init(mainPost: any SomePublication) {
         super.init(publication: mainPost)
     }
 
+    @available(*, unavailable)
     required init(from decoder: Decoder) throws {
         fatalError("init(from:) has not been implemented")
     }

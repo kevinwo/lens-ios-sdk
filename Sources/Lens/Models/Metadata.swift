@@ -13,6 +13,9 @@ public protocol Metadata {
 
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.Metadata: Metadata {}
 
+extension PublicationsQuery.Data.Publications.Item.AsPost.Metadata: Metadata {}
+extension PublicationQuery.Data.Publication.AsPost.Metadata: Metadata {}
+
 extension ProfileFeedQuery.Data.Feed.Item.Root.AsPost.Metadata: Metadata {}
 
 // MARK: - Comment
@@ -21,6 +24,14 @@ extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.Metad
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsPost.Metadata: Metadata {}
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.MainPost.AsMirror.Metadata: Metadata {}
 
+extension PublicationsQuery.Data.Publications.Item.AsComment.Metadata: Metadata {}
+extension PublicationsQuery.Data.Publications.Item.AsComment.MainPost.AsPost.Metadata: Metadata {}
+extension PublicationsQuery.Data.Publications.Item.AsComment.MainPost.AsMirror.Metadata: Metadata {}
+
+extension PublicationQuery.Data.Publication.AsComment.Metadata: Metadata {}
+extension PublicationQuery.Data.Publication.AsComment.MainPost.AsPost.Metadata: Metadata {}
+extension PublicationQuery.Data.Publication.AsComment.MainPost.AsMirror.Metadata: Metadata {}
+
 extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.Metadata: Metadata {}
 extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.MainPost.AsPost.Metadata: Metadata {}
 extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.MainPost.AsMirror.Metadata: Metadata {}
@@ -28,3 +39,5 @@ extension ProfileFeedQuery.Data.Feed.Item.Root.AsComment.MainPost.AsMirror.Metad
 // MARK: - Mirror
 
 extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsMirror.Metadata: Metadata {}
+extension PublicationsQuery.Data.Publications.Item.AsMirror.Metadata: Metadata {}
+extension PublicationQuery.Data.Publication.AsMirror.Metadata: Metadata {}
