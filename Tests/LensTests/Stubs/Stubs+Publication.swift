@@ -4,6 +4,153 @@ import XCTest
 
 extension Stubs {
     enum Publication {
+        static func fetchAll200ResponseJSON() -> Data {
+            """
+            {
+              "data": {
+                "publications": {
+                  "items": [
+                    {
+                      "__typename": "Post",
+                      "id": "0x01-0x01",
+                      "profile": {
+                        "id": "0x01",
+                        "name": null,
+                        "bio": null,
+                        "attributes": [
+                          {
+                            "displayType": null,
+                            "traitType": null,
+                            "key": "custom_field",
+                            "value": "yes this is custom"
+                          }
+                        ],
+                        "isFollowedByMe": false,
+                                    "isFollowing": false,
+                        "followNftAddress": null,
+                        "metadata": "ipfs://QmSfyMcnh1wnJHrAWCBjZHapTS859oNSsuDFiAPPdAHgHP",
+                        "isDefault": false,
+                        "handle": "hey",
+                        "picture": null,
+                        "coverPicture": null,
+                        "ownedBy": "0xD020E01C0c90Ab005A01482d34B808874345FD82",
+                        "dispatcher": null,
+                        "stats": {
+                          "totalFollowers": 2,
+                          "totalFollowing": 1,
+                          "totalPosts": 1,
+                          "totalComments": 0,
+                          "totalMirrors": 0,
+                          "totalPublications": 1,
+                          "totalCollects": 0
+                        },
+                        "followModule": null
+                      },
+                      "stats": {
+                        "totalAmountOfMirrors": 0,
+                        "totalAmountOfCollects": 0,
+                        "totalAmountOfComments": 0
+                      },
+                      "metadata": {
+                        "name": "",
+                        "description": "",
+                        "content": "Hello",
+                        "media": null,
+                        "attributes": []
+                      },
+                      "createdAt": "2022-02-10T09:50:46.000Z",
+                      "collectModule": {
+                        "__typename": "FreeCollectModuleSettings",
+                        "type": "FreeCollectModule"
+                      },
+                      "referenceModule": null,
+                      "appId": null,
+                      "hidden": false,
+                      "reaction": null,
+                      "mirrors": [],
+                                "hasCollectedByMe": false
+                    }
+                  ],
+                  "pageInfo": {
+                    "prev": "cursor",
+                    "next": "cursor",
+                    "totalCount": 1
+                  }
+                }
+              }
+            }
+            """.data(using: .utf8)!
+        }
+
+        static func fetch200ResponseJSON() -> Data {
+            """
+            {
+              "data": {
+                "publication": {
+                  "__typename": "Post",
+                  "id": "0x01-0x01",
+                  "profile": {
+                    "id": "0x01",
+                    "name": null,
+                    "bio": null,
+                    "attributes": [
+                      {
+                        "displayType": null,
+                        "traitType": null,
+                        "key": "custom_field",
+                        "value": "yes this is custom"
+                      }
+                     ],
+                    "isFollowedByMe": false,
+                            "isFollowing": false,
+                    "followNftAddress": null,
+                    "metadata": "ipfs://QmSfyMcnh1wnJHrAWCBjZHapTS859oNSsuDFiAPPdAHgHP",
+                    "isDefault": false,
+                    "handle": "hey",
+                    "picture": null,
+                    "coverPicture": null,
+                    "ownedBy": "0xD020E01C0c90Ab005A01482d34B808874345FD82",
+                    "dispatcher": null,
+                    "stats": {
+                      "totalFollowers": 2,
+                      "totalFollowing": 1,
+                      "totalPosts": 1,
+                      "totalComments": 0,
+                      "totalMirrors": 0,
+                      "totalPublications": 1,
+                      "totalCollects": 0
+                    },
+                    "followModule": null
+                  },
+                  "stats": {
+                    "totalAmountOfMirrors": 0,
+                    "totalAmountOfCollects": 0,
+                    "totalAmountOfComments": 0
+                  },
+                  "metadata": {
+                    "name": "",
+                    "description": "",
+                    "content": "Hello",
+                    "media": null,
+                    "attributes": []
+                  },
+                  "createdAt": "2022-02-10T09:50:46.000Z",
+                  "collectModule": {
+                    "__typename": "FreeCollectModuleSettings",
+                    "type": "FreeCollectModule"
+                  },
+                  "referenceModule": null,
+                  "appId": null,
+                  "hidden": false,
+                  "reaction": null,
+                  "mirrors": [],
+                        "hasCollectedByMe": false
+                }
+              }
+            }
+            """.data(using: .utf8)!
+        }
+
         static func testPost() throws -> ExplorePublicationsQuery.Data.ExplorePublications.Item {
             let data = Stubs.Publication.testPostData
             return try item(for: data)

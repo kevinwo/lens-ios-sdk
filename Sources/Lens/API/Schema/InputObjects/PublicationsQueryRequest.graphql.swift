@@ -11,35 +11,39 @@ public struct PublicationsQueryRequest: InputObject {
   }
 
   public init(
-    limit: GraphQLNullable<LimitScalar> = nil,
-    cursor: GraphQLNullable<Cursor> = nil,
-    profileId: GraphQLNullable<ProfileId> = nil,
-    profileIds: GraphQLNullable<[ProfileId]> = nil,
-    publicationTypes: GraphQLNullable<[GraphQLEnum<PublicationTypes>]> = nil,
-    commentsOf: GraphQLNullable<InternalPublicationId> = nil,
-    commentsOfOrdering: GraphQLNullable<GraphQLEnum<CommentOrderingTypes>>,
-    commentsRankingFilter: GraphQLNullable<GraphQLEnum<CommentRankingFilter>> = nil,
-    sources: GraphQLNullable<[Sources]>,
-    collectedBy: GraphQLNullable<EthereumAddress> = nil,
-    publicationIds: GraphQLNullable<[InternalPublicationId]> = nil,
-    metadata: GraphQLNullable<PublicationMetadataFilters> = nil,
-    customFilters: GraphQLNullable<[GraphQLEnum<CustomFiltersTypes>]>
+    limit: GraphQLNullable<LimitScalar>? = nil,
+    cursor: GraphQLNullable<Cursor>? = nil,
+    profileId: GraphQLNullable<ProfileId>? = nil,
+    profileIds: GraphQLNullable<[ProfileId]>? = nil,
+    publicationTypes: GraphQLNullable<[GraphQLEnum<PublicationTypes>]>? = nil,
+    commentsOf: GraphQLNullable<InternalPublicationId>? = nil,
+    commentsOfOrdering: GraphQLNullable<GraphQLEnum<CommentOrderingTypes>>? = nil,
+    commentsRankingFilter: GraphQLNullable<GraphQLEnum<CommentRankingFilter>>? = nil,
+    sources: GraphQLNullable<[Sources]>? = nil,
+    collectedBy: GraphQLNullable<EthereumAddress>? = nil,
+    publicationIds: GraphQLNullable<[InternalPublicationId]>? = nil,
+    metadata: GraphQLNullable<PublicationMetadataFilters>? = nil,
+    customFilters: GraphQLNullable<[GraphQLEnum<CustomFiltersTypes>]>? = nil
   ) {
-    __data = InputDict([
-      "limit": limit,
-      "cursor": cursor,
-      "profileId": profileId,
-      "profileIds": profileIds,
-      "publicationTypes": publicationTypes,
-      "commentsOf": commentsOf,
-      "commentsOfOrdering": commentsOfOrdering,
-      "commentsRankingFilter": commentsRankingFilter,
-      "sources": sources,
-      "collectedBy": collectedBy,
-      "publicationIds": publicationIds,
-      "metadata": metadata,
-      "customFilters": customFilters
-    ])
+    /// There appears to be an issue with the way the Apollo iOS library handles null arguments
+    /// (or maybe the way the Lens GraphQL API handles them?). In any case, we need to work around
+    /// this for now by manually not including any null arguments in this request.
+    var dict = [String: any GraphQLOperationVariableValue]()
+    if let limit { dict["limit"] = limit }
+    if let cursor { dict["cursor"] = cursor }
+    if let profileId { dict["profileId"] = profileId }
+    if let profileIds { dict["profileIds"] = profileIds }
+    if let publicationTypes { dict["publicationTypes"] = publicationTypes }
+    if let commentsOf { dict["commentsOf"] = commentsOf }
+    if let commentsOfOrdering { dict["commentsOfOrdering"] = commentsOfOrdering }
+    if let commentsRankingFilter { dict["commentsRankingFilter"] = commentsRankingFilter }
+    if let sources { dict["sources"] = sources }
+    if let collectedBy { dict["collectedBy"] = collectedBy }
+    if let publicationIds { dict["publicationIds"] = publicationIds }
+    if let metadata { dict["metadata"] = metadata }
+    if let customFilters { dict["customFilters"] = customFilters }
+
+    __data = InputDict(dict)
   }
 
   public var limit: GraphQLNullable<LimitScalar> {

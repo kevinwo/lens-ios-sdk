@@ -11,13 +11,17 @@ public struct PublicationQueryRequest: InputObject {
   }
 
   public init(
-    publicationId: GraphQLNullable<InternalPublicationId> = nil,
-    txHash: GraphQLNullable<TxHash> = nil
+    publicationId: GraphQLNullable<InternalPublicationId>? = nil,
+    txHash: GraphQLNullable<TxHash>? = nil
   ) {
-    __data = InputDict([
-      "publicationId": publicationId,
-      "txHash": txHash
-    ])
+      /// There appears to be an issue with the way the Apollo iOS library handles null arguments
+      /// (or maybe the way the Lens GraphQL API handles them?). In any case, we need to work around
+      /// this for now by manually not including any null arguments in this request.
+    var dict = [String: any GraphQLOperationVariableValue]()
+    if let publicationId { dict["publicationId"] = publicationId }
+    if let txHash { dict["txHash"] = txHash }
+
+    __data = InputDict(dict)
   }
 
   public var publicationId: GraphQLNullable<InternalPublicationId> {
