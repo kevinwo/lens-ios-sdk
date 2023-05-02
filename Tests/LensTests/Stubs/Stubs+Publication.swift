@@ -151,12 +151,57 @@ extension Stubs {
             """.data(using: .utf8)!
         }
 
-        static func testPost() throws -> ExplorePublicationsQuery.Data.ExplorePublications.Item {
+        static func fetchAllPublications() throws -> PublicationsQuery.Data {
+            let data = fetchAll200ResponseJSON()
+            var dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
+            var dictData = try XCTUnwrap(dict["data"] as? [String: AnyHashable])
+            var publications = try XCTUnwrap(dictData["publications"] as? [String: AnyHashable])
+            let items = try XCTUnwrap(publications["items"] as? [[String: AnyHashable]])
+            publications["items"] = try items.map({ dict in
+                let typename = try XCTUnwrap(dict["__typename"] as? String)
+                var dict = dict
+                dict["__fulfilled"] = Set([fetchAllFulfillmentObjectIdentifier(for: typename)])
+                return dict
+            })
+            dictData["publications"] = publications
+            dict["data"] = dictData
+
+            let json = JSONValue(dict["data"])
+
+            return PublicationsQuery.Data(
+                _dataDict: .init(
+                    data: try .init(_jsonValue: json)
+                )
+            )
+        }
+
+        static func fetchPublication() throws -> PublicationQuery.Data {
+            let data = fetch200ResponseJSON()
+            var dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
+            var dictData = try XCTUnwrap(dict["data"] as? [String: AnyHashable])
+            var publication = try XCTUnwrap(dictData["publication"] as? [String: AnyHashable])
+
+            let typename = try XCTUnwrap(publication["__typename"] as? String)
+            publication["__fulfilled"] = Set([fetchFulfillmentObjectIdentifier(for: typename)])
+
+            dictData["publication"] = publication
+            dict["data"] = dictData
+
+            let json = JSONValue(dict["data"])
+
+            return PublicationQuery.Data(
+                _dataDict: .init(
+                    data: try .init(_jsonValue: json)
+                )
+            )
+        }
+
+        static func testPost() throws -> PublicationsQuery.Data.Publications.Item {
             let data = Stubs.Publication.testPostData
             return try item(for: data)
         }
 
-        static func testComment() throws -> ExplorePublicationsQuery.Data.ExplorePublications.Item {
+        static func testComment() throws -> PublicationsQuery.Data.Publications.Item {
             let data = Stubs.Publication.testCommentData
             return try item(for: data)
         }
@@ -534,23 +579,36 @@ extension Stubs {
 
     // MARK: - Private interface
 
-    private static func item(for data: Data) throws -> ExplorePublicationsQuery.Data.ExplorePublications.Item {
+    private static func item(for data: Data) throws -> PublicationsQuery.Data.Publications.Item {
         var dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
         let typename = try XCTUnwrap(dict["__typename"] as? String)
-        dict["__fulfilled"] = Set([fulfillmentObjectIdentifier(for: typename)])
+        dict["__fulfilled"] = Set([fetchAllFulfillmentObjectIdentifier(for: typename)])
 
         let json = JSONValue(dict)
-        return ExplorePublicationsQuery.Data.ExplorePublications.Item(_dataDict: .init(data: try .init(_jsonValue: json)))
+        return PublicationsQuery.Data.Publications.Item(_dataDict: .init(data: try .init(_jsonValue: json)))
     }
 
-    private static func fulfillmentObjectIdentifier(for typename: String) -> ObjectIdentifier? {
+    private static func fetchAllFulfillmentObjectIdentifier(for typename: String) -> ObjectIdentifier? {
         switch typename {
         case "Post":
-          return ObjectIdentifier(ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.self)
+          return ObjectIdentifier(PublicationsQuery.Data.Publications.Item.AsPost.self)
         case "Comment":
-            return ObjectIdentifier(ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.self)
+            return ObjectIdentifier(PublicationsQuery.Data.Publications.Item.AsComment.self)
         case "Mirror":
-            return ObjectIdentifier(Lens.ExplorePublicationsQuery.Data.ExplorePublications.Item.AsMirror.self)
+            return ObjectIdentifier(PublicationsQuery.Data.Publications.Item.AsMirror.self)
+        default:
+          return nil
+        }
+    }
+
+    private static func fetchFulfillmentObjectIdentifier(for typename: String) -> ObjectIdentifier? {
+        switch typename {
+        case "Post":
+            return ObjectIdentifier(PublicationQuery.Data.Publication.AsPost.self)
+        case "Comment":
+            return ObjectIdentifier(PublicationQuery.Data.Publication.AsComment.self)
+        case "Mirror":
+            return ObjectIdentifier(PublicationQuery.Data.Publication.AsMirror.self)
         default:
           return nil
         }

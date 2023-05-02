@@ -21,17 +21,9 @@ final class PublicationsTests: XCTestCase {
 
     func test_fetchAll() async throws {
         // given
-        let request = PublicationsQueryRequest(profileId: "0x012345")
-
-        let data = Stubs.Publication.fetchAll200ResponseJSON()
-        let dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed]) as? [String: AnyHashable])
-
-        let json = JSONValue(dict["data"])
-        let expectedResults = PublicationsQuery.Data(
-            _dataDict: .init(
-                data: try .init(_jsonValue: json)
-            )
-        )
+        let profileId = "0x012345"
+        let request = PublicationsQueryRequest(profileId: .init(stringLiteral: profileId))
+        let expectedResults = try Stubs.Publication.fetchAllPublications()
         mockLensClient.stubbedRequestQueryData = expectedResults
 
         // when
@@ -41,22 +33,19 @@ final class PublicationsTests: XCTestCase {
         // it should fetch a valid set of publications
         let expectedResponse = PublicationsResponse(response: expectedResults.publications)
         XCTAssertEqual(response, expectedResponse)
+
+        // it should have publications
+        XCTAssertFalse(response.publications.isEmpty)
+
+        // it should have page info
+        XCTAssertNotNil(response.pageInfo)
     }
 
     func test_fetch() async throws {
         // given
         let publicationId = "0x012345"
         let request = PublicationQueryRequest(publicationId: .init(stringLiteral: publicationId))
-
-        let data = Stubs.Publication.fetch200ResponseJSON()
-        let dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
-
-        let json = JSONValue(dict["data"])
-        let expectedResults = PublicationQuery.Data(
-            _dataDict: .init(
-                data: try .init(_jsonValue: json)
-            )
-        )
+        let expectedResults = try Stubs.Publication.fetchPublication()
         mockLensClient.stubbedRequestQueryData = expectedResults
 
         // when
@@ -66,5 +55,8 @@ final class PublicationsTests: XCTestCase {
         // it should fetch a valid publication
         let expectedResponse = PublicationResponse(publication: expectedResults.publication)
         XCTAssertEqual(response, expectedResponse)
+
+        // it should have a publication
+        XCTAssertNotNil(response.publication)
     }
 }
