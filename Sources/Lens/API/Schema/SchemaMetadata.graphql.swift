@@ -23,7 +23,10 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
   public static func objectType(forTypename typename: String) -> Object? {
     switch typename {
     case "Query": return Lens.Objects.Query
-    case "PaginatedProfileResult": return Lens.Objects.PaginatedProfileResult
+    case "PaginatedPublicationResult": return Lens.Objects.PaginatedPublicationResult
+    case "Post": return Lens.Objects.Post
+    case "Comment": return Lens.Objects.Comment
+    case "Mirror": return Lens.Objects.Mirror
     case "Profile": return Lens.Objects.Profile
     case "Attribute": return Lens.Objects.Attribute
     case "NftImage": return Lens.Objects.NftImage
@@ -43,11 +46,6 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "SybilDotOrgIdentitySource": return Lens.Objects.SybilDotOrgIdentitySource
     case "SybilDotOrgTwitterIdentity": return Lens.Objects.SybilDotOrgTwitterIdentity
     case "WorldcoinIdentity": return Lens.Objects.WorldcoinIdentity
-    case "PaginatedResultInfo": return Lens.Objects.PaginatedResultInfo
-    case "ExplorePublicationResult": return Lens.Objects.ExplorePublicationResult
-    case "Post": return Lens.Objects.Post
-    case "Comment": return Lens.Objects.Comment
-    case "Mirror": return Lens.Objects.Mirror
     case "PublicationStats": return Lens.Objects.PublicationStats
     case "MetadataOutput": return Lens.Objects.MetadataOutput
     case "MetadataAttributeOutput": return Lens.Objects.MetadataAttributeOutput
@@ -78,6 +76,9 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "FollowOnlyReferenceModuleSettings": return Lens.Objects.FollowOnlyReferenceModuleSettings
     case "UnknownReferenceModuleSettings": return Lens.Objects.UnknownReferenceModuleSettings
     case "DegreesOfSeparationReferenceModuleSettings": return Lens.Objects.DegreesOfSeparationReferenceModuleSettings
+    case "PaginatedResultInfo": return Lens.Objects.PaginatedResultInfo
+    case "PaginatedProfileResult": return Lens.Objects.PaginatedProfileResult
+    case "ExplorePublicationResult": return Lens.Objects.ExplorePublicationResult
     case "Mutation": return Lens.Objects.Mutation
     case "RelayerResult": return Lens.Objects.RelayerResult
     case "RelayError": return Lens.Objects.RelayError
