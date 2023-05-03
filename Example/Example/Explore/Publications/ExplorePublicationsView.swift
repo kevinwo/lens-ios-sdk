@@ -7,9 +7,7 @@ struct ExplorePublicationsView: View {
         VStack {
             switch viewModel.state {
             case .isLoading:
-                Spacer()
                 ProgressView()
-                Spacer()
             case .noPublications:
                 Text("There are no publications to explore right now.")
             case .hasPublications:

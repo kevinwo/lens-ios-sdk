@@ -6,7 +6,7 @@ struct ProfileView: View {
     // MARK: - Properties
 
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var viewModel: ProfileViewModel
+    @StateObject var viewModel: ProfileViewModel
 
     var body: some View {
         VStack {
@@ -65,9 +65,11 @@ struct ProfileView: View {
                     }
                     .padding()
 
-                    Text("Feed View")
-
-                    Spacer()
+                    PublicationsView.view(
+                        profileId: viewModel.id,
+                        displayType: .lazyVStack
+                    )
+                    .padding()
                 }
             case .noProfile:
                 Text("Looks like you still need a profile!")
@@ -77,7 +79,7 @@ struct ProfileView: View {
                 }
             }
         }
-        .onAppear {
+        .onFirstAppear {
             Task { await viewModel.onAppear() }
         }
         .edgesIgnoringSafeArea(.top)

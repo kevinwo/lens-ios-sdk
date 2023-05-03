@@ -41,7 +41,7 @@ final class ProfileViewModel: ObservableObject {
         profile?.bio
     }
 
-    private let id: String
+    let id: String
 
     // MARK: - Object life cycle
 

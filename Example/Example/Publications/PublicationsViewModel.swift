@@ -1,7 +1,7 @@
 import Foundation
 import Lens
 
-final class ExplorePublicationsViewModel: ObservableObject {
+final class PublicationsViewModel: ObservableObject {
     // MARK: - Enums
 
     enum State {
@@ -15,8 +15,17 @@ final class ExplorePublicationsViewModel: ObservableObject {
     @Published var state: State = .isLoading
     @Published var isLoadingMore: Bool = false
     @Published var publications = [Publication]()
-    @Published var sortCriteria: PublicationSortCriteria = .topCommented
     @Published var pageInfo: PageInfo?
+
+    private let profileId: String
+
+    // MARK: - Object life cycle
+
+    init(profileId: String) {
+        self.profileId = profileId
+    }
+
+    // MARK: - Internal interface
 
     @MainActor
     func onAppear() async {
@@ -41,14 +50,14 @@ final class ExplorePublicationsViewModel: ObservableObject {
 
         isLoadingMore = true
 
-        let request = ExplorePublicationRequest(
+        let request = PublicationsQueryRequest(
             cursor: .init(stringLiteral: pageInfo.next),
-            sortCriteria: .init(sortCriteria)
+            profileId: .init(stringLiteral: profileId)
         )
 
         do {
-            let results = try await Current.explore.publications(request: request)
-            publications.append(contentsOf: results.items)
+            let results = try await Current.publications.fetchAll(request: request)
+            publications.append(contentsOf: results.publications)
             self.pageInfo = results.pageInfo
         } catch {
             // TODO: Handle error
@@ -61,14 +70,15 @@ final class ExplorePublicationsViewModel: ObservableObject {
     private func fetchPublications() async {
         state = .isLoading
 
-        let request = ExplorePublicationRequest(
-            sortCriteria: .init(sortCriteria)
+        let request = PublicationsQueryRequest(
+            profileId: .init(stringLiteral: profileId),
+            publicationTypes: .init(arrayLiteral: .case(.post))
         )
 
         do {
-            let results = try await Current.explore.publications(request: request)
-            publications = results.items
-            self.pageInfo = results.pageInfo
+            let results = try await Current.publications.fetchAll(request: request)
+            publications = results.publications
+            pageInfo = results.pageInfo
         } catch {
             // TODO: Handle error
         }
