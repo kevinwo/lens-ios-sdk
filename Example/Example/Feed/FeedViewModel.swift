@@ -2,9 +2,18 @@ import Foundation
 import Lens
 
 final class FeedViewModel: ObservableObject {
+    // MARK: - Enums
+
+    enum State {
+        case isLoading
+        case hasPublications
+        case noPublications
+    }
+
     // MARK: - Properties
 
-    @Published var isLoading: Bool = true
+    @Published var state: State = .isLoading
+    @Published var isLoadingMore: Bool = false
     @Published var publications = [Publication]()
     @Published var pageInfo: PageInfo?
 
@@ -31,7 +40,7 @@ final class FeedViewModel: ObservableObject {
             return
         }
 
-        isLoading = true
+        isLoadingMore = true
 
         let request = FeedRequest(
             cursor: .init(stringLiteral: pageInfo.next),
@@ -40,13 +49,13 @@ final class FeedViewModel: ObservableObject {
 
         do {
             let results = try await Current.feed.fetch(request: request)
-            self.publications.append(contentsOf: results.items)
+            publications.append(contentsOf: results.items)
             self.pageInfo = results.pageInfo
         } catch {
             // TODO: Handle error
         }
 
-        isLoading = false
+        isLoadingMore = false
     }
 
     @MainActor
@@ -55,19 +64,22 @@ final class FeedViewModel: ObservableObject {
             // TODO: Either show modal to choose profile or display an error
             return
         }
-
-        isLoading = true
+        state = .isLoading
 
         let request = FeedRequest(profileId: profileId)
 
         do {
             let results = try await Current.feed.fetch(request: request)
-            self.publications = results.items
-            self.pageInfo = results.pageInfo
+            publications = results.items
+            pageInfo = results.pageInfo
         } catch {
             // TODO: Handle error
         }
 
-        isLoading = false
+        if !publications.isEmpty {
+            state = .hasPublications
+        } else {
+            state = .noPublications
+        }
     }
 }

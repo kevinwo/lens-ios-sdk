@@ -1,15 +1,16 @@
 import SwiftUI
 
 struct FeedView: View {
-    @ObservedObject var viewModel = FeedViewModel()
+    @StateObject var viewModel: FeedViewModel
 
     var body: some View {
         VStack {
-            if viewModel.publications.isEmpty && !viewModel.isLoading {
-                Text("There are no publications in your feed. Follow some new people to see publications!")
-                    .multilineTextAlignment(.center)
-                    .padding()
-            } else {
+            switch viewModel.state {
+            case .isLoading:
+                ProgressView()
+            case .noPublications:
+                Text("There are no publications to explore right now.")
+            case .hasPublications:
                 List {
                     ForEach(viewModel.publications) { publication in
                         PublicationRow.forPublication(publication)
@@ -19,20 +20,28 @@ struct FeedView: View {
                     }
                 }
                 .listStyle(.plain)
-            }
 
-            if viewModel.isLoading {
-                ProgressView()
+                if viewModel.isLoadingMore {
+                    ProgressView()
+                }
             }
         }
         .onAppear {
             Task { await viewModel.onAppear() }
         }
     }
+
+    // MARK: - Internal interface
+
+    static func view() -> some View {
+        let viewModel = FeedViewModel()
+
+        return FeedView(viewModel: viewModel)
+    }
 }
 
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedView()
+        FeedView.view()
     }
 }

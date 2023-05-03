@@ -15,7 +15,7 @@ struct ContentView: View {
             case .authenticated:
                 TabView {
                     NavigationView {
-                        FeedView()
+                        FeedView.view()
                             .navigationBarItems(trailing: leftNavigationItem)
                     }
                     .tabItem {
