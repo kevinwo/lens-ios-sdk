@@ -9,12 +9,6 @@ public protocol PublicationsType {
  Fetch, create, and manage publications
  */
 public final class Publications: PublicationsType {
-    // MARK: - Enums
-
-    public enum Error: Swift.Error {
-        case invalidTxHash
-    }
-
     // MARK: - Properties
 
     private let client: LensClientType = Current.lensClient()
