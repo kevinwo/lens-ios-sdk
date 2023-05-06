@@ -82,6 +82,12 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "Mutation": return Lens.Objects.Mutation
     case "RelayerResult": return Lens.Objects.RelayerResult
     case "RelayError": return Lens.Objects.RelayError
+    case "CreateCollectBroadcastItemResult": return Lens.Objects.CreateCollectBroadcastItemResult
+    case "CreateCollectEIP712TypedData": return Lens.Objects.CreateCollectEIP712TypedData
+    case "CreateCollectEIP712TypedDataTypes": return Lens.Objects.CreateCollectEIP712TypedDataTypes
+    case "EIP712TypedDataField": return Lens.Objects.EIP712TypedDataField
+    case "EIP712TypedDataDomain": return Lens.Objects.EIP712TypedDataDomain
+    case "CreateCollectEIP712TypedDataValue": return Lens.Objects.CreateCollectEIP712TypedDataValue
     case "AuthChallengeResult": return Lens.Objects.AuthChallengeResult
     case "PaginatedFeedResult": return Lens.Objects.PaginatedFeedResult
     case "FeedItem": return Lens.Objects.FeedItem

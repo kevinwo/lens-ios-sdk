@@ -1,0 +1,27 @@
+mutation CreateCollectTypedData($request: CreateCollectRequest!, $options: TypedDataOptions) {
+  result: createCollectTypedData(request: $request, options: $options) {
+    id
+    expiresAt
+    typedData {
+      types {
+        CollectWithSig {
+          name
+          type
+        }
+      }
+      domain {
+        name
+        chainId
+        version
+        verifyingContract
+      }
+      value {
+        nonce
+        deadline
+        profileId
+        pubId
+        data
+      }
+    }
+  }
+}
