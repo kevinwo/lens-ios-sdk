@@ -1,7 +1,7 @@
 import Foundation
 
 public protocol FeedType {
-    func fetch(request: FeedRequest) async throws -> FeedResponse
+    func fetch(request: FeedRequest, observerId: String?) async throws -> FeedResponse
 }
 
 /**
@@ -29,12 +29,17 @@ public class Feed: FeedType {
      let response = try await feed.fetch(request: request)
      ```
 
-     - Parameter request: The request parameters to use when fetching publications
+     - Parameters:
+        - request: The request parameters to use when fetching publications
+        - observerId: The profile ID for the signed-in user making the request (optional). This is used when you want to fetch state based on the user's participation (e.g. whether or not they upvoted a post).
      - Throws: An error if there is a problem with the fetch operation.
      - Returns: A response containing publications and page info
      */
-    public func fetch(request: FeedRequest) async throws -> FeedResponse {
-        let query = ProfileFeedQuery(request: request)
+    public func fetch(request: FeedRequest, observerId: String?) async throws -> FeedResponse {
+        let query = ProfileFeedQuery(
+            request: request,
+            observerId: .value(for: observerId)
+        )
         let data = try await client.request(query: query)
 
         return FeedResponse(response: data.feed)

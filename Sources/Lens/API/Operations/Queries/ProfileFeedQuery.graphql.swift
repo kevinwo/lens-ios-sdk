@@ -8,7 +8,7 @@ public class ProfileFeedQuery: GraphQLQuery {
   public static let document: ApolloAPI.DocumentType = .notPersisted(
     definition: .init(
       #"""
-      query ProfileFeed($request: FeedRequest!) {
+      query ProfileFeed($request: FeedRequest!, $observerId: ProfileId) {
         feed(request: $request) {
           __typename
           items {
@@ -78,12 +78,20 @@ public class ProfileFeedQuery: GraphQLQuery {
     ))
 
   public var request: FeedRequest
+  public var observerId: GraphQLNullable<ProfileId>
 
-  public init(request: FeedRequest) {
+  public init(
+    request: FeedRequest,
+    observerId: GraphQLNullable<ProfileId>
+  ) {
     self.request = request
+    self.observerId = observerId
   }
 
-  public var __variables: Variables? { ["request": request] }
+  public var __variables: Variables? { [
+    "request": request,
+    "observerId": observerId
+  ] }
 
   public struct Data: Lens.SelectionSet {
     public let __data: DataDict

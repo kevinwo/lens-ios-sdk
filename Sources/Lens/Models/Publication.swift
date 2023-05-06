@@ -8,6 +8,7 @@ open class Publication: Identifiable {
     public let createdAt: String
     public let collectModule: any CollectModule
     public let stats: any PublicationStats
+    public let reaction: Lens.ReactionTypes?
 
     init(publication: any SomePublication) {
         self.publicationId = publication.id
@@ -16,6 +17,7 @@ open class Publication: Identifiable {
         self.createdAt = publication.createdAt
         self.collectModule = publication.collectModule
         self.stats = publication.stats
+        self.reaction = publication.reaction.map { $0.value } ?? nil
     }
 
     static func fromItem(_ item: ExplorePublicationsQuery.Data.ExplorePublications.Item) -> Publication? {
@@ -72,6 +74,7 @@ public protocol SomePublication {
     var createdAt: String { get }
     var collectModule: C { get }
     var stats: S { get }
+    var reaction: GraphQLEnum<Lens.ReactionTypes>? { get }
 }
 
 // MARK: - Post

@@ -31,7 +31,7 @@ public struct CommentBaseFields: Lens.SelectionSet, Fragment {
       }
       appId
       hidden
-      reaction(request: null)
+      reaction(request: {profileId: $observerId})
       mirrors(by: null)
       hasCollectedByMe
       isGated
@@ -53,7 +53,7 @@ public struct CommentBaseFields: Lens.SelectionSet, Fragment {
     .field("referenceModule", ReferenceModule?.self),
     .field("appId", Lens.Sources?.self),
     .field("hidden", Bool.self),
-    .field("reaction", GraphQLEnum<Lens.ReactionTypes>?.self, arguments: ["request": .null]),
+    .field("reaction", GraphQLEnum<Lens.ReactionTypes>?.self, arguments: ["request": ["profileId": .variable("observerId")]]),
     .field("mirrors", [Lens.InternalPublicationId].self, arguments: ["by": .null]),
     .field("hasCollectedByMe", Bool.self),
     .field("isGated", Bool.self),

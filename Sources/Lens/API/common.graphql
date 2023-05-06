@@ -168,7 +168,7 @@ fragment PostFields on Post {
   }
   appId
   hidden
-  reaction(request: null)
+  reaction(request: { profileId: $observerId })
   mirrors(by: null)
   hasCollectedByMe
   isGated
@@ -194,7 +194,7 @@ fragment MirrorBaseFields on Mirror {
   }
   appId
   hidden
-  reaction(request: null)
+  reaction(request: { profileId: $observerId })
   hasCollectedByMe
   isGated
 }
@@ -231,7 +231,7 @@ fragment CommentBaseFields on Comment {
   }
   appId
   hidden
-  reaction(request: null)
+  reaction(request: { profileId: $observerId })
   mirrors(by: null)
   hasCollectedByMe
   isGated

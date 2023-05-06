@@ -1,8 +1,8 @@
 import Foundation
 
 public protocol PublicationsType {
-    func fetchAll(request: PublicationsQueryRequest) async throws -> PublicationsResponse
-    func fetch(request: PublicationQueryRequest) async throws -> PublicationResponse
+    func fetchAll(request: PublicationsQueryRequest, observerId: String?) async throws -> PublicationsResponse
+    func fetch(request: PublicationQueryRequest, observerId: String?) async throws -> PublicationResponse
 }
 
 /**
@@ -31,12 +31,17 @@ public final class Publications: PublicationsType {
      let response = try await publications.fetchAll(request: request)
      ```
 
-     - Parameter request: The request parameters to use when fetching publications
+     - Parameters:
+        - request: The request parameters to use when fetching publications
+        - observerId: The profile ID for the signed-in user making the request (optional). This is used when you want to fetch state based on the user's participation (e.g. whether or not they upvoted a post).
      - Throws: An error if there is a problem with the fetch operation.
      - Returns: A response containing publications and page info
      */
-    public func fetchAll(request: PublicationsQueryRequest) async throws -> PublicationsResponse {
-        let query = PublicationsQuery(request: request)
+    public func fetchAll(request: PublicationsQueryRequest, observerId: String?) async throws -> PublicationsResponse {
+        let query = PublicationsQuery(
+            request: request,
+            observerId: .value(for: observerId)
+        )
         let data = try await client.request(query: query)
 
         return PublicationsResponse(response: data.publications)
@@ -54,12 +59,17 @@ public final class Publications: PublicationsType {
      let response = try await publications.fetch(request: request)
      ```
 
-     - Parameter request: The request parameters to use when fetching a publication
+     - Parameters:
+        - request: The request parameters to use when fetching a publication
+        - observerId: The profile ID for the signed-in user making the request (optional). This is used when you want to fetch state based on the user's participation (e.g. whether or not they upvoted a post).
      - Throws: An error if there is a problem with the fetch operation.
      - Returns: A response containing the fetched publication
      */
-    public func fetch(request: PublicationQueryRequest) async throws -> PublicationResponse {
-        let query = PublicationQuery(request: request)
+    public func fetch(request: PublicationQueryRequest, observerId: String?) async throws -> PublicationResponse {
+        let query = PublicationQuery(
+            request: request,
+            observerId: .value(for: observerId)
+        )
         let data = try await client.request(query: query)
 
         return PublicationResponse(publication: data.publication)

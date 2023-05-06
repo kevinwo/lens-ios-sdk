@@ -1,4 +1,4 @@
-query publication($request: PublicationQueryRequest!) {
+query publication($request: PublicationQueryRequest!, $observerId: ProfileId) {
   publication(request: $request) {
     __typename
     ... on Post {

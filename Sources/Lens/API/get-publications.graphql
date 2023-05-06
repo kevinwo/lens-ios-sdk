@@ -1,4 +1,4 @@
-query publications($request: PublicationsQueryRequest!) {
+query publications($request: PublicationsQueryRequest!, $observerId: ProfileId) {
   publications(request: $request) {
     items {
       __typename

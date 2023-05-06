@@ -47,7 +47,7 @@ final class ExplorePublicationsViewModel: ObservableObject {
         )
 
         do {
-            let results = try await Current.explore.publications(request: request)
+            let results = try await Current.explore.publications(request: request, observerId: nil)
             publications.append(contentsOf: results.items)
             self.pageInfo = results.pageInfo
         } catch {
@@ -66,7 +66,7 @@ final class ExplorePublicationsViewModel: ObservableObject {
         )
 
         do {
-            let results = try await Current.explore.publications(request: request)
+            let results = try await Current.explore.publications(request: request, observerId: nil)
             publications = results.items
             self.pageInfo = results.pageInfo
         } catch {

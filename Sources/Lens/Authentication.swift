@@ -55,9 +55,7 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
     /**
      Generate a sign-in challenge message based on Sign In With Ethereum (EIP-4361)
 
-     - Parameters:
-       - address: The address for the wallet with which you wish to sign the sign-in challenge message
-
+     - Parameter address: The address for the wallet with which you wish to sign the sign-in challenge message
      - Returns: The challenge message to sign with a wallet
      */
     public func challenge(address: EthereumAddress) async throws -> String {

@@ -48,7 +48,7 @@ final class FeedViewModel: ObservableObject {
         )
 
         do {
-            let results = try await Current.feed.fetch(request: request)
+            let results = try await Current.feed.fetch(request: request, observerId: nil)
             publications.append(contentsOf: results.items)
             self.pageInfo = results.pageInfo
         } catch {
@@ -69,7 +69,7 @@ final class FeedViewModel: ObservableObject {
         let request = FeedRequest(profileId: profileId)
 
         do {
-            let results = try await Current.feed.fetch(request: request)
+            let results = try await Current.feed.fetch(request: request, observerId: nil)
             publications = results.items
             pageInfo = results.pageInfo
         } catch {

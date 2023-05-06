@@ -35,7 +35,7 @@ final class FeedTests: XCTestCase {
         mockLensClient.stubbedRequestQueryData = expectedResults
 
         // when
-        let response = try await feed.fetch(request: request)
+        let response = try await feed.fetch(request: request, observerId: nil)
 
         // then
         // it should fetch a valid set of publications

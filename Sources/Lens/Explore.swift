@@ -1,7 +1,7 @@
 import Foundation
 
 public protocol ExploreType {
-    func publications(request: ExplorePublicationRequest) async throws -> ExplorePublicationsResponse
+    func publications(request: ExplorePublicationRequest, observerId: String?) async throws -> ExplorePublicationsResponse
 }
 
 /**
@@ -29,12 +29,17 @@ public class Explore: ExploreType {
      let response = try await explore.publications(request: request)
      ```
 
-     - Parameter request: The request parameters to use when fetching publications
+     - Parameters:
+        - request: The request parameters to use when fetching publications
+        - observerId: The profile ID for the signed-in user making the request (optional). This is used when you want to fetch state based on the user's participation (e.g. whether or not they upvoted a post).
      - Throws: An error if there is a problem with the fetch operation.
      - Returns: A response containing publications and page info
      */
-    public func publications(request: ExplorePublicationRequest) async throws -> ExplorePublicationsResponse {
-        let query = ExplorePublicationsQuery(request: request)
+    public func publications(request: ExplorePublicationRequest, observerId: String?) async throws -> ExplorePublicationsResponse {
+        let query = ExplorePublicationsQuery(
+            request: request,
+            observerId: .value(for: observerId)
+        )
         let data = try await client.request(query: query)
 
         return ExplorePublicationsResponse(response: data.explorePublications)

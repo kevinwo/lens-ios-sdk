@@ -35,7 +35,7 @@ final class ExploreTests: XCTestCase {
         mockLensClient.stubbedRequestQueryData = expectedResults
 
         // when
-        let response = try await explore.publications(request: request)
+        let response = try await explore.publications(request: request, observerId: nil)
 
         // then
         // it should fetch a valid set of publications
