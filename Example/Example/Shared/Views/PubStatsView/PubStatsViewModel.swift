@@ -5,25 +5,13 @@ final class PubStatsViewModel: ObservableObject {
     // MARK: - Properties
 
     @Published var isUpvoted: Bool = false
-
-    var totalAmountOfComments: Int {
-        publication.stats.totalAmountOfComments
-    }
-
-    var totalAmountOfMirrors: Int {
-        publication.stats.totalAmountOfMirrors
-    }
+    @Published var totalUpvotes: Int
+    @Published var totalAmountOfComments: Int
+    @Published var totalAmountOfMirrors: Int
+    @Published var totalAmountOfCollects: Int
 
     var upvoteIconName: String {
         isUpvoted ? "heart.fill" : "heart"
-    }
-
-    var totalUpvotes: Int {
-        publication.stats.totalUpvotes
-    }
-
-    var totalAmountOfCollects: Int {
-        publication.stats.totalAmountOfCollects
     }
 
     let publication: Publication
@@ -32,7 +20,13 @@ final class PubStatsViewModel: ObservableObject {
 
     init(publication: Publication) {
         self.publication = publication
-        self.isUpvoted = publication.reaction != nil
+
+        isUpvoted = publication.reaction != nil
+        totalUpvotes = publication.stats.totalUpvotes
+
+        totalAmountOfComments = publication.stats.totalAmountOfComments
+        totalAmountOfMirrors = publication.stats.totalAmountOfMirrors
+        totalAmountOfCollects = publication.stats.totalAmountOfCollects
     }
 
     // MARK: - Internal interface
@@ -44,7 +38,7 @@ final class PubStatsViewModel: ObservableObject {
         }
 
         /// We optimistically toggle the upvote state
-        isUpvoted = !isUpvoted
+        toggleUpvoted()
 
         Task {
             do {
@@ -61,8 +55,20 @@ final class PubStatsViewModel: ObservableObject {
                 }
             } catch {
                 /// If upvote fails to save, we revert the upvote state
-                isUpvoted = !isUpvoted
+                toggleUpvoted()
             }
+        }
+    }
+
+    // MARK: - Private interface
+
+    private func toggleUpvoted() {
+        isUpvoted = !isUpvoted
+
+        if isUpvoted {
+            totalUpvotes += 1
+        } else {
+            totalUpvotes -= 1
         }
     }
 }

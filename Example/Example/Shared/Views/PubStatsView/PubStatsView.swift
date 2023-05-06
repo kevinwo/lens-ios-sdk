@@ -6,19 +6,40 @@ struct PubStatsView: View {
 
     var body: some View {
         HStack(spacing: 26) {
-            PubStatView(iconName: "message", value: viewModel.totalAmountOfComments)
-            PubStatView(iconName: "arrow.2.squarepath", value: viewModel.totalAmountOfMirrors)
+            PubStatView(
+                action: {
+                // TODO
+                },
+                iconName: "message",
+                value: viewModel.totalAmountOfComments
+            )
 
-            Button {
-                Task { await viewModel.didTapUpvoteButton() }
-            } label: {
-                PubStatView(iconName: viewModel.upvoteIconName, value: viewModel.totalUpvotes)
-            }
-            .buttonStyle(.plain)
+            PubStatView(
+                action: {
+                // TODO
+                },
+                iconName: "arrow.2.squarepath",
+                value: viewModel.totalAmountOfMirrors
+            )
 
-            PubStatView(iconName: "square.stack", value: viewModel.totalAmountOfCollects)
+            PubStatView(
+                action: {
+                    Task { await viewModel.didTapUpvoteButton() }
+                },
+                iconName: viewModel.upvoteIconName,
+                value: viewModel.totalUpvotes,
+                isActive: $viewModel.isUpvoted,
+                activeTintColor: .red
+            )
+
+            PubStatView(
+                action: {
+                // TODO
+                },
+                iconName: "square.stack",
+                value: viewModel.totalAmountOfCollects
+            )
         }
-        .foregroundColor(.secondary)
         .padding(.top, 5)
     }
 
@@ -26,17 +47,5 @@ struct PubStatsView: View {
         let viewModel = PubStatsViewModel(publication: publication)
 
         return PubStatsView(viewModel: viewModel)
-    }
-}
-
-struct PubStatView: View {
-    let iconName: String
-    let value: Int
-
-    var body: some View {
-        HStack {
-            Image(systemName: iconName)
-            Text("\(value)")
-        }
     }
 }
