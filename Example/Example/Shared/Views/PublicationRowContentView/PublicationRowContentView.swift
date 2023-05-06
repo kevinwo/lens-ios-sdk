@@ -39,7 +39,7 @@ struct PublicationRowContentView: View {
                     mediaImageUrl: viewModel.mediaImageUrl
                 )
 
-                PubStatsView(stats: viewModel.stats)
+                PubStatsView.view(publication: viewModel.publication)
             }
         }
         .onTapGesture {

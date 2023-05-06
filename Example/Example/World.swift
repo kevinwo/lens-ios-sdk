@@ -8,6 +8,7 @@ struct World {
     var feed: FeedType = Feed()
     var profiles: ProfilesType = Profiles()
     var publications: PublicationsType = Publications()
+    var reactions: ReactionsType = Reactions()
     var wallet: WalletType = Wallet()
 }
 

@@ -2,17 +2,30 @@ import Lens
 import SwiftUI
 
 struct PubStatsView: View {
-    let stats: PublicationStats
+    @StateObject var viewModel: PubStatsViewModel
 
     var body: some View {
         HStack(spacing: 26) {
-            PubStatView(iconName: "message", value: stats.totalAmountOfComments)
-            PubStatView(iconName: "arrow.2.squarepath", value: stats.totalAmountOfMirrors)
-            PubStatView(iconName: "heart", value: stats.totalUpvotes)
-            PubStatView(iconName: "square.stack", value: stats.totalAmountOfCollects)
+            PubStatView(iconName: "message", value: viewModel.totalAmountOfComments)
+            PubStatView(iconName: "arrow.2.squarepath", value: viewModel.totalAmountOfMirrors)
+
+            Button {
+                Task { await viewModel.didTapUpvoteButton() }
+            } label: {
+                PubStatView(iconName: viewModel.upvoteIconName, value: viewModel.totalUpvotes)
+            }
+            .buttonStyle(.plain)
+
+            PubStatView(iconName: "square.stack", value: viewModel.totalAmountOfCollects)
         }
         .foregroundColor(.secondary)
         .padding(.top, 5)
+    }
+
+    static func view(publication: Publication) -> some View {
+        let viewModel = PubStatsViewModel(publication: publication)
+
+        return PubStatsView(viewModel: viewModel)
     }
 }
 

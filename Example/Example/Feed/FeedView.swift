@@ -9,7 +9,9 @@ struct FeedView: View {
             case .isLoading:
                 ProgressView()
             case .noPublications:
-                Text("There are no publications to explore right now.")
+                Text("Explore content and Lens and follow new people to have posts show up right here in your feed!")
+                    .multilineTextAlignment(.center)
+                    .padding()
             case .hasPublications:
                 List {
                     ForEach(viewModel.publications) { publication in
