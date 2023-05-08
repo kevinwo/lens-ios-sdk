@@ -8,7 +8,7 @@ protocol WalletType {
     func disconnect() async throws
     func signOut() async throws
     func personalSign(message: String) async throws -> String
-    func signTypedData(_ json: String) async throws -> String
+    func signTypedDataV4(_ json: String) async throws -> String
 }
 
 final class Wallet: WalletType {
@@ -122,7 +122,7 @@ final class Wallet: WalletType {
         }
     }
 
-    func signTypedData(_ json: String) async throws -> String {
+    func signTypedDataV4(_ json: String) async throws -> String {
         let address = try await address()
 
         return try await withCheckedThrowingContinuation { continuation in

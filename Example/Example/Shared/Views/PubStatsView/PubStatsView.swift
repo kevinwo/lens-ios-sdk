@@ -8,7 +8,7 @@ struct PubStatsView: View {
         HStack(spacing: 26) {
             PubStatView(
                 action: {
-                // TODO
+                    // TODO
                 },
                 iconName: "message",
                 value: viewModel.totalAmountOfComments
@@ -16,7 +16,7 @@ struct PubStatsView: View {
 
             PubStatView(
                 action: {
-                // TODO
+                    // TODO
                 },
                 iconName: "arrow.2.squarepath",
                 value: viewModel.totalAmountOfMirrors
@@ -34,10 +34,12 @@ struct PubStatsView: View {
 
             PubStatView(
                 action: {
-                // TODO
+                    Task { await viewModel.didTapCollectButton() }
                 },
-                iconName: "square.stack",
-                value: viewModel.totalAmountOfCollects
+                iconName: viewModel.collectIconName,
+                value: viewModel.totalAmountOfCollects,
+                isActive: $viewModel.isCollected,
+                activeTintColor: .blue
             )
         }
         .padding(.top, 5)

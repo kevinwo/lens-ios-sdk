@@ -10,6 +10,7 @@ struct World {
     var publications: PublicationsType = Publications()
     var reactions: ReactionsType = Reactions()
     var wallet: WalletType = Wallet()
+    var transactions = Transactions()
 }
 
 #if DEBUG

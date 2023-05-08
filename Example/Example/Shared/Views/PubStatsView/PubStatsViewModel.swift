@@ -8,10 +8,16 @@ final class PubStatsViewModel: ObservableObject {
     @Published var totalUpvotes: Int
     @Published var totalAmountOfComments: Int
     @Published var totalAmountOfMirrors: Int
+
+    @Published var isCollected: Bool = false
     @Published var totalAmountOfCollects: Int
 
     var upvoteIconName: String {
         isUpvoted ? "heart.fill" : "heart"
+    }
+
+    var collectIconName: String {
+        isUpvoted ? "square.stack.fill" : "square.stack"
     }
 
     let publication: Publication
@@ -26,6 +32,7 @@ final class PubStatsViewModel: ObservableObject {
 
         totalAmountOfComments = publication.stats.totalAmountOfComments
         totalAmountOfMirrors = publication.stats.totalAmountOfMirrors
+
         totalAmountOfCollects = publication.stats.totalAmountOfCollects
     }
 
@@ -60,6 +67,27 @@ final class PubStatsViewModel: ObservableObject {
         }
     }
 
+    @MainActor
+    func didTapCollectButton() async {
+        /// We optimistically toggle the collect state
+        toggleCollected()
+
+        Task {
+            do {
+                let request = CreateCollectRequest(publicationId: publication.publicationId)
+                let response = try await Current.publications.createCollectTypedData(request: request)
+                let signature = try await Current.wallet.signTypedDataV4(response.typedData)
+
+                let broadcastRequest = BroadcastRequest(id: response.broadcastId, signature: signature)
+                let txHash = try await Current.transactions.broadcast(request: broadcastRequest)
+                // TODO: Handle next steps in UI
+            } catch {
+                /// If collect fails to save, we revert the collect state
+                toggleCollected()
+            }
+        }
+    }
+
     // MARK: - Private interface
 
     private func toggleUpvoted() {
@@ -69,6 +97,16 @@ final class PubStatsViewModel: ObservableObject {
             totalUpvotes += 1
         } else {
             totalUpvotes -= 1
+        }
+    }
+
+    private func toggleCollected() {
+        isCollected = !isCollected
+
+        if isCollected {
+            totalAmountOfCollects += 1
+        } else {
+            totalAmountOfCollects -= 1
         }
     }
 }
