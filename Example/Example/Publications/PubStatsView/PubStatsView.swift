@@ -41,6 +41,11 @@ struct PubStatsView: View {
                 isActive: $viewModel.isCollected,
                 activeTintColor: .blue
             )
+            .alert(
+                "You've already collected this!",
+                isPresented: $viewModel.alreadyCollectedAlertIsPresented,
+                actions: { Button("OK"){} }
+            )
         }
         .padding(.top, 5)
     }

@@ -12,6 +12,8 @@ final class PubStatsViewModel: ObservableObject {
     @Published var isCollected: Bool = false
     @Published var totalAmountOfCollects: Int
 
+    @Published var alreadyCollectedAlertIsPresented: Bool = false
+
     var upvoteIconName: String {
         isUpvoted ? "heart.fill" : "heart"
     }
@@ -70,6 +72,11 @@ final class PubStatsViewModel: ObservableObject {
 
     @MainActor
     func didTapCollectButton() async {
+        guard !isCollected else {
+            alreadyCollectedAlertIsPresented = true
+            return
+        }
+
         /// We optimistically toggle the collect state
         toggleCollected()
 
