@@ -81,7 +81,8 @@ final class PubStatsViewModel: ObservableObject {
 
                 let broadcastRequest = BroadcastRequest(id: response.broadcastId, signature: signature)
                 let txHash = try await Current.transactions.broadcast(request: broadcastRequest)
-                // TODO: Handle next steps in UI
+                print("SUCCESS")
+                print(txHash)
             } catch {
                 /// If collect fails to save, we revert the collect state
                 toggleCollected()
