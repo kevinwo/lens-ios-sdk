@@ -1,3 +1,4 @@
+import SnapshotTesting
 import XCTest
 @testable import Lens
 
@@ -58,5 +59,26 @@ final class PublicationsTests: XCTestCase {
 
         // it should have a publication
         XCTAssertNotNil(response.publication)
+    }
+
+    @MainActor
+    func test_createCollectTypedData() async throws {
+        // given
+        let publicationId = "0x012345"
+        let request = CreateCollectRequest(publicationId: publicationId)
+        let expectedResults = try Stubs.Publication.createCollectTypedData()
+        mockLensClient.stubbedRequestMutationData = expectedResults
+
+        // when
+        let response = try await publications.createCollectTypedData(request: request)
+
+        // then
+        // it should have a broadcast ID
+        XCTAssertEqual(response.broadcastId, expectedResults.result.id)
+
+        // it should generate valid collect typed data
+        let typedData = try XCTUnwrap(response.typedData.data(using: .utf8))
+        let json = try JSONSerialization.jsonObject(with: typedData)
+        assertSnapshot(matching: json, as: .json)
     }
 }

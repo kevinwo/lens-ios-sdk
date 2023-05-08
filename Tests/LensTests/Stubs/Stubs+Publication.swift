@@ -151,6 +151,58 @@ extension Stubs {
             """.data(using: .utf8)!
         }
 
+        static func createCollectTypedData200ResponseJSON() -> Data {
+            """
+            {
+              "data": {
+                "result": {
+                  "id": "32d94413-90e2-40a2-aa73-0a55c30a9839",
+                  "expiresAt": "2022-02-24T11:34:59.000Z",
+                  "typedData": {
+                    "types": {
+                      "CollectWithSig": [
+                        {
+                          "name": "profileId",
+                          "type": "uint256"
+                        },
+                        {
+                          "name": "pubId",
+                          "type": "uint256"
+                        },
+                        {
+                          "name": "data",
+                          "type": "bytes"
+                        },
+                        {
+                          "name": "nonce",
+                          "type": "uint256"
+                        },
+                        {
+                          "name": "deadline",
+                          "type": "uint256"
+                        }
+                      ]
+                    },
+                    "domain": {
+                      "name": "Lens Protocol Profile",
+                      "chainId": 80001,
+                      "version": "1",
+                      "verifyingContract": "0x23C1ce2b0865406955Da08F1D31c13fcc3f72A3a"
+                    },
+                    "value": {
+                      "nonce": 0,
+                      "deadline": 1645702499,
+                      "profileId": "0x1d",
+                      "pubId": "0x01",
+                      "data": "0x"
+                    }
+                  }
+                }
+              }
+            }
+            """.data(using: .utf8)!
+        }
+
         static func fetchAllPublications() throws -> PublicationsQuery.Data {
             let data = fetchAll200ResponseJSON()
             var dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
@@ -190,6 +242,25 @@ extension Stubs {
             let json = JSONValue(dict["data"])
 
             return PublicationQuery.Data(
+                _dataDict: .init(
+                    data: try .init(_jsonValue: json)
+                )
+            )
+        }
+
+        static func createCollectTypedData() throws -> CreateCollectTypedDataMutation.Data {
+            let data = createCollectTypedData200ResponseJSON()
+            var dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
+            var dictData = try XCTUnwrap(dict["data"] as? [String: AnyHashable])
+            var result = try XCTUnwrap(dictData["result"] as? [String: AnyHashable])
+            result["__fulfilled"] = Set([ObjectIdentifier(CreateCollectTypedDataMutation.Data.Result.self)])
+
+            dictData["result"] = result
+            dict["data"] = dictData
+
+            let json = JSONValue(dict["data"])
+
+            return CreateCollectTypedDataMutation.Data(
                 _dataDict: .init(
                     data: try .init(_jsonValue: json)
                 )

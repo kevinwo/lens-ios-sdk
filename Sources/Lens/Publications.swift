@@ -3,6 +3,7 @@ import Foundation
 public protocol PublicationsType {
     func fetchAll(request: PublicationsQueryRequest, observerId: String?) async throws -> PublicationsResponse
     func fetch(request: PublicationQueryRequest, observerId: String?) async throws -> PublicationResponse
+    func createCollectTypedData(request: CreateCollectRequest) async throws -> CreateCollectTypedDataResponse
 }
 
 /**
@@ -74,6 +75,31 @@ public final class Publications: PublicationsType {
 
         return PublicationResponse(publication: data.publication)
     }
+
+    /**
+     Creates typed data for collecting a publication.
+
+     When a user does not have a dispatcher enabled for their wallet, they can still collect a publication by signing collect typed data and broadcasting. This method creates the typed data for the user to sign.
+
+     You create a request using criteria for collecting a publication. For example, given a publication ID, to create collect typed data for a publication, you could do the following:
+
+     ```swift
+     let publications = Publications()
+     let publicationId = "0x12345"
+     let request = CreateCollectRequest(publicationId: publicationId)
+     let response = try await publications.createCollectTypedData(request: request)
+     ```
+
+     - Parameter request: The request parameters to use when creating collect typed data
+     - Throws: An error if there is a problem with the mutation operation.
+     - Returns: A response containing the broadcast ID and the typed data to sign
+     */
+    public func createCollectTypedData(request: CreateCollectRequest) async throws -> CreateCollectTypedDataResponse {
+        let mutation = CreateCollectTypedDataMutation(request: request, options: .null)
+        let data = try await client.request(mutation: mutation)
+
+        return try CreateCollectTypedDataResponse(result: data.result)
+    }
 }
 
 // MARK: - Responses
@@ -98,5 +124,83 @@ public struct PublicationResponse: Equatable {
         }
 
         self.publication = Publication.fromItem(publication)
+    }
+}
+
+public struct CreateCollectTypedDataResponse: Equatable {
+    // MARK: - Enums
+
+    enum Error: Swift.Error {
+        case invalidJsonString
+    }
+
+    // MARK: - Properties
+
+    /// Used to broadcast a gasless transaction for collecting a publication after the user has signed the collect typed data
+    public let broadcastId: String
+
+    /// Typed data representing the publication to collect, which the user will sign with their wallet
+    public let typedData: String
+
+    // MARK: - Object life cycle
+
+    init(result: CreateCollectTypedDataMutation.Data.Result) throws {
+        func cleanTypedDataDict(_ dict: [String: Any]) -> [String: Any] {
+            var cleanedDict = dict
+            for (key, value) in cleanedDict {
+                if ["chainId", "nonce", "deadline"].contains(key), let value = value as? String {
+                    /// Various values in the GraphQL response come back as string, but we need them to be integers for the typed data to be valid.
+                    cleanedDict[key] = Int(value)
+                } else if ["__typename", "__fulfilled"].contains(key) {
+                    /// The GraphQL response muddies the typed data structure with GraphQL-specific data, so we need to remove this in order to avoid sending malformed data to a wallet for signing.
+                    cleanedDict.removeValue(forKey: key)
+                } else if let nestedDict = value as? [String: Any] {
+                    cleanedDict[key] = cleanTypedDataDict(nestedDict)
+                } else if let nestedArray = value as? [[String: Any]] {
+                    cleanedDict[key] = nestedArray.map { cleanTypedDataDict($0) }
+                }
+            }
+            return cleanedDict
+        }
+
+        let typedData = result.typedData
+        let domain = cleanTypedDataDict(typedData.domain.__data._data)
+        var types = cleanTypedDataDict(typedData.types.__data._data)
+        let value = cleanTypedDataDict(typedData.value.__data._data)
+
+        /// The domain types are not included in the types dictionary, so we need to add it manually for the typed data to be value
+        types["EIP712Domain"] = [
+            [
+                "name": "name",
+                "type": "string"
+            ],
+            [
+                "name": "version",
+                "type": "string"
+            ],
+            [
+                "name": "chainId",
+                "type": "uint256"
+            ],
+            [
+                "name": "verifyingContract",
+                "type": "address"
+            ]
+        ]
+
+        let dict: [String: Any] = [
+            "domain": domain,
+            "types": types,
+            "message": value,
+            "primaryType": "CollectWithSig"
+        ]
+        let jsonData = try JSONSerialization.data(withJSONObject: dict)
+
+        guard let jsonString = String(data: jsonData, encoding: .utf8) else {
+            throw Error.invalidJsonString
+        }
+
+        self.broadcastId = result.id
+        self.typedData = jsonString
     }
 }
