@@ -96,6 +96,10 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "CollectedEvent": return Lens.Objects.CollectedEvent
     case "ReactionEvent": return Lens.Objects.ReactionEvent
     case "AuthenticationResult": return Lens.Objects.AuthenticationResult
+    case "NFTsResult": return Lens.Objects.NFTsResult
+    case "NFT": return Lens.Objects.NFT
+    case "Owner": return Lens.Objects.Owner
+    case "NFTContent": return Lens.Objects.NFTContent
     case "TransactionReceipt": return Lens.Objects.TransactionReceipt
     case "Log": return Lens.Objects.Log
     case "Wallet": return Lens.Objects.Wallet
