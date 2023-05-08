@@ -14,7 +14,8 @@ struct PrimaryButton: View {
     var body: some View {
         Button(action: action) {
             if let isProgressing, isProgressing.wrappedValue {
-                ProgressView()
+                ProgressView().progressViewStyle(CircularProgressViewStyle(tint: .white))
+
             } else {
                 Text(title)
             }

@@ -66,6 +66,8 @@
 		21DB4DA02A004EAD00780876 /* PublicationRowDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4D9F2A004EAD00780876 /* PublicationRowDestination.swift */; };
 		21DB4DA32A018C5400780876 /* PublicationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4DA22A018C5400780876 /* PublicationsView.swift */; };
 		21DB4DA52A018C6000780876 /* PublicationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DB4DA42A018C6000780876 /* PublicationsViewModel.swift */; };
+		21E2B2552A097DA400F45FD1 /* ConfirmCollectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E2B2542A097DA400F45FD1 /* ConfirmCollectView.swift */; };
+		21E2B2572A098F5B00F45FD1 /* ConfirmCollectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E2B2562A098F5B00F45FD1 /* ConfirmCollectViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +137,8 @@
 		21DB4D9F2A004EAD00780876 /* PublicationRowDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationRowDestination.swift; sourceTree = "<group>"; };
 		21DB4DA22A018C5400780876 /* PublicationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationsView.swift; sourceTree = "<group>"; };
 		21DB4DA42A018C6000780876 /* PublicationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationsViewModel.swift; sourceTree = "<group>"; };
+		21E2B2542A097DA400F45FD1 /* ConfirmCollectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmCollectView.swift; sourceTree = "<group>"; };
+		21E2B2562A098F5B00F45FD1 /* ConfirmCollectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmCollectViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -440,6 +444,7 @@
 		21DB4DA12A018C4500780876 /* Publications */ = {
 			isa = PBXGroup;
 			children = (
+				21E2B2532A097D8A00F45FD1 /* Collect */,
 				21DB4D6D29FBD14200780876 /* ThreadView */,
 				21DB4D4629F5CBA100780876 /* PubStatsView */,
 				219F876E29E897B2004B55C2 /* PubBylineView */,
@@ -461,6 +466,15 @@
 				21C1284A29F3114100E813ED /* PublicationRowModel.swift */,
 			);
 			path = PublicationRow;
+			sourceTree = "<group>";
+		};
+		21E2B2532A097D8A00F45FD1 /* Collect */ = {
+			isa = PBXGroup;
+			children = (
+				21E2B2542A097DA400F45FD1 /* ConfirmCollectView.swift */,
+				21E2B2562A098F5B00F45FD1 /* ConfirmCollectViewModel.swift */,
+			);
+			path = Collect;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -603,12 +617,14 @@
 				21B408FB2A06C36B0008D23A /* PubStatsViewModel.swift in Sources */,
 				21DB4D6F29FBD15900780876 /* ThreadView.swift in Sources */,
 				219F876D29E894B8004B55C2 /* KFImage+Example.swift in Sources */,
+				21E2B2572A098F5B00F45FD1 /* ConfirmCollectViewModel.swift in Sources */,
 				211E0E3329EDFA2200EBE5CB /* Wallet.swift in Sources */,
 				219F877329E898D1004B55C2 /* PubContentView.swift in Sources */,
 				21DB4D7329FC12B700780876 /* VerticalLine.swift in Sources */,
 				21BEB5CD29E6F273008BC970 /* ExplorePublicationsView.swift in Sources */,
 				219F876529E88C6F004B55C2 /* Formatters.swift in Sources */,
 				21DB4D6A29F997D500780876 /* HeadingText.swift in Sources */,
+				21E2B2552A097DA400F45FD1 /* ConfirmCollectView.swift in Sources */,
 				219F877029E897BD004B55C2 /* PubBylineView.swift in Sources */,
 				21DB4D9929FEFD8600780876 /* BackButton.swift in Sources */,
 				219F876329E87BBD004B55C2 /* CommentRowModel.swift in Sources */,
@@ -783,10 +799,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevinwolkober.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -821,10 +837,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevinwolkober.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";

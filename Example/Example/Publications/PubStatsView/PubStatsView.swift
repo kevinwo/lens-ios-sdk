@@ -34,13 +34,23 @@ struct PubStatsView: View {
 
             PubStatView(
                 action: {
-                    Task { await viewModel.didTapCollectButton() }
+                    viewModel.didTapCollectButton()
                 },
                 iconName: viewModel.collectIconName,
                 value: viewModel.totalAmountOfCollects,
                 isActive: $viewModel.isCollected,
                 activeTintColor: .blue
             )
+            .sheet(isPresented: $viewModel.confirmCollectModalIsPresented) {
+                ConfirmCollectView.view(
+                    publication: viewModel.publication,
+                    onCollectComplete: { txHash in
+                        viewModel.didCollect(txHash: txHash)
+                    }
+                )
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.hidden)
+            }
             .alert(
                 "You've already collected this!",
                 isPresented: $viewModel.alreadyCollectedAlertIsPresented,

@@ -12,6 +12,8 @@ final class PubStatsViewModel: ObservableObject {
     @Published var isCollected: Bool = false
     @Published var totalAmountOfCollects: Int
 
+    @Published var confirmCollectModalIsPresented: Bool = false
+
     @Published var alreadyCollectedAlertIsPresented: Bool = false
 
     var upvoteIconName: String {
@@ -50,51 +52,38 @@ final class PubStatsViewModel: ObservableObject {
         /// We optimistically toggle the upvote state
         toggleUpvoted()
 
-        Task {
-            do {
-                let request = ReactionRequest(
-                    profileId: profileId,
-                    reaction: .init(.upvote),
-                    publicationId: publication.publicationId
-                )
+        do {
+            let request = ReactionRequest(
+                profileId: profileId,
+                reaction: .init(.upvote),
+                publicationId: publication.publicationId
+            )
 
-                if isUpvoted {
-                    try await Current.reactions.add(request: request)
-                } else {
-                    try await Current.reactions.remove(request: request)
-                }
-            } catch {
-                /// If upvote fails to save, we revert the upvote state
-                toggleUpvoted()
+            if isUpvoted {
+                try await Current.reactions.add(request: request)
+            } else {
+                try await Current.reactions.remove(request: request)
             }
+        } catch {
+            /// If upvote fails to save, we revert the upvote state
+            toggleUpvoted()
         }
     }
 
-    @MainActor
-    func didTapCollectButton() async {
+    func didTapCollectButton() {
         guard !isCollected else {
             alreadyCollectedAlertIsPresented = true
             return
         }
 
-        /// We optimistically toggle the collect state
-        toggleCollected()
+        confirmCollectModalIsPresented = true
+    }
 
-        Task {
-            do {
-                let request = CreateCollectRequest(publicationId: publication.publicationId)
-                let response = try await Current.publications.createCollectTypedData(request: request)
-                let signature = try await Current.wallet.signTypedDataV4(response.typedData)
-
-                let broadcastRequest = BroadcastRequest(id: response.broadcastId, signature: signature)
-                let txHash = try await Current.transactions.broadcast(request: broadcastRequest)
-                print("SUCCESS")
-                print(txHash)
-            } catch {
-                /// If collect fails to save, we revert the collect state
-                toggleCollected()
-            }
-        }
+    func didCollect(txHash: String) {
+        isCollected = true
+        totalAmountOfCollects += 1
+        confirmCollectModalIsPresented = false
+        // TODO: Maybe display a toast with the option to check the transaction status
     }
 
     // MARK: - Private interface
@@ -106,16 +95,6 @@ final class PubStatsViewModel: ObservableObject {
             totalUpvotes += 1
         } else {
             totalUpvotes -= 1
-        }
-    }
-
-    private func toggleCollected() {
-        isCollected = !isCollected
-
-        if isCollected {
-            totalAmountOfCollects += 1
-        } else {
-            totalAmountOfCollects -= 1
         }
     }
 }
