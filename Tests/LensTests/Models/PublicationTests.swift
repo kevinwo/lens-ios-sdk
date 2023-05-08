@@ -30,6 +30,7 @@ final class PublicationTests: XCTestCase {
         XCTAssertEqual(post.stats.totalAmountOfMirrors, postItem?.stats.totalAmountOfMirrors)
         XCTAssertEqual(post.stats.totalAmountOfCollects, postItem?.stats.totalAmountOfCollects)
         XCTAssertEqual(post.stats.totalAmountOfComments, postItem?.stats.totalAmountOfComments)
+        XCTAssertEqual(post.hasCollectedByMe, postItem?.hasCollectedByMe)
     }
 
     func test_fromItem_whenItemIsAComment() throws {
@@ -59,6 +60,7 @@ final class PublicationTests: XCTestCase {
         XCTAssertEqual(comment.stats.totalAmountOfMirrors, commentItem?.stats.totalAmountOfMirrors)
         XCTAssertEqual(comment.stats.totalAmountOfCollects, commentItem?.stats.totalAmountOfCollects)
         XCTAssertEqual(comment.stats.totalAmountOfComments, commentItem?.stats.totalAmountOfComments)
+        XCTAssertEqual(comment.hasCollectedByMe, commentItem?.hasCollectedByMe)
         // TODO: Restore main post check after fixing GraphQL fulfillment for main post in tests
 //        XCTAssertNotNil((comment as? Comment)?.mainPost)
     }

@@ -33,6 +33,7 @@ final class PubStatsViewModel: ObservableObject {
         totalAmountOfComments = publication.stats.totalAmountOfComments
         totalAmountOfMirrors = publication.stats.totalAmountOfMirrors
 
+        isCollected = publication.hasCollectedByMe
         totalAmountOfCollects = publication.stats.totalAmountOfCollects
     }
 
