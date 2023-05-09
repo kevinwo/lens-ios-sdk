@@ -31,6 +31,12 @@ public struct NFT: Identifiable {
     }
 }
 
+extension NFT: Equatable {
+    public static func == (lhs: NFT, rhs: NFT) -> Bool {
+        lhs.contractAddress == rhs.contractAddress && lhs.tokenId == rhs.tokenId
+    }
+}
+
 protocol SomeNFT {
     associatedtype O: NFTOwner
     associatedtype OC: NFTOriginalContent

@@ -18,6 +18,8 @@ final class ExplorePublicationsViewModel: ObservableObject {
     @Published var sortCriteria: PublicationSortCriteria = .topCommented
     @Published var pageInfo: PageInfo?
 
+    // MARK: - Internal interface
+
     @MainActor
     func onAppear() async {
         if publications.isEmpty {

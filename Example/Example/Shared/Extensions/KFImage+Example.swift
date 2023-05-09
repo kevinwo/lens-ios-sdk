@@ -72,4 +72,16 @@ extension KFImage {
             }
             .aspectRatio(contentMode: .fit)
     }
+
+    func nftMediaImage() -> some View {
+        self
+            .resizable()
+            .placeholder { _ in
+                Rectangle()
+                    .foregroundColor(.gray)
+                    .cornerRadius(Constants.mediaImageCornerRadius)
+            }
+            .clipShape(RoundedRectangle(cornerRadius: Constants.mediaImageCornerRadius))
+            .aspectRatio(contentMode: .fill)
+    }
 }

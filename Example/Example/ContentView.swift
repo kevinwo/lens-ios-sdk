@@ -29,6 +29,14 @@ struct ContentView: View {
                     .tabItem {
                         Label("Explore", systemImage: "magnifyingglass")
                     }
+
+                    NavigationView {
+                        UserNftsView.view()
+                            .navigationBarItems(trailing: leftNavigationItem)
+                    }
+                    .tabItem {
+                        Label("Collectibles", systemImage: "square.stack")
+                    }
                 }
             case .unauthenticated:
                 NavigationView {

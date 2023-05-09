@@ -11,6 +11,7 @@ struct World {
     var reactions: ReactionsType = Reactions()
     var wallet: WalletType = Wallet()
     var transactions = Transactions()
+    var nfts = Nfts()
 }
 
 #if DEBUG
