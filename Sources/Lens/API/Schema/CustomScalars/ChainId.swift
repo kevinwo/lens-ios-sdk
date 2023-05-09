@@ -7,4 +7,4 @@
 
 import ApolloAPI
 
-public typealias ChainId = String
+public typealias ChainId = Int

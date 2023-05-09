@@ -26,7 +26,7 @@ public class Nfts: NftsType {
      ```swift
      let nfts = Nfts()
      let ownerAddress = "0x0c0E611A29b339D8c1048F2Edf9d4160A5fb8F22"
-     let chainId = "1"
+     let chainId = 137
      let request = NFTsRequest(ownerAddress: ownerAddress, chainIds: [chainId])
      let response = try await nfts.fetch(request: request)
      ```

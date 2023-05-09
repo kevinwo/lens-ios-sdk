@@ -24,7 +24,7 @@ final class NftsTests: XCTestCase {
     func test_fetch() async throws {
         // given
         let walletAddress = "0x0c0E611A29b339D8c1048F2Edf9d4160A5fb8F22"
-        let chainId = "1"
+        let chainId = 137
         let request = NFTsRequest(ownerAddress: walletAddress, chainIds: [chainId])
 
         let expectedResults = try Stubs.Nfts.fetch()

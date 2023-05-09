@@ -13,7 +13,7 @@ public protocol NFT {
     var description: String { get }
     var contentURI: String { get }
     var originalContent: OC { get }
-    var chainId: String { get }
+    var chainId: Int { get }
     var collectionName: String { get }
     var ercType: String { get }
 }
