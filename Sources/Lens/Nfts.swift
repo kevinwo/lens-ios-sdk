@@ -44,11 +44,11 @@ public class Nfts: NftsType {
 }
 
 public struct NftsResponse {
-    public let items: [any NFT]
+    public let items: [NFT]
     public let pageInfo: PageInfo?
 
     init(response: NftsQuery.Data.Nfts) {
-        self.items = response.items
+        self.items = response.items.map { NFT(nft: $0) }
         self.pageInfo = PageInfo(dataDict: response.pageInfo.__data)
     }
 }

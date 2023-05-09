@@ -1,6 +1,37 @@
 import Foundation
 
-public protocol NFT {
+public struct NFT: Identifiable {
+    public let id = UUID()
+    public let contractName: String
+    public let contractAddress: String
+    public let symbol: String
+    public let tokenId: String
+    public let owners: [any NFTOwner]
+    public let name: String
+    public let description: String
+    public let contentURI: String
+    public let originalContent: any NFTOriginalContent
+    public let chainId: Int
+    public let collectionName: String
+    public let ercType: String
+
+    init(nft: any SomeNFT) {
+        self.contractName = nft.contractName
+        self.contractAddress = nft.contractAddress
+        self.symbol = nft.symbol
+        self.tokenId = nft.tokenId
+        self.owners = nft.owners
+        self.name = nft.name
+        self.description = nft.description
+        self.contentURI = nft.contentURI
+        self.originalContent = nft.originalContent
+        self.chainId = nft.chainId
+        self.collectionName = nft.collectionName
+        self.ercType = nft.ercType
+    }
+}
+
+protocol SomeNFT {
     associatedtype O: NFTOwner
     associatedtype OC: NFTOriginalContent
 
@@ -18,7 +49,7 @@ public protocol NFT {
     var ercType: String { get }
 }
 
-extension NftsQuery.Data.Nfts.Item: NFT {}
+extension NftsQuery.Data.Nfts.Item: SomeNFT {}
 
 
 public protocol NFTOwner {
