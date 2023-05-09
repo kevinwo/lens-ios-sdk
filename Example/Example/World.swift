@@ -9,7 +9,11 @@ struct World {
     var profiles: ProfilesType = Profiles()
     var publications: PublicationsType = Publications()
     var reactions: ReactionsType = Reactions()
+    #if os(macOS)
+    var wallet: WalletType = MacWallet()
+    #else
     var wallet: WalletType = Wallet()
+    #endif
     var transactions = Transactions()
     var nfts = Nfts()
 }

@@ -24,12 +24,14 @@ struct CreateProfileView: View {
                 prompt: Text("coolhandle")
             )
             .textFieldStyle(.roundedBorder)
-            .autocapitalization(.none)
             .autocorrectionDisabled(true)
             .textContentType(.none)
             .multilineTextAlignment(.center)
             .disabled(viewModel.isCreating)
             .padding()
+            #if !os(macOS)
+            .autocapitalization(.none)
+            #endif
 
             Spacer()
 

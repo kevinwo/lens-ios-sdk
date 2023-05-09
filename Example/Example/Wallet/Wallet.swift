@@ -1,16 +1,20 @@
 import Foundation
+#if !os(macOS)
 import MagicSDK
 import MagicSDK_Web3
+#endif
 
 protocol WalletType {
     func address() async throws -> String
     func isSignedIn() async -> Bool
+    func signIn() async throws -> String
     func disconnect() async throws
     func signOut() async throws
     func personalSign(message: String) async throws -> String
     func signTypedDataV4(_ json: String) async throws -> String
 }
 
+#if !os(macOS)
 final class Wallet: WalletType {
     // MARK: - Enums
 
@@ -26,6 +30,7 @@ final class Wallet: WalletType {
     // MARK: - Properties
 
     private let magic: Magic! = Magic.shared
+    private var cachedAddress: String?
 
     // MARK: - Internal interface
 
@@ -35,13 +40,18 @@ final class Wallet: WalletType {
     }
 
     func address() async throws -> String {
+        if let cachedAddress {
+            return cachedAddress
+        }
+
         return try await withCheckedThrowingContinuation { continuation in
             _ = magic.user.getMetadata()
-                .done { metadata in
+                .done { [weak self] metadata in
                     guard let address = metadata.publicAddress else {
                         continuation.resume(throwing: Error.failedToFetchAddress)
                         return
                     }
+                    self?.cachedAddress = address
                     continuation.resume(with: .success(address))
                 }
                 .catch { error in
@@ -74,8 +84,9 @@ final class Wallet: WalletType {
 
     func disconnect() async throws {
         return try await withCheckedThrowingContinuation { continuation in
-            magic.wallet.disconnect { resp in
+            magic.wallet.disconnect { [weak self] resp in
                 if resp.status.isSuccess {
+                    self?.cachedAddress = nil
                     continuation.resume(with: .success(()))
                 } else {
                     continuation.resume(throwing: Error.failedToDisconnect)
@@ -146,3 +157,31 @@ final class Wallet: WalletType {
         }
     }
 }
+#else
+// TODO: Implementation
+final class MacWallet: WalletType {
+    func address() async throws -> String {
+        ""
+    }
+
+    func isSignedIn() async -> Bool {
+        return false
+    }
+
+    func signIn() async throws -> String {
+        ""
+    }
+
+    func disconnect() async throws {}
+
+    func signOut() async throws {}
+
+    func personalSign(message: String) async throws -> String {
+        ""
+    }
+
+    func signTypedDataV4(_ json: String) async throws -> String {
+        ""
+    }
+}
+#endif

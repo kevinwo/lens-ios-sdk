@@ -12,7 +12,7 @@
 		2118D86D29E31C85006753C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2118D86C29E31C85006753C0 /* Assets.xcassets */; };
 		2118D87129E31C85006753C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2118D87029E31C85006753C0 /* Preview Assets.xcassets */; };
 		2118D87929E31F8C006753C0 /* Lens in Frameworks */ = {isa = PBXBuildFile; productRef = 2118D87829E31F8C006753C0 /* Lens */; };
-		211E0E2E29EDD55200EBE5CB /* MagicSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 211E0E2D29EDD55200EBE5CB /* MagicSDK */; };
+		211E0E2E29EDD55200EBE5CB /* MagicSDK in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 211E0E2D29EDD55200EBE5CB /* MagicSDK */; };
 		211E0E3029EDEE5200EBE5CB /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211E0E2F29EDEE5200EBE5CB /* ContentViewModel.swift */; };
 		211E0E3329EDFA2200EBE5CB /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211E0E3229EDFA2200EBE5CB /* Wallet.swift */; };
 		212D130829E710C30094560E /* ExplorePublicationsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D130729E710C30094560E /* ExplorePublicationsViewModelTests.swift */; };
@@ -26,6 +26,7 @@
 		214479D929F1A19B0087D192 /* CreateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214479D829F1A19B0087D192 /* CreateProfileView.swift */; };
 		214479DB29F1A1BC0087D192 /* CreateProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214479DA29F1A1BC0087D192 /* CreateProfileViewModel.swift */; };
 		214D09B02A0ABA610051420E /* UserNftsGridItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D09AF2A0ABA610051420E /* UserNftsGridItemViewModel.swift */; };
+		214D09B22A0AF1EF0051420E /* MacContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D09B12A0AF1EF0051420E /* MacContentView.swift */; };
 		218E55A029EF246600EC4271 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E559F29EF246600EC4271 /* FooterView.swift */; };
 		218E55A329F0529300EC4271 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E55A229F0529300EC4271 /* AccountView.swift */; };
 		218E55A529F0C22100EC4271 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E55A429F0C22100EC4271 /* AccountViewModel.swift */; };
@@ -103,6 +104,7 @@
 		214479D829F1A19B0087D192 /* CreateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileView.swift; sourceTree = "<group>"; };
 		214479DA29F1A1BC0087D192 /* CreateProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewModel.swift; sourceTree = "<group>"; };
 		214D09AF2A0ABA610051420E /* UserNftsGridItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNftsGridItemViewModel.swift; sourceTree = "<group>"; };
+		214D09B12A0AF1EF0051420E /* MacContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacContentView.swift; sourceTree = "<group>"; };
 		218E559F29EF246600EC4271 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		218E55A229F0529300EC4271 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		218E55A429F0C22100EC4271 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				21BEB5CA29E6F25D008BC970 /* Explore */,
 				219F875329E87640004B55C2 /* Shared */,
 				2118D86829E31C82006753C0 /* ExampleApp.swift */,
+				214D09B12A0AF1EF0051420E /* MacContentView.swift */,
 				2118D86A29E31C82006753C0 /* ContentView.swift */,
 				211E0E2F29EDEE5200EBE5CB /* ContentViewModel.swift */,
 				218E559F29EF246600EC4271 /* FooterView.swift */,
@@ -633,6 +636,7 @@
 				21DB4D7129FBD16800780876 /* ThreadViewModel.swift in Sources */,
 				214479D929F1A19B0087D192 /* CreateProfileView.swift in Sources */,
 				21DB4D9629FDC25B00780876 /* ProfileViewModel.swift in Sources */,
+				214D09B22A0AF1EF0051420E /* MacContentView.swift in Sources */,
 				219F875A29E87875004B55C2 /* PublicationRow.swift in Sources */,
 				21DB4DA02A004EAD00780876 /* PublicationRowDestination.swift in Sources */,
 				21DB4D6829F9844000780876 /* CurrentUser.swift in Sources */,

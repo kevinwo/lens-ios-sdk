@@ -84,11 +84,13 @@ struct ProfileView: View {
         }
         .edgesIgnoringSafeArea(.top)
         .navigationBarBackButtonHidden(true)
+        #if !os(macOS)
         .navigationBarItems(
             leading: BackButton {
                 presentationMode.wrappedValue.dismiss()
             }
         )
+        #endif
     }
 
     // MARK: - Internal interface

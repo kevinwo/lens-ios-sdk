@@ -47,10 +47,12 @@ struct ThreadView: View {
 
             Spacer()
         }
-        .navigationBarTitle("Thread")
         .navigationBarBackButtonHidden(true)
+        #if !os(macOS)
+        .navigationBarTitle("Thread")
         .navigationBarItems(leading: BackButton {
             presentationMode.wrappedValue.dismiss()
         })
+        #endif
     }
 }

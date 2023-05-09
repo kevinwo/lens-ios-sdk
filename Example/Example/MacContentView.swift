@@ -1,11 +1,11 @@
 import SwiftUI
 
-#if !os(macOS)
-struct ContentView: View {
+#if os(macOS)
+struct MacContentView: View {
     @ObservedObject var viewModel: ContentViewModel
 
     static func scene() -> some View {
-        ContentView(viewModel: ContentViewModel())
+        MacContentView(viewModel: ContentViewModel())
     }
 
     var body: some View {
@@ -17,7 +17,6 @@ struct ContentView: View {
                 TabView {
                     NavigationView {
                         FeedView.view()
-                            .navigationBarItems(trailing: leftNavigationItem)
                     }
                     .tabItem {
                         Label("Feed", systemImage: "house")
@@ -25,7 +24,6 @@ struct ContentView: View {
 
                     NavigationView {
                         ExplorePublicationsView()
-                            .navigationBarItems(trailing: leftNavigationItem)
                     }
                     .tabItem {
                         Label("Explore", systemImage: "magnifyingglass")
@@ -33,7 +31,6 @@ struct ContentView: View {
 
                     NavigationView {
                         UserNftsView.view()
-                            .navigationBarItems(trailing: leftNavigationItem)
                     }
                     .tabItem {
                         Label("Collectibles", systemImage: "square.stack")
@@ -55,7 +52,6 @@ struct ContentView: View {
                         }
 
                         ExplorePublicationsView()
-                            .navigationBarItems(trailing: leftNavigationItem)
 
                         Spacer()
                     }

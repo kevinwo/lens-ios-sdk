@@ -37,8 +37,6 @@ final class AccountViewModel: ObservableObject {
         }
     }
 
-    private let wallet = Wallet()
-
     // MARK: - Internal interface
 
     @MainActor
@@ -51,7 +49,7 @@ final class AccountViewModel: ObservableObject {
                 return
             }
 
-            let walletIsReady = await wallet.isSignedIn()
+            let walletIsReady = await Current.wallet.isSignedIn()
 
             if walletIsReady {
                 state = .walletIsReady
@@ -69,7 +67,7 @@ final class AccountViewModel: ObservableObject {
         isAuthenticating = true
 
         do {
-            let _ = try await wallet.signIn()
+            let _ = try await Current.wallet.signIn()
             await didTapSignInButton()
         } catch {
             authError = String(describing: error)
@@ -85,9 +83,9 @@ final class AccountViewModel: ObservableObject {
         isAuthenticating = true
 
         do {
-            let address = try await wallet.address()
+            let address = try await Current.wallet.address()
             let message = try await Current.authentication.challenge(address: address)
-            let signature = try await wallet.personalSign(message: message)
+            let signature = try await Current.wallet.personalSign(message: message)
             try await Current.authentication.authenticate(
                 address: address,
                 signature: signature
