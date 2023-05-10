@@ -24,10 +24,12 @@ struct UserNftsView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: Constants.lineSpacing) {
                         ForEach(viewModel.nfts) { nft in
-                            UserNftsGridItemView.view(nft: nft)
-                                .onAppear {
-                                    Task { await viewModel.onRowAppear(for: nft) }
-                                }
+                            NavigationLink(destination: UserNftDetailView.view(nft: nft)) {
+                                UserNftsGridItemView.view(nft: nft)
+                                    .onAppear {
+                                        Task { await viewModel.onRowAppear(for: nft) }
+                                    }
+                            }
                         }
                     }
                     .padding()
