@@ -6,8 +6,30 @@ struct UserNftDetailView: View {
 
     var body: some View {
         VStack {
-            Text(viewModel.title)
-                .padding()
+            Picker("Picker", selection: $viewModel.viewType) {
+                ForEach(UserNftDetailViewModel.ViewType.allCases) { viewType in
+                    Text(viewType.title)
+                        .tag(viewType)
+                }
+            }
+            .pickerStyle(.segmented)
+            .padding()
+
+            Spacer()
+
+            switch viewModel.viewType {
+            case .info:
+                UserNftDetailInfoView(
+                    title: viewModel.title,
+                    description: viewModel.description
+                )
+            case .ticket:
+                UserNftDetailTicketView()
+            case .coupon:
+                Text("Coupon view")
+            case .key:
+                Text("Key view")
+            }
         }
         .navigationTitle("NFT")
     }
