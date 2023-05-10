@@ -1,3 +1,4 @@
+import Kingfisher
 import Lens
 import SwiftUI
 
@@ -24,6 +25,16 @@ struct ConfirmCollectView: View {
                 .font(.body)
                 .foregroundColor(.gray)
                 .padding([.bottom, .leading, .trailing])
+
+            if let mediaImageUrl = viewModel.mediaImageUrl {
+                HStack {
+                    Spacer()
+                    KFImage(mediaImageUrl)
+                        .mediaImage()
+                    Spacer()
+                }
+                .padding([.leading, .trailing])
+            }
 
             Spacer()
 

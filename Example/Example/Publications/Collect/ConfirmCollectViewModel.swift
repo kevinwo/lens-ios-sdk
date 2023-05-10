@@ -15,6 +15,21 @@ final class ConfirmCollectViewModel: ObservableObject {
         publication.metadata.content
     }
 
+    var mediaImageUrl: URL? {
+        // TODO: Support multiple images
+        guard let media = publication.metadata.media.first?.original else { return nil }
+        // TODO: Support audio and video
+        guard
+            let mimeType = media.mimeType,
+            let mediaType = MediaType.fromMimeType(mimeType),
+            mediaType == .image
+        else {
+            return nil
+        }
+
+        return media.url.toIpfsUrl()
+    }
+
     let publication: Publication
     let onCollectComplete: (String) -> Void
 
