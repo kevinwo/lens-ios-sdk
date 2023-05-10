@@ -17,7 +17,11 @@ struct PrimaryButton: View {
                 ProgressView().progressViewStyle(CircularProgressViewStyle(tint: .white))
 
             } else {
-                Text(title)
+                HStack {
+                    Spacer()
+                    Text(title)
+                    Spacer()
+                }
             }
         }
         .font(.headline)

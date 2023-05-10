@@ -2,7 +2,7 @@ import SwiftUI
 
 #if !os(macOS)
 struct ContentView: View {
-    @ObservedObject var viewModel: ContentViewModel
+    @StateObject var viewModel: ContentViewModel
 
     static func scene() -> some View {
         ContentView(viewModel: ContentViewModel())
