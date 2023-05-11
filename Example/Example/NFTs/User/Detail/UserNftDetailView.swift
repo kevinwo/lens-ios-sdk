@@ -32,7 +32,13 @@ struct UserNftDetailView: View {
                     tokenId: viewModel.nft.tokenId
                 )
             case .coupon:
-                Text("Coupon view")
+                UserNftDetailCouponView.view(
+                    title: viewModel.title,
+                    subtitle: viewModel.nft.collectionName,
+                    imageUri: viewModel.nft.originalContent.uri,
+                    contractAddress: viewModel.nft.contractAddress,
+                    tokenId: viewModel.nft.tokenId
+                )
             case .key:
                 Text("Key view")
             }

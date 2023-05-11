@@ -2,7 +2,7 @@ import EFQRCode
 import Foundation
 import UIKit
 
-final class UserNftDetailTicketViewModel: ObservableObject {
+final class UserNftDetailRepresentationViewModel: ObservableObject {
     var qrCodeImage: CGImage? {
         let content = "\(contractAddress)-\(tokenId)"
         return EFQRCode.generate(for: content)

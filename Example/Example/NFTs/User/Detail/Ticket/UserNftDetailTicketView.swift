@@ -1,28 +1,26 @@
 import SwiftUI
 
 struct UserNftDetailTicketView: View {
-    @StateObject var viewModel: UserNftDetailTicketViewModel
+    @StateObject var viewModel: UserNftDetailRepresentationViewModel
 
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                if let qrCodeImage = viewModel.qrCodeImage {
-                    TicketView(
-                        title: viewModel.title,
-                        subtitle: viewModel.subtitle,
-                        imageUri: viewModel.imageUri,
-                        qrCodeImage: qrCodeImage
-                    )
-                }
-
-                Spacer()
+        VStack {
+            if let qrCodeImage = viewModel.qrCodeImage {
+                TicketView(
+                    title: viewModel.title,
+                    subtitle: viewModel.subtitle,
+                    imageUri: viewModel.imageUri,
+                    qrCodeImage: qrCodeImage
+                )
             }
+
+            Spacer()
         }
         .padding()
     }
 
     static func view(title: String, subtitle: String, imageUri: String, contractAddress: String, tokenId: String) -> some View {
-        let viewModel = UserNftDetailTicketViewModel(
+        let viewModel = UserNftDetailRepresentationViewModel(
             title: title,
             subtitle: subtitle,
             imageUri: imageUri,
