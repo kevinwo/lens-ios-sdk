@@ -20,7 +20,7 @@ public final class MockExplore: ExploreType {
 
     // MARK: - Public interface
 
-    public func publications(request: ExplorePublicationRequest) async throws -> ExplorePublicationsResponse {
+    public func publications(request: ExplorePublicationRequest, observerId: String?) async throws -> ExplorePublicationsResponse {
         invokedPublications = true
 
         if let stubbedPublicationsResults {

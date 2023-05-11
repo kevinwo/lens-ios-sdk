@@ -16,6 +16,17 @@
 		211A951A2A0C464600481EAF /* UserNftDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A95192A0C464600481EAF /* UserNftDetailViewModel.swift */; };
 		211A951D2A0C4C4500481EAF /* UserNftDetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A951C2A0C4C4500481EAF /* UserNftDetailInfoView.swift */; };
 		211A95202A0C4C6700481EAF /* UserNftDetailTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A951F2A0C4C6700481EAF /* UserNftDetailTicketView.swift */; };
+		211A95222A0C4FC900481EAF /* UserNftDetailTicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A95212A0C4FC900481EAF /* UserNftDetailTicketViewModel.swift */; };
+		211A95252A0C520400481EAF /* EFQRCode in Frameworks */ = {isa = PBXBuildFile; productRef = 211A95242A0C520400481EAF /* EFQRCode */; };
+		211A952C2A0D693C00481EAF /* TopTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A952B2A0D693C00481EAF /* TopTicketView.swift */; };
+		211A952E2A0D697B00481EAF /* TicketDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A952D2A0D697B00481EAF /* TicketDetailsView.swift */; };
+		211A95302A0D699E00481EAF /* BottomTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A952F2A0D699E00481EAF /* BottomTicketView.swift */; };
+		211A95322A0D69AF00481EAF /* FullWidthModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A95312A0D69AF00481EAF /* FullWidthModifier.swift */; };
+		211A95342A0D69C300481EAF /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A95332A0D69C300481EAF /* TicketView.swift */; };
+		211A95362A0D69D600481EAF /* CardStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A95352A0D69D600481EAF /* CardStyleModifier.swift */; };
+		211A95382A0D69E900481EAF /* DashedSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A95372A0D69E900481EAF /* DashedSeparator.swift */; };
+		211A953A2A0D69F800481EAF /* TicketShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A95392A0D69F800481EAF /* TicketShape.swift */; };
+		211A953C2A0D781000481EAF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 211A953B2A0D781000481EAF /* README.md */; };
 		211E0E2E29EDD55200EBE5CB /* MagicSDK in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 211E0E2D29EDD55200EBE5CB /* MagicSDK */; };
 		211E0E3029EDEE5200EBE5CB /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211E0E2F29EDEE5200EBE5CB /* ContentViewModel.swift */; };
 		211E0E3329EDFA2200EBE5CB /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211E0E3229EDFA2200EBE5CB /* Wallet.swift */; };
@@ -100,6 +111,16 @@
 		211A95192A0C464600481EAF /* UserNftDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNftDetailViewModel.swift; sourceTree = "<group>"; };
 		211A951C2A0C4C4500481EAF /* UserNftDetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNftDetailInfoView.swift; sourceTree = "<group>"; };
 		211A951F2A0C4C6700481EAF /* UserNftDetailTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNftDetailTicketView.swift; sourceTree = "<group>"; };
+		211A95212A0C4FC900481EAF /* UserNftDetailTicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNftDetailTicketViewModel.swift; sourceTree = "<group>"; };
+		211A952B2A0D693C00481EAF /* TopTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTicketView.swift; sourceTree = "<group>"; };
+		211A952D2A0D697B00481EAF /* TicketDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailsView.swift; sourceTree = "<group>"; };
+		211A952F2A0D699E00481EAF /* BottomTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTicketView.swift; sourceTree = "<group>"; };
+		211A95312A0D69AF00481EAF /* FullWidthModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthModifier.swift; sourceTree = "<group>"; };
+		211A95332A0D69C300481EAF /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
+		211A95352A0D69D600481EAF /* CardStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStyleModifier.swift; sourceTree = "<group>"; };
+		211A95372A0D69E900481EAF /* DashedSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedSeparator.swift; sourceTree = "<group>"; };
+		211A95392A0D69F800481EAF /* TicketShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketShape.swift; sourceTree = "<group>"; };
+		211A953B2A0D781000481EAF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		211E0E2F29EDEE5200EBE5CB /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		211E0E3229EDFA2200EBE5CB /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		212D12FC29E7104A0094560E /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				219F876829E88F27004B55C2 /* Kingfisher in Frameworks */,
+				211A95252A0C520400481EAF /* EFQRCode in Frameworks */,
 				2118D87929E31F8C006753C0 /* Lens in Frameworks */,
 				211E0E2E29EDD55200EBE5CB /* MagicSDK in Frameworks */,
 				21C1284329F2D32E00E813ED /* FluidGradient in Frameworks */,
@@ -283,9 +305,27 @@
 		211A951E2A0C4C4E00481EAF /* Ticket */ = {
 			isa = PBXGroup;
 			children = (
+				211A952A2A0D693000481EAF /* TicketView */,
 				211A951F2A0C4C6700481EAF /* UserNftDetailTicketView.swift */,
+				211A95212A0C4FC900481EAF /* UserNftDetailTicketViewModel.swift */,
 			);
 			path = Ticket;
+			sourceTree = "<group>";
+		};
+		211A952A2A0D693000481EAF /* TicketView */ = {
+			isa = PBXGroup;
+			children = (
+				211A952B2A0D693C00481EAF /* TopTicketView.swift */,
+				211A952D2A0D697B00481EAF /* TicketDetailsView.swift */,
+				211A952F2A0D699E00481EAF /* BottomTicketView.swift */,
+				211A95312A0D69AF00481EAF /* FullWidthModifier.swift */,
+				211A95332A0D69C300481EAF /* TicketView.swift */,
+				211A95352A0D69D600481EAF /* CardStyleModifier.swift */,
+				211A95372A0D69E900481EAF /* DashedSeparator.swift */,
+				211A95392A0D69F800481EAF /* TicketShape.swift */,
+				211A953B2A0D781000481EAF /* README.md */,
+			);
+			path = TicketView;
 			sourceTree = "<group>";
 		};
 		211E0E3129EDFA1200EBE5CB /* Wallet */ = {
@@ -573,6 +613,7 @@
 				219F876729E88F27004B55C2 /* Kingfisher */,
 				211E0E2D29EDD55200EBE5CB /* MagicSDK */,
 				21C1284229F2D32E00E813ED /* FluidGradient */,
+				211A95242A0C520400481EAF /* EFQRCode */,
 			);
 			productName = Example;
 			productReference = 2118D86529E31C82006753C0 /* Example.app */;
@@ -633,6 +674,7 @@
 				219F876629E88F27004B55C2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				211E0E2C29EDD55200EBE5CB /* XCRemoteSwiftPackageReference "magic-ios" */,
 				21C1284129F2D32E00E813ED /* XCRemoteSwiftPackageReference "FluidGradient" */,
+				211A95232A0C520400481EAF /* XCRemoteSwiftPackageReference "EFQRCode" */,
 			);
 			productRefGroup = 2118D86629E31C82006753C0 /* Products */;
 			projectDirPath = "";
@@ -649,6 +691,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				211A953C2A0D781000481EAF /* README.md in Resources */,
 				2118D87129E31C85006753C0 /* Preview Assets.xcassets in Resources */,
 				2118D86D29E31C85006753C0 /* Assets.xcassets in Resources */,
 			);
@@ -669,16 +712,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				21ACF1CD2A09CD69008587BC /* UserNftsView.swift in Sources */,
+				211A95342A0D69C300481EAF /* TicketView.swift in Sources */,
 				219F875D29E87985004B55C2 /* View+Example.swift in Sources */,
 				21DB4D9429FDC24A00780876 /* ProfileView.swift in Sources */,
 				218E55A529F0C22100EC4271 /* AccountViewModel.swift in Sources */,
+				211A95382A0D69E900481EAF /* DashedSeparator.swift in Sources */,
 				21DB4D9B2A0048D100780876 /* PublicationRowContentView.swift in Sources */,
 				2118D86B29E31C82006753C0 /* ContentView.swift in Sources */,
 				218E55A029EF246600EC4271 /* FooterView.swift in Sources */,
 				211A95182A0C463000481EAF /* UserNftDetailView.swift in Sources */,
 				211A95202A0C4C6700481EAF /* UserNftDetailTicketView.swift in Sources */,
+				211A953A2A0D69F800481EAF /* TicketShape.swift in Sources */,
 				21C1284929F3108000E813ED /* String+Example.swift in Sources */,
 				21DB4DA52A018C6000780876 /* PublicationsViewModel.swift in Sources */,
+				211A95222A0C4FC900481EAF /* UserNftDetailTicketViewModel.swift in Sources */,
 				21BEB5CF29E6F45C008BC970 /* ExplorePublicationsViewModel.swift in Sources */,
 				21C1283E29F1B3DC00E813ED /* SelectProfileViewModel.swift in Sources */,
 				21DB4D9E2A004DEF00780876 /* PublicationRowContentViewModel.swift in Sources */,
@@ -686,6 +733,7 @@
 				214479D229F18AAD0087D192 /* FeedViewModel.swift in Sources */,
 				214479D029F18AA30087D192 /* FeedView.swift in Sources */,
 				211E0E3029EDEE5200EBE5CB /* ContentViewModel.swift in Sources */,
+				211A952C2A0D693C00481EAF /* TopTicketView.swift in Sources */,
 				21ACF1D12A0A931B008587BC /* UserNftsGridItemView.swift in Sources */,
 				21DB4D7129FBD16800780876 /* ThreadViewModel.swift in Sources */,
 				214479D929F1A19B0087D192 /* CreateProfileView.swift in Sources */,
@@ -697,8 +745,10 @@
 				21B408FB2A06C36B0008D23A /* PubStatsViewModel.swift in Sources */,
 				21DB4D6F29FBD15900780876 /* ThreadView.swift in Sources */,
 				214D09B02A0ABA610051420E /* UserNftsGridItemViewModel.swift in Sources */,
+				211A95302A0D699E00481EAF /* BottomTicketView.swift in Sources */,
 				21ACF1CF2A09D124008587BC /* UserNftsViewModel.swift in Sources */,
 				219F876D29E894B8004B55C2 /* KFImage+Example.swift in Sources */,
+				211A952E2A0D697B00481EAF /* TicketDetailsView.swift in Sources */,
 				21E2B2572A098F5B00F45FD1 /* ConfirmCollectViewModel.swift in Sources */,
 				211E0E3329EDFA2200EBE5CB /* Wallet.swift in Sources */,
 				219F877329E898D1004B55C2 /* PubContentView.swift in Sources */,
@@ -716,6 +766,8 @@
 				219F876129E87BB2004B55C2 /* CommentRow.swift in Sources */,
 				21C1284B29F3114100E813ED /* PublicationRowModel.swift in Sources */,
 				21C1284529F2D3CE00E813ED /* AnimatedGradientView.swift in Sources */,
+				211A95322A0D69AF00481EAF /* FullWidthModifier.swift in Sources */,
+				211A95362A0D69D600481EAF /* CardStyleModifier.swift in Sources */,
 				219F877529E8A058004B55C2 /* MediaType.swift in Sources */,
 				21C1284729F2D73C00E813ED /* PrimaryButton.swift in Sources */,
 				219F875629E87657004B55C2 /* PostRow.swift in Sources */,
@@ -1013,6 +1065,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		211A95232A0C520400481EAF /* XCRemoteSwiftPackageReference "EFQRCode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EFPrefix/EFQRCode.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		211E0E2C29EDD55200EBE5CB /* XCRemoteSwiftPackageReference "magic-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/magiclabs/magic-ios.git";
@@ -1051,6 +1111,11 @@
 		2118D87829E31F8C006753C0 /* Lens */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Lens;
+		};
+		211A95242A0C520400481EAF /* EFQRCode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 211A95232A0C520400481EAF /* XCRemoteSwiftPackageReference "EFQRCode" */;
+			productName = EFQRCode;
 		};
 		211E0E2D29EDD55200EBE5CB /* MagicSDK */ = {
 			isa = XCSwiftPackageProductDependency;

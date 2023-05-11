@@ -24,7 +24,13 @@ struct UserNftDetailView: View {
                     description: viewModel.description
                 )
             case .ticket:
-                UserNftDetailTicketView()
+                UserNftDetailTicketView.view(
+                    title: viewModel.title,
+                    subtitle: viewModel.nft.collectionName,
+                    imageUri: viewModel.nft.originalContent.uri,
+                    contractAddress: viewModel.nft.contractAddress,
+                    tokenId: viewModel.nft.tokenId
+                )
             case .coupon:
                 Text("Coupon view")
             case .key:
