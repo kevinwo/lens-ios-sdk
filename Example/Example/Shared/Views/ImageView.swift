@@ -1,4 +1,5 @@
 import Kingfisher
+import SVGView
 import SwiftUI
 
 enum ImageViewMedia {
@@ -31,19 +32,33 @@ struct ImageView: View {
     }
 
     var body: some View {
-        switch media {
-        case let .staticImage(uri, preset):
-            VStack {
+        VStack {
+            switch media {
+            case let .staticImage(uri, preset):
                 KFImage(uri.toIpfsUrl())
                     .preset(preset)
+            case let .svg(svg):
+                if let data = svgData(from: svg) {
+                    SVGView(data: data)
+                } else {
+                    empty
+                }
+            case .empty:
+                empty
             }
-            .aspectRatio(aspectRatio, contentMode: contentMode)
-        case let .svg(svg):
-            Text("SVG TBD")
-        case .empty:
-            Rectangle()
-                .foregroundColor(.gray)
         }
+        .aspectRatio(aspectRatio, contentMode: contentMode)
+    }
+
+    private var empty: some View {
+        Rectangle()
+            .foregroundColor(.gray)
+    }
+
+    private func svgData(from svg: String) -> Data? {
+        let string = svg.replacingOccurrences(of: "data:image/svg+xml;base64,", with: "")
+
+        return Data(base64Encoded: string)
     }
 }
 
