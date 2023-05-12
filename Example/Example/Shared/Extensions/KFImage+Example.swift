@@ -73,4 +73,12 @@ extension KFImage {
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             .clipped()
     }
+
+    func ticket() -> some View {
+        self
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(height: 100)
+            .clipped()
+    }
 }

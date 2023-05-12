@@ -3,7 +3,8 @@ import SwiftUI
 struct TicketView: View {
     let title: String
     let subtitle: String
-    let imageUri: String
+    let mediaUri: String
+    let mediaType: String
     let qrCodeImage: CGImage
 
     var body: some View {
@@ -11,7 +12,8 @@ struct TicketView: View {
             TopTicketView(
                 title: title,
                 subtitle: subtitle,
-                imageUri: imageUri
+                mediaUri: mediaUri,
+                mediaType: mediaType
             )
             .background(.white)
             .clipShape(TicketShape())

@@ -54,11 +54,12 @@ struct UserNftDetailCouponView: View {
         }
     }
 
-    static func view(title: String, subtitle: String, imageUri: String, contractAddress: String, tokenId: String) -> some View {
+    static func view(title: String, subtitle: String, mediaUri: String, mediaType: String, contractAddress: String, tokenId: String) -> some View {
         let viewModel = UserNftDetailRepresentationViewModel(
             title: title,
             subtitle: subtitle,
-            imageUri: imageUri,
+            mediaUri: mediaUri,
+            mediaType: mediaType,
             contractAddress: contractAddress,
             tokenId: tokenId
         )
@@ -72,7 +73,8 @@ struct UserNftDetailCouponView_Previews: PreviewProvider {
         UserNftDetailCouponView.view(
             title: "Cool NFT",
             subtitle: "Creator",
-            imageUri: "",
+            mediaUri: "",
+            mediaType: "",
             contractAddress: "0x0",
             tokenId: "1"
         )

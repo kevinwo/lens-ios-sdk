@@ -7,8 +7,7 @@ final class UserNftsGridItemViewModel: ObservableObject {
     var media: MediaView.Media {
         .from(
             uri: nft.originalContent.uri,
-            type: nft.originalContent.metaType,
-            preset: .mediaImage
+            type: nft.originalContent.metaType
         )
     }
 

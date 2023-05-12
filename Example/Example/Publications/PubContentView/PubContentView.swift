@@ -11,7 +11,8 @@ struct PubContentView: View {
 
         if let mediaUri, let mediaType {
             MediaView(
-                media: MediaView.Media.from(uri: mediaUri, type: mediaType, preset: .mediaImage),
+                media: MediaView.Media.from(uri: mediaUri, type: mediaType),
+                preset: .mediaImage,
                 contentMode: .fit
             )
             .mediaRounded()

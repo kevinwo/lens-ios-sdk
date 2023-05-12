@@ -16,7 +16,8 @@ struct UserNftDetailView: View {
                 UserNftDetailTicketView.view(
                     title: viewModel.title,
                     subtitle: viewModel.nft.collectionName,
-                    imageUri: viewModel.nft.originalContent.uri,
+                    mediaUri: viewModel.nft.originalContent.uri,
+                    mediaType: viewModel.nft.originalContent.metaType,
                     contractAddress: viewModel.nft.contractAddress,
                     tokenId: viewModel.nft.tokenId
                 )
@@ -24,7 +25,8 @@ struct UserNftDetailView: View {
                 UserNftDetailCouponView.view(
                     title: viewModel.title,
                     subtitle: viewModel.nft.collectionName,
-                    imageUri: viewModel.nft.originalContent.uri,
+                    mediaUri: viewModel.nft.originalContent.uri,
+                    mediaType: viewModel.nft.originalContent.metaType,
                     contractAddress: viewModel.nft.contractAddress,
                     tokenId: viewModel.nft.tokenId
                 )

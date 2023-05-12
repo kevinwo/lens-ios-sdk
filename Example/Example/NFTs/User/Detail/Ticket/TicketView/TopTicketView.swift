@@ -1,10 +1,10 @@
-import Kingfisher
 import SwiftUI
 
 struct TopTicketView: View {
     let title: String
     let subtitle: String
-    let imageUri: String
+    let mediaUri: String
+    let mediaType: String
 
     var body: some View {
         VStack{
@@ -22,11 +22,10 @@ struct TopTicketView: View {
             .padding(.top, 30)
             .padding(.horizontal)
 
-            KFImage(imageUri.toIpfsUrl())
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(height: 100)
-                .clipped()
+            MediaView(
+                media: .from(uri: mediaUri, type: mediaType),
+                preset: .ticket
+            )
 
             HStack{
                 TicketDetailsView(detail1: "SCREEN", detail2: "18", detail3: "PRICE", detail4: "$5.68")

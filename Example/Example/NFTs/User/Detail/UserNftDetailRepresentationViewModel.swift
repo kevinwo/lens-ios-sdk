@@ -10,14 +10,16 @@ final class UserNftDetailRepresentationViewModel: ObservableObject {
 
     let title: String
     let subtitle: String
-    let imageUri: String
+    let mediaUri: String
+    let mediaType: String
     let contractAddress: String
     let tokenId: String
 
-    init(title: String, subtitle: String, imageUri: String, contractAddress: String, tokenId: String) {
+    init(title: String, subtitle: String, mediaUri: String, mediaType: String, contractAddress: String, tokenId: String) {
         self.title = title
         self.subtitle = subtitle
-        self.imageUri = imageUri
+        self.mediaUri = mediaUri
+        self.mediaType = mediaType
         self.contractAddress = contractAddress
         self.tokenId = tokenId
     }
