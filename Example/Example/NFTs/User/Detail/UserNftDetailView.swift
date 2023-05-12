@@ -6,17 +6,6 @@ struct UserNftDetailView: View {
 
     var body: some View {
         VStack {
-            Picker("Picker", selection: $viewModel.viewType) {
-                ForEach(UserNftDetailViewModel.ViewType.allCases) { viewType in
-                    Text(viewType.title)
-                        .tag(viewType)
-                }
-            }
-            .pickerStyle(.segmented)
-            .padding()
-
-            Spacer()
-
             switch viewModel.viewType {
             case .info:
                 UserNftDetailInfoView(
@@ -44,6 +33,17 @@ struct UserNftDetailView: View {
             }
         }
         .navigationTitle("NFT")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Picker("Picker", selection: $viewModel.viewType) {
+                    ForEach(UserNftDetailViewModel.ViewType.allCases) { viewType in
+                        Text(viewType.title)
+                            .tag(viewType)
+                    }
+                }
+                .pickerStyle(.menu)
+            }
+        }
     }
 
     static func view(nft: NFT) -> some View {
