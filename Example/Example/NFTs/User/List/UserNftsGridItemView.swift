@@ -6,7 +6,7 @@ struct UserNftsGridItemView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            ImageView(media: viewModel.media, aspectRatio: 1, contentMode: .fit)
+            MediaView(media: viewModel.media, aspectRatio: 1, contentMode: .fit)
                 .mediaRounded()
 
             Text(viewModel.title)

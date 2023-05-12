@@ -2,30 +2,34 @@ import Kingfisher
 import SVGView
 import SwiftUI
 
-enum ImageViewMedia {
-    case staticImage(String, Preset?)
-    case svg(String)
-    case empty
+struct MediaView: View {
+    // MARK: - Enums
+
+    enum Media {
+        case staticImage(String, Preset?)
+        case svg(String)
+        case empty
+
+        static func from(uri: String, type: String, preset: Preset? = nil) -> Media {
+            if type.contains("svg") || uri.contains("svg+xml") {
+                return .svg(uri)
+            } else {
+                return .staticImage(uri, preset)
+            }
+        }
+    }
 
     enum Preset {
         case mediaImage
     }
 
-    static func from(uri: String, type: String, preset: Preset? = nil) -> ImageViewMedia {
-        if type.contains("svg") || uri.contains("svg+xml") {
-            return .svg(uri)
-        } else {
-            return .staticImage(uri, preset)
-        }
-    }
-}
+    // MARK: - Properties
 
-struct ImageView: View {
-    let media: ImageViewMedia
+    let media: Media
     let aspectRatio: CGFloat?
     let contentMode: SwiftUI.ContentMode
 
-    init(media: ImageViewMedia, aspectRatio: CGFloat? = nil, contentMode: SwiftUI.ContentMode = .fill) {
+    init(media: Media, aspectRatio: CGFloat? = nil, contentMode: SwiftUI.ContentMode = .fill) {
         self.media = media
         self.aspectRatio = aspectRatio
         self.contentMode = contentMode
@@ -55,6 +59,8 @@ struct ImageView: View {
             .foregroundColor(.gray)
     }
 
+    // MARK: - Private interface
+
     private func svgData(from svg: String) -> Data? {
         let string = svg.replacingOccurrences(of: "data:image/svg+xml;base64,", with: "")
 
@@ -63,7 +69,7 @@ struct ImageView: View {
 }
 
 extension KFImage {
-    func preset(_ preset: ImageViewMedia.Preset?) -> some View {
+    func preset(_ preset: MediaView.Preset?) -> some View {
         switch preset {
         case .mediaImage:
             return self

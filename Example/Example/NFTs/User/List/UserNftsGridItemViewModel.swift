@@ -4,7 +4,7 @@ import Lens
 final class UserNftsGridItemViewModel: ObservableObject {
     // MARK: - Properties
 
-    var media: ImageViewMedia {
+    var media: MediaView.Media {
         .from(
             uri: nft.originalContent.uri,
             type: nft.originalContent.metaType,
