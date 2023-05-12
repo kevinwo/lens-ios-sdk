@@ -50,7 +50,7 @@ final class PublicationRowContentViewModel {
         return MediaType.fromMimeType(mimeType)
     }
 
-    var mediaImageUrl: URL? {
+    var mediaImageUri: String? {
         // TODO: Support multiple images
         guard let media = publication.metadata.media.first?.original else { return nil }
         // TODO: Support audio and video
@@ -62,7 +62,11 @@ final class PublicationRowContentViewModel {
             return nil
         }
 
-        return media.url.toIpfsUrl()
+        return media.url
+    }
+
+    var mediaImageType: String? {
+        publication.metadata.media.first?.original.mimeType
     }
 
     var stats: PublicationStats {

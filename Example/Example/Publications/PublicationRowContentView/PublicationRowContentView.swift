@@ -36,7 +36,8 @@ struct PublicationRowContentView: View {
 
                 PubContentView(
                     content: viewModel.content,
-                    mediaImageUrl: viewModel.mediaImageUrl
+                    mediaUri: viewModel.mediaImageUri,
+                    mediaType: viewModel.mediaImageType
                 )
 
                 PubStatsView.view(publication: viewModel.publication)

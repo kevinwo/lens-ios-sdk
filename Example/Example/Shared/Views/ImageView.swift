@@ -7,11 +7,15 @@ struct MediaView: View {
 
     enum Media {
         case staticImage(String, Preset?)
+        case svgData(String)
         case svg(String)
         case empty
 
         static func from(uri: String, type: String, preset: Preset? = nil) -> Media {
-            if type.contains("svg") || uri.contains("svg+xml") {
+            if uri.contains("svg+xml") {
+                return .svgData(uri)
+            } else if type.contains("svg") || uri.contains(".svg") {
+                /// Media type unfortunately cannot be trusted in the case of incorrect MIME types returned from the API, so we need to also check the URI itself for the extension.
                 return .svg(uri)
             } else {
                 return .staticImage(uri, preset)
@@ -41,9 +45,16 @@ struct MediaView: View {
             case let .staticImage(uri, preset):
                 KFImage(uri.toIpfsUrl())
                     .preset(preset)
-            case let .svg(svg):
-                if let data = svgData(from: svg) {
+            case let .svgData(encodedData):
+                if let data = svgData(from: encodedData) {
                     SVGView(data: data)
+                } else {
+                    empty
+                }
+            case let .svg(uri):
+                if let url = uri.toIpfsUrl() {
+                    // TODO: Replace this with Kingfisher SVG image processing
+                    SVGView(contentsOf: url)
                 } else {
                     empty
                 }
