@@ -7,12 +7,8 @@ struct UserNftsGridItemView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            VStack {
-                KFImage(viewModel.mediaUrl)
-                    .mediaImage()
-            }
-            .aspectRatio(1, contentMode: .fit)
-            .mediaRounded()
+            ImageView(media: viewModel.media, aspectRatio: 1, contentMode: .fit)
+                .mediaRounded()
 
             Text(viewModel.title)
                 .font(.body)

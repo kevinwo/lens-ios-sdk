@@ -4,6 +4,14 @@ import Lens
 final class UserNftsGridItemViewModel: ObservableObject {
     // MARK: - Properties
 
+    var media: ImageViewMedia {
+        .from(
+            uri: nft.originalContent.uri,
+            type: nft.originalContent.metaType,
+            preset: .mediaImage
+        )
+    }
+
     var mediaUrl: URL? {
         nft.originalContent.uri.toIpfsUrl()
     }
