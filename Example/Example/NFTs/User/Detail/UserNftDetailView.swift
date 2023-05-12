@@ -29,7 +29,7 @@ struct UserNftDetailView: View {
                     tokenId: viewModel.nft.tokenId
                 )
             case .key:
-                Text("Key view")
+                UserNftDetailKeyView.view()
             }
         }
         .navigationTitle("NFT")

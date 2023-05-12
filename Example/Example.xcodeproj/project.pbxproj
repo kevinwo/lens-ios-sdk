@@ -26,8 +26,11 @@
 		211A95362A0D69D600481EAF /* CardStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A95352A0D69D600481EAF /* CardStyleModifier.swift */; };
 		211A95382A0D69E900481EAF /* DashedSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A95372A0D69E900481EAF /* DashedSeparator.swift */; };
 		211A953A2A0D69F800481EAF /* TicketShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A95392A0D69F800481EAF /* TicketShape.swift */; };
-		211A953C2A0D781000481EAF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 211A953B2A0D781000481EAF /* README.md */; };
 		211A953F2A0D796600481EAF /* UserNftDetailCouponView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A953E2A0D796600481EAF /* UserNftDetailCouponView.swift */; };
+		211A95422A0DC72E00481EAF /* UserNftDetailKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A95412A0DC72E00481EAF /* UserNftDetailKeyView.swift */; };
+		211A95452A0E75AA00481EAF /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 211A95442A0E75AA00481EAF /* Lottie */; };
+		211A95472A0E762000481EAF /* lock-unlock-key.json in Resources */ = {isa = PBXBuildFile; fileRef = 211A95462A0E762000481EAF /* lock-unlock-key.json */; };
+		211A954B2A0E76E900481EAF /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A954A2A0E76E900481EAF /* LottieView.swift */; };
 		211E0E2E29EDD55200EBE5CB /* MagicSDK in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 211E0E2D29EDD55200EBE5CB /* MagicSDK */; };
 		211E0E3029EDEE5200EBE5CB /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211E0E2F29EDEE5200EBE5CB /* ContentViewModel.swift */; };
 		211E0E3329EDFA2200EBE5CB /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211E0E3229EDFA2200EBE5CB /* Wallet.swift */; };
@@ -123,6 +126,10 @@
 		211A95392A0D69F800481EAF /* TicketShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketShape.swift; sourceTree = "<group>"; };
 		211A953B2A0D781000481EAF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		211A953E2A0D796600481EAF /* UserNftDetailCouponView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNftDetailCouponView.swift; sourceTree = "<group>"; };
+		211A95412A0DC72E00481EAF /* UserNftDetailKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNftDetailKeyView.swift; sourceTree = "<group>"; };
+		211A95462A0E762000481EAF /* lock-unlock-key.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lock-unlock-key.json"; sourceTree = "<group>"; };
+		211A95482A0E764500481EAF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		211A954A2A0E76E900481EAF /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		211E0E2F29EDEE5200EBE5CB /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		211E0E3229EDFA2200EBE5CB /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		212D12FC29E7104A0094560E /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +199,7 @@
 				2118D87929E31F8C006753C0 /* Lens in Frameworks */,
 				211E0E2E29EDD55200EBE5CB /* MagicSDK in Frameworks */,
 				21C1284329F2D32E00E813ED /* FluidGradient in Frameworks */,
+				211A95452A0E75AA00481EAF /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +287,7 @@
 			children = (
 				211A953D2A0D794C00481EAF /* Coupon */,
 				211A951B2A0C4C2F00481EAF /* Info */,
+				211A95402A0DC71A00481EAF /* Key */,
 				211A951E2A0C4C4E00481EAF /* Ticket */,
 				211A95172A0C463000481EAF /* UserNftDetailView.swift */,
 				211A95192A0C464600481EAF /* UserNftDetailViewModel.swift */,
@@ -337,6 +346,16 @@
 				211A953E2A0D796600481EAF /* UserNftDetailCouponView.swift */,
 			);
 			path = Coupon;
+			sourceTree = "<group>";
+		};
+		211A95402A0DC71A00481EAF /* Key */ = {
+			isa = PBXGroup;
+			children = (
+				211A95412A0DC72E00481EAF /* UserNftDetailKeyView.swift */,
+				211A95462A0E762000481EAF /* lock-unlock-key.json */,
+				211A95482A0E764500481EAF /* README.md */,
+			);
+			path = Key;
 			sourceTree = "<group>";
 		};
 		211E0E3129EDFA1200EBE5CB /* Wallet */ = {
@@ -444,6 +463,7 @@
 			children = (
 				21DB4D9729FEFD7700780876 /* NavigationBar */,
 				21C1284429F2D3CE00E813ED /* AnimatedGradientView.swift */,
+				211A954A2A0E76E900481EAF /* LottieView.swift */,
 				21C1284629F2D73C00E813ED /* PrimaryButton.swift */,
 				21DB4D6929F997D500780876 /* HeadingText.swift */,
 				21DB4D6B29F9983A00780876 /* SubheadingText.swift */,
@@ -625,6 +645,7 @@
 				211E0E2D29EDD55200EBE5CB /* MagicSDK */,
 				21C1284229F2D32E00E813ED /* FluidGradient */,
 				211A95242A0C520400481EAF /* EFQRCode */,
+				211A95442A0E75AA00481EAF /* Lottie */,
 			);
 			productName = Example;
 			productReference = 2118D86529E31C82006753C0 /* Example.app */;
@@ -686,6 +707,7 @@
 				211E0E2C29EDD55200EBE5CB /* XCRemoteSwiftPackageReference "magic-ios" */,
 				21C1284129F2D32E00E813ED /* XCRemoteSwiftPackageReference "FluidGradient" */,
 				211A95232A0C520400481EAF /* XCRemoteSwiftPackageReference "EFQRCode" */,
+				211A95432A0E75AA00481EAF /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = 2118D86629E31C82006753C0 /* Products */;
 			projectDirPath = "";
@@ -702,7 +724,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				211A953C2A0D781000481EAF /* README.md in Resources */,
+				211A95472A0E762000481EAF /* lock-unlock-key.json in Resources */,
 				2118D87129E31C85006753C0 /* Preview Assets.xcassets in Resources */,
 				2118D86D29E31C85006753C0 /* Assets.xcassets in Resources */,
 			);
@@ -739,12 +761,14 @@
 				211A95222A0C4FC900481EAF /* UserNftDetailRepresentationViewModel.swift in Sources */,
 				21BEB5CF29E6F45C008BC970 /* ExplorePublicationsViewModel.swift in Sources */,
 				21C1283E29F1B3DC00E813ED /* SelectProfileViewModel.swift in Sources */,
+				211A95422A0DC72E00481EAF /* UserNftDetailKeyView.swift in Sources */,
 				21DB4D9E2A004DEF00780876 /* PublicationRowContentViewModel.swift in Sources */,
 				218E55A329F0529300EC4271 /* AccountView.swift in Sources */,
 				214479D229F18AAD0087D192 /* FeedViewModel.swift in Sources */,
 				214479D029F18AA30087D192 /* FeedView.swift in Sources */,
 				211E0E3029EDEE5200EBE5CB /* ContentViewModel.swift in Sources */,
 				211A952C2A0D693C00481EAF /* TopTicketView.swift in Sources */,
+				211A954B2A0E76E900481EAF /* LottieView.swift in Sources */,
 				21ACF1D12A0A931B008587BC /* UserNftsGridItemView.swift in Sources */,
 				21DB4D7129FBD16800780876 /* ThreadViewModel.swift in Sources */,
 				214479D929F1A19B0087D192 /* CreateProfileView.swift in Sources */,
@@ -1085,6 +1109,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		211A95432A0E75AA00481EAF /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		211E0E2C29EDD55200EBE5CB /* XCRemoteSwiftPackageReference "magic-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/magiclabs/magic-ios.git";
@@ -1128,6 +1160,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 211A95232A0C520400481EAF /* XCRemoteSwiftPackageReference "EFQRCode" */;
 			productName = EFQRCode;
+		};
+		211A95442A0E75AA00481EAF /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 211A95432A0E75AA00481EAF /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
 		};
 		211E0E2D29EDD55200EBE5CB /* MagicSDK */ = {
 			isa = XCSwiftPackageProductDependency;
