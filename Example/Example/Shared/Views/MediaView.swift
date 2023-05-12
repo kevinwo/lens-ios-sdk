@@ -5,6 +5,12 @@ import SwiftUI
 struct MediaView: View {
     // MARK: - Enums
 
+    enum Constants {
+        static let feedProfileFrameSize = CGSize(width: 36, height: 36)
+        static let profileFrameSize = CGSize(width: 64, height: 64)
+        static let mediaImageCornerRadius: CGFloat = 10
+    }
+
     enum Media {
         case staticImage(String)
         case svgData(String)
@@ -134,8 +140,8 @@ extension View {
         case .feedProfilePicture:
             return self
                 .frame(
-                    width: KFImage.Constants.feedProfileFrameSize.width,
-                    height: KFImage.Constants.feedProfileFrameSize.height
+                    width: MediaView.Constants.feedProfileFrameSize.width,
+                    height: MediaView.Constants.feedProfileFrameSize.height
                 )
                 .clipShape(Circle())
                 .fixedSize(horizontal: true, vertical: true)
@@ -144,8 +150,8 @@ extension View {
         case .profilePicture:
             return self
                 .frame(
-                    width: KFImage.Constants.profileFrameSize.width,
-                    height: KFImage.Constants.profileFrameSize.height
+                    width: MediaView.Constants.profileFrameSize.width,
+                    height: MediaView.Constants.profileFrameSize.height
                 )
                 .fixedSize(horizontal: true, vertical: true)
                 .aspectRatio(contentMode: .fill)

@@ -38,7 +38,7 @@ extension View {
     }
 
     func mediaRounded() -> some View {
-        self.clipShape(RoundedRectangle(cornerRadius: KFImage.Constants.mediaImageCornerRadius))
+        self.clipShape(RoundedRectangle(cornerRadius: MediaView.Constants.mediaImageCornerRadius))
     }
 }
 
