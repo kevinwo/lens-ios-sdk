@@ -26,6 +26,8 @@ struct MediaView: View {
     enum Preset {
         case mediaImage
         case feedProfilePicture
+        case profilePicture
+        case coverPicture(GeometryProxy)
         case ticket
     }
 
@@ -102,6 +104,14 @@ extension KFImage {
             return self
                 .feedProfilePicture()
                 .typeErased
+        case .profilePicture:
+            return self
+                .profilePicture()
+                .typeErased
+        case .coverPicture(let geometry):
+            return self
+                .coverPicture(geometry: geometry)
+                .typeErased
         case .ticket:
             return self
                 .ticket()
@@ -130,6 +140,23 @@ extension View {
                 .clipShape(Circle())
                 .fixedSize(horizontal: true, vertical: true)
                 .aspectRatio(contentMode: .fill)
+                .typeErased
+        case .profilePicture:
+            return self
+                .frame(
+                    width: KFImage.Constants.profileFrameSize.width,
+                    height: KFImage.Constants.profileFrameSize.height
+                )
+                .fixedSize(horizontal: true, vertical: true)
+                .aspectRatio(contentMode: .fill)
+                .clipShape(Circle())
+                .overlay(Circle().stroke(Color.white, lineWidth: 4))
+                .typeErased
+        case .coverPicture(let geometry):
+            return self
+                .aspectRatio(contentMode: .fill)
+                .frame(width: geometry.size.width, height: geometry.size.height + geometry.frame(in: .global).minY)
+                .clipped()
                 .typeErased
         case .ticket:
             return self

@@ -9,18 +9,20 @@ struct PublicationRowContentView: View {
     var body: some View {
         HStack(alignment: .top) {
             VStack {
-                KFImage(viewModel.authorProfileImageUrl)
-                    .feedProfilePicture()
-                    .onTapGesture {
-                        switch viewModel.publication {
-                        case is Post:
-                            selectedDestination.wrappedValue = .postProfile
-                        case is Comment:
-                            selectedDestination.wrappedValue = .commentProfile
-                        default:
-                            return
-                        }
+                MediaView(
+                    media: viewModel.authorProfileMedia,
+                    preset: .feedProfilePicture
+                )
+                .onTapGesture {
+                    switch viewModel.publication {
+                    case is Post:
+                        selectedDestination.wrappedValue = .postProfile
+                    case is Comment:
+                        selectedDestination.wrappedValue = .commentProfile
+                    default:
+                        return
                     }
+                }
 
                 if viewModel.isMainPostForComment {
                     VerticalLine()

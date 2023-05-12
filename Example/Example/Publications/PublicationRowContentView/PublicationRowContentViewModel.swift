@@ -7,11 +7,11 @@ final class PublicationRowContentViewModel {
     let publication: Publication
     let isMainPostForComment: Bool
 
-    var authorProfileImageUrl: URL? {
-        guard let urlString = publication.profile.picture?.asMediaSet?.original.url else {
+    var authorProfileMedia: MediaView.Media? {
+        guard let mediaSet = publication.profile.picture?.asMediaSet?.original else {
             return nil
         }
-        return urlString.toIpfsUrl()
+        return .from(uri: mediaSet.url, type: mediaSet.mimeType)
     }
 
     var authorId: String {

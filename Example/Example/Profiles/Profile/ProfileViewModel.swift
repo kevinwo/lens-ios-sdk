@@ -15,18 +15,18 @@ final class ProfileViewModel: ObservableObject {
     @Published var state: State = .isLoading
     @Published private var profile: (any Profile)?
 
-    var coverPictureUrl: URL? {
-        guard let urlString = profile?.coverPicture?.asMediaSet?.original.url else {
+    var coverPictureMedia: MediaView.Media? {
+        guard let mediaSet = profile?.coverPicture?.asMediaSet?.original else {
             return nil
         }
-        return urlString.toIpfsUrl()
+        return .from(uri: mediaSet.url, type: mediaSet.mimeType)
     }
 
-    var pictureUrl: URL? {
-        guard let urlString = profile?.picture?.asMediaSet?.original.url else {
+    var pictureMedia: MediaView.Media? {
+        guard let mediaSet = profile?.picture?.asMediaSet?.original else {
             return nil
         }
-        return urlString.toIpfsUrl()
+        return .from(uri: mediaSet.url, type: mediaSet.mimeType)
     }
 
     var name: String? {

@@ -17,8 +17,10 @@ struct ProfileView: View {
                 ScrollView {
                     GeometryReader { geometry in
                         ZStack {
-                            KFImage(viewModel.coverPictureUrl)
-                                .coverPicture(geometry: geometry)
+                            MediaView(
+                                media: viewModel.coverPictureMedia,
+                                preset: .coverPicture(geometry)
+                            )
                         }
                     }
                     .frame(height: 125)
@@ -26,10 +28,12 @@ struct ProfileView: View {
 
                     VStack {
                         HStack {
-                            KFImage(viewModel.pictureUrl)
-                                .profilePicture()
-                                .offset(y: -50)
-                                .padding(.bottom, -50)
+                            MediaView(
+                                media: viewModel.pictureMedia,
+                                preset: .profilePicture
+                            )
+                            .offset(y: -50)
+                            .padding(.bottom, -50)
 
                             Spacer()
                         }
