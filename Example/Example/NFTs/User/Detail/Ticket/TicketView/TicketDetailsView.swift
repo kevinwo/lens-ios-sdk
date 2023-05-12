@@ -11,17 +11,18 @@ struct TicketDetailsView: View {
             VStack {
                 Text(detail1)
                     .font(.system(size: 15, weight: .bold))
-                    .foregroundColor(Color.gray)
+                    .foregroundColor(.gray)
                 Text(detail2)
-                .font(.system(size: 30, weight: .black))
-
+                    .font(.system(size: 30, weight: .black))
+                    .foregroundColor(.black)
             }
 
             VStack {
                 Text(detail3)
                     .font(.system(size: 15, weight: .bold))
-                    .foregroundColor(Color.gray)
+                    .foregroundColor(.gray)
                 Text(detail4).font(.system(size: 15, weight: .bold))
+                    .foregroundColor(.black)
             }
         }.modifier(FullWidthModifier())
     }

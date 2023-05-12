@@ -11,10 +11,11 @@ struct TopTicketView: View {
             VStack(alignment: .leading) {
                 Text(subtitle)
                     .font(.system(size: 20, weight: .bold))
-                    .foregroundColor(Color.gray)
+                    .foregroundColor(.gray)
                     .lineLimit(1)
                 Text(title)
                     .font(.system(size: 30, weight: .black))
+                    .foregroundColor(.black)
                     .lineLimit(1)
             }
             .frame(minWidth: 0.0, maxWidth: .infinity, alignment: .leading)
