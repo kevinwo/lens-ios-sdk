@@ -1,4 +1,3 @@
-import Kingfisher
 import Lens
 import SwiftUI
 
@@ -16,8 +15,12 @@ struct ThreadView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 HStack(alignment: .top) {
-                    KFImage(viewModel.authorProfileImageUrl)
-                        .feedProfilePicture()
+                    if let authorProfileMedia = viewModel.authorProfileMedia {
+                        MediaView(
+                            media: authorProfileMedia,
+                            preset: .feedProfilePicture
+                        )
+                    }
 
                     VStack(alignment: .leading) {
                         if let name = viewModel.authorName { Text(name).bold() }
@@ -34,12 +37,12 @@ struct ThreadView: View {
                         Text(viewModel.content)
                             .font(.body)
 
-                        if let mediaImageUrl = viewModel.mediaImageUrl {
-                            VStack {
-                                KFImage(mediaImageUrl)
-                                    .mediaImage()
-                            }
-                            .aspectRatio(contentMode: .fit)
+                        if let media = viewModel.media {
+                            MediaView(
+                                media: media,
+                                preset: .mediaImage,
+                                contentMode: .fit
+                            )
                             .mediaRounded()
                         }
                     }

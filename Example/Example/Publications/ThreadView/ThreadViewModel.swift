@@ -4,11 +4,11 @@ import Lens
 final class ThreadViewModel: ObservableObject {
     // MARK: - Properties
 
-    var authorProfileImageUrl: URL? {
-        guard let urlString = publication.profile.picture?.asMediaSet?.original.url else {
+    var authorProfileMedia: MediaView.Media? {
+        guard let mediaSet = publication.profile.picture?.asMediaSet?.original else {
             return nil
         }
-        return urlString.toIpfsUrl()
+        return .from(uri: mediaSet.url, type: mediaSet.mimeType)
     }
 
     var authorName: String? {
@@ -23,13 +23,18 @@ final class ThreadViewModel: ObservableObject {
         publication.metadata.content ?? ""
     }
 
-    var mediaType: MediaType? {
-        // TODO: Support multiple media types
-        guard let mimeType = publication.metadata.media.first?.original.mimeType else { return nil }
-        return MediaType.fromMimeType(mimeType)
+    var media: MediaView.Media? {
+        guard
+            let uri = mediaImageUri,
+            let type = mediaImageType
+        else {
+            return nil
+        }
+
+        return .from(uri: uri, type: type)
     }
 
-    var mediaImageUrl: URL? {
+    private var mediaImageUri: String? {
         // TODO: Support multiple images
         guard let media = publication.metadata.media.first?.original else { return nil }
         // TODO: Support audio and video
@@ -41,7 +46,17 @@ final class ThreadViewModel: ObservableObject {
             return nil
         }
 
-        return media.url.toIpfsUrl()
+        return media.url
+    }
+
+    private var mediaImageType: String? {
+        publication.metadata.media.first?.original.mimeType
+    }
+
+    private var mediaType: MediaType? {
+        // TODO: Support multiple media types
+        guard let mimeType = publication.metadata.media.first?.original.mimeType else { return nil }
+        return MediaType.fromMimeType(mimeType)
     }
 
     private let publication: Publication

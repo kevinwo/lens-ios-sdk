@@ -11,10 +11,10 @@ struct MediaView: View {
         case svg(String)
         case empty
 
-        static func from(uri: String, type: String) -> Media {
+        static func from(uri: String, type: String?) -> Media {
             if uri.contains("svg+xml") {
                 return .svgData(uri)
-            } else if type.contains("svg") || uri.contains(".svg") {
+            } else if let type, type.contains("svg") || uri.contains(".svg") {
                 /// Media type unfortunately cannot be trusted in the case of incorrect MIME types returned from the API, so we need to also check the URI itself for the extension.
                 return .svg(uri)
             } else {
@@ -25,6 +25,7 @@ struct MediaView: View {
 
     enum Preset {
         case mediaImage
+        case feedProfilePicture
         case ticket
     }
 
@@ -96,6 +97,10 @@ extension KFImage {
             return self
                 .mediaImage()
                 .typeErased
+        case .feedProfilePicture:
+            return self
+                .feedProfilePicture()
+                .typeErased
         case .ticket:
             return self
                 .ticket()
@@ -114,6 +119,16 @@ extension View {
                 .aspectRatio(contentMode: .fill)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 .clipped()
+                .typeErased
+        case .feedProfilePicture:
+            return self
+                .frame(
+                    width: KFImage.Constants.feedProfileFrameSize.width,
+                    height: KFImage.Constants.feedProfileFrameSize.height
+                )
+                .clipShape(Circle())
+                .fixedSize(horizontal: true, vertical: true)
+                .aspectRatio(contentMode: .fill)
                 .typeErased
         case .ticket:
             return self
