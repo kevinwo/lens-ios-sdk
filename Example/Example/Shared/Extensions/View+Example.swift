@@ -1,3 +1,4 @@
+import Kingfisher
 import SwiftUI
 
 extension View {
@@ -34,6 +35,10 @@ extension View {
 
     func onFirstAppear(_ action: @escaping () -> ()) -> some View {
         modifier(FirstAppear(action: action))
+    }
+
+    func mediaRounded() -> some View {
+        self.clipShape(RoundedRectangle(cornerRadius: KFImage.Constants.mediaImageCornerRadius))
     }
 }
 

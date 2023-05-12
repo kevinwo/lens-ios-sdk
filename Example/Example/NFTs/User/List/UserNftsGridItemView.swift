@@ -9,10 +9,10 @@ struct UserNftsGridItemView: View {
         VStack(alignment: .leading, spacing: 8) {
             VStack {
                 KFImage(viewModel.mediaUrl)
-                    .nftMediaImage()
+                    .mediaImage()
             }
             .aspectRatio(1, contentMode: .fit)
-            .clipShape(RoundedRectangle(cornerRadius: KFImage.Constants.mediaImageCornerRadius))
+            .mediaRounded()
 
             Text(viewModel.title)
                 .font(.body)

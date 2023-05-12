@@ -35,8 +35,12 @@ struct ThreadView: View {
                             .font(.body)
 
                         if let mediaImageUrl = viewModel.mediaImageUrl {
-                            KFImage(mediaImageUrl)
-                                .mediaImage()
+                            VStack {
+                                KFImage(mediaImageUrl)
+                                    .mediaImage()
+                            }
+                            .aspectRatio(contentMode: .fit)
+                            .mediaRounded()
                         }
                     }
 

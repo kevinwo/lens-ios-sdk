@@ -29,8 +29,11 @@ struct ConfirmCollectView: View {
             if let mediaImageUrl = viewModel.mediaImageUrl {
                 HStack {
                     Spacer()
-                    KFImage(mediaImageUrl)
-                        .mediaImage()
+                    VStack {
+                        KFImage(mediaImageUrl)
+                            .mediaImage(contentMode: .fit)
+                    }
+                    .mediaRounded()
                     Spacer()
                 }
                 .padding([.leading, .trailing])

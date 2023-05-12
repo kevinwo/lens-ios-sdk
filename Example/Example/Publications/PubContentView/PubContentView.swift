@@ -10,8 +10,12 @@ struct PubContentView: View {
             .font(.callout)
 
         if let mediaImageUrl {
-            KFImage(mediaImageUrl)
-                .mediaImage()
+            VStack {
+                KFImage(mediaImageUrl)
+                    .mediaImage()
+            }
+            .aspectRatio(contentMode: .fit)
+            .mediaRounded()
         }
     }
 }

@@ -61,19 +61,7 @@ extension KFImage {
             .clipped()
     }
 
-    func mediaImage() -> some View {
-        self
-            .resizable()
-            .roundCorner(radius: .point(Constants.mediaImageCornerRadius))
-            .placeholder { _ in
-                Rectangle()
-                    .foregroundColor(.gray)
-                    .cornerRadius(Constants.mediaImageCornerRadius)
-            }
-            .aspectRatio(contentMode: .fit)
-    }
-
-    func nftMediaImage() -> some View {
+    func mediaImage(contentMode: SwiftUI.ContentMode = .fill) -> some View {
         self
             .resizable()
             .placeholder { _ in
@@ -81,7 +69,7 @@ extension KFImage {
                     .foregroundColor(.gray)
                     .cornerRadius(Constants.mediaImageCornerRadius)
             }
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: contentMode)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             .clipped()
     }
