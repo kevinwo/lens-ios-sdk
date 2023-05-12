@@ -9,7 +9,7 @@ struct PubContentView: View {
         Text(content)
             .font(.callout)
 
-        if let mediaUri, let mediaType {
+        if let mediaUri {
             MediaView(
                 media: MediaView.Media.from(uri: mediaUri, type: mediaType),
                 preset: .mediaImage,

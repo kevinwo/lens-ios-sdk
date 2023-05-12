@@ -15,12 +15,10 @@ struct ThreadView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 HStack(alignment: .top) {
-                    if let authorProfileMedia = viewModel.authorProfileMedia {
-                        MediaView(
-                            media: authorProfileMedia,
-                            preset: .feedProfilePicture
-                        )
-                    }
+                    MediaView(
+                        media: viewModel.authorProfileMedia,
+                        preset: .feedProfilePicture
+                    )
 
                     VStack(alignment: .leading) {
                         if let name = viewModel.authorName { Text(name).bold() }

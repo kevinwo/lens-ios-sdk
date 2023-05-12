@@ -37,12 +37,12 @@ struct MediaView: View {
     let contentMode: SwiftUI.ContentMode
 
     init(
-        media: Media,
+        media: Media?,
         preset: Preset? = nil,
         aspectRatio: CGFloat? = nil,
         contentMode: SwiftUI.ContentMode = .fill
     ) {
-        self.media = media
+        self.media = media ?? .empty
         self.preset = preset
         self.aspectRatio = aspectRatio
         self.contentMode = contentMode
@@ -70,7 +70,8 @@ struct MediaView: View {
                     empty
                 }
             case .empty:
-                empty
+                KFImage(nil)
+                    .preset(preset)
             }
         }
         .aspectRatio(aspectRatio, contentMode: contentMode)
