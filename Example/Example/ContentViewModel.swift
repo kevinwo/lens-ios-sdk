@@ -1,4 +1,5 @@
 import Foundation
+import Lens
 
 final class ContentViewModel: ObservableObject {
     // MARK: - Enums
@@ -19,11 +20,12 @@ final class ContentViewModel: ObservableObject {
 
     @Published var state: State = .checkingIfAuthenticated
     @Published var presentedSheet: Sheet?
+    @Published var media: MediaView.Media?
 
     // MARK: - Internal interface
 
     @MainActor
-    func onAppear() async {
+    func onFirstAppear() async {
         await verifyAuth()
     }
 
@@ -40,6 +42,32 @@ final class ContentViewModel: ObservableObject {
         } catch {
             // TODO: Handle error
             state = .unauthenticated
+        }
+    }
+
+    @MainActor
+    func fetchProfile() async {
+        guard let id = Current.user.profileId else {
+             return
+        }
+
+        do {
+            let request = SingleProfileQueryRequest(profileId: .init(stringLiteral: id))
+            let result = try await Current.profiles.fetch(request: request)
+            guard let mediaSet = result.profile?.picture?.asMediaSet?.original else {
+                self.media = .from(
+                    uri: "file:///\(Bundle.main.path(forResource: "profile-placeholder", ofType: "png")!)",
+                    type: "image/png"
+                )
+                return
+            }
+
+            self.media = .from(
+                uri: mediaSet.url,
+                type: mediaSet.mimeType
+            )
+        } catch {
+            // TODO: Handle error
         }
     }
 

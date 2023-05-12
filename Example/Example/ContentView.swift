@@ -17,7 +17,7 @@ struct ContentView: View {
                 TabView {
                     NavigationView {
                         FeedView.view()
-                            .navigationBarItems(trailing: leftNavigationItem)
+                            .navigationBarItems(leading: leadingNavigationItem)
                     }
                     .tabItem {
                         Label("Feed", systemImage: "house")
@@ -25,7 +25,7 @@ struct ContentView: View {
 
                     NavigationView {
                         ExplorePublicationsView()
-                            .navigationBarItems(trailing: leftNavigationItem)
+                            .navigationBarItems(leading: leadingNavigationItem)
                     }
                     .tabItem {
                         Label("Explore", systemImage: "magnifyingglass")
@@ -33,7 +33,7 @@ struct ContentView: View {
 
                     NavigationView {
                         UserNftsView.view()
-                            .navigationBarItems(trailing: leftNavigationItem)
+                            .navigationBarItems(leading: leadingNavigationItem)
                     }
                     .tabItem {
                         Label("Collectibles", systemImage: "square.stack")
@@ -55,7 +55,7 @@ struct ContentView: View {
                         }
 
                         ExplorePublicationsView()
-                            .navigationBarItems(trailing: leftNavigationItem)
+                            .navigationBarItems(leading: leadingNavigationItem)
 
                         Spacer()
                     }
@@ -63,8 +63,8 @@ struct ContentView: View {
                 }
             }
         }
-        .onAppear {
-            Task { await viewModel.onAppear() }
+        .onFirstAppear {
+            Task { await viewModel.onFirstAppear() }
         }
         .sheet(
             item: $viewModel.presentedSheet,
@@ -80,12 +80,17 @@ struct ContentView: View {
         )
     }
 
-    private var leftNavigationItem: some View {
+    private var leadingNavigationItem: some View {
         VStack {
             switch viewModel.state {
             case .authenticated:
-                Button("Sign Out") {
+                Button {
                     Task { await viewModel.didTapWalletDisconnectButton() }
+                } label: {
+                    MediaView(media: viewModel.media, preset: .feedProfilePicture)
+                        .onFirstAppear {
+                            Task { await viewModel.fetchProfile() }
+                        }
                 }
             case .unauthenticated:
                 Button("Sign In") {

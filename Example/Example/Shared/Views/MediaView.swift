@@ -60,7 +60,15 @@ struct MediaView: View {
         VStack {
             switch media {
             case let .staticImage(uri):
-                KFImage(uri.toIpfsUrl())
+                let source: Source? = uri.toIpfsUrl().map {
+                    if $0.isFileURL {
+                        return Source.provider(LocalFileImageDataProvider(fileURL: $0))
+                    } else {
+                        return Source.network($0)
+                    }
+                }
+
+                KFImage(source: source)
                     .preset(preset)
             case let .svgData(encodedData):
                 if let data = svgData(from: encodedData) {
