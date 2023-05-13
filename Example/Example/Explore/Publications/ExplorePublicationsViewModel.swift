@@ -1,5 +1,18 @@
+import Combine
 import Foundation
 import Lens
+
+extension PublicationSortCriteria {
+    var name: String {
+        switch self {
+        case .topCommented: return "Top Commented"
+        case .topCollected: return "Top Collected"
+        case .topMirrored: return "Top Mirrored"
+        case .curatedProfiles: return "Curated Profiles"
+        case .latest: return "Latest"
+        }
+    }
+}
 
 final class ExplorePublicationsViewModel: ObservableObject {
     // MARK: - Enums
@@ -15,14 +28,27 @@ final class ExplorePublicationsViewModel: ObservableObject {
     @Published var state: State = .isLoading
     @Published var isLoadingMore: Bool = false
     @Published var publications = [Publication]()
+    @Published var queryString: String = ""
     @Published var sortCriteria: PublicationSortCriteria = .topCommented
     @Published var pageInfo: PageInfo?
 
+    private var cancellables = Set<AnyCancellable>()
+
     // MARK: - Internal interface
 
-    @MainActor
+    func onFirstAppear() {
+        $sortCriteria
+            .sink { [weak self] _ in
+                guard let self else { return }
+                Task {
+                    await self.fetchPublications()
+                }
+            }
+            .store(in: &cancellables)
+    }
+
     func onAppear() async {
-        if publications.isEmpty {
+        if publications.isEmpty && state != .isLoading {
             await fetchPublications()
         }
     }

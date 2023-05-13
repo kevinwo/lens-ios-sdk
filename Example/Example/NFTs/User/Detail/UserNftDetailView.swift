@@ -34,7 +34,7 @@ struct UserNftDetailView: View {
                 UserNftDetailKeyView.view()
             }
         }
-        .navigationTitle("NFT")
+        .navigationTitle("Collectible")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Picker("Picker", selection: $viewModel.viewType) {

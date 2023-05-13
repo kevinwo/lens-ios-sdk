@@ -1,4 +1,5 @@
 import SwiftUI
+import Lens
 
 struct ExplorePublicationsView: View {
     @StateObject var viewModel = ExplorePublicationsViewModel()
@@ -25,6 +26,24 @@ struct ExplorePublicationsView: View {
                     ProgressView()
                 }
             }
+        }
+        .navigationTitle("Explore")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarItems(
+            trailing:
+                Picker("Sort Criteria", selection: $viewModel.sortCriteria) {
+                    ForEach(PublicationSortCriteria.allCases, id: \.self) { sortCriteria in
+                        Text(sortCriteria.name)
+                    }
+                }
+                .pickerStyle(.menu)
+        )
+        .searchable(
+            text: $viewModel.queryString,
+            placement: .navigationBarDrawer(displayMode: .always)
+        )
+        .onFirstAppear {
+            viewModel.onFirstAppear()
         }
         .onAppear {
             Task { await viewModel.onAppear() }

@@ -36,6 +36,8 @@ struct UserNftsView: View {
                 }
             }
         }
+        .navigationTitle("Collectibles")
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             Task { await viewModel.onAppear() }
         }
