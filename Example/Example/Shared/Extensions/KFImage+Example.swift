@@ -80,7 +80,7 @@ extension KFImage {
         self
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .frame(height: 100)
+            .frame(height: 200)
             .clipped()
     }
 }

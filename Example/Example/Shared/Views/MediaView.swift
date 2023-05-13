@@ -175,7 +175,7 @@ extension View {
         case .ticket:
             return self
                 .aspectRatio(contentMode: .fill)
-                .frame(height: 100)
+                .frame(height: 200)
                 .clipped()
                 .typeErased
         case .none:
