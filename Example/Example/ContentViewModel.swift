@@ -76,18 +76,7 @@ final class ContentViewModel: ObservableObject {
         presentedSheet = .account
     }
 
-    @MainActor
-    func didTapWalletDisconnectButton() async {
-        state = .checkingIfAuthenticated
-
-        do {
-            try Current.authentication.clear()
-            try await Current.wallet.disconnect()
-            try await Current.wallet.signOut()
-        } catch {
-            // TODO: Handle error
-        }
-
-        state = .unauthenticated
+    func didTapAccountButton() async {
+        presentedSheet = .account
     }
 }

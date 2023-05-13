@@ -85,7 +85,7 @@ struct ContentView: View {
             switch viewModel.state {
             case .authenticated:
                 Button {
-                    Task { await viewModel.didTapWalletDisconnectButton() }
+                    Task { await viewModel.didTapAccountButton() }
                 } label: {
                     MediaView(media: viewModel.media, preset: .feedProfilePicture)
                         .onFirstAppear {

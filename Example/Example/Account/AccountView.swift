@@ -35,7 +35,15 @@ struct AccountView: View {
                                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
                             Spacer()
                         case .profileSelected:
-                            Text("Profile details TBD")
+                            VStack {
+                                Text("Profile details TBD")
+
+                                Button("Sign Out") {
+                                    Task {
+                                        await viewModel.didTapSignOutButton()
+                                    }
+                                }
+                            }
                         case .isSignedIn:
                             SelectProfileView.scene(onSelectProfile: {
                                 dismiss()
@@ -46,6 +54,11 @@ struct AccountView: View {
                                     await viewModel.didTapSignInButton()
                                 }
                             }
+
+                            Button("Disconnect wallet") {
+                                Task { await viewModel.didTapDisconnectWalletButton() }
+                            }
+                            .padding(.top)
                         case .noWallet:
                             PrimaryButton("Get Started", isProgressing: $viewModel.isAuthenticating) {
                                 Task {

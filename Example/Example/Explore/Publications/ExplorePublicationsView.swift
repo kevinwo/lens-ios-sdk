@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ExplorePublicationsView: View {
-    @ObservedObject var viewModel = ExplorePublicationsViewModel()
+    @StateObject var viewModel = ExplorePublicationsViewModel()
 
     var body: some View {
         VStack {

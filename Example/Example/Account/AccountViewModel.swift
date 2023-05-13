@@ -44,7 +44,10 @@ final class AccountViewModel: ObservableObject {
         do {
             let isSignedIn = try await Current.authentication.verify()
 
-            if isSignedIn {
+            if isSignedIn && Current.user.profileId != nil {
+                state = .profileSelected
+                return
+            } else if isSignedIn {
                 state = .isSignedIn
                 return
             }
@@ -97,5 +100,34 @@ final class AccountViewModel: ObservableObject {
         }
 
         isAuthenticating = false
+    }
+
+    @MainActor
+    func didTapSignOutButton() async {
+        state = .unknown
+
+        do {
+            try Current.authentication.clear()
+            try await Current.wallet.disconnect()
+            try await Current.wallet.signOut()
+        } catch {
+            // TODO: Handle error
+        }
+
+        state = .walletIsReady
+    }
+
+    @MainActor
+    func didTapDisconnectWalletButton() async {
+        state = .unknown
+
+        do {
+            try await Current.wallet.disconnect()
+            try await Current.wallet.signOut()
+        } catch {
+            // TODO: Handle error
+        }
+
+        state = .noWallet
     }
 }
