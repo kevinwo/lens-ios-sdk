@@ -39,6 +39,8 @@ struct SelectProfileView: View {
                         viewModel.didTapCreateProfileButton()
                     }
                 }
+                .buttonStyle(.bordered)
+                .foregroundColor(.white)
             case .noProfile:
                 CreateProfileView.scene(onCreateProfile: { handle in
                     Task { await viewModel.didCreateProfile(with: handle) }

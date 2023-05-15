@@ -7,8 +7,12 @@ struct AccountView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                AnimatedGradientView()
-                    .edgesIgnoringSafeArea(.bottom)
+                if case .profileSelected = viewModel.state {
+                    // No background
+                } else {
+                    AnimatedGradientView()
+                        .edgesIgnoringSafeArea(.bottom)
+                }
 
                 VStack {
                     switch viewModel.state {
@@ -43,6 +47,8 @@ struct AccountView: View {
                                         await viewModel.didTapSignOutButton()
                                     }
                                 }
+                                .buttonStyle(.bordered)
+                                .foregroundColor(.white)
                             }
                         case .isSignedIn:
                             SelectProfileView.scene(onSelectProfile: {
@@ -58,6 +64,8 @@ struct AccountView: View {
                             Button("Disconnect wallet") {
                                 Task { await viewModel.didTapDisconnectWalletButton() }
                             }
+                            .buttonStyle(.bordered)
+                            .foregroundColor(.white)
                             .padding(.top)
                         case .noWallet:
                             PrimaryButton("Get Started", isProgressing: $viewModel.isAuthenticating) {
@@ -69,6 +77,8 @@ struct AccountView: View {
                             Button("I already have a wallet") {
                                 // TODO: WalletConnect
                             }
+                            .buttonStyle(.bordered)
+                            .foregroundColor(.white)
                             .padding(.top)
                         }
                     }
