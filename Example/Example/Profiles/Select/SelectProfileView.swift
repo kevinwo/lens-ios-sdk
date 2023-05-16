@@ -33,7 +33,6 @@ struct SelectProfileView: View {
                 }
                 .listStyle(.plain)
 
-
                 Button("Create a new profile") {
                     withAnimation {
                         viewModel.didTapCreateProfileButton()

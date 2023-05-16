@@ -39,17 +39,7 @@ struct AccountView: View {
                                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
                             Spacer()
                         case .profileSelected:
-                            VStack {
-                                Text("Profile details TBD")
-
-                                Button("Sign Out") {
-                                    Task {
-                                        await viewModel.didTapSignOutButton()
-                                    }
-                                }
-                                .buttonStyle(.bordered)
-                                .foregroundColor(.white)
-                            }
+                            ProfileDetailView.view()
                         case .isSignedIn:
                             SelectProfileView.scene(onSelectProfile: {
                                 dismiss()

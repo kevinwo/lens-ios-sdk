@@ -10,6 +10,7 @@ struct SubheadingText: View {
     var body: some View {
         Text(text)
             .font(.headline)
+            .foregroundColor(.primary)
             .foregroundColor(.white)
             .multilineTextAlignment(.center)
             .padding()

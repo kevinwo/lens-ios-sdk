@@ -103,21 +103,6 @@ final class AccountViewModel: ObservableObject {
     }
 
     @MainActor
-    func didTapSignOutButton() async {
-        state = .unknown
-
-        do {
-            try Current.authentication.clear()
-            try await Current.wallet.disconnect()
-            try await Current.wallet.signOut()
-        } catch {
-            // TODO: Handle error
-        }
-
-        state = .walletIsReady
-    }
-
-    @MainActor
     func didTapDisconnectWalletButton() async {
         state = .unknown
 
