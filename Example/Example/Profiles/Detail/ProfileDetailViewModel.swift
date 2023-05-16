@@ -1,3 +1,4 @@
+import Combine
 import Foundation
 import Lens
 import SwiftUI
@@ -14,6 +15,9 @@ final class ProfileDetailViewModel: ObservableObject {
 
     @Published var state: State = .isLoading
     @Published var profile: (any Profile)?
+    #if DEBUG
+    @Published var isDemoModeEnabled: Bool = false
+    #endif
     var accountState: Binding<AccountViewModel.AccountState>?
 
     var name: String {
@@ -31,6 +35,8 @@ final class ProfileDetailViewModel: ObservableObject {
     var following: String {
         "\(profile?.stats.totalFollowing ?? 0) Following"
     }
+
+    private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Object life cycle
 
@@ -57,6 +63,18 @@ final class ProfileDetailViewModel: ObservableObject {
         } catch {
             // TODO: Handle error
         }
+
+        #if DEBUG
+        isDemoModeEnabled = Current.user.isDemoModeEnabled
+
+        $isDemoModeEnabled
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { isDemoModeEnabled in
+                Current.user.isDemoModeEnabled = isDemoModeEnabled
+            }
+            .store(in: &cancellables)
+        #endif
     }
 
     @MainActor

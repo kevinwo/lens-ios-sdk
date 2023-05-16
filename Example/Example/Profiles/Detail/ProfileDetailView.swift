@@ -26,6 +26,11 @@ struct ProfileDetailView: View {
 
             Spacer()
 
+
+            #if DEBUG
+            Toggle("Demo mode", isOn: $viewModel.isDemoModeEnabled)
+            #endif
+
             Button("Sign Out") {
                 Task { await viewModel.didTapSignOutButton() }
             }

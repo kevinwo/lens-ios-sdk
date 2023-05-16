@@ -76,6 +76,7 @@ final class ContentViewModel: ObservableObject {
         presentedSheet = .account
     }
 
+    @MainActor
     func didTapAccountButton() async {
         presentedSheet = .account
     }
