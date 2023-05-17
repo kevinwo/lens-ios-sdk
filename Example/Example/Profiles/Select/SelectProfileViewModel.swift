@@ -6,6 +6,7 @@ final class SelectProfileViewModel: ObservableObject {
 
     enum State {
         case isLoading
+        case isCreating
         case profiles([any Profile])
         case noProfile
     }
@@ -53,18 +54,24 @@ final class SelectProfileViewModel: ObservableObject {
 
     @MainActor
     func didCreateProfile(with handle: String) async {
-        state = .isLoading
+        state = .isCreating
 
         do {
+            var profile: (any Profile)? = nil
             let address = try await Current.wallet.address()
             let request = ProfileQueryRequest(ownedBy: [address])
-            let result = try await Current.profiles.fetchAll(request: request)
 
-            if let profile = result.profiles.filter({ $0.handle == handle }).first {
-                Current.user.profileId = profile.id
-                onSelectProfile()
-            } else {
-                state = .noProfile
+            /// For some reason, we're unable to just immediately fetch the single, profile from the server right after create. Therefore, we instead poll the profile list until it appears (usually in a few moments).
+            while profile == nil {
+                let result = try await Current.profiles.fetchAll(request: request)
+                profile = result.profiles.filter { $0.handle.asPrettyHandle == handle.asPrettyHandle }.first
+
+                if let profile {
+                    Current.user.profileId = profile.id
+                    onSelectProfile()
+                } else {
+                    try await Task.sleep(nanoseconds: 2 * 1_000_000_000)
+                }
             }
         } catch {
             // TODO: Handle error

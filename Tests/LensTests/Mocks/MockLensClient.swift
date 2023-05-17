@@ -1,4 +1,5 @@
 import Foundation
+import Apollo
 @testable import Lens
 
 final class MockLensClient: LensClientType {
@@ -18,7 +19,7 @@ final class MockLensClient: LensClientType {
         stubbedRequestQueryData = data
     }
 
-    func request<Query>(query: Query) async throws -> Query.Data where Query : GraphQLQuery {
+    func request<Query>(query: Query, cachePolicy: CachePolicy) async throws -> Query.Data where Query : GraphQLQuery {
         invokedRequestQuery = true
         forceAuthRefreshHandler?()
 

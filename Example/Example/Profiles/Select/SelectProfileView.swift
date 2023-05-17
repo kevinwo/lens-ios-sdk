@@ -18,6 +18,13 @@ struct SelectProfileView: View {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .white))
                 Spacer()
+            case .isCreating:
+                Spacer()
+                Text("Creating profile...")
+                    .foregroundColor(.white)
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                Spacer()
             case .profiles(let profiles):
                 HeadingText("Select a profile")
                     .foregroundColor(.white)

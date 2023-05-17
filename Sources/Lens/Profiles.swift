@@ -44,7 +44,7 @@ public final class Profiles: ProfilesType {
      */
     public func fetchAll(request: ProfileQueryRequest) async throws -> ProfilesResponse {
         let query = ProfilesQuery(request: request)
-        let data = try await client.request(query: query)
+        let data = try await client.request(query: query, cachePolicy: .fetchIgnoringCacheCompletely)
 
         return ProfilesResponse(response: data.profiles)
     }
@@ -67,7 +67,7 @@ public final class Profiles: ProfilesType {
      */
     public func fetch(request: SingleProfileQueryRequest) async throws -> ProfileResponse {
         let query = ProfileQuery(request: request)
-        let data = try await client.request(query: query)
+        let data = try await client.request(query: query, cachePolicy: .default)
 
         return ProfileResponse(profile: data.profile)
     }

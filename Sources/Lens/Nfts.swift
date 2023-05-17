@@ -37,7 +37,7 @@ public class Nfts: NftsType {
      */
     public func fetch(request: NFTsRequest) async throws -> NftsResponse {
         let query = NftsQuery(request: request)
-        let data = try await client.request(query: query)
+        let data = try await client.request(query: query, cachePolicy: .default)
 
         return NftsResponse(response: data.nfts)
     }

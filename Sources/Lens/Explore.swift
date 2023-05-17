@@ -40,7 +40,7 @@ public class Explore: ExploreType {
             request: request,
             observerId: .value(for: observerId)
         )
-        let data = try await client.request(query: query)
+        let data = try await client.request(query: query, cachePolicy: .default)
 
         return ExplorePublicationsResponse(response: data.explorePublications)
     }

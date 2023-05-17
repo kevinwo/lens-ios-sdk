@@ -10,6 +10,7 @@ class MockApolloClient: ApolloClientType {
     // MARK: - fetch
 
     var invokedFetch = false
+    var invokedFetchCachePolicy: CachePolicy?
     var stubbedFetchResult: Any?
 
     func stubFetchResult<Query: GraphQLQuery>(_ result: Query.Data, forQuery: Query) {
@@ -18,6 +19,7 @@ class MockApolloClient: ApolloClientType {
 
     func fetch<Query>(query: Query, cachePolicy: CachePolicy, contextIdentifier: UUID?, queue: DispatchQueue, resultHandler: GraphQLResultHandler<Query.Data>?) -> Cancellable where Query : GraphQLQuery {
         invokedFetch = true
+        invokedFetchCachePolicy = cachePolicy
 
         if let data = stubbedFetchResult as? Query.Data {
             let result = GraphQLResult(data: data, extensions: nil, errors: nil, source: .server, dependentKeys: nil)

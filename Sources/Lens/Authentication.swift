@@ -60,7 +60,7 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
      */
     public func challenge(address: EthereumAddress) async throws -> String {
         let query = ChallengeQuery(request: .init(address: address))
-        let data = try await client.request(query: query)
+        let data = try await client.request(query: query, cachePolicy: .default)
 
         return data.challenge.text
     }
@@ -114,7 +114,7 @@ public class Authentication: AuthenticationType, AuthenticationTypeInternal {
         }
 
         let query = VerifyQuery(request: .init(accessToken: accessToken))
-        let data = try await client.request(query: query)
+        let data = try await client.request(query: query, cachePolicy: .default)
 
         if !data.verify {
             return accessTokenIsValid

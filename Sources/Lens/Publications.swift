@@ -43,7 +43,7 @@ public final class Publications: PublicationsType {
             request: request,
             observerId: .value(for: observerId)
         )
-        let data = try await client.request(query: query)
+        let data = try await client.request(query: query, cachePolicy: .default)
 
         return PublicationsResponse(response: data.publications)
     }
@@ -71,7 +71,7 @@ public final class Publications: PublicationsType {
             request: request,
             observerId: .value(for: observerId)
         )
-        let data = try await client.request(query: query)
+        let data = try await client.request(query: query, cachePolicy: .default)
 
         return PublicationResponse(publication: data.publication)
     }

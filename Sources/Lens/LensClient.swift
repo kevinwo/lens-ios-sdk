@@ -3,7 +3,7 @@ import ApolloAPI
 import Foundation
 
 protocol LensClientType {
-    func request<Query: GraphQLQuery>(query: Query) async throws -> Query.Data
+    func request<Query: GraphQLQuery>(query: Query, cachePolicy: CachePolicy) async throws -> Query.Data
     func request<Mutation: GraphQLMutation>(mutation: Mutation) async throws -> Mutation.Data
 }
 
@@ -18,8 +18,6 @@ public struct LensClient: LensClientType {
 
     static var appName: String?
     static var appBundleIdentifier: String?
-
-    private let apolloClient: ApolloClientType = Current.apolloClient
 
     // MARK: - Public interface
 
@@ -36,11 +34,11 @@ public struct LensClient: LensClientType {
 
     // MARK: - Internal interface
 
-    func request<Query: GraphQLQuery>(query: Query) async throws -> Query.Data {
+    func request<Query: GraphQLQuery>(query: Query, cachePolicy: CachePolicy = .default) async throws -> Query.Data {
         return try await withCheckedThrowingContinuation { continuation in
-            apolloClient.fetch(
+            Current.apolloClient.fetch(
                 query: query,
-                cachePolicy: .default,
+                cachePolicy: cachePolicy,
                 contextIdentifier: nil,
                 queue: .main
             ) { result in
@@ -60,7 +58,7 @@ public struct LensClient: LensClientType {
 
     func request<Mutation: GraphQLMutation>(mutation: Mutation) async throws -> Mutation.Data {
         return try await withCheckedThrowingContinuation { continuation in
-            apolloClient.perform(
+            Current.apolloClient.perform(
                 mutation: mutation,
                 publishResultToStore: true,
                 queue: .main

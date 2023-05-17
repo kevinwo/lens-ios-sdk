@@ -1,3 +1,4 @@
+import Apollo
 import ApolloAPI
 import XCTest
 @testable import Lens
@@ -33,6 +34,44 @@ final class LensClientTests: XCTestCase {
         XCTAssertEqual(LensClient.appBundleIdentifier, appBundleIdentifier)
     }
 
+    func test_query_whenCachePolicyIsDefault() async throws {
+        // given
+        let query = MockChallengeQuery(request: .init(address: "0x0"))
+        let cachePolicy = CachePolicy.default
+        let expectedMessage = "Here's a cool challenge message to sign"
+        let result = MockChallengeQuery.Data(_dataDict: .init(data: .init([("message", expectedMessage)])))
+        mockApolloClient.stubFetchResult(result, forQuery: query)
+
+        // when
+        let data = try await client.request(query: query, cachePolicy: cachePolicy)
+
+        // then
+        // it should set the default cache policy
+        XCTAssertEqual(mockApolloClient.invokedFetchCachePolicy, cachePolicy)
+
+        // it should return response data
+        XCTAssertEqual(data.message, expectedMessage)
+    }
+
+    func test_query_whenCachePolicyIsIgnoringCacheCompletely() async throws {
+        // given
+        let query = MockChallengeQuery(request: .init(address: "0x0"))
+        let cachePolicy = CachePolicy.fetchIgnoringCacheCompletely
+        let expectedMessage = "Here's a cool challenge message to sign"
+        let result = MockChallengeQuery.Data(_dataDict: .init(data: .init([("message", expectedMessage)])))
+        mockApolloClient.stubFetchResult(result, forQuery: query)
+
+        // when
+        let data = try await client.request(query: query, cachePolicy: cachePolicy)
+
+        // then
+        // it should set the ignoring cache completely policy
+        XCTAssertEqual(mockApolloClient.invokedFetchCachePolicy, cachePolicy)
+
+        // it should return response data
+        XCTAssertEqual(data.message, expectedMessage)
+    }
+
     func test_query() async throws {
         // given
         let query = MockChallengeQuery(request: .init(address: "0x0"))
@@ -41,7 +80,7 @@ final class LensClientTests: XCTestCase {
         mockApolloClient.stubFetchResult(result, forQuery: query)
 
         // when
-        let data = try await client.request(query: query)
+        let data = try await client.request(query: query, cachePolicy: .default)
 
         // then
         XCTAssertEqual(data.message, expectedMessage)
