@@ -28,6 +28,7 @@ struct SelectProfileView: View {
             case .profiles(let profiles):
                 HeadingText("Select a profile")
                     .foregroundColor(.white)
+                    .padding()
 
                 List {
                     ForEach(profiles, id: \.id) { profile in

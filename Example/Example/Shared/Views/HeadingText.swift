@@ -12,7 +12,6 @@ struct HeadingText: View {
             .font(.largeTitle)
             .bold()
             .multilineTextAlignment(.center)
-            .padding()
     }
 }
 

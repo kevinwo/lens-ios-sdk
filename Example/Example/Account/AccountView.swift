@@ -24,9 +24,10 @@ struct AccountView: View {
                             .font(.system(size: 50))
                         HeadingText(viewModel.title)
                             .foregroundColor(.white)
+                            .padding()
                         SubheadingText(viewModel.description)
                             .foregroundColor(.white)
-
+                            .padding()
                         Spacer()
                     default:
                         Group {}

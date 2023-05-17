@@ -14,8 +14,10 @@ struct CreateProfileView: View {
         VStack {
             HeadingText("Create a profile")
                 .foregroundColor(.white)
+                .padding()
             SubheadingText("Your profile uniquely identifies you and your content to others on Lens. You'll be able to customize it later.")
                 .foregroundColor(.white)
+                .padding()
 
             Spacer()
 

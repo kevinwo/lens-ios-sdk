@@ -22,8 +22,10 @@ struct ProfileDetailView: View {
                 }
             case .profileLoaded:
                 HeadingText(viewModel.name)
+                    .padding()
                 SubheadingText(viewModel.handle)
                     .foregroundColor(.secondary)
+                    .padding()
 
                 List {
                     Section {
