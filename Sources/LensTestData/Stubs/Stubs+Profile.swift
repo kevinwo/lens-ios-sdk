@@ -3,8 +3,8 @@ import Lens
 import XCTest
 
 extension Stubs {
-    enum Profile {
-        static func create200() throws -> CreateProfileMutation.Data {
+    public enum Profile {
+        public static func create200() throws -> CreateProfileMutation.Data {
             let data = create200ResponseJSON()
             var dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
             var dictData = try XCTUnwrap(dict["data"] as? [String: AnyHashable])
@@ -22,7 +22,7 @@ extension Stubs {
             )
         }
 
-        static func fetchAll200ResponseJSON() -> Data {
+        public static func fetchAll200ResponseJSON() -> Data {
             """
             {
               "data": {
@@ -78,7 +78,7 @@ extension Stubs {
             """.data(using: .utf8)!
         }
 
-        static func fetch200ResponseJSON() -> Data {
+        public static func fetch200ResponseJSON() -> Data {
               """
               {
                 "data": {
@@ -154,7 +154,7 @@ extension Stubs {
               """.data(using: .utf8)!
         }
 
-        static func create200ResponseJSON() -> Data {
+        public static func create200ResponseJSON() -> Data {
       """
       {
         "data": {

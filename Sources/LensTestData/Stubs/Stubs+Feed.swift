@@ -1,7 +1,7 @@
 import Foundation
 
 extension Stubs {
-    static func feedFetch200ResponseJSON() -> Data {
+    public static func feedFetch200ResponseJSON() -> Data {
         """
         {
           "data": {

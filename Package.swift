@@ -17,6 +17,10 @@ let package = Package(
       targets: ["Lens"]
     ),
     .library(
+      name: "LensTestData",
+      targets: ["LensTestData"]
+    ),
+    .library(
       name: "LensTestTools",
       targets: ["LensTestTools"]
     ),
@@ -49,11 +53,21 @@ let package = Package(
       name: "LensTests",
       dependencies: [
         "Lens",
+        "LensTestData",
         .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
       ]
     ),
 
-    // LensTestTools
+    // Lens Test Data
+    .target(
+      name: "LensTestData",
+      dependencies: [
+        .product(name: "Apollo", package: "apollo-ios"),
+        .product(name: "ApolloAPI", package: "apollo-ios"),
+      ]
+    ),
+
+    // Lens Test Tools
     .target(
       name: "LensTestTools",
       dependencies: [

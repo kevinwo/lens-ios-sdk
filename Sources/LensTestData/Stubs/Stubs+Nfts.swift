@@ -3,8 +3,8 @@ import Lens
 import XCTest
 
 extension Stubs {
-    enum Nfts {
-        static func fetch() throws -> NftsQuery.Data {
+    public enum Nfts {
+        public static func fetch() throws -> NftsQuery.Data {
             let data = fetch200ResponseJSON()
             var dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
             var dictData = try XCTUnwrap(dict["data"] as? [String: AnyHashable])
@@ -28,7 +28,7 @@ extension Stubs {
             )
         }
 
-        static func fetch200ResponseJSON() -> Data {
+        public static func fetch200ResponseJSON() -> Data {
             """
             {
               "data": {

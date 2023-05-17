@@ -3,8 +3,8 @@ import Lens
 import XCTest
 
 extension Stubs {
-    enum Transactions {
-        static func broadcast() throws -> BroadcastMutation.Data {
+    public enum Transactions {
+        public static func broadcast() throws -> BroadcastMutation.Data {
             let data = broadcast200ResponseJSON()
             var dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
             var dictData = try XCTUnwrap(dict["data"] as? [String: AnyHashable])
@@ -23,7 +23,7 @@ extension Stubs {
             )
         }
 
-        static func broadcast200ResponseJSON() -> Data {
+        public static func broadcast200ResponseJSON() -> Data {
             """
             {
               "data": {

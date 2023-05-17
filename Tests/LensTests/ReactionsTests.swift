@@ -1,3 +1,4 @@
+import LensTestData
 import XCTest
 @testable import Lens
 

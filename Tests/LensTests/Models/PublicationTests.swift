@@ -1,3 +1,4 @@
+import LensTestData
 import SnapshotTesting
 import XCTest
 @testable import Lens

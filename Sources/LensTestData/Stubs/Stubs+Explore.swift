@@ -3,18 +3,18 @@ import Lens
 import XCTest
 
 extension Stubs {
-    enum Explore {
-        static func testPost() throws -> ExplorePublicationsQuery.Data.ExplorePublications.Item {
+    public enum Explore {
+        public static func testPost() throws -> ExplorePublicationsQuery.Data.ExplorePublications.Item {
             let data = Stubs.Explore.testPostData
             return try item(for: data)
         }
 
-        static func testComment() throws -> ExplorePublicationsQuery.Data.ExplorePublications.Item {
+        public static func testComment() throws -> ExplorePublicationsQuery.Data.ExplorePublications.Item {
             let data = Stubs.Explore.testCommentData
             return try item(for: data)
         }
 
-        static var testPostData: Data {
+        public static var testPostData: Data {
             """
             {
                 "__typename": "Post",
@@ -143,7 +143,7 @@ extension Stubs {
             """.data(using: .utf8)!
         }
 
-        static var testCommentData: Data {
+        public static var testCommentData: Data {
             """
             {
                 "__typename": "Comment",
@@ -385,7 +385,7 @@ extension Stubs {
         }
     }
 
-    static func explorePublications200ResponseJSON() -> Data {
+    public static func explorePublications200ResponseJSON() -> Data {
     """
         {
           "data": {

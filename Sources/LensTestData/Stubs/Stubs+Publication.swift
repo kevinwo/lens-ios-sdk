@@ -3,8 +3,8 @@ import Lens
 import XCTest
 
 extension Stubs {
-    enum Publication {
-        static func fetchAll200ResponseJSON() -> Data {
+    public enum Publication {
+        public static func fetchAll200ResponseJSON() -> Data {
             """
             {
               "data": {
@@ -82,7 +82,7 @@ extension Stubs {
             """.data(using: .utf8)!
         }
 
-        static func fetch200ResponseJSON() -> Data {
+        public static func fetch200ResponseJSON() -> Data {
             """
             {
               "data": {
@@ -151,7 +151,7 @@ extension Stubs {
             """.data(using: .utf8)!
         }
 
-        static func createCollectTypedData200ResponseJSON() -> Data {
+        public static func createCollectTypedData200ResponseJSON() -> Data {
             """
             {
               "data": {
@@ -203,7 +203,7 @@ extension Stubs {
             """.data(using: .utf8)!
         }
 
-        static func fetchAllPublications() throws -> PublicationsQuery.Data {
+        public static func fetchAllPublications() throws -> PublicationsQuery.Data {
             let data = fetchAll200ResponseJSON()
             var dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
             var dictData = try XCTUnwrap(dict["data"] as? [String: AnyHashable])
@@ -227,7 +227,7 @@ extension Stubs {
             )
         }
 
-        static func fetchPublication() throws -> PublicationQuery.Data {
+        public static func fetchPublication() throws -> PublicationQuery.Data {
             let data = fetch200ResponseJSON()
             var dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
             var dictData = try XCTUnwrap(dict["data"] as? [String: AnyHashable])
@@ -248,7 +248,7 @@ extension Stubs {
             )
         }
 
-        static func createCollectTypedData() throws -> CreateCollectTypedDataMutation.Data {
+        public static func createCollectTypedData() throws -> CreateCollectTypedDataMutation.Data {
             let data = createCollectTypedData200ResponseJSON()
             var dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyHashable])
             var dictData = try XCTUnwrap(dict["data"] as? [String: AnyHashable])
@@ -267,17 +267,17 @@ extension Stubs {
             )
         }
 
-        static func testPost() throws -> PublicationsQuery.Data.Publications.Item {
+        public static func testPost() throws -> PublicationsQuery.Data.Publications.Item {
             let data = Stubs.Publication.testPostData
             return try item(for: data)
         }
 
-        static func testComment() throws -> PublicationsQuery.Data.Publications.Item {
+        public static func testComment() throws -> PublicationsQuery.Data.Publications.Item {
             let data = Stubs.Publication.testCommentData
             return try item(for: data)
         }
 
-        static var testPostData: Data {
+        public static var testPostData: Data {
             """
             {
                 "__typename": "Post",
@@ -406,7 +406,7 @@ extension Stubs {
             """.data(using: .utf8)!
         }
 
-        static var testCommentData: Data {
+        public static var testCommentData: Data {
             """
             {
                 "__typename": "Comment",

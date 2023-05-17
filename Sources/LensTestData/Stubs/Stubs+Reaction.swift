@@ -1,8 +1,8 @@
 import Foundation
 
 extension Stubs {
-    enum Reaction {
-        static func add200ResponseJSON() -> Data {
+    public enum Reaction {
+        public static func add200ResponseJSON() -> Data {
             """
             {
               "data": {}
@@ -10,7 +10,7 @@ extension Stubs {
             """.data(using: .utf8)!
         }
 
-        static func remove200ResponseJSON() -> Data {
+        public static func remove200ResponseJSON() -> Data {
             """
             {
               "data": {}
