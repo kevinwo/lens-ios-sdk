@@ -51,6 +51,7 @@
 		214D09B22A0AF1EF0051420E /* MacContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D09B12A0AF1EF0051420E /* MacContentView.swift */; };
 		218E15D82A12BF11006F5C59 /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E15D72A12BF11006F5C59 /* ProfileDetailView.swift */; };
 		218E15DA2A12BF9E006F5C59 /* ProfileDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E15D92A12BF9D006F5C59 /* ProfileDetailViewModel.swift */; };
+		218E15DC2A1452FD006F5C59 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E15DB2A1452FD006F5C59 /* SecondaryButton.swift */; };
 		218E55A029EF246600EC4271 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E559F29EF246600EC4271 /* FooterView.swift */; };
 		218E55A329F0529300EC4271 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E55A229F0529300EC4271 /* AccountView.swift */; };
 		218E55A529F0C22100EC4271 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E55A429F0C22100EC4271 /* AccountViewModel.swift */; };
@@ -152,6 +153,7 @@
 		214D09B12A0AF1EF0051420E /* MacContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacContentView.swift; sourceTree = "<group>"; };
 		218E15D72A12BF11006F5C59 /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
 		218E15D92A12BF9D006F5C59 /* ProfileDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewModel.swift; sourceTree = "<group>"; };
+		218E15DB2A1452FD006F5C59 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		218E559F29EF246600EC4271 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		218E55A229F0529300EC4271 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		218E55A429F0C22100EC4271 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
@@ -490,6 +492,7 @@
 				21DB4D6B29F9983A00780876 /* SubheadingText.swift */,
 				21DB4D7229FC12B700780876 /* VerticalLine.swift */,
 				211A954C2A0E9BB900481EAF /* MediaView.swift */,
+				218E15DB2A1452FD006F5C59 /* SecondaryButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -829,6 +832,7 @@
 				219F876129E87BB2004B55C2 /* CommentRow.swift in Sources */,
 				21C1284B29F3114100E813ED /* PublicationRowModel.swift in Sources */,
 				21C1284529F2D3CE00E813ED /* AnimatedGradientView.swift in Sources */,
+				218E15DC2A1452FD006F5C59 /* SecondaryButton.swift in Sources */,
 				211A95322A0D69AF00481EAF /* FullWidthModifier.swift in Sources */,
 				218E15DA2A12BF9E006F5C59 /* ProfileDetailViewModel.swift in Sources */,
 				211A95362A0D69D600481EAF /* CardStyleModifier.swift in Sources */,

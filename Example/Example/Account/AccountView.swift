@@ -51,10 +51,9 @@ struct AccountView: View {
                                 }
                             }
 
-                            Button("Disconnect wallet") {
+                            SecondaryButton("Disconnect wallet") {
                                 Task { await viewModel.didTapDisconnectWalletButton() }
                             }
-                            .buttonStyle(.bordered)
                             .foregroundColor(.white)
                             .padding(.top)
                         case .noWallet:
@@ -64,10 +63,9 @@ struct AccountView: View {
                                 }
                             }
 
-                            Button("I already have a wallet") {
+                            SecondaryButton("I already have a wallet") {
                                 // TODO: WalletConnect
                             }
-                            .buttonStyle(.bordered)
                             .foregroundColor(.white)
                             .padding(.top)
                         }

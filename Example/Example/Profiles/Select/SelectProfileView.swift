@@ -40,12 +40,11 @@ struct SelectProfileView: View {
                 }
                 .listStyle(.plain)
 
-                Button("Create a new profile") {
+                SecondaryButton("Create a new profile") {
                     withAnimation {
                         viewModel.didTapCreateProfileButton()
                     }
                 }
-                .buttonStyle(.bordered)
                 .foregroundColor(.white)
             case .noProfile:
                 CreateProfileView.scene(onCreateProfile: { handle in

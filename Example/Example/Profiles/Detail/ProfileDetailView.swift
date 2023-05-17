@@ -17,10 +17,9 @@ struct ProfileDetailView: View {
                 Toggle("Demo mode", isOn: $viewModel.isDemoModeEnabled)
                 #endif
 
-                Button("Sign Out") {
+                SecondaryButton("Sign Out") {
                     Task { await viewModel.didTapSignOutButton() }
                 }
-                .buttonStyle(.bordered)
             case .profileLoaded:
                 HeadingText(viewModel.name)
                 SubheadingText(viewModel.handle)
