@@ -12,10 +12,14 @@ let package = Package(
     .watchOS(.v6),
   ],
   products: [
-    // Products define the executables and libraries a package produces, and make them visible to other packages.
     .library(
       name: "Lens",
-      targets: ["Lens"]),
+      targets: ["Lens"]
+    ),
+    .library(
+      name: "LensTestTools",
+      targets: ["LensTestTools"]
+    ),
   ],
   dependencies: [
     .package(
@@ -32,8 +36,7 @@ let package = Package(
     )
   ],
   targets: [
-    // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-    // Targets can depend on other targets in this package, and on products in packages this package depends on.
+    // Lens
     .target(
       name: "Lens",
       dependencies: [
@@ -48,6 +51,23 @@ let package = Package(
         "Lens",
         .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
       ]
-    )
+    ),
+
+    // LensTestTools
+    .target(
+      name: "LensTestTools",
+      dependencies: [
+        "Lens"
+      ],
+      linkerSettings: [
+        .linkedFramework(
+          "XCTest",
+          .when(platforms: [.macOS, .iOS, .watchOS, .tvOS])),
+      ]
+    ),
+    .testTarget(
+      name: "LensTestToolsTests",
+      dependencies: ["LensTestTools"]
+    ),
   ]
 )

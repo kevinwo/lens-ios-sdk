@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "2AEF17D8-ACB9-4EDA-8176-839A6C8D6A22",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "LensTests",
+        "name" : "LensTests"
+      }
+    }
+  ],
+  "version" : 1
+}

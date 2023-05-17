@@ -1,176 +1,178 @@
 {
-  "pins" : [
-    {
-      "identity" : "apollo-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apollographql/apollo-ios.git",
-      "state" : {
-        "revision" : "6de797f7becb59a93c0a47582ec293ee3853a14f",
-        "version" : "1.1.1"
+  "object": {
+    "pins": [
+      {
+        "package": "Apollo",
+        "repositoryURL": "https://github.com/apollographql/apollo-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "6de797f7becb59a93c0a47582ec293ee3853a14f",
+          "version": "1.1.1"
+        }
+      },
+      {
+        "package": "BigInt",
+        "repositoryURL": "https://github.com/attaswift/BigInt.git",
+        "state": {
+          "branch": null,
+          "revision": "0ed110f7555c34ff468e72e1686e59721f2b0da6",
+          "version": "5.3.0"
+        }
+      },
+      {
+        "package": "CryptoSwift",
+        "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
+        "state": {
+          "branch": null,
+          "revision": "95c18f1c1bc44d5547728621ed680850368f7a45",
+          "version": "1.7.0"
+        }
+      },
+      {
+        "package": "EFQRCode",
+        "repositoryURL": "https://github.com/EFPrefix/EFQRCode.git",
+        "state": {
+          "branch": null,
+          "revision": "2991c2f318ad9529d93b2a73a382a3f9c72c64ce",
+          "version": "6.2.2"
+        }
+      },
+      {
+        "package": "FluidGradient",
+        "repositoryURL": "https://github.com/Cindori/FluidGradient.git",
+        "state": {
+          "branch": null,
+          "revision": "9ddda4cf23671ef0228e88681ec6210cb3e0d7f7",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "InflectorKit",
+        "repositoryURL": "https://github.com/mattt/InflectorKit",
+        "state": {
+          "branch": null,
+          "revision": "d8cbcc04972690aaa5fc760a2b9ddb3e9f0decd7",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "KeychainAccess",
+        "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess.git",
+        "state": {
+          "branch": null,
+          "revision": "84e546727d66f1adc5439debad16270d0fdd04e7",
+          "version": "4.2.2"
+        }
+      },
+      {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
+        "state": {
+          "branch": null,
+          "revision": "af4be924ad984cf4d16f4ae4df424e79a443d435",
+          "version": "7.6.2"
+        }
+      },
+      {
+        "package": "Lottie",
+        "repositoryURL": "https://github.com/airbnb/lottie-spm.git",
+        "state": {
+          "branch": null,
+          "revision": "60ea4f82fba8b4cb21a75665a889e86ed4d81c6e",
+          "version": "4.2.0"
+        }
+      },
+      {
+        "package": "MagicSDK",
+        "repositoryURL": "https://github.com/magiclabs/magic-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "e00b89d6dced2ea347f0cfec436f66da80addb26",
+          "version": "8.0.1"
+        }
+      },
+      {
+        "package": "PromiseKit",
+        "repositoryURL": "https://github.com/mxcl/PromiseKit.git",
+        "state": {
+          "branch": null,
+          "revision": "8a98e31a47854d3180882c8068cc4d9381bf382d",
+          "version": "6.22.1"
+        }
+      },
+      {
+        "package": "secp256k1",
+        "repositoryURL": "https://github.com/Boilertalk/secp256k1.swift.git",
+        "state": {
+          "branch": null,
+          "revision": "cd187c632fb812fd93711a9f7e644adb7e5f97f0",
+          "version": "0.1.7"
+        }
+      },
+      {
+        "package": "SQLite.swift",
+        "repositoryURL": "https://github.com/stephencelis/SQLite.swift.git",
+        "state": {
+          "branch": null,
+          "revision": "7a2e3cd27de56f6d396e84f63beefd0267b55ccb",
+          "version": "0.14.1"
+        }
+      },
+      {
+        "package": "SVGView",
+        "repositoryURL": "https://github.com/exyte/SVGView.git",
+        "state": {
+          "branch": null,
+          "revision": "18bf73efc2f2dede5dfa73f517ddf4e054061294",
+          "version": "1.0.4"
+        }
+      },
+      {
+        "package": "swift-argument-parser",
+        "repositoryURL": "https://github.com/apple/swift-argument-parser.git",
+        "state": {
+          "branch": null,
+          "revision": "fee6933f37fde9a5e12a1e4aeaa93fe60116ff2a",
+          "version": "1.2.2"
+        }
+      },
+      {
+        "package": "swift-collections",
+        "repositoryURL": "https://github.com/apple/swift-collections",
+        "state": {
+          "branch": null,
+          "revision": "937e904258d22af6e447a0b72c0bc67583ef64a2",
+          "version": "1.0.4"
+        }
+      },
+      {
+        "package": "swift-snapshot-testing",
+        "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing",
+        "state": {
+          "branch": null,
+          "revision": "cef5b3f6f11781dd4591bdd1dd0a3d22bd609334",
+          "version": "1.11.0"
+        }
+      },
+      {
+        "package": "swift_qrcodejs",
+        "repositoryURL": "https://github.com/ApolloZhu/swift_qrcodejs.git",
+        "state": {
+          "branch": null,
+          "revision": "374dc7f7b9e76c6aeb393f6a84590c6d387e1ecb",
+          "version": "2.2.2"
+        }
+      },
+      {
+        "package": "MagicSDK-Web3",
+        "repositoryURL": "https://github.com/magiclabs/Web3.swift.git",
+        "state": {
+          "branch": null,
+          "revision": "6e99e72c53f2b47f2f01f991aad2504f0f55b433",
+          "version": "1.1.0"
+        }
       }
-    },
-    {
-      "identity" : "bigint",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/attaswift/BigInt.git",
-      "state" : {
-        "revision" : "0ed110f7555c34ff468e72e1686e59721f2b0da6",
-        "version" : "5.3.0"
-      }
-    },
-    {
-      "identity" : "cryptoswift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/krzyzanowskim/CryptoSwift.git",
-      "state" : {
-        "revision" : "95c18f1c1bc44d5547728621ed680850368f7a45",
-        "version" : "1.7.0"
-      }
-    },
-    {
-      "identity" : "efqrcode",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/EFPrefix/EFQRCode.git",
-      "state" : {
-        "revision" : "2991c2f318ad9529d93b2a73a382a3f9c72c64ce",
-        "version" : "6.2.2"
-      }
-    },
-    {
-      "identity" : "fluidgradient",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Cindori/FluidGradient.git",
-      "state" : {
-        "revision" : "9ddda4cf23671ef0228e88681ec6210cb3e0d7f7",
-        "version" : "1.0.0"
-      }
-    },
-    {
-      "identity" : "inflectorkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mattt/InflectorKit",
-      "state" : {
-        "revision" : "d8cbcc04972690aaa5fc760a2b9ddb3e9f0decd7",
-        "version" : "1.0.0"
-      }
-    },
-    {
-      "identity" : "keychainaccess",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/kishikawakatsumi/KeychainAccess.git",
-      "state" : {
-        "revision" : "84e546727d66f1adc5439debad16270d0fdd04e7",
-        "version" : "4.2.2"
-      }
-    },
-    {
-      "identity" : "kingfisher",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/onevcat/Kingfisher.git",
-      "state" : {
-        "revision" : "af4be924ad984cf4d16f4ae4df424e79a443d435",
-        "version" : "7.6.2"
-      }
-    },
-    {
-      "identity" : "lottie-spm",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/airbnb/lottie-spm.git",
-      "state" : {
-        "revision" : "60ea4f82fba8b4cb21a75665a889e86ed4d81c6e",
-        "version" : "4.2.0"
-      }
-    },
-    {
-      "identity" : "magic-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/magiclabs/magic-ios.git",
-      "state" : {
-        "revision" : "e00b89d6dced2ea347f0cfec436f66da80addb26",
-        "version" : "8.0.1"
-      }
-    },
-    {
-      "identity" : "promisekit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mxcl/PromiseKit.git",
-      "state" : {
-        "revision" : "8a98e31a47854d3180882c8068cc4d9381bf382d",
-        "version" : "6.22.1"
-      }
-    },
-    {
-      "identity" : "secp256k1.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Boilertalk/secp256k1.swift.git",
-      "state" : {
-        "revision" : "cd187c632fb812fd93711a9f7e644adb7e5f97f0",
-        "version" : "0.1.7"
-      }
-    },
-    {
-      "identity" : "sqlite.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/stephencelis/SQLite.swift.git",
-      "state" : {
-        "revision" : "7a2e3cd27de56f6d396e84f63beefd0267b55ccb",
-        "version" : "0.14.1"
-      }
-    },
-    {
-      "identity" : "svgview",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/exyte/SVGView.git",
-      "state" : {
-        "revision" : "18bf73efc2f2dede5dfa73f517ddf4e054061294",
-        "version" : "1.0.4"
-      }
-    },
-    {
-      "identity" : "swift-argument-parser",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser.git",
-      "state" : {
-        "revision" : "fee6933f37fde9a5e12a1e4aeaa93fe60116ff2a",
-        "version" : "1.2.2"
-      }
-    },
-    {
-      "identity" : "swift-collections",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-collections",
-      "state" : {
-        "revision" : "937e904258d22af6e447a0b72c0bc67583ef64a2",
-        "version" : "1.0.4"
-      }
-    },
-    {
-      "identity" : "swift-snapshot-testing",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swift-snapshot-testing",
-      "state" : {
-        "revision" : "cef5b3f6f11781dd4591bdd1dd0a3d22bd609334",
-        "version" : "1.11.0"
-      }
-    },
-    {
-      "identity" : "swift_qrcodejs",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ApolloZhu/swift_qrcodejs.git",
-      "state" : {
-        "revision" : "374dc7f7b9e76c6aeb393f6a84590c6d387e1ecb",
-        "version" : "2.2.2"
-      }
-    },
-    {
-      "identity" : "web3.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/magiclabs/Web3.swift.git",
-      "state" : {
-        "revision" : "6e99e72c53f2b47f2f01f991aad2504f0f55b433",
-        "version" : "1.1.0"
-      }
-    }
-  ],
-  "version" : 2
+    ]
+  },
+  "version": 1
 }
