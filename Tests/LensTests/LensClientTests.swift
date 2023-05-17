@@ -72,20 +72,6 @@ final class LensClientTests: XCTestCase {
         XCTAssertEqual(data.message, expectedMessage)
     }
 
-    func test_query() async throws {
-        // given
-        let query = MockChallengeQuery(request: .init(address: "0x0"))
-        let expectedMessage = "Here's a cool challenge message to sign"
-        let result = MockChallengeQuery.Data(_dataDict: .init(data: .init([("message", expectedMessage)])))
-        mockApolloClient.stubFetchResult(result, forQuery: query)
-
-        // when
-        let data = try await client.request(query: query, cachePolicy: .default)
-
-        // then
-        XCTAssertEqual(data.message, expectedMessage)
-    }
-
     func test_perform() async throws {
         // given
         let mutation = MockAuthenticateMutation()

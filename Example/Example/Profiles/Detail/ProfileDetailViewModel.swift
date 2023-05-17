@@ -77,6 +77,10 @@ final class ProfileDetailViewModel: ObservableObject {
         #endif
     }
 
+    func didTapSwitchProfileButton() {
+        accountState?.wrappedValue = .isSignedIn
+    }
+
     @MainActor
     func didTapSignOutButton() async {
         state = .isSigningOut

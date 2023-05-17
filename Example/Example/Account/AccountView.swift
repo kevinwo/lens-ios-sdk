@@ -39,7 +39,7 @@ struct AccountView: View {
                                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
                             Spacer()
                         case .profileSelected:
-                            ProfileDetailView.view()
+                            ProfileDetailView.view(accountState: $viewModel.state)
                         case .isSignedIn:
                             SelectProfileView.scene(onSelectProfile: {
                                 dismiss()
