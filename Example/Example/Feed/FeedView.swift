@@ -9,9 +9,18 @@ struct FeedView: View {
             case .isLoading:
                 ProgressView()
             case .noPublications:
-                Text("Explore content and Lens and follow new people to have posts show up right here in your feed!")
+                Text("✅")
+                    .font(.largeTitle)
+                    .padding(.bottom, 8)
+                HeadingText("You're all set!")
+                    .multilineTextAlignment(.center)
+                    .padding([.leading, .trailing, .bottom])
+                Text("Get started by exploring content and following new people to have posts show up right here in your feed.")
                     .multilineTextAlignment(.center)
                     .padding()
+                SecondaryButton("Explore") {
+                    // TODO
+                }
             case .hasPublications:
                 List {
                     ForEach(viewModel.publications) { publication in
