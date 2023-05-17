@@ -1,5 +1,6 @@
 import SwiftUI
 
+#if !os(macOS)
 extension View {
     public func prepareForSnapshotting() -> UIHostingController<Self> {
         let controller = UIHostingController(rootView: self)
@@ -9,3 +10,4 @@ extension View {
         return controller
     }
 }
+#endif

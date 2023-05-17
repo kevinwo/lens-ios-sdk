@@ -1,6 +1,7 @@
 import XCTest
 @testable import LensTestTools
 
+#if !os(macOS)
 final class LensTestToolsTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
@@ -9,3 +10,4 @@ final class LensTestToolsTests: XCTestCase {
         XCTAssertEqual(LensTestTools().text, "Hello, World!")
     }
 }
+#endif
