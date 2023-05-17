@@ -10,7 +10,6 @@ struct HeadingText: View {
     var body: some View {
         Text(text)
             .font(.largeTitle)
-            .foregroundColor(.primary)
             .bold()
             .multilineTextAlignment(.center)
             .padding()

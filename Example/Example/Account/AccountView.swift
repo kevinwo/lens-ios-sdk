@@ -25,6 +25,7 @@ struct AccountView: View {
                         HeadingText(viewModel.title)
                             .foregroundColor(.white)
                         SubheadingText(viewModel.description)
+                            .foregroundColor(.white)
 
                         Spacer()
                     default:

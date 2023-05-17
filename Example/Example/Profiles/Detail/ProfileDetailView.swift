@@ -23,6 +23,7 @@ struct ProfileDetailView: View {
             case .profileLoaded:
                 HeadingText(viewModel.name)
                 SubheadingText(viewModel.handle)
+                    .foregroundColor(.secondary)
 
                 List {
                     Section {
