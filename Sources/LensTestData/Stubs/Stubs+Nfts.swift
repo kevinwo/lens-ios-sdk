@@ -1,3 +1,4 @@
+#if DEBUG
 import Foundation
 import Lens
 import XCTest
@@ -267,3 +268,4 @@ extension Stubs {
         }
     }
 }
+#endif

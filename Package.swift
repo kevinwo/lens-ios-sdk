@@ -64,6 +64,9 @@ let package = Package(
       dependencies: [
         .product(name: "Apollo", package: "apollo-ios"),
         .product(name: "ApolloAPI", package: "apollo-ios"),
+      ],
+      swiftSettings: [
+        .define("DEBUG", .when(configuration: .debug))
       ]
     ),
 

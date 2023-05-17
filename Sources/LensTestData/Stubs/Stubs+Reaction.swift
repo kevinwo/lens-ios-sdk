@@ -1,3 +1,4 @@
+#if DEBUG
 import Foundation
 
 extension Stubs {
@@ -19,3 +20,4 @@ extension Stubs {
         }
     }
 }
+#endif
