@@ -114,3 +114,46 @@ extension ExplorePublicationsQuery.Data.ExplorePublications.Item.AsMirror: SomeP
 
 extension PublicationsQuery.Data.Publications.Item.AsMirror: SomePublication {}
 extension PublicationQuery.Data.Publication.AsMirror: SomePublication {}
+
+#if DEBUG
+extension Publication {
+    public enum TestItemType {
+        case explore
+    }
+
+    public enum Error: Swift.Error {
+        case failedToParseJson
+        case typenameNotPresent
+    }
+
+    public static func listFromJson(
+        _ data: Data,
+        itemType: TestItemType,
+        fulfillmentHandler: (String) -> ObjectIdentifier?
+    ) throws -> [Publication] {
+        guard let items = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: AnyHashable]] else {
+            throw Error.failedToParseJson
+        }
+
+        return items.compactMap({ dict in
+            guard let typename = dict["__typename"] as? String else {
+                return nil
+            }
+            var dict = dict
+            dict["__fulfilled"] = Set([fulfillmentHandler(typename)])
+            let json = JSONValue(dict)
+
+            do {
+                let data = try JSONObject(_jsonValue: json)
+
+                switch itemType {
+                case .explore:
+                    return Publication.fromItem(try ExplorePublicationsQuery.Data.ExplorePublications.Item(data: data))
+                }
+            } catch {
+                return nil
+            }
+        })
+    }
+}
+#endif

@@ -41,6 +41,7 @@ struct PostRow: View {
     }
 }
 
+#if DEBUG
 struct PostRow_Previews: PreviewProvider {
     static var previews: some View {
         let post = Post.forPreview
@@ -48,3 +49,4 @@ struct PostRow_Previews: PreviewProvider {
         PostRow(viewModel: viewModel)
     }
 }
+#endif

@@ -64,6 +64,7 @@ struct CommentRow: View {
     }
 }
 
+#if DEBUG
 struct CommentRow_Previews: PreviewProvider {
     static var previews: some View {
         let comment = Comment.forPreview
@@ -71,3 +72,4 @@ struct CommentRow_Previews: PreviewProvider {
         return CommentRow(viewModel: viewModel)
     }
 }
+#endif

@@ -29,7 +29,7 @@ final class ExplorePublicationsViewModel: ObservableObject {
     @Published var isLoadingMore: Bool = false
     @Published var publications = [Publication]()
     @Published var queryString: String = ""
-    @Published var sortCriteria: PublicationSortCriteria = .topCommented
+    @Published var sortCriteria: PublicationSortCriteria = .latest
     @Published var pageInfo: PageInfo?
 
     private var cancellables = Set<AnyCancellable>()
@@ -89,14 +89,17 @@ final class ExplorePublicationsViewModel: ObservableObject {
     private func fetchPublications() async {
         state = .isLoading
 
-        let request = ExplorePublicationRequest(
-            sortCriteria: .init(sortCriteria)
-        )
-
         do {
-            let results = try await Current.explore.publications(request: request, observerId: Current.user.profileId)
-            publications = results.items
-            self.pageInfo = results.pageInfo
+            #if DEBUG
+            if Current.user.isDemoModeEnabled {
+                publications = try Publication.demoExplorePublications()
+                self.pageInfo = nil
+            } else {
+                try await loadPublications()
+            }
+            #else
+            try await loadPublications()
+            #endif
         } catch {
             // TODO: Handle error
         }
@@ -106,5 +109,13 @@ final class ExplorePublicationsViewModel: ObservableObject {
         } else {
             state = .noPublications
         }
+    }
+
+    private func loadPublications() async throws {
+        let request = ExplorePublicationRequest(sortCriteria: .init(sortCriteria))
+        let results = try await Current.explore.publications(request: request, observerId: Current.user.profileId)
+
+        publications = results.items
+        self.pageInfo = results.pageInfo
     }
 }
