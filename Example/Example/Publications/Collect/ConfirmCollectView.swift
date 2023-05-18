@@ -20,7 +20,7 @@ struct ConfirmCollectView: View {
                     .padding([.bottom, .leading, .trailing])
             }
 
-            Text(viewModel.content ?? "Empty content")
+            Text(viewModel.description ?? "No description")
                 .lineLimit(5)
                 .font(.body)
                 .foregroundColor(.gray)

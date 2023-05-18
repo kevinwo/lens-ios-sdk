@@ -34,7 +34,7 @@ struct UserNftDetailCouponView: View {
                         .padding([.leading, .trailing])
                 }
 
-                Text("15% off storewide and wherever our products are sold.")
+                Text(viewModel.description)
                     .foregroundColor(.gray)
                     .italic()
                     .multilineTextAlignment(.center)
@@ -54,10 +54,11 @@ struct UserNftDetailCouponView: View {
         }
     }
 
-    static func view(title: String, subtitle: String, mediaUri: String, mediaType: String, contractAddress: String, tokenId: String) -> some View {
+    static func view(title: String, subtitle: String, description: String, mediaUri: String, mediaType: String, contractAddress: String, tokenId: String) -> some View {
         let viewModel = UserNftDetailRepresentationViewModel(
             title: title,
             subtitle: subtitle,
+            description: description,
             mediaUri: mediaUri,
             mediaType: mediaType,
             contractAddress: contractAddress,
@@ -73,6 +74,7 @@ struct UserNftDetailCouponView_Previews: PreviewProvider {
         UserNftDetailCouponView.view(
             title: "Cool NFT",
             subtitle: "Creator",
+            description: "Cool description",
             mediaUri: "",
             mediaType: "",
             contractAddress: "0x0",

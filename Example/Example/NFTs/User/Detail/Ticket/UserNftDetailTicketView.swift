@@ -20,10 +20,11 @@ struct UserNftDetailTicketView: View {
         .padding()
     }
 
-    static func view(title: String, subtitle: String, mediaUri: String, mediaType: String, contractAddress: String, tokenId: String) -> some View {
+    static func view(title: String, subtitle: String, description: String, mediaUri: String, mediaType: String, contractAddress: String, tokenId: String) -> some View {
         let viewModel = UserNftDetailRepresentationViewModel(
             title: title,
             subtitle: subtitle,
+            description: description,
             mediaUri: mediaUri,
             mediaType: mediaType,
             contractAddress: contractAddress,
@@ -39,6 +40,7 @@ struct UserNftDetailTicketView_Previews: PreviewProvider {
         UserNftDetailTicketView.view(
             title: "Cool NFT",
             subtitle: "Creator",
+            description: "Cool description",
             mediaUri: "",
             mediaType: "",
             contractAddress: "0x0",

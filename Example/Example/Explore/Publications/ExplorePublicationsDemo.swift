@@ -25,10 +25,10 @@ extension Publication {
                             "__typename": "MediaSet",
                             "original": {
                                 "__typename": "Media",
-                                "url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Cupcake-icon.svg",
+                                "url": "https://cdn.stocksnap.io/img-thumbs/960w/cupcake-tea%20pot_VSLCRUIGUD.jpg",
                                 "width": null,
                                 "height": null,
-                                "mimeType": "image/svg+xml"
+                                "mimeType": "image/jpeg"
                             },
                             "small": null,
                             "medium": null

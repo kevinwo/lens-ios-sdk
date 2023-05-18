@@ -123,7 +123,6 @@ extension Publication {
 
     public enum Error: Swift.Error {
         case failedToParseJson
-        case typenameNotPresent
     }
 
     public static func listFromJson(

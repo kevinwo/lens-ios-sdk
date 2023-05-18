@@ -72,3 +72,31 @@ public protocol NFTOriginalContent {
 }
 
 extension NftsQuery.Data.Nfts.Item.OriginalContent: NFTOriginalContent {}
+
+#if DEBUG
+extension NFT {
+    public enum Error: Swift.Error {
+        case failedToParseJson
+    }
+
+    public static func listFromJson(_ data: Data) throws -> [NFT] {
+        guard let items = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: AnyHashable]] else {
+            throw Error.failedToParseJson
+        }
+
+        return items.compactMap({ dict in
+            var dict = dict
+            dict["__fulfilled"] = Set([ObjectIdentifier(NftsQuery.Data.Nfts.Item.self)])
+            let json = JSONValue(dict)
+
+            do {
+                let data = try JSONObject(_jsonValue: json)
+                let nftItem = NftsQuery.Data.Nfts.Item(_dataDict: .init(data: data))
+                return NFT(nft: nftItem)
+            } catch {
+                return nil
+            }
+        })
+    }
+}
+#endif

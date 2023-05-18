@@ -67,20 +67,16 @@ final class UserNftsViewModel: ObservableObject {
         }
 
         do {
-            let walletAddress = try await Current.wallet.address()
-            let request = NFTsRequest(ownerAddress: walletAddress, chainIds: [chainId])
-            let results = try await Current.nfts.fetch(request: request)
-            nfts = results.items
-
-            /// There's probably a better way to deal with this, but for some reason the API returns a value for the next page, even if there isn't one. If we just set the page info anyway, it will cause an infinite list of NFTs for the same page.
-            self.pageInfo = {
-                if
-                    results.pageInfo?.next == "{\"mumbai\":null}" || results.pageInfo?.next == "{\"polygon\":null}" {
-                    return nil
-                } else {
-                    return results.pageInfo
-                }
-            }()
+            #if DEBUG
+            if Current.user.isDemoModeEnabled {
+                nfts = try NFT.demoNfts()
+                self.pageInfo = nil
+            } else {
+                try await loadNfts()
+            }
+            #else
+            try await loadNfts()
+            #endif
         } catch {
             // TODO: Handle error
         }
@@ -90,5 +86,22 @@ final class UserNftsViewModel: ObservableObject {
         } else {
             state = .noNfts
         }
+    }
+
+    private func loadNfts() async throws {
+        let walletAddress = try await Current.wallet.address()
+        let request = NFTsRequest(ownerAddress: walletAddress, chainIds: [chainId])
+        let results = try await Current.nfts.fetch(request: request)
+        nfts = results.items
+
+        /// There's probably a better way to deal with this, but for some reason the API returns a value for the next page, even if there isn't one. If we just set the page info anyway, it will cause an infinite list of NFTs for the same page.
+        self.pageInfo = {
+            if
+                results.pageInfo?.next == "{\"mumbai\":null}" || results.pageInfo?.next == "{\"polygon\":null}" {
+                return nil
+            } else {
+                return results.pageInfo
+            }
+        }()
     }
 }

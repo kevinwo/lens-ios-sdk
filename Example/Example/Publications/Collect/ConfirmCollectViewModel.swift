@@ -11,8 +11,8 @@ final class ConfirmCollectViewModel: ObservableObject {
         publication.metadata.name
     }
 
-    var content: String? {
-        publication.metadata.content
+    var description: String? {
+        publication.metadata.description ?? publication.metadata.content
     }
 
     var mediaImageUrl: URL? {
