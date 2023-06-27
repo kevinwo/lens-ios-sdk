@@ -14,6 +14,8 @@ extension View {
             )
     }
 
+    /// This is a workaround for a bug in SwiftUI where NavigationLink doesn't work
+    /// properly when using multiple NavigationLinks in a list row.
     func plainRowMultiNavigationLink<Destination: Identifiable & Hashable>(
         destinations: [Destination],
         selection: Binding<Destination?>,
@@ -42,6 +44,10 @@ extension View {
     }
 }
 
+/// There are situations where we only want code to execute once on view appear, and
+/// the following article explains why the custom view modifier approach works best
+/// over the `onAppear` modifier or `init`:
+/// https://www.swiftjectivec.com/swiftui-run-code-only-once-versus-onappear-or-task/
 private struct FirstAppear: ViewModifier {
     let action: () -> ()
 
