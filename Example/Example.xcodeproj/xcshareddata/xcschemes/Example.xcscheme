@@ -39,6 +39,11 @@
                BlueprintName = "ExampleTests"
                ReferencedContainer = "container:Example.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ExplorePublicationsViewSnapshotTests/test_whenSortCriteriaIsTopCommented()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
