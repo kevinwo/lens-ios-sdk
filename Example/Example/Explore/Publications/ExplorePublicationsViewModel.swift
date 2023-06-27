@@ -34,6 +34,14 @@ final class ExplorePublicationsViewModel: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
 
+    private let interactor: ExplorePublicationsInteractorType
+
+    // MARK: - Object life cycle
+
+    init(interactor: ExplorePublicationsInteractorType) {
+        self.interactor = interactor
+    }
+
     // MARK: - Internal interface
 
     func onFirstAppear() {
@@ -41,7 +49,7 @@ final class ExplorePublicationsViewModel: ObservableObject {
             .sink { [weak self] _ in
                 guard let self else { return }
                 Task {
-                    await self.fetchPublications()
+                    await self.loadPublications()
                 }
             }
             .store(in: &cancellables)
@@ -49,7 +57,7 @@ final class ExplorePublicationsViewModel: ObservableObject {
 
     func onAppear() async {
         if publications.isEmpty && state != .isLoading {
-            await fetchPublications()
+            await loadPublications()
         }
     }
 
@@ -69,13 +77,8 @@ final class ExplorePublicationsViewModel: ObservableObject {
 
         isLoadingMore = true
 
-        let request = ExplorePublicationRequest(
-            cursor: .init(stringLiteral: pageInfo.next),
-            sortCriteria: .init(sortCriteria)
-        )
-
         do {
-            let results = try await Current.explore.publications(request: request, observerId: Current.user.profileId)
+            let results = try await interactor.fetchPublications(sortCriteria: sortCriteria, cursor: pageInfo.next)
             publications.append(contentsOf: results.items)
             self.pageInfo = results.pageInfo
         } catch {
@@ -86,20 +89,13 @@ final class ExplorePublicationsViewModel: ObservableObject {
     }
 
     @MainActor
-    private func fetchPublications() async {
+    private func loadPublications() async {
         state = .isLoading
 
         do {
-            #if DEBUG
-            if Current.user.isDemoModeEnabled {
-                publications = try Publication.demoExplorePublications()
-                self.pageInfo = nil
-            } else {
-                try await loadPublications()
-            }
-            #else
-            try await loadPublications()
-            #endif
+            let results = try await interactor.fetchPublications(sortCriteria: sortCriteria, cursor: nil)
+            publications = results.items
+            self.pageInfo = results.pageInfo
         } catch {
             // TODO: Handle error
         }
@@ -109,13 +105,5 @@ final class ExplorePublicationsViewModel: ObservableObject {
         } else {
             state = .noPublications
         }
-    }
-
-    private func loadPublications() async throws {
-        let request = ExplorePublicationRequest(sortCriteria: .init(sortCriteria))
-        let results = try await Current.explore.publications(request: request, observerId: Current.user.profileId)
-
-        publications = results.items
-        self.pageInfo = results.pageInfo
     }
 }

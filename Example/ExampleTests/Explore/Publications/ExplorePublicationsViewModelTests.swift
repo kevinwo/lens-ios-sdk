@@ -1,51 +1,92 @@
 import XCTest
+import LensTestData
 import LensTestTools
 @testable import Lens
 @testable import Example
 
 final class ExplorePublicationsViewModelTests: XCTestCase {
     var viewModel: ExplorePublicationsViewModel!
-    var mockExplore: MockExplore!
+    var mockInteractor: MockExplorePublicationsInteractor!
+    var triggeredStates: [ExplorePublicationsViewModel.State]!
 
     // MARK: - Test life cycle
 
     override func setUpWithError() throws {
-        viewModel = ExplorePublicationsViewModel()
-        mockExplore = MockExplore()
-        Current.explore = mockExplore
-        // TODO: Add test observer with world reset before each test run
+        triggeredStates = [ExplorePublicationsViewModel.State]()
+        mockInteractor = MockExplorePublicationsInteractor()
+        viewModel = ExplorePublicationsViewModel(interactor: mockInteractor)
     }
 
     override func tearDownWithError() throws {
         viewModel = nil
-        mockExplore = nil
+        mockInteractor = nil
+        triggeredStates = nil
     }
 
     // MARK: - Tests
 
-    func test_fetchPublications_whenNoPublicationsAreFetched() async throws {
+    func test_onFirstAppear_whenNoPublicationsAreFetched() async throws {
         // given
-        mockExplore.stubbedPublicationsResults = try Stubs.Explore.emptyPublications()
+        let expectation = XCTestExpectation(description: "Publication load completes")
+
+        /// We want to wait until publications complete load before verifying behavior.
+        observeStates { currentState in
+            if currentState == .noPublications {
+                expectation.fulfill()
+            }
+        }
+
+        mockInteractor.stubbedPublicationsResults = try Stubs.Explore.emptyPublications()
 
         // when
-        await viewModel.fetchPublications()
+        viewModel.onFirstAppear()
 
         // then
+        await fulfillment(of: [expectation], timeout: 5)
+
+        // it should trigger loading and complete with no publications
+        XCTAssertEqual(triggeredStates, [.isLoading, .noPublications])
+
+        // it should have no publications
         XCTAssertTrue(viewModel.publications.isEmpty)
-        XCTAssertFalse(viewModel.isLoading)
     }
 
-    func test_fetchPublications_whenPublicationsAreFetched() async throws {
+    func test_onFirstAppear_whenPublicationsAreFetched() async throws {
         // given
-        let expectedResults = try Stubs.Explore.publications()
-        mockExplore.stubbedPublicationsResults = expectedResults
+        let expectation = XCTestExpectation(description: "Publication load completes")
+
+        /// We want to wait until publications complete load before verifying behavior.
+        observeStates { currentState in
+            if currentState == .hasPublications {
+                expectation.fulfill()
+            }
+        }
+
+        mockInteractor.stubbedPublicationsResults = try Stubs.Explore.publications()
 
         // when
-        await viewModel.fetchPublications()
+        viewModel.onFirstAppear()
 
         // then
-        let expectedResponse = ExplorePublicationsResponse(response: expectedResults)
-        XCTAssertEqual(viewModel.publications, expectedResponse.items)
-        XCTAssertFalse(viewModel.isLoading)
+        await fulfillment(of: [expectation], timeout: 5)
+
+        // it should trigger loading and complete with publications
+        XCTAssertEqual(triggeredStates, [.isLoading, .hasPublications])
+
+        // it should have publications
+        XCTAssertFalse(viewModel.publications.isEmpty)
+    }
+
+    // MARK: - Private interface
+
+    func observeStates(expectationHandler: @escaping (ExplorePublicationsViewModel.State) -> Void) {
+        _ = viewModel.$state
+            .dropFirst(1)
+            .subscribe(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                guard let self else { return }
+                self.triggeredStates.append(state)
+                expectationHandler(state)
+            }
     }
 }

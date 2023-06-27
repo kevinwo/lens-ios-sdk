@@ -24,7 +24,7 @@ struct ContentView: View {
                     }
 
                     NavigationView {
-                        ExplorePublicationsView()
+                        ExplorePublicationsView.view()
                             .navigationBarItems(leading: leadingNavigationItem)
                     }
                     .tabItem {
@@ -54,7 +54,7 @@ struct ContentView: View {
                                 .padding(8)
                         }
 
-                        ExplorePublicationsView()
+                        ExplorePublicationsView.view()
                             .navigationBarItems(leading: leadingNavigationItem)
 
                         Spacer()

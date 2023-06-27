@@ -1,3 +1,4 @@
+import LensTestData
 import LensTestTools
 import SnapshotTesting
 import SwiftUI
@@ -12,13 +13,14 @@ final class ExplorePublicationsViewSnapshotTests: XCTestCase {
     // MARK: - Test life cycle
 
     override func setUpWithError() throws {
-        viewModel = ExplorePublicationsViewModel()
+        let interactor = ExplorePublicationsInteractor()
+        viewModel = ExplorePublicationsViewModel(interactor: interactor)
+
         mockExplore = MockExplore()
         Current.explore = mockExplore
     }
 
     override func tearDownWithError() throws {
-        viewModel = nil
         mockExplore = nil
     }
 
@@ -29,7 +31,7 @@ final class ExplorePublicationsViewSnapshotTests: XCTestCase {
         mockExplore.stubbedPublicationsResults = try Stubs.Explore.emptyPublications()
 
         // when
-        let view = ExplorePublicationsView(viewModel: viewModel)
+        let view = ExplorePublicationsView(viewModel: self.viewModel)
         let controller = view.prepareForSnapshotting()
 
         // then
@@ -50,7 +52,7 @@ final class ExplorePublicationsViewSnapshotTests: XCTestCase {
         mockExplore.stubbedPublicationsResults = try Stubs.Explore.publications()
 
         // when
-        let view = ExplorePublicationsView(viewModel: viewModel)
+        let view = ExplorePublicationsView(viewModel: self.viewModel)
         let controller = view.prepareForSnapshotting()
 
         // then

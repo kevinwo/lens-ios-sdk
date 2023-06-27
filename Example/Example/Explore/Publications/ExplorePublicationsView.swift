@@ -2,7 +2,7 @@ import SwiftUI
 import Lens
 
 struct ExplorePublicationsView: View {
-    @StateObject var viewModel = ExplorePublicationsViewModel()
+    @StateObject var viewModel: ExplorePublicationsViewModel
 
     var body: some View {
         VStack {
@@ -49,10 +49,17 @@ struct ExplorePublicationsView: View {
             Task { await viewModel.onAppear() }
         }
     }
+
+    static func view() -> ExplorePublicationsView {
+        let interactor = ExplorePublicationsInteractor()
+        let viewModel = ExplorePublicationsViewModel(interactor: interactor)
+
+        return ExplorePublicationsView(viewModel: viewModel)
+    }
 }
 
 struct ExplorePublicationsView_Previews: PreviewProvider {
     static var previews: some View {
-        ExplorePublicationsView()
+        ExplorePublicationsView.view()
     }
 }
