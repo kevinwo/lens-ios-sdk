@@ -384,6 +384,74 @@ extension Stubs {
             }
             """.data(using: .utf8)!
         }
+
+        public static func emptyPublications() throws -> ExplorePublicationsQuery.Data.ExplorePublications {
+            let stub = Stubs.explorePublicationsEmpty200ResponseJSON()
+            let dict = try XCTUnwrap(try JSONSerialization.jsonObject(with: stub, options: []) as? [String: AnyHashable])
+
+            let data = try XCTUnwrap(dict["data"] as? [String: AnyHashable])
+            let json = JSONValue(data["explorePublications"])
+            return ExplorePublicationsQuery.Data.ExplorePublications(
+                _dataDict: .init(
+                    data: try .init(_jsonValue: json)
+                )
+            )
+        }
+
+        public static func publications() throws -> ExplorePublicationsQuery.Data.ExplorePublications {
+            let stub = Stubs.explorePublications200ResponseJSON()
+            let results = try XCTUnwrap(try JSONSerialization.jsonObject(with: stub, options: []) as? [String: AnyHashable])
+
+            /// I don't like this work around, but I have yet to figure out why the valid JSON response stubs
+            /// do not end up parsing correctly with fulfilled values (works just fine on production when
+            /// live fetching). Therefore, forcing the type fulfillment for testing.
+            let data = try XCTUnwrap(results["data"] as? [String: AnyHashable])
+            var explorePublications = try XCTUnwrap(data["explorePublications"] as? [String: AnyHashable])
+            var items = try XCTUnwrap(explorePublications["items"] as? [[String: AnyHashable]])
+            items.enumerated().forEach { index, element in
+                let objectIdentifier: ObjectIdentifier? = {
+                    switch element["__typename"] as? String {
+                    case "Post":
+                        return ObjectIdentifier(Lens.ExplorePublicationsQuery.Data.ExplorePublications.Item.AsPost.self)
+                    case "Comment":
+                        return ObjectIdentifier(Lens.ExplorePublicationsQuery.Data.ExplorePublications.Item.AsComment.self)
+                    case "Mirror":
+                        return ObjectIdentifier(Lens.ExplorePublicationsQuery.Data.ExplorePublications.Item.AsMirror.self)
+                    default:
+                        return nil
+                    }
+                }()
+
+                if let objectIdentifier {
+                    items[index]["__fulfilled"] = Set([objectIdentifier])
+                }
+            }
+            explorePublications["items"] = items
+            let json = JSONValue(explorePublications)
+
+            return ExplorePublicationsQuery.Data.ExplorePublications(
+                _dataDict: .init(
+                    data: try .init(_jsonValue: json)
+                )
+            )
+        }
+    }
+
+    public static func explorePublicationsEmpty200ResponseJSON() -> Data {
+    """
+        {
+            "data": {
+                "explorePublications": {
+                    "items": [],
+                    "pageInfo": {
+                        "prev": "prev_cursor",
+                        "next": "next_cursor",
+                        "totalCount": 0
+                    }
+                }
+            }
+        }
+    """.data(using: .utf8)!
     }
 
     public static func explorePublications200ResponseJSON() -> Data {

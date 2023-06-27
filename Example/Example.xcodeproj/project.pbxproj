@@ -73,6 +73,11 @@
 		21ACF1CD2A09CD69008587BC /* UserNftsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ACF1CC2A09CD69008587BC /* UserNftsView.swift */; };
 		21ACF1CF2A09D124008587BC /* UserNftsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ACF1CE2A09D124008587BC /* UserNftsViewModel.swift */; };
 		21ACF1D12A0A931B008587BC /* UserNftsGridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ACF1D02A0A931B008587BC /* UserNftsGridItemView.swift */; };
+		21AEAA8E2A4B209F009F6B4C /* LensTestData in Frameworks */ = {isa = PBXBuildFile; productRef = 21AEAA8D2A4B209F009F6B4C /* LensTestData */; };
+		21AEAA902A4B20B0009F6B4C /* MagicSDK in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 21AEAA8F2A4B20B0009F6B4C /* MagicSDK */; };
+		21AEAA922A4B262E009F6B4C /* ExplorePublicationsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AEAA912A4B262E009F6B4C /* ExplorePublicationsInteractor.swift */; };
+		21AEAA952A4B37D0009F6B4C /* MockExplorePublicationsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AEAA942A4B37D0009F6B4C /* MockExplorePublicationsInteractor.swift */; };
+		21AEAA972A4B390A009F6B4C /* ExplorePublicationsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AEAA962A4B390A009F6B4C /* ExplorePublicationsInteractorTests.swift */; };
 		21B408FB2A06C36B0008D23A /* PubStatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B408FA2A06C36B0008D23A /* PubStatsViewModel.swift */; };
 		21B408FD2A06E4260008D23A /* PubStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B408FC2A06E4260008D23A /* PubStatView.swift */; };
 		21BEB5CD29E6F273008BC970 /* ExplorePublicationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BEB5CC29E6F273008BC970 /* ExplorePublicationsView.swift */; };
@@ -176,6 +181,9 @@
 		21ACF1CC2A09CD69008587BC /* UserNftsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNftsView.swift; sourceTree = "<group>"; };
 		21ACF1CE2A09D124008587BC /* UserNftsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNftsViewModel.swift; sourceTree = "<group>"; };
 		21ACF1D02A0A931B008587BC /* UserNftsGridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNftsGridItemView.swift; sourceTree = "<group>"; };
+		21AEAA912A4B262E009F6B4C /* ExplorePublicationsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsInteractor.swift; sourceTree = "<group>"; };
+		21AEAA942A4B37D0009F6B4C /* MockExplorePublicationsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExplorePublicationsInteractor.swift; sourceTree = "<group>"; };
+		21AEAA962A4B390A009F6B4C /* ExplorePublicationsInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsInteractorTests.swift; sourceTree = "<group>"; };
 		21B408FA2A06C36B0008D23A /* PubStatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubStatsViewModel.swift; sourceTree = "<group>"; };
 		21B408FC2A06E4260008D23A /* PubStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubStatView.swift; sourceTree = "<group>"; };
 		21BEB5CC29E6F273008BC970 /* ExplorePublicationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsView.swift; sourceTree = "<group>"; };
@@ -225,6 +233,8 @@
 			files = (
 				212D130A29E71FC80094560E /* LensTestTools in Frameworks */,
 				213F8FA329E7327C00473E5B /* SnapshotTesting in Frameworks */,
+				21AEAA8E2A4B209F009F6B4C /* LensTestData in Frameworks */,
+				21AEAA902A4B20B0009F6B4C /* MagicSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,8 +413,10 @@
 		212D130629E710AC0094560E /* Publications */ = {
 			isa = PBXGroup;
 			children = (
+				21AEAA932A4B37C3009F6B4C /* Mocks */,
 				212D130729E710C30094560E /* ExplorePublicationsViewModelTests.swift */,
 				213F8FA429E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift */,
+				21AEAA962A4B390A009F6B4C /* ExplorePublicationsInteractorTests.swift */,
 			);
 			path = Publications;
 			sourceTree = "<group>";
@@ -554,6 +566,14 @@
 			path = NFTs;
 			sourceTree = "<group>";
 		};
+		21AEAA932A4B37C3009F6B4C /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				21AEAA942A4B37D0009F6B4C /* MockExplorePublicationsInteractor.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		21BEB5CA29E6F25D008BC970 /* Explore */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,6 +588,7 @@
 				21BEB5CC29E6F273008BC970 /* ExplorePublicationsView.swift */,
 				21BEB5CE29E6F45C008BC970 /* ExplorePublicationsViewModel.swift */,
 				2140C6522A16AD870081837E /* ExplorePublicationsDemo.swift */,
+				21AEAA912A4B262E009F6B4C /* ExplorePublicationsInteractor.swift */,
 			);
 			path = Publications;
 			sourceTree = "<group>";
@@ -700,6 +721,8 @@
 			packageProductDependencies = (
 				212D130929E71FC80094560E /* LensTestTools */,
 				213F8FA229E7327C00473E5B /* SnapshotTesting */,
+				21AEAA8D2A4B209F009F6B4C /* LensTestData */,
+				21AEAA8F2A4B20B0009F6B4C /* MagicSDK */,
 			);
 			productName = ExampleTests;
 			productReference = 212D12FC29E7104A0094560E /* ExampleTests.xctest */;
@@ -831,6 +854,7 @@
 				219F876529E88C6F004B55C2 /* Formatters.swift in Sources */,
 				21DB4D6A29F997D500780876 /* HeadingText.swift in Sources */,
 				21E2B2552A097DA400F45FD1 /* ConfirmCollectView.swift in Sources */,
+				21AEAA922A4B262E009F6B4C /* ExplorePublicationsInteractor.swift in Sources */,
 				219F877029E897BD004B55C2 /* PubBylineView.swift in Sources */,
 				21DB4D9929FEFD8600780876 /* BackButton.swift in Sources */,
 				219F876329E87BBD004B55C2 /* CommentRowModel.swift in Sources */,
@@ -865,6 +889,8 @@
 				212D130829E710C30094560E /* ExplorePublicationsViewModelTests.swift in Sources */,
 				213F8FA529E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift in Sources */,
 				219F875229E87384004B55C2 /* Snapshotting+Tests.swift in Sources */,
+				21AEAA952A4B37D0009F6B4C /* MockExplorePublicationsInteractor.swift in Sources */,
+				21AEAA972A4B390A009F6B4C /* ExplorePublicationsInteractorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1072,8 +1098,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RBAYG54ZP6;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MACOSX_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevinwolkober.ExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1094,8 +1120,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RBAYG54ZP6;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MACOSX_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevinwolkober.ExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1237,6 +1263,15 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 219F876629E88F27004B55C2 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		21AEAA8D2A4B209F009F6B4C /* LensTestData */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LensTestData;
+		};
+		21AEAA8F2A4B20B0009F6B4C /* MagicSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 211E0E2C29EDD55200EBE5CB /* XCRemoteSwiftPackageReference "magic-ios" */;
+			productName = MagicSDK;
 		};
 		21C1284229F2D32E00E813ED /* FluidGradient */ = {
 			isa = XCSwiftPackageProductDependency;
