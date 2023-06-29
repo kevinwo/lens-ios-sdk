@@ -2,7 +2,7 @@ import SwiftUI
 
 struct AccountView: View {
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var viewModel: AccountViewModel
+    @StateObject var viewModel: AccountViewModel
 
     var body: some View {
         NavigationView {
@@ -15,23 +15,11 @@ struct AccountView: View {
                 }
 
                 VStack {
-                    switch viewModel.state {
-                    case .walletIsReady, .noWallet:
-                        Spacer()
-
-                        Image(systemName: "wallet.pass.fill")
-                            .foregroundColor(.white)
-                            .font(.system(size: 50))
-                        HeadingText(viewModel.title)
-                            .foregroundColor(.white)
-                            .padding()
-                        SubheadingText(viewModel.description)
-                            .foregroundColor(.white)
-                            .padding()
-                        Spacer()
-                    default:
-                        Group {}
-                    }
+                    AccountHeadingView(
+                        state: $viewModel.state,
+                        title: viewModel.title,
+                        description: viewModel.description
+                    )
 
                     VStack {
                         switch viewModel.state {

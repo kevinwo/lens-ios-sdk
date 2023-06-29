@@ -43,6 +43,7 @@
 		2138DA8C2A4DB098002BC608 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138DA8B2A4DB098002BC608 /* Configuration.swift */; };
 		2138DA8E2A4DB1B6002BC608 /* TestObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138DA8D2A4DB1B6002BC608 /* TestObserver.swift */; };
 		2138DA942A4DC479002BC608 /* ProfileDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138DA932A4DC479002BC608 /* ProfileDetailViewModelTests.swift */; };
+		2138DA962A4DC860002BC608 /* AccountHeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138DA952A4DC860002BC608 /* AccountHeadingView.swift */; };
 		213F8FA329E7327C00473E5B /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 213F8FA229E7327C00473E5B /* SnapshotTesting */; };
 		213F8FA529E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213F8FA429E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift */; };
 		2140C6552A16AEB70081837E /* UserNftsDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2140C6542A16AEB70081837E /* UserNftsDemo.swift */; };
@@ -157,6 +158,7 @@
 		2138DA8B2A4DB098002BC608 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		2138DA8D2A4DB1B6002BC608 /* TestObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestObserver.swift; sourceTree = "<group>"; };
 		2138DA932A4DC479002BC608 /* ProfileDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewModelTests.swift; sourceTree = "<group>"; };
+		2138DA952A4DC860002BC608 /* AccountHeadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountHeadingView.swift; sourceTree = "<group>"; };
 		213F8FA429E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsViewSnapshotTests.swift; sourceTree = "<group>"; };
 		2140C6542A16AEB70081837E /* UserNftsDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNftsDemo.swift; sourceTree = "<group>"; };
 		214479CF29F18AA30087D192 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 			children = (
 				218E55A229F0529300EC4271 /* AccountView.swift */,
 				218E55A429F0C22100EC4271 /* AccountViewModel.swift */,
+				2138DA952A4DC860002BC608 /* AccountHeadingView.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -883,6 +886,7 @@
 				21DB4D6A29F997D500780876 /* HeadingText.swift in Sources */,
 				21E2B2552A097DA400F45FD1 /* ConfirmCollectView.swift in Sources */,
 				21AEAA922A4B262E009F6B4C /* ExplorePublicationsInteractor.swift in Sources */,
+				2138DA962A4DC860002BC608 /* AccountHeadingView.swift in Sources */,
 				219F877029E897BD004B55C2 /* PubBylineView.swift in Sources */,
 				21DB4D9929FEFD8600780876 /* BackButton.swift in Sources */,
 				219F876329E87BBD004B55C2 /* CommentRowModel.swift in Sources */,
