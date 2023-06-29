@@ -14,6 +14,7 @@ struct PubStatView: View {
                 Text("\(value)")
             }
         }
+        .tag(iconName)
         .buttonStyle(.plain)
         .foregroundColor(isActive?.wrappedValue ?? false ? activeTintColor : .secondary)
     }

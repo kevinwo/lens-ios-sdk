@@ -1,9 +1,8 @@
-import LensTestData
-import LensTestTools
+@testable import LensTestData
+@testable import LensTestTools
 import SnapshotTesting
 import SwiftUI
 import XCTest
-@testable import Lens
 @testable import Example
 
 final class ExplorePublicationsViewSnapshotTests: XCTestCase {
@@ -45,7 +44,7 @@ final class ExplorePublicationsViewSnapshotTests: XCTestCase {
     }
 
     func test_whenSortCriteriaIsTopCommented() throws {
-        throw XCTSkip("Disabled; This test currently renders a white screen rather than the expected list. Needs investigation re: SwiftUI-specific snapshot tests and marking as TODO.")
+        throw XCTSkip("Disabled; There appears to be an issue with Swift packages and duplicate symbols being produced when a given package is shared across multiple other packages used in a test target. Therefore, we're currently unable to achieve conditional casting in production code when running tests as one type is compared against an incorrect duplicate type, causing tests to fail. Marking as TODO to work around.")
 
         // given
         viewModel.sortCriteria = .topCommented

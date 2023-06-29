@@ -163,6 +163,15 @@
       }
     },
     {
+      "identity" : "viewinspector",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nalexn/ViewInspector",
+      "state" : {
+        "revision" : "f8a994374b9eff1d92046f3d759654f527495045",
+        "version" : "0.9.7"
+      }
+    },
+    {
       "identity" : "web3.swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/magiclabs/Web3.swift.git",

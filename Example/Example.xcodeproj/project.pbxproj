@@ -56,6 +56,8 @@
 		218E55A029EF246600EC4271 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E559F29EF246600EC4271 /* FooterView.swift */; };
 		218E55A329F0529300EC4271 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E55A229F0529300EC4271 /* AccountView.swift */; };
 		218E55A529F0C22100EC4271 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E55A429F0C22100EC4271 /* AccountViewModel.swift */; };
+		219EB43C2A4C8BED0082178C /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 219EB43B2A4C8BED0082178C /* ViewInspector */; };
+		219EB43E2A4C8C1C0082178C /* ExplorePublicationsIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219EB43D2A4C8C1C0082178C /* ExplorePublicationsIntegrationTests.swift */; };
 		219F875229E87384004B55C2 /* Snapshotting+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F875129E87384004B55C2 /* Snapshotting+Tests.swift */; };
 		219F875629E87657004B55C2 /* PostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F875529E87657004B55C2 /* PostRow.swift */; };
 		219F875829E87749004B55C2 /* PostRowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F875729E87749004B55C2 /* PostRowModel.swift */; };
@@ -164,6 +166,7 @@
 		218E559F29EF246600EC4271 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		218E55A229F0529300EC4271 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		218E55A429F0C22100EC4271 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		219EB43D2A4C8C1C0082178C /* ExplorePublicationsIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsIntegrationTests.swift; sourceTree = "<group>"; };
 		219F875129E87384004B55C2 /* Snapshotting+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Snapshotting+Tests.swift"; sourceTree = "<group>"; };
 		219F875529E87657004B55C2 /* PostRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRow.swift; sourceTree = "<group>"; };
 		219F875729E87749004B55C2 /* PostRowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRowModel.swift; sourceTree = "<group>"; };
@@ -231,6 +234,7 @@
 			files = (
 				212D130A29E71FC80094560E /* LensTestTools in Frameworks */,
 				213F8FA329E7327C00473E5B /* SnapshotTesting in Frameworks */,
+				219EB43C2A4C8BED0082178C /* ViewInspector in Frameworks */,
 				21AEAA8E2A4B209F009F6B4C /* LensTestData in Frameworks */,
 				21AEAA902A4B20B0009F6B4C /* MagicSDK in Frameworks */,
 			);
@@ -412,6 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				21AEAA932A4B37C3009F6B4C /* Mocks */,
+				219EB43D2A4C8C1C0082178C /* ExplorePublicationsIntegrationTests.swift */,
 				212D130729E710C30094560E /* ExplorePublicationsViewModelTests.swift */,
 				213F8FA429E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift */,
 				21AEAA962A4B390A009F6B4C /* ExplorePublicationsInteractorTests.swift */,
@@ -720,6 +725,7 @@
 				213F8FA229E7327C00473E5B /* SnapshotTesting */,
 				21AEAA8D2A4B209F009F6B4C /* LensTestData */,
 				21AEAA8F2A4B20B0009F6B4C /* MagicSDK */,
+				219EB43B2A4C8BED0082178C /* ViewInspector */,
 			);
 			productName = ExampleTests;
 			productReference = 212D12FC29E7104A0094560E /* ExampleTests.xctest */;
@@ -761,6 +767,7 @@
 				211A95232A0C520400481EAF /* XCRemoteSwiftPackageReference "EFQRCode" */,
 				211A95432A0E75AA00481EAF /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				211A954E2A0EA44F00481EAF /* XCRemoteSwiftPackageReference "SVGView" */,
+				219EB43A2A4C8BED0082178C /* XCRemoteSwiftPackageReference "ViewInspector" */,
 			);
 			productRefGroup = 2118D86629E31C82006753C0 /* Products */;
 			projectDirPath = "";
@@ -882,6 +889,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				219EB43E2A4C8C1C0082178C /* ExplorePublicationsIntegrationTests.swift in Sources */,
 				212D130829E710C30094560E /* ExplorePublicationsViewModelTests.swift in Sources */,
 				213F8FA529E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift in Sources */,
 				219F875229E87384004B55C2 /* Snapshotting+Tests.swift in Sources */,
@@ -1203,6 +1211,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		219EB43A2A4C8BED0082178C /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.7;
+			};
+		};
 		219F876629E88F27004B55C2 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1254,6 +1270,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 213F8FA129E7327C00473E5B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
+		};
+		219EB43B2A4C8BED0082178C /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 219EB43A2A4C8BED0082178C /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
 		};
 		219F876729E88F27004B55C2 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

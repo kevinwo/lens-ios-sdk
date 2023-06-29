@@ -35,8 +35,8 @@ let package = Package(
       from: "1.10.0"
     ),
     .package(
-        url: "https://github.com/kishikawakatsumi/KeychainAccess.git",
-        from: "4.2.2"
+      url: "https://github.com/kishikawakatsumi/KeychainAccess.git",
+      from: "4.2.2"
     )
   ],
   targets: [

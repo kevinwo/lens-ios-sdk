@@ -1,7 +1,6 @@
 import XCTest
-import LensTestData
-import LensTestTools
-@testable import Lens
+@testable import LensTestData
+@testable import LensTestTools
 @testable import Example
 
 final class ExplorePublicationsViewModelTests: XCTestCase {

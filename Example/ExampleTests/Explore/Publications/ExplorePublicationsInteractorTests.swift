@@ -1,7 +1,7 @@
-import LensTestData
-import LensTestTools
-import XCTest
 @testable import Lens
+@testable import LensTestData
+@testable import LensTestTools
+import XCTest
 @testable import Example
 
 final class ExplorePublicationsInteractorTests: XCTestCase {
@@ -27,7 +27,7 @@ final class ExplorePublicationsInteractorTests: XCTestCase {
 
     func test_fetchPublications() async throws {
         // given
-        let expectedResults = try Stubs.Explore.emptyPublications()
+        let expectedResults = try Stubs.Explore.publications()
         mockExplore.stubbedPublicationsResults = expectedResults
 
         // when
