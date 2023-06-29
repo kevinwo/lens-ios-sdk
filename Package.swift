@@ -63,9 +63,6 @@ let package = Package(
       name: "LensTestData",
       dependencies: [
         "Lens"
-      ],
-      swiftSettings: [
-        .define("DEBUG", .when(configuration: .debug))
       ]
     ),
 
@@ -74,11 +71,6 @@ let package = Package(
       name: "LensTestTools",
       dependencies: [
         "Lens"
-      ],
-      linkerSettings: [
-        .linkedFramework(
-          "XCTest",
-          .when(platforms: [.macOS, .iOS, .watchOS, .tvOS])),
       ]
     ),
     .testTarget(

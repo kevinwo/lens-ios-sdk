@@ -1,4 +1,3 @@
-#if DEBUG
 import Foundation
 
 extension Stubs {
@@ -796,4 +795,3 @@ extension Stubs {
         """.data(using: .utf8)!
     }
 }
-#endif
