@@ -13,7 +13,6 @@ final class ExplorePublicationsInteractorTests: XCTestCase {
     override func setUpWithError() throws {
         mockExplore = MockExplore()
         Current.explore = mockExplore
-        // TODO: Add test observer with world reset before each test run
 
         interactor = ExplorePublicationsInteractor()
     }

@@ -40,6 +40,8 @@
 		212D130829E710C30094560E /* ExplorePublicationsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D130729E710C30094560E /* ExplorePublicationsViewModelTests.swift */; };
 		212D130A29E71FC80094560E /* LensTestTools in Frameworks */ = {isa = PBXBuildFile; productRef = 212D130929E71FC80094560E /* LensTestTools */; };
 		212D130C29E71FF00094560E /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D130B29E71FF00094560E /* World.swift */; };
+		2138DA8C2A4DB098002BC608 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138DA8B2A4DB098002BC608 /* Configuration.swift */; };
+		2138DA8E2A4DB1B6002BC608 /* TestObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138DA8D2A4DB1B6002BC608 /* TestObserver.swift */; };
 		213F8FA329E7327C00473E5B /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 213F8FA229E7327C00473E5B /* SnapshotTesting */; };
 		213F8FA529E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213F8FA429E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift */; };
 		2140C6552A16AEB70081837E /* UserNftsDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2140C6542A16AEB70081837E /* UserNftsDemo.swift */; };
@@ -151,6 +153,8 @@
 		212D12FC29E7104A0094560E /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		212D130729E710C30094560E /* ExplorePublicationsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsViewModelTests.swift; sourceTree = "<group>"; };
 		212D130B29E71FF00094560E /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		2138DA8B2A4DB098002BC608 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		2138DA8D2A4DB1B6002BC608 /* TestObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestObserver.swift; sourceTree = "<group>"; };
 		213F8FA429E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePublicationsViewSnapshotTests.swift; sourceTree = "<group>"; };
 		2140C6542A16AEB70081837E /* UserNftsDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNftsDemo.swift; sourceTree = "<group>"; };
 		214479CF29F18AA30087D192 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
@@ -400,6 +404,8 @@
 			children = (
 				219F875029E87376004B55C2 /* Extensions */,
 				212D130529E7109D0094560E /* Explore */,
+				2138DA8B2A4DB098002BC608 /* Configuration.swift */,
+				2138DA8D2A4DB1B6002BC608 /* TestObserver.swift */,
 			);
 			path = ExampleTests;
 			sourceTree = "<group>";
@@ -891,8 +897,10 @@
 			files = (
 				219EB43E2A4C8C1C0082178C /* ExplorePublicationsIntegrationTests.swift in Sources */,
 				212D130829E710C30094560E /* ExplorePublicationsViewModelTests.swift in Sources */,
+				2138DA8C2A4DB098002BC608 /* Configuration.swift in Sources */,
 				213F8FA529E732A300473E5B /* ExplorePublicationsViewSnapshotTests.swift in Sources */,
 				219F875229E87384004B55C2 /* Snapshotting+Tests.swift in Sources */,
+				2138DA8E2A4DB1B6002BC608 /* TestObserver.swift in Sources */,
 				21AEAA952A4B37D0009F6B4C /* MockExplorePublicationsInteractor.swift in Sources */,
 				21AEAA972A4B390A009F6B4C /* ExplorePublicationsInteractorTests.swift in Sources */,
 			);
@@ -1102,6 +1110,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RBAYG54ZP6;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPrincipalClass = ExampleTests.Configuration;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
@@ -1124,6 +1133,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RBAYG54ZP6;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPrincipalClass = ExampleTests.Configuration;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
