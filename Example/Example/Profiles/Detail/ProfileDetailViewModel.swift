@@ -87,8 +87,7 @@ final class ProfileDetailViewModel: ObservableObject {
 
         do {
             try Current.authentication.clear()
-            try await Current.wallet.disconnect()
-            try await Current.wallet.signOut()
+            Current.user.profileId = nil
         } catch {
             // TODO: Handle error
         }
